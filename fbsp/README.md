@@ -118,13 +118,13 @@ Patches
 
 Summary of all available patches:
 
-* [Bootlets patch](patches/01-bootlets.patch)
-* [LTIB patch](patches/01-ltib.patch)
-* [LTIB Ubuntu 11.10 32bit patch](patches/01-ltib_ubuntu.patch) - not used
-* [LTIB patch to bring in support for newer platforms](patches/02-ltib-Ltibutils.patch)
-* [LTIB patch to remove ssl support for wget](patches/03-ltib-wget.patch)
-* [LTIB patch to fix sparse, spec patch](patches/04-ltib-sparse.patch), [LTIB patch to fix sparse, source patch](patches/sparse-0.4-1316623824.patch)
-* [Linux 2.6.31 kernel patch to support OLinuXino](01-olinuxino.patch)
+* [Bootlets patch](./patches/01-bootlets.patch)
+* [LTIB patch](./patches/01-ltib.patch)
+* [LTIB Ubuntu 11.10 32bit patch](./patches/01-ltib_ubuntu.patch) - not used
+* [LTIB patch to bring in support for newer platforms](./patches/02-ltib-Ltibutils.patch)
+* [LTIB patch to remove ssl support for wget](./patches/03-ltib-wget.patch)
+* [LTIB patch to fix sparse, spec patch](./patches/04-ltib-sparse.patch), [LTIB patch to fix sparse, source patch](patches/sparse-0.4-1316623824.patch)
+* [Linux 2.6.31 kernel patch to support OLinuXino](./patches/01-olinuxino.patch)
 
 See Also
 ===

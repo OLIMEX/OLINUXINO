@@ -1,0 +1,856 @@
+diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/device.c linux-2.6.31/arch/arm/mach-mx23/device.c
+--- linux-2.6.31.orig/arch/arm/mach-mx23/device.c	2012-04-09 19:25:44.278144145 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/device.c	2012-04-09 20:00:49.704584387 +0300
+@@ -45,6 +45,7 @@
+ #include "device.h"
+ #include "mx23_pins.h"
+ #include "mx23evk.h"
++#include "imx233_olinuxino.h"
+ #include "mach/mx23.h"
+ 
+ #if defined(CONFIG_SERIAL_MXS_DUART) || \
+diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino.c
+--- linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c	1970-01-01 03:00:00.000000000 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino.c	2012-04-09 20:10:26.315443645 +0300
+@@ -0,0 +1,96 @@
++/*
++ * Copyright (C) 2012 RRKB IK, Raivis Rengelis, raivis@rrkb.lv
++ * Copyright (C) 2009-2010 Freescale Semiconductor, Inc. All Rights Reserved.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License along
++ * with this program; if not, write to the Free Software Foundation, Inc.,
++ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++ */
++
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/io.h>
++#include <linux/clk.h>
++#include <linux/platform_device.h>
++#include <linux/i2c.h>
++#include <linux/spi/spi.h>
++
++#include <asm/setup.h>
++#include <asm/mach-types.h>
++#include <asm/mach/arch.h>
++
++#include <mach/hardware.h>
++#include <mach/device.h>
++#include <mach/pinctrl.h>
++#include <mach/regs-ocotp.h>
++
++#include "device.h"
++#include "imx233_olinuxino.h"
++#include "mx23_pins.h"
++
++static void __init fixup_board(struct machine_desc *desc, struct tag *tags,
++			       char **cmdline, struct meminfo *mi)
++{
++	mx23_set_input_clk(24000000, 24000000, 32000, 50000000);
++}
++
++#if defined(CONFIG_SND_MXS_SOC_ADC) || defined(CONFIG_SND_MXS_SOC_ADC_MODULE)
++static void __init imx233_olinuxino_init_adc(void)
++{
++	struct platform_device *pdev;
++	pdev = mxs_get_device("mxs-adc", 0);
++	if (pdev == NULL)
++		return;
++	mxs_add_device(pdev, 3);
++}
++#else
++static void __init mx23evk_init_adc(void)
++{
++
++}
++#endif
++
++static void __init imx233_olinuxino_device_init(void)
++{
++	imx233_olinuxino_init_adc();
++}
++
++
++static void __init imx233_olinuxino_init_machine(void)
++{
++	mx23_pinctrl_init();
++
++	/* Init iram allocate */
++#ifdef CONFIG_VECTORS_PHY_ADDR
++	/* reserve the first page for irq vectors table*/
++	iram_init(MX23_OCRAM_PHBASE + PAGE_SIZE, MX23_OCRAM_SIZE - PAGE_SIZE);
++#else
++	iram_init(MX23_OCRAM_PHBASE, MX23_OCRAM_SIZE);
++#endif
++
++	mx23_gpio_init();
++	imx233_olinuxino_pins_init();
++	mx23_device_init();
++	imx233_olinuxino_device_init();
++}
++
++MACHINE_START(IMX233_OLINUXINO, "iMX233-OLinuXino low cost board")
++	.phys_io	= 0x80000000,
++	.io_pg_offst	= ((0xf0000000) >> 18) & 0xfffc,
++	.boot_params	= 0x40000100,
++	.fixup		= fixup_board,
++	.map_io		= mx23_map_io,
++	.init_irq	= mx23_irq_init,
++	.init_machine	= imx233_olinuxino_init_machine,
++	.timer		= &mx23_timer.timer,
++MACHINE_END
+diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.h linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino.h
+--- linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.h	1970-01-01 03:00:00.000000000 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino.h	2012-04-10 12:14:33.630292991 +0300
+@@ -0,0 +1,29 @@
++/*
++ * Copyright (C) 2012 RRKB IK, Raivis Rengelis, raivis@rrkb.lv
++ * Copyright (C) 2009-2010 Freescale Semiconductor, Inc. All Rights Reserved.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License along
++ * with this program; if not, write to the Free Software Foundation, Inc.,
++ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++ */
++
++#ifndef __ASM_ARM_MACH_IMX233_OLINUXINO_H
++#define __ASM_ARM_MACH_IMX233_OLINUXINO_H
++
++extern void __init imx233_olinuxino_pins_init(void);
++extern int mxs_mmc_hw_init_mmc0(void);
++extern int mxs_mmc_get_wp_mmc0(void);
++extern void mxs_mmc_hw_release_mmc0(void);
++extern void mxs_mmc_cmd_pullup_mmc0(int enable);
++
++#endif /* __ASM_ARM_MACH_IMX233_OLINUXINO_H */
+diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino_pins.c
+--- linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c	1970-01-01 03:00:00.000000000 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino_pins.c	2012-04-20 20:07:11.618237832 +0300
+@@ -0,0 +1,638 @@
++/*
++ * Copyright (C) 2012 RRKB IK, Raivis Rengelis, raivis@rrkb.lv
++ * Copyright (C) 2009-2010 Freescale Semiconductor, Inc. All Rights Reserved.
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License along
++ * with this program; if not, write to the Free Software Foundation, Inc.,
++ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++ */
++
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/platform_device.h>
++#include <linux/irq.h>
++#include <linux/gpio.h>
++#include <linux/delay.h>
++
++#include <mach/pinctrl.h>
++
++#include "mx23_pins.h"
++
++static struct pin_desc imx233_olinuxino_fixed_pins[] = {
++		{
++				.name = "DUART.RX",
++				.id = PINID_PWM0,
++				.fun = PIN_FUN3,
++		},
++		{
++				.name = "DUART.TX",
++				.id = PINID_PWM1,
++				.fun = PIN_FUN3,
++		},
++#ifdef CONFIG_MXS_AUART1_DEVICE_ENABLE
++		{
++				.name  = "AUART1.RX",
++				.id    = PINID_I2C_SDA,
++				.fun   = PIN_FUN3,
++		},
++		{
++				.name  = "AUART1.TX",
++				.id    = PINID_I2C_SCL,
++				.fun   = PIN_FUN3,
++		},
++#else
++		{
++				.name  = "UEXT.4",
++				.id    = PINID_I2C_SDA,
++				.fun   = PIN_GPIO,
++				.voltage = PAD_3_3V,
++				.strength = PAD_8MA,
++				.drive = 1,
++		},
++		{
++				.name  = "UEXT.3",
++				.id    = PINID_I2C_SCL,
++				.fun   = PIN_GPIO,
++				.voltage = PAD_3_3V,
++				.strength = PAD_8MA,
++				.drive = 1,
++		},
++#endif
++
++#if defined(CONFIG_I2C_MXS) || \
++		defined(CONFIG_I2C_MXS_MODULE)
++		{
++				.name = "I2C_SCL",
++				.id = PINID_LCD_ENABLE,
++				.fun = PIN_FUN2,
++				.strength = PAD_4MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "I2C_SDA",
++				.id = PINID_LCD_HSYNC,
++				.fun = PIN_FUN2,
++				.strength = PAD_4MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++#else
++		{
++				.name = "UEXT.5",
++				.id = PINID_LCD_ENABLE,
++				.fun = PIN_GPIO,
++				.voltage = PAD_3_3V,
++				.strength = PAD_12MA,
++				.drive = 1,
++		},
++		{
++				.name = "UEXT.6",
++				.id = PINID_LCD_HSYNC,
++				.fun = PIN_GPIO,
++				.voltage = PAD_3_3V,
++				.strength = PAD_12MA,
++				.drive = 1,
++		},
++#endif
++#if defined(CONFIG_FB_MXS) || defined(CONFIG_FB_MXS_MODULE)
++		{
++				.name  = "LCD_D00",
++				.id	= PINID_LCD_D00,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name  = "LCD_D01",
++				.id	= PINID_LCD_D01,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name  = "LCD_D02",
++				.id	= PINID_LCD_D02,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name  = "LCD_D03",
++				.id	= PINID_LCD_D03,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name  = "LCD_D04",
++				.id	= PINID_LCD_D04,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name  = "LCD_D05",
++				.id	= PINID_LCD_D05,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name  = "LCD_D06",
++				.id	= PINID_LCD_D06,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name  = "LCD_D07",
++				.id	= PINID_LCD_D07,
++				.fun	= PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "LCD_RESET",
++				.id = PINID_LCD_RESET,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "LCD_VSYNC",
++				.id   = PINID_LCD_VSYNC,
++				.fun  = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "LCD_HSYNC",
++				.id = PINID_LCD_HSYNC,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "LCD_ENABLE",
++				.id = PINID_LCD_ENABLE,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "LCD_DOTCLK",
++				.id = PINID_LCD_DOTCK,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++#else
++		{
++				.name = "GPIO.35",
++				.id	= PINID_LCD_D00,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.33",
++				.id	= PINID_LCD_D01,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.31",
++				.id	= PINID_LCD_D02,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.29",
++				.id	= PINID_LCD_D03,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.27",
++				.id	= PINID_LCD_D04,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.25",
++				.id	= PINID_LCD_D05,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.23",
++				.id	= PINID_LCD_D06,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.21",
++				.id	= PINID_LCD_D07,
++				.fun	= PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage	= PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.14",
++				.id = PINID_LCD_RESET,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.08",
++				.id   = PINID_LCD_VSYNC,
++				.fun  = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.06",
++				.id = PINID_LCD_DOTCK,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++#endif
++		{
++				.name = "GPIO.30",
++				.id = PINID_GPMI_CE0N,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.28",
++				.id = PINID_GPMI_CE1N,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.26",
++				.id = PINID_GPMI_WPN,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.24",
++				.id = PINID_GPMI_RDN,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "UEXT.9",
++				.id = PINID_GPMI_WRN,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "UEXT.10",
++				.id = PINID_GPMI_RDY0,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "UEXT.8",
++				.id = PINID_GPMI_RDY1,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.04",
++				.id = PINID_GPMI_ALE,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++				.output = 1,
++				.data = 1,
++		},
++		{
++				.name = "GPIO.03",
++				.id = PINID_GPMI_CLE,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.05",
++				.id = PINID_GPMI_D07,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.07",
++				.id = PINID_GPMI_D06,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.09",
++				.id = PINID_GPMI_D05,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.11",
++				.id = PINID_GPMI_D04,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.13",
++				.id = PINID_GPMI_D03,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.15",
++				.id = PINID_GPMI_D02,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.17",
++				.id = PINID_GPMI_D01,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.19",
++				.id = PINID_GPMI_D00,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.16",
++				.id = PINID_LCD_WR,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.18",
++				.id = PINID_LCD_RS,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "GPIO.20",
++				.id = PINID_LCD_CS,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++#if defined(CONFIG_MMC_MXS_NODETECT)
++		{
++				.name = "LED1",
++				.id = PINID_SSP1_DETECT,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive = 1,
++				.output = 1,
++				.data = 1,
++		},
++#endif
++};
++
++#if defined(CONFIG_MMC_MXS) || defined(CONFIG_MMC_MXS_MODULE)
++static struct pin_desc imx233_olinuxino_mmc_pins[] = {
++		/* Configurations of SSP0 SD/MMC port pins */
++		{
++				.name = "SSP1_DATA0",
++				.id = PINID_SSP1_DATA0,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.pullup = 1,
++				.drive = 1,
++				.pull = 1,
++		},
++		{
++				.name = "SSP1_DATA1",
++				.id = PINID_SSP1_DATA1,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.pullup = 1,
++				.drive = 1,
++				.pull = 1,
++		},
++		{
++				.name = "SSP1_DATA2",
++				.id = PINID_SSP1_DATA2,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.pullup = 1,
++				.drive = 1,
++				.pull = 1,
++		},
++		{
++				.name = "SSP1_DATA3",
++				.id = PINID_SSP1_DATA3,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.pullup = 1,
++				.drive = 1,
++				.pull = 1,
++		},
++		{
++				.name = "SSP1_CMD",
++				.id = PINID_SSP1_CMD,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.pullup = 1,
++				.drive = 1,
++				.pull = 1,
++		},
++		{
++				.name = "SSP1_SCK",
++				.id = PINID_SSP1_SCK,
++				.fun = PIN_FUN1,
++				.strength = PAD_8MA,
++				.voltage = PAD_3_3V,
++				.pullup = 0,
++				.drive = 1,
++				.pull = 0,
++		},
++};
++#endif
++
++static void mxs_request_pins(struct pin_desc *pins, int nr)
++{
++	int i;
++	struct pin_desc *pin;
++
++	/* configure the pins */
++	for (i = 0; i < nr; i++) {
++		pin = &pins[i];
++		if (pin->fun == PIN_GPIO)
++		{
++			gpio_request(MXS_PIN_TO_GPIO(pin->id), pin->name);
++			gpio_export(MXS_PIN_TO_GPIO(pin->id), true);
++		}
++		else
++			mxs_request_pin(pin->id, pin->fun, pin->name);
++		if (pin->drive) {
++			mxs_set_strength(pin->id, pin->strength, pin->name);
++			mxs_set_voltage(pin->id, pin->voltage, pin->name);
++		}
++		if (pin->pull)
++			mxs_set_pullup(pin->id, pin->pullup, pin->name);
++		if (pin->fun == PIN_GPIO) {
++			if (pin->output)
++				gpio_direction_output(MXS_PIN_TO_GPIO(pin->id),
++						pin->data);
++			else
++				gpio_direction_input(MXS_PIN_TO_GPIO(pin->id));
++		}
++	}
++}
++
++static void mxs_release_pins(struct pin_desc *pins, int nr)
++{
++	int i;
++	struct pin_desc *pin;
++
++	/* release the pins */
++	for (i = 0; i < nr; i++) {
++		pin = &pins[i];
++		if (pin->fun == PIN_GPIO)
++			gpio_free(MXS_PIN_TO_GPIO(pin->id));
++		else
++			mxs_release_pin(pin->id, pin->name);
++	}
++}
++
++#if defined(CONFIG_MMC_MXS) || defined(CONFIG_MMC_MXS_MODULE)
++int mxs_mmc_hw_init_mmc0(void)
++{
++	int ret = 0;
++
++	mxs_request_pins(imx233_olinuxino_mmc_pins, ARRAY_SIZE(imx233_olinuxino_mmc_pins));
++	mdelay(100);
++
++	return 0;
++}
++
++int mxs_mmc_get_wp_mmc0(void)
++{
++	return 0;
++}
++
++void mxs_mmc_hw_release_mmc0(void)
++{
++	mxs_release_pins(imx233_olinuxino_mmc_pins, ARRAY_SIZE(imx233_olinuxino_mmc_pins));
++}
++
++void mxs_mmc_cmd_pullup_mmc0(int enable)
++{
++	mxs_set_pullup(PINID_SSP1_CMD, enable, "mmc0_cmd");
++}
++#else
++int mxs_mmc_hw_init_mmc0(void)
++{
++	return 0;
++}
++
++int mxs_mmc_get_wp_mmc0(void)
++{
++}
++
++void mxs_mmc_hw_release_mmc0(void)
++{
++}
++
++void mxs_mmc_cmd_pullup_mmc0(int enable)
++{
++}
++#endif
++
++void __init imx233_olinuxino_pins_init(void)
++{
++	mxs_request_pins(imx233_olinuxino_fixed_pins, ARRAY_SIZE(imx233_olinuxino_fixed_pins));
++}
+diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/Kconfig linux-2.6.31/arch/arm/mach-mx23/Kconfig
+--- linux-2.6.31.orig/arch/arm/mach-mx23/Kconfig	2012-04-09 19:25:44.446144985 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/Kconfig	2012-04-20 20:22:31.022796911 +0300
+@@ -6,6 +6,13 @@ config MACH_MX23EVK
+ 	depends on ARCH_MX23
+ 	select USB_ARCH_HAS_EHCI
+ 
++config MACH_IMX233_OLINUXINO
++	bool "iMX233-OLinuXino low cost board"
++	depends on ARCH_MX23
++	select USB_ARCH_HAS_EHCI
++	select MMC_MXS
++	select MMC_MXS_NODETECT
++
+ endchoice
+ 
+ 
+diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/Makefile linux-2.6.31/arch/arm/mach-mx23/Makefile
+--- linux-2.6.31.orig/arch/arm/mach-mx23/Makefile	2012-04-09 19:25:44.350144508 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/Makefile	2012-04-09 19:58:27.211877809 +0300
+@@ -5,6 +5,7 @@ obj-y += pinctrl.o clock.o device.o seri
+ 
+ # Board select
+ obj-$(CONFIG_MACH_MX23EVK) += mx23evk.o mx23evk_pins.o
++obj-$(CONFIG_MACH_IMX233_OLINUXINO) += imx233_olinuxino.o imx233_olinuxino_pins.o
+ obj-$(CONFIG_GENERIC_GPIO) += gpio.o
+ obj-$(CONFIG_MXS_RAM_FREQ_SCALING) +=emi.o
+ obj-$(CONFIG_MXS_UNIQUE_ID_OTP)    += otp.o
+diff -rupN linux-2.6.31.orig/arch/arm/tools/mach-types linux-2.6.31/arch/arm/tools/mach-types
+--- linux-2.6.31.orig/arch/arm/tools/mach-types	2012-04-09 19:25:41.182128849 +0300
++++ linux-2.6.31/arch/arm/tools/mach-types	2012-04-09 19:37:16.381576093 +0300
+@@ -2517,3 +2517,4 @@ dolby_cat1021		MACH_DOLBY_CAT1021	DOLBY_
+ mx28evk			MACH_MX28EVK		MX28EVK			2531
+ mx23evk			MACH_MX23EVK		MX23EVK			2629
+ mx53_evk                MACH_MX53_EVK	        MX53_EVK		2716
++imx233_olinuxino	MACH_IMX233_OLINUXINO	IMX233_OLINUXINO	4105
+diff -rupN linux-2.6.31.orig/drivers/mmc/host/Kconfig linux-2.6.31/drivers/mmc/host/Kconfig
+--- linux-2.6.31.orig/drivers/mmc/host/Kconfig	2012-04-09 19:24:49.213871096 +0300
++++ linux-2.6.31/drivers/mmc/host/Kconfig	2012-04-20 20:27:16.360211824 +0300
+@@ -303,6 +303,14 @@ config MMC_MXS
+ 
+ 	  If unsure, say N.
+ 
++config MMC_MXS_NODETECT
++	bool "Ignore card detection status on MXS MMC interface"
++	depends on MMC_MXS
++	help
++	  This disables card presence detection in MXS MMC slot.
++	  If only boot device is MMC card and/or you want to use
++	  SSP_DETECT pin as GPIO, say Y here.
++
+ config MMC_S3C
+ 	tristate "Samsung S3C SD/MMC Card Interface support"
+ 	depends on ARCH_S3C2410
+diff -rupN linux-2.6.31.orig/drivers/mmc/host/mxs-mmc.c linux-2.6.31/drivers/mmc/host/mxs-mmc.c
+--- linux-2.6.31.orig/drivers/mmc/host/mxs-mmc.c	2012-04-09 19:24:49.177870911 +0300
++++ linux-2.6.31/drivers/mmc/host/mxs-mmc.c	2012-04-20 20:07:20.570282222 +0300
+@@ -155,8 +155,12 @@ static int mxs_mmc_get_ro(struct mmc_hos
+ /* Detect if card is plugged */
+ static inline int mxs_mmc_is_plugged(struct mxs_mmc_host *host)
+ {
++#if defined(CONFIG_MMC_MXS_NODETECT)
++	return 1;
++#else
+ 	u32 status = __raw_readl(host->ssp_base + HW_SSP_STATUS);
+ 	return !(status & BM_SSP_STATUS_CARD_DETECT);
++#endif
+ }
+ 
+ /* Card detection polling function */

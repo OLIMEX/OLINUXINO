@@ -1,0 +1,49 @@
+diff -rupN imx-bootlets-src-10.05.02.old/boot_prep/init-mx23.c imx-bootlets-src-10.05.02/boot_prep/init-mx23.c
+--- imx-bootlets-src-10.05.02.old/boot_prep/init-mx23.c	2010-05-14 07:56:28.000000000 +0300
++++ imx-bootlets-src-10.05.02/boot_prep/init-mx23.c	2012-04-20 19:37:20.497356137 +0300
+@@ -35,15 +35,15 @@
+  /* Debug uart have been init by boot rom. */
+ void putc(char ch)
+ {
+-	int loop = 0;
+-	while (HW_UARTDBGFR_RD()&BM_UARTDBGFR_TXFF) {
++	/*int loop = 0;
++	while (HW_UARTDBGFR_RD() & BM_UARTDBGFR_TXFF) {
+ 		loop++;
+ 		if (loop > 10000)
+ 			break;
+-	};
++	};*/
+ 
+-	/* if(!(HW_UARTDBGFR_RD() &BM_UARTDBGFR_TXFF)) */
+-	HW_UARTDBGDR_WR(ch);
++	if(!(HW_UARTDBGFR_RD() & BM_UARTDBGFR_TXFF))
++		HW_UARTDBGDR_WR(ch);
+ }
+ void delay(unsigned int us)
+ {
+diff -rupN imx-bootlets-src-10.05.02.old/linux_prep/cmdlines/stmp378x_dev.txt imx-bootlets-src-10.05.02/linux_prep/cmdlines/stmp378x_dev.txt
+--- imx-bootlets-src-10.05.02.old/linux_prep/cmdlines/stmp378x_dev.txt	2010-05-14 07:56:28.000000000 +0300
++++ imx-bootlets-src-10.05.02/linux_prep/cmdlines/stmp378x_dev.txt	2012-04-20 17:17:06.923635479 +0300
+@@ -1,6 +1,4 @@
+-console=ttyAM0,115200 root=/dev/mmcblk0p3 rw rootwait lcd_panel=lms430 no_console_suspend
+-console=ttyAM0,115200 root=/dev/mmcblk0p3 rw rootwait lcd_panel=lms350
+-console=ttyAM0,115200 ssp1=spi1 ubi.mtd=2 root=ubi0:rootfs0 rootfstype=ubifs lcd_panel=lms430
+-
+-
++noinitrd console=ttyAM0,115200 root=/dev/mmcblk0p2 rw rootwait ssp1=mmc
++noinitrd console=ttyAM0,115200 root=/dev/mmcblk0p2 rw rootwait ssp1=mmc
+ 
++noinitrd console=ttyAM0,115200 root=/dev/mmcblk0p2 rw rootwait ssp1=mmc
+diff -rupN imx-bootlets-src-10.05.02.old/linux_prep/include/mx23/platform.h imx-bootlets-src-10.05.02/linux_prep/include/mx23/platform.h
+--- imx-bootlets-src-10.05.02.old/linux_prep/include/mx23/platform.h	2010-05-14 07:56:28.000000000 +0300
++++ imx-bootlets-src-10.05.02/linux_prep/include/mx23/platform.h	2012-04-20 17:17:06.923635479 +0300
+@@ -18,7 +18,7 @@
+ #define __37XX_PLATFORM_H
+ 
+ #if defined (BOARD_STMP378X_DEV)
+-#define	MACHINE_ID	0xa45
++#define	MACHINE_ID	0x1009
+ #else
+ #error "Allocate a machine ID for your board"
+ #endif

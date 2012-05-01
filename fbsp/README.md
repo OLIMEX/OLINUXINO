@@ -93,12 +93,18 @@ If you're having problems building because of SSL relates issues with wget apply
 
 #### Sparse
 
-Impement two patches, one to ltib itself and one to the generated repository:
+Apply two patches, one to ltib itself and one to the generated repository:
 
     $ cat patches/04-ltib-sparse.patch | (cd ~/opt/ltib && patch -p1)
     $ cp patches/sparse-0.4-1316623824.patch /opt/freescale
 
 Taken from <http://lists.gnu.org/archive/html/ltib/2011-09/msg00057.html>.
+
+#### Lkc
+
+    $ cat patches/05-ltib-lkc.patch | (cd ~/opt/ltib && patch -p1)
+
+Taken from <http://cvs.savannah.gnu.org/viewvc/ltib/dist/lfs-5.1/lkc/lkc.spec?revision=1.2&root=ltib&view=markup>
 
 #### Git
 
@@ -124,6 +130,7 @@ Summary of all available patches:
 * [LTIB patch to bring in support for newer platforms](./patches/02-ltib-Ltibutils.patch)
 * [LTIB patch to remove ssl support for wget](./patches/03-ltib-wget.patch)
 * [LTIB patch to fix sparse, spec patch](./patches/04-ltib-sparse.patch), [LTIB patch to fix sparse, source patch](patches/sparse-0.4-1316623824.patch)
+* [LTIB patch to fix lkc](./patches/05-ltib-lkc.patch)
 * [Linux 2.6.31 kernel patch to support OLinuXino](./patches/01-olinuxino.patch)
 
 See Also

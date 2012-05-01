@@ -1,0 +1,12 @@
+diff --git a/dist/lfs-5.1/lkc/lkc.spec b/dist/lfs-5.1/lkc/lkc.spec
+index aba6160..def77d9 100755
+--- a/dist/lfs-5.1/lkc/lkc.spec
++++ b/dist/lfs-5.1/lkc/lkc.spec
+@@ -19,6 +19,7 @@ Patch6          : lkc-1.4-datestamp.patch
+ Patch7          : lkc-1.4-dashsource.patch
+ Patch8          : lkc-1.4-config_title-1.patch
+ Patch9          : lkc-1.4-config_filename-1.patch
++Patch10         : lkc-1.4-link-order.patch
+ BuildRoot       : %{_tmppath}/%{name}
+ Prefix          : %{pfx}
+ 

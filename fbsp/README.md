@@ -61,13 +61,25 @@ LTIB should now be installed.
 Applying LTIB Patches from Freescale
 ---
 
+Make sure the base directory exist:
+
+    $ sudo mkdir -p /opt/freescale/pkgs
+    $ sudo chmod a+rw /opt/freescale/pkgs
+
+Install the paches
+
     $ tar zxf Linux_1005_patches.gz
     $ cd Linux_1005_patches
     $ cp kernel-2.6.31.spec.in ~/opt/ltib/config/platform/imx
-    $ cp kernel_patches/* /opt/freescale/pkgs
+    $ sudo cp kernel_patches/* /opt/freescale/pkgs
 
 Applying LTIB Patches for Olinuxino
 ---
+
+Make sure the base directory exist:
+
+    $ sudo mkdir -p /opt/freescale/pkgs
+    $ sudo chmod a+rw /opt/freescale/pkgs
 
 This patch adds support for the Olinuxino board to LTIB:
 

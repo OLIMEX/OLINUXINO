@@ -108,7 +108,7 @@ If you're having problems building because of SSL relates issues with wget apply
 Apply two patches, one to ltib itself and one to the generated repository:
 
     $ cat patches/04-ltib-sparse.patch | (cd ~/opt/ltib && patch -p1)
-    $ cp patches/sparse-0.4-1316623824.patch /opt/freescale
+    $ cp patches/sparse-0.4-1316623824.patch /opt/freescale/pkgs
 
 Taken from <http://lists.gnu.org/archive/html/ltib/2011-09/msg00057.html>.
 
@@ -129,7 +129,10 @@ See <http://marinp.blogs.uv.es/2009/12/30/perl-locallib-problems-with-some-makef
 Configuring LTIB
 ---
 
+    $ cd ~/opt/ltib
     $ ./ltib -m config
+
+If you're getting an error message saying that you're missing some host packages, you need to install those. The patches above should have fixed any detection problems related to running ltib on recent OSes.
 
 Patches
 ===

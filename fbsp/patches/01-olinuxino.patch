@@ -1,6 +1,6 @@
 diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/device.c linux-2.6.31/arch/arm/mach-mx23/device.c
 --- linux-2.6.31.orig/arch/arm/mach-mx23/device.c	2012-04-09 19:25:44.278144145 +0300
-+++ linux-2.6.31/arch/arm/mach-mx23/device.c	2012-04-09 20:00:49.704584387 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/device.c	2012-05-02 19:02:41.644412588 +0300
 @@ -45,6 +45,7 @@
  #include "device.h"
  #include "mx23_pins.h"
@@ -9,10 +9,100 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/device.c linux-2.6.31/arch/arm/m
  #include "mach/mx23.h"
  
  #if defined(CONFIG_SERIAL_MXS_DUART) || \
+@@ -669,8 +670,52 @@ static void mx23_init_mmc(void)
+ 	;
+ }
+ #endif
++static void mx23_init_mmc2(void)
++{
++	;
++}
++
+ 
+ #if defined(CONFIG_SPI_MXS) || defined(CONFIG_SPI_MXS_MODULE)
++#if defined(CONFIG_MACH_IMX233_OLINUXINO)
++static void mx23_init_spi1(void)
++{
++	;
++}
++
++static struct resource ssp2_resources[] = {
++	{
++		.start	= SSP2_PHYS_ADDR,
++		.end	= SSP2_PHYS_ADDR + 0x1FFF,
++		.flags	= IORESOURCE_MEM,
++	}, {
++		.start	= IRQ_SSP2_DMA,
++		.end	= IRQ_SSP2_DMA,
++		.flags	= IORESOURCE_IRQ,
++	}, {
++		.start	= IRQ_SSP2_ERROR,
++		.end	= IRQ_SSP2_ERROR,
++		.flags	= IORESOURCE_IRQ,
++	}, {
++		.start	= MXS_DMA_CHANNEL_AHB_APBH_SSP2,
++		.end	= MXS_DMA_CHANNEL_AHB_APBH_SSP2,
++		.flags	= IORESOURCE_DMA,
++	},
++};
++
++static void __init mx23_init_spi2(void)
++{
++	struct platform_device *pdev;
++
++	pdev = mxs_get_device("mxs-spi", 0);
++	if (pdev == NULL || IS_ERR(pdev))
++		return;
++	pdev->resource = ssp2_resources;
++	pdev->num_resources = ARRAY_SIZE(ssp2_resources);
++
++	mxs_add_device(pdev, 3);
++}
++#else
+ static struct resource ssp1_resources[] = {
+ 	{
+ 		.start	= SSP1_PHYS_ADDR,
+@@ -703,11 +748,16 @@ static void __init mx23_init_spi1(void)
+ 
+ 	mxs_add_device(pdev, 3);
+ }
++#endif
+ #else
+ static void mx23_init_spi1(void)
+ {
+ 	;
+ }
++static void mx23_init_spi2(void)
++{
++	;
++}
+ #endif
+ 
+ #define CMDLINE_DEVICE_CHOOSE(name, dev1, dev2)			\
+@@ -731,6 +781,9 @@ static void mx23_init_spi1(void)
+ 	}
+ 
+ CMDLINE_DEVICE_CHOOSE(ssp1, mmc, spi1)
++#if defined(CONFIG_MACH_IMX233_OLINUXINO)
++CMDLINE_DEVICE_CHOOSE(ssp2, mmc2, spi2)
++#endif
+ 
+ #if defined(CONFIG_BATTERY_MXS)
+ /* battery info data */
+@@ -945,6 +998,9 @@ int __init mx23_device_init(void)
+ 	mx23_init_rtc();
+ 	mx23_init_dcp();
+ 	mx23_init_ssp1();
++#if defined(CONFIG_MACH_IMX233_OLINUXINO)
++	mx23_init_ssp2();
++#endif
+ 	mx23_init_gpmi_nfc();
+ 	mx23_init_spdif();
+ 	mx23_init_lcdif();
 diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino.c
 --- linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c	1970-01-01 03:00:00.000000000 +0300
-+++ linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino.c	2012-04-09 20:10:26.315443645 +0300
-@@ -0,0 +1,96 @@
++++ linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino.c	2012-05-02 20:46:03.823167530 +0300
+@@ -0,0 +1,116 @@
 +/*
 + * Copyright (C) 2012 RRKB IK, Raivis Rengelis, raivis@rrkb.lv
 + * Copyright (C) 2009-2010 Freescale Semiconductor, Inc. All Rights Reserved.
@@ -53,6 +143,25 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c linux-2.6.31/
 +#include "imx233_olinuxino.h"
 +#include "mx23_pins.h"
 +
++static struct spi_board_info spi_board_info[] __initdata = {
++#if defined(CONFIG_SPI_SPIDEV) || defined(CONFIG_SPI_SPIDEV_MODULE)
++	{
++		.modalias       = "spidev",
++		.max_speed_hz   = 1000000,
++		.bus_num	    = 1,
++		.chip_select    = 0,
++		.mode           = SPI_MODE_0,
++	},
++#endif
++};
++
++static void spi_device_init(void)
++{
++#if defined(CONFIG_SPI_SPIDEV) || defined(CONFIG_SPI_SPIDEV_MODULE)
++	spi_register_board_info(spi_board_info, ARRAY_SIZE(spi_board_info));
++#endif
++}
++
 +static void __init fixup_board(struct machine_desc *desc, struct tag *tags,
 +			       char **cmdline, struct meminfo *mi)
 +{
@@ -69,7 +178,7 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c linux-2.6.31/
 +	mxs_add_device(pdev, 3);
 +}
 +#else
-+static void __init mx23evk_init_adc(void)
++static void __init imx233_olinuxino_init_adc(void)
 +{
 +
 +}
@@ -77,6 +186,7 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c linux-2.6.31/
 +
 +static void __init imx233_olinuxino_device_init(void)
 +{
++	spi_device_init();
 +	imx233_olinuxino_init_adc();
 +}
 +
@@ -99,7 +209,7 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.c linux-2.6.31/
 +	imx233_olinuxino_device_init();
 +}
 +
-+MACHINE_START(IMX233_OLINUXINO, "iMX233-OLinuXino low cost board")
++MACHINE_START(IMX233_OLINUXINO, "iMX233-OLinuXino")
 +	.phys_io	= 0x80000000,
 +	.io_pg_offst	= ((0xf0000000) >> 18) & 0xfffc,
 +	.boot_params	= 0x40000100,
@@ -144,8 +254,8 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino.h linux-2.6.31/
 +#endif /* __ASM_ARM_MACH_IMX233_OLINUXINO_H */
 diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino_pins.c
 --- linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c	1970-01-01 03:00:00.000000000 +0300
-+++ linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino_pins.c	2012-04-20 20:07:11.618237832 +0300
-@@ -0,0 +1,638 @@
++++ linux-2.6.31/arch/arm/mach-mx23/imx233_olinuxino_pins.c	2012-05-02 18:33:41.751784925 +0300
+@@ -0,0 +1,665 @@
 +/*
 + * Copyright (C) 2012 RRKB IK, Raivis Rengelis, raivis@rrkb.lv
 + * Copyright (C) 2009-2010 Freescale Semiconductor, Inc. All Rights Reserved.
@@ -481,24 +591,8 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c linux-2.
 +				.drive	= 1,
 +		},
 +		{
-+				.name = "UEXT.9",
-+				.id = PINID_GPMI_WRN,
-+				.fun = PIN_GPIO,
-+				.strength = PAD_12MA,
-+				.voltage = PAD_3_3V,
-+				.drive	= 1,
-+		},
-+		{
 +				.name = "UEXT.10",
 +				.id = PINID_GPMI_RDY0,
-+				.fun = PIN_GPIO,
-+				.strength = PAD_12MA,
-+				.voltage = PAD_3_3V,
-+				.drive	= 1,
-+		},
-+		{
-+				.name = "UEXT.8",
-+				.id = PINID_GPMI_RDY1,
 +				.fun = PIN_GPIO,
 +				.strength = PAD_12MA,
 +				.voltage = PAD_3_3V,
@@ -579,14 +673,6 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c linux-2.
 +				.drive	= 1,
 +		},
 +		{
-+				.name = "GPIO.19",
-+				.id = PINID_GPMI_D00,
-+				.fun = PIN_GPIO,
-+				.strength = PAD_12MA,
-+				.voltage = PAD_3_3V,
-+				.drive	= 1,
-+		},
-+		{
 +				.name = "GPIO.16",
 +				.id = PINID_LCD_WR,
 +				.fun = PIN_GPIO,
@@ -620,6 +706,57 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c linux-2.
 +				.drive = 1,
 +				.output = 1,
 +				.data = 1,
++		},
++#endif
++#if defined(CONFIG_MMC_MXS) || defined(CONFIG_MMC_MXS_MODULE)
++		{
++		 .name	= "SPI2_MISO",
++		 .id	= PINID_GPMI_D00,
++		 .fun	= PIN_FUN3,
++		 .strength	= PAD_4MA,
++		 .voltage	= PAD_3_3V,
++		 .drive 	= 1,
++		 },
++		{
++		 .name	= "SPI2_MOSI",
++		 .id	= PINID_GPMI_RDY1,
++		 .fun	= PIN_FUN3,
++		 .strength	= PAD_4MA,
++		 .voltage	= PAD_3_3V,
++		 .drive 	= 1,
++		 },
++		{
++		 .name	= "SPI2_SCK",
++		 .id	= PINID_GPMI_WRN,
++		 .fun	= PIN_FUN3,
++		 .strength	= PAD_8MA,
++		 .voltage	= PAD_3_3V,
++		 .drive 	= 1,
++		 },
++#else
++		{
++				.name = "GPIO.19",
++				.id = PINID_GPMI_D00,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "UEXT.8",
++				.id = PINID_GPMI_RDY1,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
++		},
++		{
++				.name = "UEXT.9",
++				.id = PINID_GPMI_WRN,
++				.fun = PIN_GPIO,
++				.strength = PAD_12MA,
++				.voltage = PAD_3_3V,
++				.drive	= 1,
 +		},
 +#endif
 +};
@@ -786,13 +923,13 @@ diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/imx233_olinuxino_pins.c linux-2.
 +}
 diff -rupN linux-2.6.31.orig/arch/arm/mach-mx23/Kconfig linux-2.6.31/arch/arm/mach-mx23/Kconfig
 --- linux-2.6.31.orig/arch/arm/mach-mx23/Kconfig	2012-04-09 19:25:44.446144985 +0300
-+++ linux-2.6.31/arch/arm/mach-mx23/Kconfig	2012-04-20 20:22:31.022796911 +0300
++++ linux-2.6.31/arch/arm/mach-mx23/Kconfig	2012-05-02 17:06:52.357952935 +0300
 @@ -6,6 +6,13 @@ config MACH_MX23EVK
  	depends on ARCH_MX23
  	select USB_ARCH_HAS_EHCI
  
 +config MACH_IMX233_OLINUXINO
-+	bool "iMX233-OLinuXino low cost board"
++	bool "iMX233-OLinuXino"
 +	depends on ARCH_MX23
 +	select USB_ARCH_HAS_EHCI
 +	select MMC_MXS

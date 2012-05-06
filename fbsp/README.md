@@ -1,6 +1,8 @@
 Guide To Build Freescale's Linux BSP for the Olinuxino
 ===
 
+*Thanks to Raivis for the initial description[1] and patches.*
+
 Download these:
 
 * [Linux 2.6.31 Sources](https://www.freescale.com/webapp/Download?colCode=L2.6.31_10.05.00_SDK_SOURCE), md5: dd90e0383d66abb9c9f48e94715ba6d1
@@ -10,7 +12,7 @@ Download these:
 Registration is required for these downloads. You're basically agreeing to not hold Freescale responsible for anything.
 
 Install LTIB
----
+===
 
 Unpack the LTIB bundle:
 
@@ -108,7 +110,7 @@ If you're having problems building because of SSL relates issues with wget apply
 Apply two patches, one to ltib itself and one to the generated repository:
 
     $ cat patches/04-ltib-sparse.patch | (cd ~/opt/ltib && patch -p1)
-    $ cp patches/sparse-0.4-1316623824.patch /opt/freescale
+    $ cp patches/sparse-0.4-1316623824.patch /opt/freescale/pkgs
 
 Taken from <http://lists.gnu.org/archive/html/ltib/2011-09/msg00057.html>.
 
@@ -127,9 +129,38 @@ I had to unset a few Perl-related environment variables, if not git got upset:
 See <http://marinp.blogs.uv.es/2009/12/30/perl-locallib-problems-with-some-makefiles-eg-git-manual-installtion/>.
 
 Configuring LTIB
----
+===
 
+'Configuring' is probably not the right word, but anyway. This step will build a lot of packages for your host machine and run you through a set of configuration dialogs to configure the kernel and root image.
+
+    $ cd ~/opt/ltib
     $ ./ltib -m config
+
+If you're getting an error message saying that you're missing some host packages, you need to install those. The patches above should have fixed any detection problems related to running ltib on recent OSes.
+
+Building
+===
+
+After you've successfully ran ./ltib -m config you're ready to build the image. Simply execute:
+
+    $ cd ~/opt/ltib
+    $ ./ltib
+
+and wait for a while. If everything is working as expected you should have a complete build image ready.
+
+    sudo /opt/freescale/ltib/usr/bin/rpm --root /home/foo/opt/ltib/rootfs --dbpath /var/lib/rpm -e --allmatches --nodeps --define '_tmppath /tmp/ltib' modeps 2>/dev/null
+    sudo /opt/freescale/ltib/usr/bin/rpm --root /home/foo/opt/ltib/rootfs --dbpath /var/lib/rpm --prefix / --ignorearch -ivh --force --excludedocs --define '_tmppath /tmp/ltib' /home/foo/opt/ltib/rpm/RPMS/arm/modeps-1.0-1.arm.rpm
+    Preparing...                ########################################### [100%]
+       1:modeps                 ########################################### [100%]
+
+    Processing deployment operations
+    ==================================
+
+    Started: Fri May  4 18:24:16 2012
+    Ended:   Fri May  4 18:35:43 2012
+    Elapsed: 687 seconds
+
+    Build Succeeded
 
 Patches
 ===

@@ -4,5 +4,8 @@
 
 3. this is link to OpenEmbedded/Yocto BSP layer for Olinuxino https://github.com/radolin/meta-olinuxino
 
+
+In TV-CONSOLE folder is image with console output to TV-out via the framebuffer
+
 Good Luck!
 Tsvetan / Olimex

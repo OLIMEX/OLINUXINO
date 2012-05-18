@@ -26,6 +26,16 @@ To name few potential applications for OLINUXINO:
 - OLINUXINO have 100Mbit Ethernet port, but there are many low cost $10 WIFI USB modules with Linux drivers like RTL8192 which allow OLINUXINO to connect to internet wireless and to may control relays and sensors without need for LAN wiring.
 - Having small linux module with GPIOs would be handy even to embed it in other products. BeagleBone do not allow the board to be used in commercial projects, there are no restrictions with OLINUXINO
 
+WEB RESOURCES:
+
+http://www.olimex.com - OLIMEX Ltd web site where the OLinuXino board info is hosted
+
+https://github.com/OLIMEX/OLINUXINO - GitHub web site hosting the Hardware and Software sources
+
+http://tech.groups.yahoo.com/group/olinuxino/ - Yahoo group for OLinuXino project discussions
+
+OLinuXino IRC channel: join #olimex on irc.freenode.net , alternatively use http://webchat.freenode.net/?channels=olimex for web IRC chat
+
 LICENSEE:
 
 HARDWARE

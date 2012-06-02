@@ -1,7 +1,7 @@
-iMX233-OLinuXino-Maxi REVISION.A	April, 2012
+iMX233-OLinuXino-Maxi REVISION.B	May, 2012
 
-Status	: prototype
+Status	: production
 
-Issues	: LiPo battery operation not working
+Issues	: 
 
-TODO	: fix LiPo battery operation
+TODO	: 

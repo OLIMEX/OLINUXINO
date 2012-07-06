@@ -1,7 +1,7 @@
-iMX233-OLinuXino-Mini REVISION.A	April, 2012
+iMX233-OLinuXino-Mini REVISION.C	July, 2012
 
-Status	: prototype, 2 Layers
+Status	: prototype, 4 Layers
 
-Issues	: DDR do not work at full frequency, reliable operation is possible at 64Mhz memory bus instead 133Mhz as on Maxi
+Issues	: none
 
-TODO	: re-routing at 4 layers to fix the DDR memory issues
+TODO	: none

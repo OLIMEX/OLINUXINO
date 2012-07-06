@@ -1,4 +1,4 @@
-A13-OLinuXino	May, 2012
+A13-OLinuXino	July, 2012
 
 Status	: schematic design, 4 Layers
 

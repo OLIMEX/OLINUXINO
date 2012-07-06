@@ -1,7 +1,7 @@
-iMX233-OLinuXino-Maxi REVISION.B	May, 2012
+iMX233-OLinuXino-Maxi REVISION.B1	JUly, 2012
 
 Status	: production
 
-Issues	: 
+Issues	: none
 
-TODO	: 
+TODO	: none

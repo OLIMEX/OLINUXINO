@@ -26,6 +26,27 @@ To name few potential applications for OLINUXINO:
 - OLINUXINO have 100Mbit Ethernet port, but there are many low cost $10 WIFI USB modules with Linux drivers like RTL8192 which allow OLINUXINO to connect to internet wireless and to may control relays and sensors without need for LAN wiring.
 - Having small linux module with GPIOs would be handy even to embed it in other products. BeagleBone do not allow the board to be used in commercial projects, there are no restrictions with OLINUXINO
 
+
+THE DEVELOPMENT PATH:
+
+Step 1:
+OLinuXino project started with iMX233 from Freescale for several reasons: this is ARM9 processor running at 455Mhz with enough power to run linux and still in handsolder friendly TQFP package, which allow hobby DIY approach. iMX233-OLinuXino-MICRO is even on 2 layer PCB and running at full speed. The maximum memory of 64MB though limited the applications with it, so we were looking around for something more powerful when A13 from Allwinner came along.
+
+Step 2:
+A13 is Cortex-A8 processor which can address up to 512MB RAM and run at 1GHz. The best of all it again comes in the hand soldering friendly TQFP package (actually it's the first and the only Cortex-A8 in TQFP package). So designing A13-OLinuXino was the next logical step. The first prototypes are already produced and everything works as expected. A13-OLinuXino production is scheduled for September.
+A13-OLinuXino have 512MB RAM, 4 USB hosts (1 dedicated for WIFI), 1 USB-OTG, Audio out, Audio in, SD-card, VGA, buttons, 72 GPIOs, LCD connector
+
+Step 3:
+A10 is the big brother of A13 it's also Cortex-A8 running at 1Ghz (many Chinese tablet/set-top-box vendors write it's 1.2 or 1.5GHz but this is overclocking and same is possible with A13 too, but not recommended for normal operation). It can address up to 2GB of RAM, and on top of A13 have SATA, HDMI, VGA and composite video outputs) + much more GPIOs as it's in BGA442 package. While we developed A13-OLinuXino we got many requests for hackable A10 board as all current solutions are tablets or set-top-boxes which are not designed to have GPIO connectors and to allow hardware hacking
+A10-OLinuXino will have same as A13 but including more GPIOs, 1GB RAM, HDMI, SATA and 100MBit Ethernet
+
+Step 4:
+Freescale intoduced their new iMX6 Cortex-A9 with one-two-four cores running at up to 1.2GHz, all come in same package, so board designed with iMX6 may provide up to 4.8GHz accumulated performance. The signle core processors are scheduled to be available by end of this year for sampling, so we are waiting to see what the price/availability would be before we proceed.
+iMX6 have interesting features missing in A10/A13 like Gigabit Ethernet, up to 4GB RAM, PCIe.
+
+Step 5:
+... we don't know yet, but we are sure there will be newer and intresting processors which will come alone in the future.
+
 WEB RESOURCES:
 
 http://www.olimex.com - OLIMEX Ltd web site where the OLinuXino board info is hosted

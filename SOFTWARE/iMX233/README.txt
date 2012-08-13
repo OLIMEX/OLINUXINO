@@ -27,6 +27,7 @@ interfacing Olinuxino with Android phones http://tech.groups.yahoo.com/group/oli
 
 new arch kernel with more usb modules and better DM9601 support http://tech.groups.yahoo.com/group/olinuxino/message/1262 by Georg Sassen
 
+
 ---
 
 Standalone imx-bootlets for OLinuXino kernel development http://tech.groups.yahoo.com/group/olinuxino/message/1588 by Michael Peter Thompson
@@ -34,3 +35,10 @@ Standalone imx-bootlets for OLinuXino kernel development http://tech.groups.yaho
 ---
 
 quick reference chart for pinout of Olinuxino-Micro by http://tech.groups.yahoo.com/group/olinuxino/message/1601 JP Beale
+
+---
+
+I2C examples for OLinuXino by Jeroends https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/iMX233/I2C
+
+---
+

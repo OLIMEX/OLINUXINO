@@ -1,6 +1,6 @@
-A13-OLinuXino	July, 2012
+A13-OLinuXino	August, 2012	REV.B
 
-Status	: prototype, 4 Layers
+Status	: developer edition run,  4 Layers
 
 Issues	: 
 

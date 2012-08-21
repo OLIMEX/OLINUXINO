@@ -3,9 +3,9 @@ iMX233-OLinuXino Debian Squeeze rootfs
 This is experimental Debian Squeeze rootfs.
 
 
-You will need Open Embedded generated Kernel 2.6.35 which image you can download from: https://docs.google.com/open?id=0B-bAEPML8fwlWDRpMGl5TGVaNXM
+You will need Open Embedded generated Kernel 2.6.35 which image you can download from: https://docs.google.com/open?id=0B-bAEPML8fwlT3g0MVBBTVpRQnM (image provided by Jeroends)
 
-and the Debian rootfs you can download from: https://docs.google.com/open?id=0B-bAEPML8fwlOHJkX2ZNanVfR2s
+and the Debian rootfs you can download from: https://docs.google.com/open?id=0B-bAEPML8fwlMGVWQTJ6TXd1Qlk (image provided by Jeroends)
 
 
 Short description about how to make bootable SD card with Linux file system for OLinuXino boards

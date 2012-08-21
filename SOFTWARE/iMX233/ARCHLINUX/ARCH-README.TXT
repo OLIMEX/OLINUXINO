@@ -1,5 +1,8 @@
 iMX233-OLinuXino ARCHLINUX distribution
 
+See https://github.com/OLIMEX/archlinuxarm-olinuxino for the latest installation instructions. Files referenced below are obsolete.
+
+
 Kiril Zyapkov is one of our early developers who received free iMX233-OLinuXino-Maxi, he uses ARCHLinux during his daily work and he made ArchLinux distribution for OLinuXino.
 The distribution use OpenEmbedded Layer to generate the necessary packages. The project is at GitHub: https://github.com/OLIMEX/archlinuxarm-olinuxino
 

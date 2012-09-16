@@ -14,8 +14,9 @@ From September 1st all SD cards with Linux images we distribute will contain lat
 Here is list of Software resources for iMX233-OLinuXino
 
 
-Yahoo group is proven to be hard to searching info on it, so here below I place links to some interesting projects/codes which were posted to the group:
+---
 
+http://leachy.homeip.net/olinuxino/index.html tutorial how to make PLC with iMX233-OLinuXino
 
 ---
 

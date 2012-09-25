@@ -2,7 +2,7 @@ OLINUXINO - Single Board Linux Computer, Copyright(C) 2012, OLIMEX Ltd
 
 THE PROJECT:
 
-OLINUXINO is Open Source software and Open Source Hardware, low cost EUR 30 Linux Industrial grade single board computer with GPIOs capable to operate -25+85C. 
+OLINUXINO is Open Source software and Open Source Hardware, low cost starting from EUR 24 Linux Industrial grade single board computer with GPIOs capable to operate -25+85C. 
 People keep comparing OLINUXINO with Raspberry Pi and BeagleBone project, so we would like to state the differences here:
 
 Although the projects are similar there are different goals and implementations:
@@ -30,7 +30,7 @@ To name few potential applications for OLINUXINO:
 THE DEVELOPMENT PATH:
 
 Step 1:
-OLinuXino project started with iMX233 from Freescale for several reasons: this is ARM9 processor running at 455Mhz with enough power to run linux and still in handsolder friendly TQFP package, which allow hobby DIY approach. iMX233-OLinuXino-MICRO is even on 2 layer PCB and running at full speed. The maximum memory of 64MB though limited the applications with it, so we were looking around for something more powerful when A13 from Allwinner came along.
+OLinuXino project started with iMX233 from Freescale for several reasons: this is ARM9 processor running at 454Mhz with enough power to run linux and still in handsolder friendly TQFP package, which allow hobby DIY approach. iMX233-OLinuXino-MICRO is even on 2 layer PCB and running at full speed. The maximum memory of 64MB though limited the applications with it, so we were looking around for something more powerful when A13 from Allwinner came along.
 
 Step 2:
 A13 is Cortex-A8 processor which can address up to 512MB RAM and run at 1GHz. The best of all it again comes in the hand soldering friendly TQFP package (actually it's the first and the only Cortex-A8 in TQFP package). So designing A13-OLinuXino was the next logical step. The first prototypes are already produced and everything works as expected. A13-OLinuXino production is scheduled for September.
@@ -53,7 +53,7 @@ http://www.olimex.com - OLIMEX Ltd web site where the OLinuXino board info is ho
 
 https://github.com/OLIMEX/OLINUXINO - GitHub web site hosting the Hardware and Software sources
 
-http://tech.groups.yahoo.com/group/olinuxino/ - Yahoo group for OLinuXino project discussions
+https://www.olimex.com/forum/index.php - Olimex forum for OLinuXino project discussions
 
 OLinuXino IRC channel: join #olimex on irc.freenode.net , alternatively use http://webchat.freenode.net/?channels=olimex for web IRC chat
 

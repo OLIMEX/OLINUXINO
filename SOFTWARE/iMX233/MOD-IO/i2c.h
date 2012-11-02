@@ -1,7 +1,7 @@
 /*
  * i2c.h
  * 
- * Copyright 2012  OLIMEX Ltd
+ * Copyright 2012  <stefan-olimex@olimexserver11-desktop>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

@@ -41,8 +41,8 @@ A10 is the big brother of A13 it's also Cortex-A8 running at 1Ghz (many Chinese 
 A10-OLinuXino will have same as A13 but including more GPIOs, 1GB RAM, HDMI, SATA and 100MBit Ethernet
 
 Step 4:
-Freescale intoduced their new iMX6 Cortex-A9 with one-two-four cores running at up to 1.2GHz, all come in same package, so board designed with iMX6 may provide up to 4.8GHz accumulated performance. The signle core processors are scheduled to be available by end of this year for sampling, so we are waiting to see what the price/availability would be before we proceed.
-iMX6 have interesting features missing in A10/A13 like Gigabit Ethernet, up to 4GB RAM, PCIe.
+A10S is new processor from Allwinner with Ethernet and HDMI. We got samples and now work on the preliminary schematic of A10S-OLinuXino, the goal is to release very low cost board with no much fancy features but only the basics.
+i.e. A10S Cortex-A8 @ 1GHz + 512MB RAM + Ethernet 100Mbit + USB Host/USB-OTG + SD-card + SD-MMC card + HDMI for EUR 28 in OEM quantities (50+ pcs) and EUR 30-35.00 retail for 1 pce.
 
 Step 5:
 ... we don't know yet, but we are sure there will be newer and intresting processors which will come alone in the future.

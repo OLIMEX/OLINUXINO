@@ -1,0 +1,34 @@
+
+--- plugins/input-raw.c	2012-12-15 16:07:26.511158233 +0200
++++ plugins/input-raw.c	2012-12-18 10:05:15.759559286 +0200
+@@ -43,6 +43,7 @@
+ #ifndef ABS_MT_POSITION_X
+ # define ABS_MT_POSITION_X       0x35    /* Center X ellipse position */
+ # define ABS_MT_POSITION_Y       0x36    /* Center Y ellipse position */
++# define ABS_MT_TOUCH_MAJOR      0x30    /* Press */
+ #endif
+ 
+ #include "tslib-private.h"
+@@ -98,8 +99,8 @@
+ 	if ((ioctl(ts->fd, EVIOCGBIT(EV_ABS, sizeof(absbit)), absbit)) < 0 ||
+ 		!(absbit[BIT_WORD(ABS_X)] & BIT_MASK(ABS_X)) ||
+ 		!(absbit[BIT_WORD(ABS_Y)] & BIT_MASK(ABS_Y))) {
+-		fprintf(stderr, "tslib: Selected device is not a touchscreen (must support ABS_X and ABS_Y events)\n");
+-		return -1;
++		/*  fprintf(stderr, "tslib: Selected device is not a touchscreen (must support ABS_X and ABS_Y events)\n");
++		return -1;*/
+ 	}
+ 
+ 	/* Since some touchscreens (eg. infrared) physically can't measure pressure,
+@@ -201,6 +202,11 @@
+ 				case ABS_MT_POSITION_Y:
+ 					i->current_y = ev.value;
+ 					break;
++				 case ABS_MT_TOUCH_MAJOR:
++					i->current_p = ev.value;
++                                        break;
++
++
+ 				case ABS_PRESSURE:
+ 					i->current_p = ev.value;
+ 					break;

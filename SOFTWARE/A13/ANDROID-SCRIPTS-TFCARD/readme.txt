@@ -1,0 +1,1 @@
+Allwinner Software developer Mr. Gong send these scripts which should allow Android to boot from SD-card with instructions in Chinese ;)

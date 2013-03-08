@@ -1,0 +1,23 @@
+1. Install package
+
+download from:
+https://pypi.python.org/pypi/pyA13/
+
+#tar -zxvf pyA13-0.1.7.tar.gz
+#cd pyA13-0.1.7.tar.gz
+#sudo python setup.py install
+
+2. Example use 
+#sudo python
+
+>>> import A13_GPIO as GPIO
+>>> GPIO.init()
+>>> GPIO.getcfg(GPIO.PIN37)
+>>> GPIO.setcfg(GPIO.PIN37, GPIO.OUTPUT)
+>>> GPIO.output(GPIO.PIN37, GPIO.HIGH)
+>>> GPIO.output(GPIO.PIN37, GPIO.LOW)
+>>> GPIO.setcfg(GPIO.PIN37, GPIO.INPUT)
+>>> GPIO.input(GPIO.PIN37)
+
+3. Or use blinking led script
+#sudo python blink.py

@@ -1,0 +1,121 @@
+OpenCV + Python fun with A13-OLinuXino-WIFI
+===========================================
+
+OpenCV is open source huge image processing library. It was build by thousands of contributors for many years.
+Now OpenCV is so powerful that you can make with the latest 2.4 revision even face recognition, gesture analysis and any kind of image filtering and enhancements.
+
+There are tons of funny projects based on OpenCV like these videos: 
+- face tracking http://www.youtube.com/watch?v=hH89ZkV2jtE
+- face expression analysis http://www.youtube.com/watch?v=X6xNqPPSKtM
+- hand gesture recognition http://www.youtube.com/watch?v=th8hUD7Ajg4
+- make cool interactive systems http://www.youtube.com/watch?v=CeQwhujiWVk
+- object tracking - http://www.youtube.com/watch?v=NkWkCpYc3CA
+- track your eye and face activity http://www.youtube.com/watch?v=NCtYdUEMotg
+- using code like this http://www.youtube.com/watch?v=CigGvt3DXIw you can make your robot to chase pong ball in the field
+
+so you can see OpenCV opens endless interesting interactive projects.
+
+The best of all is that OpenCV runs fine on A13-OLinuXino-WIFI so instead to use big desktop for OpenCV you can use A13-OLinuXino which consumes only 2W of energy and can be placed on your robot and powered just from LiPo 3.7V battery.
+
+Installing OpenCV on A13-OLinuXino
+----------------------------------
+1. Make sure that your image support cams:
+
+# ls -l /dev/video*
+
+You should have video0 or video1. The demo uses video0.
+
+2. Install OpenCV
+
+# apt-get install libopencv-dev
+(If you dont want all packages, use core dist)
+
+3. Install Python
+
+# apt-get install python-dev
+(This will install Python2.7)
+
+4. Get OpenCV support for python
+
+# apt-get install python-opencv
+
+
+
+Now you are ready to develop with OpenCV on A13-OLinuXino!
+
+Our first "Hello world" example will be simple, we will run Apache web server, then with OpenCV will take pictures every 5 seconds and once per minute will store to the SD-card.
+This way you can make time elapsed videos like this one: http://www.youtube.com/watch?v=RU3DBvmaR3g
+
+-------------
+from cv2 import *	#import opencv module
+import sys		#import system module
+
+def main():
+    cam = VideoCapture(0)	#tell opencv where to take pictures from in this case from /dev/video0
+    index = 1			#this is the picture index
+
+    while True:			#search the SD-card for previous pictures to calc last picture index (in case of power failure for instance which interrupted the picture save process)
+        test = imread("img" + str(index) + ".jpg")
+	if test == None:
+	    break
+	else:
+	    index += 1
+
+    while True:
+	for i in range(12):	# wait 12 * 5 seconds = 1 minute to save picture
+            s, img = cam.read()	# capture the picture, s is flag which =1 if capture is successful
+            if s:
+	        imwrite("capture.jpg", img)
+	    else:
+		sys.exit(-1)
+	    waitKey(5000)	# just wait 5 seconds and do nothing
+
+        imwrite("img" + str(index) + ".jpg", img) # save the picture to SD-card and increase picture index
+	print("img" + str(index) + ".jpg")
+        index += 1
+        
+    return 0
+
+if __name__ == '__main__':
+	main()
+------------
+
+now let's setup the web server so we can see the pictures with web interface:
+
+5. Get Apache (or whatever else you want)
+
+# apt-get install apache2
+
+the code on the web page is simple:
+
+------------
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>CAM FEED</h2>
+<img border="0" src="images/capture.jpg" alt="Capture go here...">
+
+</body>
+</html>
+------------
+
+this code is already in the tar.gz file at GitHub: ....
+
+6. Go to www-dir
+
+# cd /var/www/
+# mkdir CAM
+# cd CAM
+# tar zxf demo.tar.gz .
+
+7. Go to images folder and start the python module
+
+# python images/cam2.py &
+
+8. Open browser and enter the address where your A13 is connected:
+
+http://192.168.0.xx/CAM/
+
+9. You should see images every 5 sec. Additionally every 1 minute a image is saved on the SD-card.
+

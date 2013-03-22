@@ -1,4 +1,4 @@
-OLINUXINO - Single Board Linux Computer, Copyright(C) 2012, OLIMEX Ltd
+OLINUXINO - Single Board Linux Computer, Copyright(C) 2012-2013, OLIMEX Ltd
 
 THE PROJECT:
 
@@ -53,7 +53,7 @@ Step 5:
 Also this is why we decided our next board to be based on Texas Instruments Sitara AM3352 processor, so here AM3352 comes with: AM3352 720Mhz, Cortex-A8 processor, 512MB DDR3 RAM (optional we will make 1GB RAM version also), power supply 6-16VDC, x4 USB 2.0 hosts, 100Mbit Ethernet, SD-card, VGA, CAN, GPIO connector, LCD connector with touchscreen to work with A13-LCD7TS and A13-43TS LCDs, UEXT connector, JTAG.
 
 Step 6:
-... we don't know yet, SPEAr from ST looks like promissing candidate http://www.st.com/internet/mcu/product/251211.jsp as it's something we do not have above with Gigabit Ethernet, PCIe, 1Msps 10bit ADC etc.
+... we don't know yet, there are lot of candidates.
 
 WEB RESOURCES:
 

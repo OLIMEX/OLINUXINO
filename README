@@ -17,7 +17,7 @@ RPi is designed to be home gadget, OLINUXINO will work in industrial environment
 
 BeagleBone have open source CAD hardware files but uses BGA processor and BB board is very complex and hard to manufacture in small quantities.
 
-OLINUXINO uses processor on 454Mhz and have less memory and will not allow fancy graphics, but this is not our intention.
+iMX233-OLINUXINO uses processor on 454Mhz and have less memory and will not allow fancy graphics, but this is not our intention.
 
 To name few potential applications for OLINUXINO:
 
@@ -42,17 +42,15 @@ A10 is the big brother of A13 it's also Cortex-A8 running at 1Ghz (many Chinese 
 A10-OLinuXino will have same as A13 but including more GPIOs, 1GB RAM, HDMI, SATA and 100MBit Ethernet
 
 Step 4:
-A10S is new processor from Allwinner with Ethernet and HDMI. We got samples and now work on the preliminary schematic of A10S-OLinuXino, the goal is to release very low cost board with no much fancy features but only the basics.
-i.e. A10S Cortex-A8 @ 1GHz + 512MB RAM + Ethernet 100Mbit + USB Host/USB-OTG + SD-card + SD-MMC card + HDMI for EUR 28 in OEM quantities (50+ pcs) and EUR 30-35.00 retail for 1 pce.
-
-Allwinner like all other Chinese manufacturers do not care to release complete documentation for their products. The reason is hidden in the Chinese model of manufacturing, the SoC company provides all - the ICs the reference design, the software support and then the factories manufacture products without any R&D, so releasing proper documentation is not top priority. Also all they support is Android and they do not care to release proper GPL Linux Kernel sources. This results in situations like this when you have very simple problem (Like the VGA controller problem we had with A13) where you can't solve it for weeks and have to do reverse engineering and spend tons of time to fix something very simple which is not in their "support package".
-A10-OLinuXino DDR for instance is wired a bit different than their official schematic and as there is no info for DDR controller at all we are now stuck several weeks and can't alive the A10 prototypes as we can't get any technical support nor specs from Allwinner.
-At this point we decided to not release any other OLinuXino boards based on Allwinner SoC until they start releasing non-GPL violating Linux kernel sources and improve their documentation, so OLinuXino boards with their newer processors like A20 and A31 will be not implemented.
+A10S is new processor from Allwinner with Ethernet and HDMI. Low cost board with A10S Cortex-A8 @ 1GHz + 512MB RAM + Ethernet 100Mbit + USB Host/USB-OTG + SD-card + SD-MMC card + HDMI is released.
 
 Step 5:
-Also this is why we decided our next board to be based on Texas Instruments Sitara AM3352 processor, so here AM3352 comes with: AM3352 720Mhz, Cortex-A8 processor, 512MB DDR3 RAM (optional we will make 1GB RAM version also), power supply 6-16VDC, x4 USB 2.0 hosts, 100Mbit Ethernet, SD-card, VGA, CAN, GPIO connector, LCD connector with touchscreen to work with A13-LCD7TS and A13-43TS LCDs, UEXT connector, JTAG.
+A20 is Dual Core Cortex-A7 processor which is almost pin to pin compatible, so A10 board can work with A20 processors too. We have low cost A20 board prototypes working and A20-SOM work in progress.
 
 Step 6:
+Texas Instruments Sitara AM3352 processor is necessary for Industrial customers who want longivity supply program, TI as Freescale guarantee that when start producing processor continue the production at least 5-10 years, this way customers are not forced to change their designs every year. So we work on AM3352 module with: AM3352 720Mhz, Cortex-A8 processor, 512MB DDR3 RAM (optional we will make 1GB RAM version also), power supply 6-16VDC, x4 USB 2.0 hosts, 100Mbit Ethernet, SD-card, VGA, CAN, GPIO connector, LCD connector with touchscreen to work with A13-LCD7TS and A13-43TS LCDs, UEXT connector, JTAG.
+
+Step 7:
 ... we don't know yet, there are lot of candidates.
 
 WEB RESOURCES:

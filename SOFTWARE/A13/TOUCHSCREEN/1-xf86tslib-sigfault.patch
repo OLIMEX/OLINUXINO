@@ -1,30 +1,40 @@
---- xf86-input-tslib-0.0.6/src/tslib.c  2009-10-19 18:07:18.000000000 +0300
-+++ xf86-input-tslib-0.0.6.new/src/tslib.c      2010-02-12 16:15:05.000000000 +0200
-@@ -103,8 +103,6 @@
+--- src/tslib.c.orig 2009-10-19 15:07:18.000000000 +0000
++++ src/tslib.c	2013-06-23 21:40:22.000000000 +0000
+@@ -103,8 +103,8 @@
  static void
  PointerControlProc(DeviceIntPtr dev, PtrCtrl * ctrl)
  {
--       ErrorF("%s\n", __FUNCTION__);
--       return;
+-	ErrorF("%s\n", __FUNCTION__);
+-	return;
++	//ErrorF("%s\n", __FUNCTION__);
++	//return;
  }
  
  static Bool
-@@ -406,7 +404,9 @@
-                xf86MotionHistoryAllocate(pInfo);
+@@ -406,6 +406,8 @@
+ 		xf86MotionHistoryAllocate(pInfo);
  #endif
  
--               break;
-+               if (!InitPtrFeedbackClassDeviceStruct(device, PointerControlProc))
-+                       return !Success;
-+               break;
++        if (!InitPtrFeedbackClassDeviceStruct(device, PointerControlProc))
++        return !Success;
+ 		break;
  
-        case DEVICE_ON:
-                AddEnabledDevice(pInfo->fd);
-@@ -435,6 +435,7 @@
-        xf86TslibControlProc(pInfo->dev, DEVICE_OFF);
-        ts_close(priv->ts);
-        xfree(pInfo->private);
-+       pInfo->private = NULL;
-        xf86DeleteInput(pInfo, 0);
+ 	case DEVICE_ON:
+@@ -435,6 +437,7 @@
+ 	xf86TslibControlProc(pInfo->dev, DEVICE_OFF);
+ 	ts_close(priv->ts);
+ 	xfree(pInfo->private);
++    pInfo->private = NULL;
+ 	xf86DeleteInput(pInfo, 0);
  }
-
+ 
+@@ -568,6 +571,8 @@
+  */
+ static void xf86TslibUnplug(pointer p)
+ {
++       ErrorF("%s\n", __FUNCTION__);
++       return;
+ }
+ 
+ /*
+ 

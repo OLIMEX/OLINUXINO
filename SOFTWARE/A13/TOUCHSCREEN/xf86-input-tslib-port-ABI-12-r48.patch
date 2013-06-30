@@ -1,5 +1,5 @@
---- xf86-input-tslib-trunk/src/tslib.c	(revision 48)
-+++ xf86-input-tslib-trunk/src/tslib.c	(working copy)
+--- src/tslib.c.orig 2013-06-23 21:40:22.000000000 +0000
++++ src/tslib.c	2013-06-23 21:43:58.000000000 +0000
 @@ -69,6 +69,13 @@
  #define DEFAULT_HEIGHT		240
  #define DEFAULT_WIDTH		320
@@ -14,7 +14,7 @@
  enum { TSLIB_ROTATE_NONE=0, TSLIB_ROTATE_CW=270, TSLIB_ROTATE_UD=180, TSLIB_ROTATE_CCW=90 };
  
  enum button_state { BUTTON_NOT_PRESSED = 0, BUTTON_1_PRESSED = 1, BUTTON_3_CLICK = 3, BUTTON_3_CLICKED=4, BUTTON_EMULATION_OFF=-1 };
-@@ -106,7 +113,7 @@
+@@ -108,7 +115,7 @@
  }
  
  static Bool
@@ -23,7 +23,7 @@
  			 int first,
  			 int num,
  			 int v0,
-@@ -135,7 +142,7 @@
+@@ -137,7 +144,7 @@
      return t;
  }
  
@@ -32,7 +32,7 @@
  {
  	struct ts_priv *priv = (struct ts_priv *) (local->private);
  	struct ts_sample samp;
-@@ -382,7 +389,11 @@
+@@ -384,7 +391,11 @@
  					       axiswidth - 1,	/* max val */
  					       axiswidth,	/* resolution */
  					       0,		/* min_res */
@@ -45,7 +45,7 @@
  
  		InitValuatorAxisStruct(device, 1,
  #if GET_ABI_MAJOR(ABI_XINPUT_VERSION) >= 7
-@@ -392,7 +403,11 @@
+@@ -394,7 +405,11 @@
  					       axisheight - 1,	/* max val */
  					       axisheight,	/* resolution */
  					       0,		/* min_res */
@@ -58,16 +58,16 @@
  
  		if (InitProximityClassDeviceStruct (device) == FALSE) {
  			ErrorF ("Unable to allocate EVTouch touchscreen ProximityClassDeviceStruct\n");
-@@ -434,7 +449,7 @@
+@@ -436,7 +451,7 @@
  	ErrorF("%s\n", __FUNCTION__);
  	xf86TslibControlProc(pInfo->dev, DEVICE_OFF);
  	ts_close(priv->ts);
 -	xfree(pInfo->private);
 +	free(pInfo->private);
- 	pInfo->private = NULL;
+     pInfo->private = NULL;
  	xf86DeleteInput(pInfo, 0);
  }
-@@ -444,47 +459,57 @@
+@@ -446,47 +461,57 @@
   *
   * called when the module subsection is found in XF86Config
   */
@@ -137,7 +137,7 @@
  	xf86ProcessCommonOptions(pInfo, pInfo->options);
  
  	priv->screen_num = xf86SetIntOption(pInfo->options, "ScreenNumber", 0 );
-@@ -510,23 +535,31 @@
+@@ -512,23 +537,31 @@
  		priv->rotate = TSLIB_ROTATE_NONE;
  	}
  
@@ -172,7 +172,7 @@
  	}
  
  	pInfo->fd = ts_fd(priv->ts);
-@@ -536,11 +569,13 @@
+@@ -538,11 +571,13 @@
  		priv->state = BUTTON_EMULATION_OFF;
  	}
  
@@ -187,4 +187,3 @@
  }
  
  _X_EXPORT InputDriverRec TSLIB = {
-

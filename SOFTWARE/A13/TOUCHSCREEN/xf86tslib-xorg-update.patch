@@ -1,0 +1,15 @@
+--- src/tslib.c  2013-06-30 15:20:14.939201439 +0400
++++ src/tslib.c	2013-06-26 18:19:16.000000000 +0400
+@@ -196,9 +196,9 @@
+ 			x = samp.x;
+ 			y = samp.y;
+ 
+-			xf86XInputSetScreen(local, priv->screen_num,
+-					samp.x,
+-					samp.y);
++			//xf86XInputSetScreen(local, priv->screen_num,
++			//		samp.x,
++			//		samp.y);
+ 
+ 			xf86PostMotionEvent (local->dev, TRUE, 0, 2,
+ 					x, y);

@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
 	if(argc == 2)
 	{
-		if(!strcmp(argv[1], "--transfer") || !strcmp(argv[1], "-t"))
+		if(!strcmp(argv[1], "--transmit") || !strcmp(argv[1], "-t"))
 		{
 			int i;
 			int fd;
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 			Serial_Send(&fd, temp);
 			Serial_Close(&fd);	
 		}
-		else if(!strcmp(argv[1], "--recieve") || !strcmp(argv[1], "-r"))
+		else if(!strcmp(argv[1], "--receive") || !strcmp(argv[1], "-r"))
 		{
 			int fd;
 			char ch;
@@ -100,7 +100,7 @@ int main(int argc, char **argv)
 			Serial_Open(&fd, "/dev/tty1", B115200);
 			Serial_Send(&fd, "+++");
 			Serial_Close(&fd);			
-			fputs("Stoping...Done\n\r", stdout);
+			fputs("Stopping...Done\n\r", stdout);
 		}
 		else if(!strcmp(argv[1], "--help") || !strcmp(argv[1], "-h"))
 		{
@@ -112,11 +112,11 @@ USAGE: ./mod-bt [PARAMS]\n", stdout);
 -s, --start\t\tStart the module\n\
 -p, --stop\t\tStop the module\n\
 -t, --transmit\t\tSend a message to BT device.\n\
--r, --recieve\t\tRecive message\n", stdout);
+-r, --receive\t\tReceive a message from BT device\n", stdout);
 		}
 		else
 		{
-			fputs("Unknow parameter!\n", stdout);
+			fputs("Unknown parameter!\n", stdout);
 		}
 	}
 	else

@@ -110,5 +110,5 @@ int getche(void)
 	ch = getchar();
 	tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
 	return ch;
-	}
+}
 #endif

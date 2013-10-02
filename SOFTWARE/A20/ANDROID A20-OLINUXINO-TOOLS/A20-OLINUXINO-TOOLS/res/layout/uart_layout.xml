@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/console"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:scrollbars="vertical" >
+
+    </TextView>
+
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+	    <EditText
+	        android:id="@+id/command"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="left|center_vertical"
+	        android:layout_weight="1"
+	        android:ellipsize="end"
+	        android:gravity="left|center_vertical"
+	        android:singleLine="true"
+	        android:textColor="#FF0000"
+	        android:hint="@string/uart_command_hint"/>
+	    <Button
+	        android:id="@+id/send_btn"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/uart_command_btn" />
+	</LinearLayout>    
+    
+
+</LinearLayout>

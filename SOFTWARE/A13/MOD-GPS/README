@@ -1,0 +1,29 @@
+RPi + RPi-UEXT + MOD-GPS demo
+
+The demo program read data that comes from MOD-GPS and show current
+location. The data is read on ttyAMA0 port. You should disable this
+port to use any UART modules. The program uses curses library, to 
+illustrate the data in a window. 
+#python GPS.py
+
+To exit program press CTRL+C.
+
+
+
+iMX233-OLinuXino/A13-OLinuXino + MOD-GPS demo
+
+The demo project consist following files:
+GPS.c
+uart.c
+uart.h
+Makefile
+
+To compile successfully you need ncurses library. After acquire this
+simply enter:
+#apt-get install libncurses5-dev libncursesw5-dev
+#make clean
+#make
+#./MOD-GPS --tty:"/dev/ttyXXX"
+
+where XXX is serial port.
+For example: "/dev/ttyS0", "/dev/ttyAMA0", etc...

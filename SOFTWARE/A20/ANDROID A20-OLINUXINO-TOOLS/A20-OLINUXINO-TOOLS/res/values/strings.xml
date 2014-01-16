@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main activity strings -->
+    <string name="app_name">A20-TOOLS</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">UART</string>
+    <string name="title_section2">I2C</string>
+    <string name="title_section3">GPIO</string>
+    
+    
+    <!-- String values for UART fragment -->
+    
+    <string name="uart_command_hint">Some text</string>
+    <string name="uart_command_btn">Send</string>
+    
+    
+    <!-- String values for I2C fragment -->
+    
+    <string name="i2c_contol_label">Controls</string>
+    <string name="i2c_read_title">Read</string>
+    <string name="i2c_action_spinner">Action:</string>
+    <string name="i2c_bus_spinner">I2C-bus:</string>
+    <string name="i2c_address_label">Address:</string>
+    <string name="i2c_register_label">Register:</string>
+    <string name="i2c_data_label">Data:</string>
+    <string name="i2c_execute_button">Execute</string>
+    <string name="i2c_status_label">Status: </string>
+    <string name="i2c_bytes_label">Bytes:</string>
+
+    
+    <!-- Strings values for GPIO fragment -->
+    <string name="gpio_number_label">GPIO</string>
+    <string name="gpio_direction_label">DIRECTION</string>
+    <string name="gpio_level_label">LEVEL</string>
+    <string name="gpio_status_label">STATUS</string>
+    <string name="gpio_direction_on">INPUT</string>
+    <string name="gpio_direction_off">OUTPUT</string>
+    <string name="gpio_level_on">HIGH</string>
+    <string name="gpio_level_off">LOW</string>
+</resources>

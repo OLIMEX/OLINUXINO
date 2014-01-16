@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="i2c_actions">
+    <item>Scan</item>
+    <item>Write</item>
+    <item>Read</item>
+    </string-array> 
+    
+    <string-array name="i2c_bus">
+    <item>/dev/i2c-0</item>
+    <item>/dev/i2c-1</item>
+    <item>/dev/i2c-2</item>
+	</string-array>    
+</resources>

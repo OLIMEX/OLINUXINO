@@ -1,0 +1,24 @@
+
+To compile type
+
+# make
+
+After that execute the program
+
+# ./mod-io [param] [address] [data]
+
+
+1) Set states of the digital outputs on the board
+# ./mod-io -relay 0x58 0x0F	->	This will toggle the all 4 relays. 0x58 is the default address.
+
+2) Get states of the digital inputs of the board. 
+# ./mod-io -dig 0x58
+
+3) Get the voltage applied to one of the analogue inputs of the board.
+# ./mod-io -an1 0x58
+# ./mod-io -an2 0x58
+# ./mod-io -an3 0x58
+# ./mod-io -an4 0x58
+
+4) Set new slave address to the board.
+# ./mod-io -address 0x58 <new>	->	At the moment of sending this command the BTN must be pressed.

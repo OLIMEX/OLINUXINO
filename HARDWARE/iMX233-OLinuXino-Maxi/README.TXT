@@ -1,4 +1,4 @@
-iMX233-OLinuXino-Maxi REVISION.C	
+iMX233-OLinuXino-Maxi REVISION.D	
 
 Status	: production
 

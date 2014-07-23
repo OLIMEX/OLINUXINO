@@ -2,7 +2,7 @@ This is a tutorial how to build a simple project for A20-OLinuXino-Micro Rev.F w
 
 In addition to the boards you also need SD card with Debian image (tested with "A20_debian_kernel_3_4_LAN_USBx2_Cards_LCD_HDMI_SATA_TS_X_GPIO_OTG_MIC_Video_accel_release7.img"), LAN and USB serial cable (like USB-SERIAL-CABLE-F).
 
-1) Connect all the hardware and supply the board.
+1) Connect all the hardware and supply the board - USB serial cable to UART0 - TX0, RX0 and GND; and the MOD-RTC to UEXT1.
 
 2) Open a console terminal program (like PuTTY, HyperTerminal etc.) with baudrate 115200
 
@@ -34,7 +34,7 @@ Input:
 
 	wget <URL>
 	
-In order to get the URL, go to GitHUB find the directory of the project: <path>; select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the three files: RTC.c; i2c.c; i2c.h.
+In order to get the URL, go to GitHUB find the directory of the project: https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A20/A20%20with%20MOD-RTC ; select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the three files: RTC.c; i2c.c; i2c.h.
 
 8) Just to make sure everything is fine and all three files are downloaded check the content of the directory:
 Input:

@@ -34,7 +34,7 @@ Input:
 
 	wget <URL>
 	
-In order to get the URL, go to GitHUB find the directory of the project: https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A20/A20%20with%20MOD-RTC ; select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the three files: RTC.c; i2c.c; i2c.h.
+In order to get the URL, go to GitHUB find the directory of the project: https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A20/A20-OLinuXino-Micro%20with%20MOD-RTC ; select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the three files: RTC.c; i2c.c; i2c.h.
 
 8) Just to make sure everything is fine and all three files are downloaded check the content of the directory:
 Input:

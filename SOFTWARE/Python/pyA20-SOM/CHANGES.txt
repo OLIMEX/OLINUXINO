@@ -1,0 +1,4 @@
+Changelog
+=========
+    * pyA20SOM 0.2.0 (03 SEP 2014)
+        * Initial release

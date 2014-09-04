@@ -1,0 +1,7 @@
+Changelog
+=========
+    * pyA13SOM 0.2.0 (02 SEP 2014)
+        * Updated to enable SPI and I2C control
+        * GPIO constant in separate modules
+        * Added example files
+        * Added support for Python3

@@ -1,0 +1,3 @@
+include *.txt
+graft pyA13SOM
+graft examples

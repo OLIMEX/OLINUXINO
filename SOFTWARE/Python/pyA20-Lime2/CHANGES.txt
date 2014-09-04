@@ -1,0 +1,4 @@
+Changelog
+=========
+    * pyA20Lime2 0.2.0 (3 SEP 2014)
+        * Initial release

@@ -1,0 +1,74 @@
+10
+
+dir
+8170
+svn://olimex.dev/olimex/SOFTWARE/Python/pyOlimex/branches/pyA10-Lime/pyA10Lime
+svn://olimex.dev/olimex
+
+
+
+2014-09-04T06:19:35.352458Z
+8165
+s.mavrodiev
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4f6fca28-ab74-42c2-8304-c5d5892dd3a0
+
+__init__.py
+file
+
+
+
+
+2014-09-04T10:15:45.000000Z
+3045323bd138b374990ab9a7994e70c7
+2014-09-03T07:21:49.726530Z
+8128
+s.mavrodiev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+212
+
+gpio
+dir
+
+i2c
+dir
+
+spi
+dir
+
+utilities
+dir
+

@@ -11,14 +11,14 @@ recommended.
 Available packages
 --------------
 
-- pyA10Lime	-	https://pypi.python.org/pypi/pyA10Lime
-- pyA13		-	https://pypi.python.org/pypi/pyA13
-- pyA13SOM	-	https://pypi.python.org/pypi/pyA13SOM
-- pyA20		-	https://pypi.python.org/pypi/pyA20
-- pyA20EVB	-	https://pypi.python.org/pypi/pyA20EVB
-- pyA20Lime	-	https://pypi.python.org/pypi/pyA20Lime
-- pyA20Lime2	-	https://pypi.python.org/pypi/pyA20Lime2
-- pyA20SOM	-	https://pypi.python.org/pypi/pyA20SOM
+- pyA10Lime	 -	https://pypi.python.org/pypi/pyA10Lime
+- pyA13		 -	https://pypi.python.org/pypi/pyA13
+- pyA13SOM	 -	https://pypi.python.org/pypi/pyA13SOM
+- pyA20		 -	https://pypi.python.org/pypi/pyA20
+- pyA20EVB	 -	https://pypi.python.org/pypi/pyA20EVB
+- pyA20Lime	 -	https://pypi.python.org/pypi/pyA20Lime
+- pyA20Lime2 -	https://pypi.python.org/pypi/pyA20Lime2
+- pyA20SOM	 -	https://pypi.python.org/pypi/pyA20SOM
 
 
 Installing from pypi

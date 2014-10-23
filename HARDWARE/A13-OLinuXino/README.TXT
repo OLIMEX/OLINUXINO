@@ -1,11 +1,11 @@
-A13-OLinuXino	August, 2012	REV.B
+A13-OLinuXino-WIFI
 
-Status	: developer edition run,  4 Layers
+Latest revision : revision F
 
-Issues	: 
+Changes in latest revision compared to previous revision:
 
-TODO	: 
-
+1. Changed the SD card package so that it is easier for repair and attachment
+2. Changed the package of the 32768 crystal to an SMT one (with 4 pins)
 
 Features of the board specification:
 A13 Cortex A8 1Ghz processor

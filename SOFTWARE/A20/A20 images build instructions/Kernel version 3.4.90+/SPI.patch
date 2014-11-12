@@ -1,0 +1,35 @@
+--- drivers/spi/Kconfig	2014-05-12 10:24:41.000000000 +0300
++++ drivers/spi/Kconfig_new	2014-05-12 10:26:05.000000000 +0300
+@@ -463,6 +463,19 @@
+ 	  sysfs interface, with each line presented as a kind of GPIO
+ 	  exposing both switch control and diagnostic feedback.
+ 
++config SPI_SUN7I
++   tristate "SUN7I SPI Controller"
++   depends on ARCH_SUN7I
++   help
++       Allwinner Soc SPI controller,present on SUN7I chips.
++       
++config SUN7I_SPI_NDMA
++    bool "SUN7I SPI Normal DMA mode select"
++    depends on SPI_SUN7I
++    help
++      This selects SPI DMA mode with DMA transfer
++      Y select NDMA mode and N select DDMA mode
++
+ #
+ # Add new SPI protocol masters in alphabetical order above this line
+ #
+@@ -472,3 +485,4 @@
+ # (slave support would go here)
+ 
+ endif # SPI
++
+--- drivers/spi/Makefile	2014-05-12 11:08:32.000000000 +0300
++++ drivers/spi/Makefile_new	2014-05-12 11:08:14.000000000 +0300
+@@ -63,4 +63,4 @@
+ obj-$(CONFIG_SPI_TXX9)			+= spi-txx9.o
+ obj-$(CONFIG_SPI_XILINX)		+= spi-xilinx.o
+ obj-$(CONFIG_SPI_SUNXI)			+= spi_sunxi.o
+-
++obj-$(CONFIG_SPI_SUN7I)         += spi-sun7i.o

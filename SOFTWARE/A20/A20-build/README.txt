@@ -107,7 +107,7 @@ After the download go to the kernel directory:
 
 download the  spi-sun7i.c file using wget command 
 
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20%20images%20build%20instructions/Kernel%20version%203.4.90%2B/spi-sun7i.c
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/spi-sun7i.c
 
 and copy it in drivers/spi directory
 
@@ -115,7 +115,7 @@ and copy it in drivers/spi directory
 
 download the patch file SPI.patch using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20%20images%20build%20instructions/Kernel%20version%203.4.90%2B/SPI.patch
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/SPI.patch
 
 and apply the patch:
 
@@ -127,7 +127,7 @@ Here you need from a20 configuration file – a20_olimex_defconfig . The file cont
 
 Download a20_olimex_defconfig  using wget command 
 
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20%20images%20build%20instructions/Kernel%20version%203.4.90%2B/a20_olimex_defconfig
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/a20_olimex_defconfig
 
 then copy a20_olimex_defconfig file to configs directory:
 
@@ -277,16 +277,16 @@ script.bin is a file with very important configuration parameters like port GPIO
 According to the A20 board you use you have to download and write different script.bin file.
 
 7.1 for A20-OLinuXino_Lime2 board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20%20images%20build%20instructions/Kernel%20version%203.4.90%2B/scripts_a20_Lime2/scripts_a20_Lime2_34_90_rel_1/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
 
 7.2 for A20-SOM board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20%20images%20build%20instructions/Kernel%20version%203.4.90%2B/scripts_a20_SOM/script_a20_SOM_34_90_rel2/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/A20-SOM-3.4.90_camera_scripts_rel_3/script_a20_SOM_HDMI_720p50/script.bin
 
 7.3 for A20-OLinuXino-MICRO board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20%20images%20build%20instructions/Kernel%20version%203.4.90%2B/script_a20-micro/script_a20-micro_34_90_rel_8/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/script_a20_OLinuXino-micro_3.4.90_camera_rel_10/script.bin
 
 7.4 for A20-OLinuXino-LIME board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20%20images%20build%20instructions/Kernel%20version%203.4.90%2B/script_a20_lime/script_a20_lime_3.4.90_rel_2/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card
 # cp script.bin /mnt/sd
@@ -311,7 +311,7 @@ Should be in the directory below
 
 Download debian rootfs with the file name "debian_FS_34_90_camera_A20-olimex.tgz" , which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
 
-https://www.olimex.com/wiki/images/2/20/Debian_FS_34_90_A20-olimex.torrent
+https://www.olimex.com/wiki/images/2/29/Debian_FS_34_90_camera_A20-olimex.torrent
 
 Now mount the microSD card EXT3 FS partition:
 

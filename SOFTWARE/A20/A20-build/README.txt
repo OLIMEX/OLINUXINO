@@ -4,7 +4,7 @@ How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OL
 
 1. Setup of the toolchain
 -------------------------
-You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you donâ€™t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
+You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you don’t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
 
 $ sudo su
 
@@ -18,7 +18,9 @@ Next install the toolchain by typing the following:
 
 # apt-get install gcc-4.7-arm-linux-gnueabihf ncurses-dev uboot-mkimage build-essential git
 
-This will install: GCC compiler used to compile the kernel, the kernel config menu uboot make image which is required to allow the SD card to boot into the Linux image, Git that allows you to download from the github which holds source code for some of the system, Some other tools for building the kernel
+This will install: GCC compiler used to compile the kernel, the kernel config menu uboot make image which is required
+to allow the SD card to boot into the Linux image, Git that allows you to download from the github which holds source
+code for some of the system, Some other tools for building the kernel
 
 Note that if you use debian may be you will need to add:
 
@@ -28,7 +30,8 @@ in the file below:
 
 /etc/apt/sources.list
 
-You would also need a torrent client. It is needed to be able to download the file system. Any torrent that suits your needs would do the job, as long as it can load torrent files it is fine.
+You would also need a torrent client. It is needed to be able to download the file system. Any torrent that suits your
+needs would do the job, as long as it can load torrent files it is fine.
 
 Now you have all important tools to make your very own A20 kernel image!
 
@@ -40,7 +43,8 @@ First let's make the directory where we would build the A20 Linux:
 # mkdir a20-olimex
 # cd a20-olimex
 
-Then letâ€™s download the uboot sources from GitHub repository, note there are lot of branches but you have to use sunxi branch. The u-boot is tested with the next branch:
+Then let’s download the uboot sources from GitHub repository, note there are lot of branches but you have to use sunxi branch.
+The u-boot is tested with the next branch:
 
 # git rev-parse --verify HEAD 36080eb05e9a1e96d58e3168631d3cc9c612a0e3
 
@@ -135,7 +139,7 @@ and apply the patch:
 
 3.3 configure the system 
 
-Here you need from a20 configuration file â€“ a20_olimex_defconfig . The file contains all kernel module settings.
+Here you need from a20 configuration file – a20_olimex_defconfig . The file contains all kernel module settings.
 
 Download a20_olimex_defconfig  using wget command 
 
@@ -156,7 +160,9 @@ configuration written to .config
 If you wish to make your changes in the kernel configuration do:
 
 # make ARCH=arm menuconfig
-The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi, nano. With this command you can add or remove different modules for the different peripherials in the kernel. Be careful when you change these settings because the kernel can stop working properly.
+The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi,nano.
+With this command you can add or remove different modules for the different peripherials in the kernel. 
+Be careful when you change these settings because the kernel can stop working properly.
 
 Note that if you want to have SPI support then you have to enable 
 Device driver > SPI support > <*>SUN7I SPI Controller 
@@ -166,7 +172,7 @@ Now you can continue with kernel image compiling
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 uImage
 
-when this finishâ€™s you will have uImage ready and the result should be:
+when this finish’s you will have uImage ready and the result should be:
 
 Kernel: arch/arm/boot/zImage is ready
 UIMAGE  arch/arm/boot/uImage
@@ -204,7 +210,10 @@ First we have to make the correct card partitions, this is done with fdisk.
 Plug SD card into your SD card reader and enter in the terminal
 
 # ls /dev/sd
-Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices may be your hard disk so make sure you know which one is your sd card before you proceed as you can damage your HDD if you choose the wrong sd-device. You can do this by unplugging your sd card reader - pay attention which "sd" device disappears from the list.
+Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices 
+may be your hard disk so make sure you know which one is your sd card before you proceed as you can damage your HDD 
+if you choose the wrong sd-device. You can do this by unplugging your sd card reader - pay attention which "sd" 
+device disappears from the list.
 
 Once you know which one is your microSD (as sda#) use it instead of the sdX name in the references below:
 
@@ -250,7 +259,8 @@ Disk identifier: 0x00000000
 
 write changes to sd card
 
-Now we have to format the file system on the card (the first partition should be vfat as this is FS which the Allwinner bootloader understands):
+Now we have to format the file system on the card (the first partition should be vfat as this is FS which the 
+Allwinner bootloader understands):
 
 # mkfs.vfat /dev/sdX1
 
@@ -282,7 +292,8 @@ copy the Kernel uImage to root directory in partition 1
 
 7. Write script.bin file
 -------------------------
-script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, Video resolution etc, According to the A20 board you use you have to download and write different script.bin file.
+script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, Video resolution etc, 
+According to the A20 board you use you have to download and write different script.bin file.
 
 7.1 for A20-OLinuXino_Lime2 board download the script.bin file using wget command
 # wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
@@ -305,9 +316,11 @@ then copy the downloaded script.bin file to the mounted first partition of the S
 ----------------
 The Linux Kernel and Uboot are ready, now we have need from Linux distribution rootfs.
 
-Basically the only difference between the different Linux distributions is the rootfs, so if you put Debian rootfs you will have Debian, if you put Ubuntu rootfs it will be Ubuntu etc.
+Basically the only difference between the different Linux distributions is the rootfs, so if you put Debian rootfs 
+you will have Debian, if you put Ubuntu rootfs it will be Ubuntu etc.
 
-How to build one is a long topic, the good thing is that there are many already pre-built so we can just download one and use it ready.
+How to build one is a long topic, the good thing is that there are many already pre-built so we can just download 
+one and use it ready.
 
 Now leave the kernel directory
 
@@ -317,7 +330,8 @@ Should be in the directory below
 
 # /home/user/a20-olimex
 
-Download debian rootfs with the file name "debian_FS_34_90_camera_A20-olimex.tgz" , which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
+Download debian rootfs with the file name "debian_FS_34_90_camera_A20-olimex.tgz" , which is available only as a torrent.
+You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
 
 https://www.olimex.com/wiki/images/2/29/Debian_FS_34_90_camera_A20-olimex.torrent
 
@@ -353,8 +367,10 @@ replace /lib/firmware folder with the generated /linux-sunxi/out/firmware
 # sync
 # umount /mnt/sdX2
 
-at this point you have Debian on your SD card second partition and you have an SD card ready to boot Debian on A20-SOM or A20-OLinuXino-MICRO or A20-OLinuXino-LIME or A20-OLinuXino-LIME2
+at this point you have Debian on your SD card second partition and you have an SD card ready to boot Debian on 
+A20-SOM or A20-OLinuXino-MICRO or A20-OLinuXino-LIME or A20-OLinuXino-LIME2
 
-Connect USB-SERIAL-CABLE-F to UEXT Tx, Rx and GND, or connect a HDMI screen. Put the SD-card apply power according to A20 board type.You should see Uboot and then Kernel messages on the console
+Connect USB-SERIAL-CABLE-F to UEXT Tx, Rx and GND, or connect a HDMI screen. Put the SD-card apply power according
+to A20 board type.You should see Uboot and then Kernel messages on the console
 
 default username/password is : root / olimex

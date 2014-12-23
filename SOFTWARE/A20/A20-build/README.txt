@@ -340,7 +340,7 @@ Should be in the directory below
 Download debian rootfs with the file name "debian_FS_34_90_camera_A20-olimex.tgz" , which is available only as a torrent.
 You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
 
-https://www.olimex.com/wiki/images/2/29/Debian_FS_34_90_camera_A20-olimex.torrent
+https://www.olimex.com/wiki/images/3/39/A20-lime2_debian_3.4.90_release_2.torrent
 
 Now mount the microSD card EXT3 FS partition:
 

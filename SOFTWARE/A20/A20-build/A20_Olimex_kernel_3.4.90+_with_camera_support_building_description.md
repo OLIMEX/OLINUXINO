@@ -309,7 +309,7 @@ Should be in the directory below
 
 # /home/user/a20-olimex
 
-Download debian rootfs with the file name "debian_FS_34_90_A20-olimex.tgz" , which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
+Download debian rootfs with the file name "debian_FS_34_90_camera_A20-olimex.tgz" , which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
 
 https://www.olimex.com/wiki/images/2/20/Debian_FS_34_90_A20-olimex.torrent
 
@@ -319,7 +319,7 @@ Now mount the microSD card EXT3 FS partition:
 
 and unarchive the rootfs
 
-# tar xzvf debian_FS_34_90_A20-olimex.tgz -C /mnt/sd
+# tar debian_FS_34_90_camera_A20-olimex.tgz -C /mnt/sd
 # ls /mnt/sd
 
 The correct result should be:

@@ -4,11 +4,14 @@ How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OL
 
 1. Setup of the toolchain
 -------------------------
-You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you don’t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
+You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you don’t have 
+them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. 
+Type in the terminal:
 
 $ sudo su
 
-You will be asked for your password and then your prompt will change to # which means you are now the super user, all future commands should be run in this mode.
+You will be asked for your password and then your prompt will change to # which means you are now the super user, all future 
+commands should be run in this mode.
 
 Next update apt-get links by typing:
 
@@ -292,8 +295,8 @@ copy the Kernel uImage to root directory in partition 1
 
 7. Write script.bin file
 -------------------------
-script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, Video resolution etc, 
-According to the A20 board you use you have to download and write different script.bin file.
+script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, 
+video resolution etc, according to the A20 board you use you have to download and write different script.bin file.
 
 7.1 for A20-OLinuXino_Lime2 board download the script.bin file using wget command
 # wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
@@ -348,7 +351,8 @@ The correct result should be:
 bin   dev  home  lost+found  mnt  proc  run   selinux  sys  usr
 boot  etc  lib   media       opt  root  sbin  srv      tmp  var
 
-Now you have to replace the new generated kernel modules from /home/user/a20-olimex/linux-sunxi/out/lib/modules/ to the new Debian file system:
+Now you have to replace the new generated kernel modules from /home/user/a20-olimex/linux-sunxi/out/lib/modules/ to
+the new Debian file system:
 
 # rm -rf /mnt/sd/lib/modules/*
 

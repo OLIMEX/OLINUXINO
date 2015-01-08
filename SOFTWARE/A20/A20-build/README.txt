@@ -1,17 +1,19 @@
 
-How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OLinuXino-LIME, A20-OLinuXino-LIME2 with kernel 3.4.90 and Linux Debian file system
+How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OLinuXino-LIME,
+A20-OLinuXino-LIME2 with kernel 3.4.90 and Linux Debian file system
+
 ===============================================================================================
 
 1. Setup of the toolchain
 -------------------------
-You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you don’t have 
-them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. 
-Type in the terminal:
+You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install
+them if you don’t have them already installed. To install new software you should be logged to a user
+with super user rights on your Linux machine. Type in the terminal:
 
 $ sudo su
 
-You will be asked for your password and then your prompt will change to # which means you are now the super user, all future 
-commands should be run in this mode.
+You will be asked for your password and then your prompt will change to # which means you are now the
+super user, all future commands should be run in this mode.
 
 Next update apt-get links by typing:
 
@@ -21,9 +23,9 @@ Next install the toolchain by typing the following:
 
 # apt-get install gcc-4.7-arm-linux-gnueabihf ncurses-dev uboot-mkimage build-essential git
 
-This will install: GCC compiler used to compile the kernel, the kernel config menu uboot make image which is required
-to allow the SD card to boot into the Linux image, Git that allows you to download from the github which holds source
-code for some of the system, Some other tools for building the kernel
+This will install: GCC compiler used to compile the kernel, the kernel config menu uboot make image
+which is required to allow the SD card to boot into the Linux image, Git that allows you to download
+from the github which holds source code for some of the system, Some other tools for building the kernel
 
 Note that if you use debian may be you will need to add:
 
@@ -33,8 +35,8 @@ in the file below:
 
 /etc/apt/sources.list
 
-You would also need a torrent client. It is needed to be able to download the file system. Any torrent that suits your
-needs would do the job, as long as it can load torrent files it is fine.
+You would also need a torrent client. It is needed to be able to download the file system. Any torrent
+that suits your needs would do the job, as long as it can load torrent files it is fine.
 
 Now you have all important tools to make your very own A20 kernel image!
 
@@ -46,8 +48,8 @@ First let's make the directory where we would build the A20 Linux:
 # mkdir a20-olimex
 # cd a20-olimex
 
-Then let’s download the uboot sources from GitHub repository, note there are lot of branches but you have to use sunxi branch.
-The u-boot is tested with the next branch:
+Then let’s download the uboot sources from GitHub repository, note there are lot of branches but you
+have to use sunxi branch. The u-boot is tested with the following branch:
 
 # git rev-parse --verify HEAD 36080eb05e9a1e96d58e3168631d3cc9c612a0e3
 
@@ -59,7 +61,8 @@ After the download you should have a new directory
 
 # cd u-boot-sunxi/
 
-With the following commands you have to configure the uboot for the different boards, use only the make command for your board:
+With the following commands you have to configure the uboot for the different boards, use only the make
+command for your board:
 
 2.1 A20-OLinuXino_Lime2 board
 
@@ -67,7 +70,8 @@ With the following commands you have to configure the uboot for the different bo
 
 2.2 A20-SOM board
 
-Note that there is 2 different types of A20-SOM boards. The main differences are in DDR3 memory bus speed. 
+Note that there is 2 different types of A20-SOM boards. The main differences are in DDR3 memory bus
+speed. 
 
 A20-SOM up to rev.B  - DDR3 memory bus speed is 384MHz(6 layer PCB)
 
@@ -110,7 +114,8 @@ You should be in the following directory:
 3. Building kernel sources for A20 boards
 ----------------------------------------------
 
-Kernel sources for A20 are available on GitHub. Note that the following building is made with the revision below: 
+Kernel sources for A20 are available on GitHub. Note that the following building is made with the
+revision below: 
 
 # git rev-parse --verify HEAD e37d760b363888f3a65cd6455c99a75cac70a7b8
 
@@ -126,7 +131,7 @@ After the download go to the kernel directory:
 
 download the  spi-sun7i.c file using wget command 
 
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/spi-sun7i.c
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build/spi-sun7i.c
 
 and copy it in drivers/spi directory
 
@@ -134,7 +139,7 @@ and copy it in drivers/spi directory
 
 download the patch file SPI.patch using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/SPI.patch
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build/SPI.patch
 
 and apply the patch:
 
@@ -142,11 +147,12 @@ and apply the patch:
 
 3.3 configure the system 
 
-Here you need from a20 configuration file – a20_olimex_defconfig . The file contains all kernel module settings.
+Here you need from a20 configuration file – a20_olimex_defconfig . The file contains all kernel module
+settings.
 
 Download a20_olimex_defconfig  using wget command 
 
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/a20_olimex_defconfig
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build/a20_olimex_defconfig
 
 then copy a20_olimex_defconfig file to configs directory:
 
@@ -163,9 +169,9 @@ configuration written to .config
 If you wish to make your changes in the kernel configuration do:
 
 # make ARCH=arm menuconfig
-The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi,nano.
-With this command you can add or remove different modules for the different peripherials in the kernel. 
-Be careful when you change these settings because the kernel can stop working properly.
+The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi,
+nano. With this command you can add or remove different modules for the different peripherials in the
+kernel. Be careful when you change these settings because the kernel can stop working properly.
 
 Note that if you want to have SPI support then you have to enable 
 Device driver > SPI support > <*>SUN7I SPI Controller 
@@ -206,17 +212,18 @@ linux-sunxi/out/lib/modules/3.4.90+
 
 4. Format and setup the SD-card
 --------------------------------
-We suggest class 10 microSD card with memory capacity greater than 2GB. We haven't tested microSD cards bigger than 16GB.
+We suggest class 10 microSD card with memory capacity greater than 2GB. We haven't tested microSD cards
+bigger than 16GB.
 
 First we have to make the correct card partitions, this is done with fdisk.
 
 Plug SD card into your SD card reader and enter in the terminal
 
 # ls /dev/sd
-Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices 
-may be your hard disk so make sure you know which one is your sd card before you proceed as you can damage your HDD 
-if you choose the wrong sd-device. You can do this by unplugging your sd card reader - pay attention which "sd" 
-device disappears from the list.
+Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of
+these devices may be your hard disk so make sure you know which one is your sd card before you proceed
+as you can damage your HDD if you choose the wrong sd-device. You can do this by unplugging your sd card
+reader - pay attention which "sd" device disappears from the list.
 
 Once you know which one is your microSD (as sda#) use it instead of the sdX name in the references below:
 
@@ -262,8 +269,8 @@ Disk identifier: 0x00000000
 
 write changes to sd card
 
-Now we have to format the file system on the card (the first partition should be vfat as this is FS which the 
-Allwinner bootloader understands):
+Now we have to format the file system on the card (the first partition should be vfat as this is FS
+which the Allwinner bootloader understands):
 
 # mkfs.vfat /dev/sdX1
 
@@ -295,20 +302,21 @@ copy the Kernel uImage to root directory in partition 1
 
 7. Write script.bin file
 -------------------------
-script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, 
-video resolution etc, according to the A20 board you use you have to download and write different script.bin file.
+script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory
+parameters, video resolution etc, according to the A20 board you use you have to download and write
+different script.bin file.
 
 7.1 for A20-OLinuXino_Lime2 board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
 
 7.2 for A20-SOM board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/A20-SOM-3.4.90_camera_scripts_rel_3/script_a20_SOM_HDMI_720p50/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/A20-SOM-3.4.90_camera_scripts_rel_3/script_a20_SOM_HDMI_720p50/script.bin
 
 7.3 for A20-OLinuXino-MICRO board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/script_a20_OLinuXino-micro_3.4.90_camera_rel_10/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/script_a20_OLinuXino-micro_3.4.90_camera_rel_10/script.bin
 
 7.4 for A20-OLinuXino-LIME board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/script_a20_lime_3.4.90_camera_rel_3/script.bin
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card
 # cp script.bin /mnt/sd
@@ -319,11 +327,11 @@ then copy the downloaded script.bin file to the mounted first partition of the S
 ----------------
 The Linux Kernel and Uboot are ready, now we have need from Linux distribution rootfs.
 
-Basically the only difference between the different Linux distributions is the rootfs, so if you put Debian rootfs 
-you will have Debian, if you put Ubuntu rootfs it will be Ubuntu etc.
+Basically the only difference between the different Linux distributions is the rootfs, so if you put
+Debian rootfs you will have Debian, if you put Ubuntu rootfs it will be Ubuntu etc.
 
-How to build one is a long topic, the good thing is that there are many already pre-built so we can just download 
-one and use it ready.
+How to build one is a long topic, the good thing is that there are many already pre-built so we can just
+download one and use it ready.
 
 Now leave the kernel directory
 
@@ -333,8 +341,10 @@ Should be in the directory below
 
 # /home/user/a20-olimex
 
-Download debian rootfs with the file name "debian_FS_34_90_camera_A20-olimex.tgz" , which is available only as a torrent.
-You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
+Download debian rootfs with the file name "debian_FS_34_90_camera_A20-olimex.tgz" , which is available
+only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc).
+
+The link to the torrent file is:
 
 https://www.olimex.com/wiki/images/2/29/Debian_FS_34_90_camera_A20-olimex.torrent
 
@@ -351,8 +361,8 @@ The correct result should be:
 bin   dev  home  lost+found  mnt  proc  run   selinux  sys  usr
 boot  etc  lib   media       opt  root  sbin  srv      tmp  var
 
-Now you have to replace the new generated kernel modules from /home/user/a20-olimex/linux-sunxi/out/lib/modules/ to
-the new Debian file system:
+Now you have to replace the new generated kernel modules from
+/home/user/a20-olimex/linux-sunxi/out/lib/modules/ to the new Debian file system:
 
 # rm -rf /mnt/sd/lib/modules/*
 
@@ -371,10 +381,10 @@ replace /lib/firmware folder with the generated /linux-sunxi/out/firmware
 # sync
 # umount /mnt/sdX2
 
-at this point you have Debian on your SD card second partition and you have an SD card ready to boot Debian on 
-A20-SOM or A20-OLinuXino-MICRO or A20-OLinuXino-LIME or A20-OLinuXino-LIME2
+at this point you have Debian on your SD card second partition and you have an SD card ready to boot
+Debian on A20-SOM or A20-OLinuXino-MICRO or A20-OLinuXino-LIME or A20-OLinuXino-LIME2
 
-Connect USB-SERIAL-CABLE-F to UEXT Tx, Rx and GND, or connect a HDMI screen. Put the SD-card apply power according
-to A20 board type.You should see Uboot and then Kernel messages on the console
+Connect USB-SERIAL-CABLE-F to UEXT Tx, Rx and GND, or connect a HDMI screen. Put the SD-card apply
+power according to A20 board type.You should see Uboot and then Kernel messages on the console
 
 default username/password is : root / olimex

@@ -186,7 +186,7 @@ void Sync_RTC(void){
 	rtc_tm -> tm_hour = BCDtoInt(data[2]);
 	rtc_tm -> tm_mday = BCDtoInt(data[3]);
 	rtc_tm -> tm_wday = BCDtoInt(data[4]);
-	rtc_tm -> tm_mon = BCDtoInt(data[5]);
+	rtc_tm -> tm_mon = BCDtoInt(data[5])-1;	// The number of months since January, in the range 0 to 11.
 	rtc_tm -> tm_year = BCDtoInt(data[6]);
 	
 	const struct timeval tv = {mktime(rtc_tm), 0};

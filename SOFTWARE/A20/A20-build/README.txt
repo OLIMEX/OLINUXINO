@@ -7,7 +7,7 @@ A20-OLinuXino-LIME2 with kernel 3.4.90 and Linux Debian file system
 1. Setup of the toolchain
 -------------------------
 You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install
-them if you don’t have them already installed. To install new software you should be logged to a user
+them if you donâ€™t have them already installed. To install new software you should be logged to a user
 with super user rights on your Linux machine. Type in the terminal:
 
 $ sudo su
@@ -48,7 +48,7 @@ First let's make the directory where we would build the A20 Linux:
 # mkdir a20-olimex
 # cd a20-olimex
 
-Then let’s download the uboot sources from GitHub repository, note there are lot of branches but you
+Then letâ€™s download the uboot sources from GitHub repository, note there are lot of branches but you
 have to use sunxi branch. The u-boot is tested with the following branch:
 
 # git rev-parse --verify HEAD 36080eb05e9a1e96d58e3168631d3cc9c612a0e3
@@ -145,9 +145,9 @@ and apply the patch:
 
 # patch -p0 < SPI.patch
 
-3.3 configure the system 
+3.2 configure the system 
 
-Here you need from a20 configuration file – a20_olimex_defconfig . The file contains all kernel module
+Here you need from a20 configuration file â€“ a20_olimex_defconfig . The file contains all kernel module
 settings.
 
 Download a20_olimex_defconfig  using wget command 
@@ -181,7 +181,7 @@ Now you can continue with kernel image compiling
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 uImage
 
-when this finish’s you will have uImage ready and the result should be:
+when this finishâ€™s you will have uImage ready and the result should be:
 
 Kernel: arch/arm/boot/zImage is ready
 UIMAGE  arch/arm/boot/uImage

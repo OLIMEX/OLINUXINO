@@ -531,9 +531,9 @@ static int sun7i_spi_config_dma(struct sun7i_spi *aw_spi, enum spi_dma_dir dma_d
 {
     int bus_num = aw_spi->master->bus_num;
     unsigned char spi_rx_ndrq[] = {N_SRC_SPI0_RX, N_SRC_SPI1_RX, N_SRC_SPI2_RX, N_SRC_SPI3_RX};
-    unsigned char spi_tx_ndrq[] = {N_DST_SPI0_TX, N_DST_SPI1_TX, N_DST_SPI3_TX, N_DST_SPI3_TX};
+    unsigned char spi_tx_ndrq[] = {N_DST_SPI0_TX, N_DST_SPI1_TX, N_DST_SPI2_TX, N_DST_SPI3_TX};
     unsigned char spi_rx_ddrq[] = {D_SRC_SPI0_RX, D_SRC_SPI1_RX, D_SRC_SPI2_RX, D_SRC_SPI3_RX};
-    unsigned char spi_tx_ddrq[] = {D_DST_SPI0_TX, D_DST_SPI1_TX, D_DST_SPI3_TX, D_DST_SPI3_TX};
+    unsigned char spi_tx_ddrq[] = {D_DST_SPI0_TX, D_DST_SPI1_TX, D_DST_SPI2_TX, D_DST_SPI3_TX};
     unsigned long spi_phyaddr[] = {SPI0_BASE_ADDR, SPI1_BASE_ADDR, SPI2_BASE_ADDR, SPI3_BASE_ADDR}; /* physical address */
     dma_config_t spi_hw_conf;
     dma_hdl_t dma_hdle;

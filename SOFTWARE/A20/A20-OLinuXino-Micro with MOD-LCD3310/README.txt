@@ -23,12 +23,6 @@ Input:
 
 	ifup eth0
 
-6.1) Allow the https protocol. (This step could be skipped if https is allowed by default)
-
-Input
-
-	export https_proxy="192.168.0.1:80"
-
 7) Download the files from GitHUB:
 Input:
 
@@ -36,7 +30,7 @@ Input:
 	
 In order to get the URL, go to GitHUB find the directory of the project: https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A20/A20-OLinuXino-Micro%20with%20MOD-LCD3310 ;select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the five files: gpio_lib.c; gpio_lib.h; LCD3310.c; LCD3310.h; main.c.
 
-8) Just to make sure everything is fine and all three files are downloaded check the content of the directory:
+8) Just to make sure everything is fine and all five files are downloaded check the content of the directory:
 Input:
 
 	ls

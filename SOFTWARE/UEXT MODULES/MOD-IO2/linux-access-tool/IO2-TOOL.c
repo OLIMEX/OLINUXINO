@@ -58,32 +58,32 @@ void Print_Help(void){
 	
 	puts("\n\
 \n\
-MOD-IO2 tool - http://www.Olimex.com/ , ver1.0\n\n\
-Usage:	./modio2tool [--debug] [-B xx] [-A 0xXX] [-m] [commands] [argument]\n\n\
+MOD-IO2 tool - http://www.Olimex.com/ , ver 1.02\n\n\
+Usage:	./modio2tool [--debug] [-B X] [-A 0xXX] [-m] [commands] [argument]\n\n\
 --verbose		- Prints debug messages\n\
 --debug			- Same as above\n\n\
--B X, --setbusnumber	- Sets /dev/i2c-X, default 2\n\
+-B X, 	--setbusnumber	- Sets /dev/i2c-X, default 2\n\
 -A 0xXX, --i2c_address	- Sets target i2c address, default 0x21\n\
 -x 0xXX, --setaddress	- Sets the i2c address of the module to 0xXX\n\
--X, --setfactory	- Sets module i2c address to default 0x21\n\n\
+-X, 	--setfactory	- Sets module i2c address to default 0x21\n\n\
 Relay commands:\n\n\
--r, --relays?		- Reads relay states\n\
--s X, --switchon	- Turns on relay\n\
--c X, --switchoff	- Turns off relay\n\
+-r,	--relays?	- Reads relay states\n\
+-s X, 	--switchon	- Turns on relay\n\
+-c X, 	--switchoff	- Turns off relay\n\
  where X is:\n\
   1 - Relay 1\n\
   2 - Relay 2\n\
   3 - both\n\
  example:\n\
   modio2tool -s 1	- Turns relay 1 on\n\
--S X, --setrelays	- Sets relays outputs\n\n\
+-S X,	--setrelays	- Sets relays outputs\n\n\
 GPIO commands:\n\n\
--g, --getport		- Reads the GPIO inputs\n\
--G, --getlat		- Reads the GPIO outputs\n\
+-g,	--getport	- Reads the GPIO inputs\n\
+-G,	--getlat	- Reads the GPIO outputs\n\
 -T 0xXX, --settris	- Sets GPIO TRIS\n\
 -P 0xXX, --setpullups	- Sets GPIO pull ups\n\
--i X, --readpin		- Reads digital input at GPIOX\n\
--p XY, --pin		- Sets digital output at GPIOX\n\
+-i X, 	--readpin	- Reads digital input at GPIOX\n\
+-p XY,	--pin		- Sets digital output at GPIOX\n\
  X - 0-7   GPIO#\n\
  Y - 0/1 - Level, 3 - toggle\n\
 \n\
@@ -95,7 +95,7 @@ Others:\n\n\
 -V, --id		- Prints the hardware ID of MOD-IO2\n\
 -f, --firmware		- Prints the current firmware version of MOD-IO2\n\
 -m, --strip		- Omits human messages\n\
--h --help		- Prints this help information\n\n\
+-h, --help		- Prints this help information\n\n\
 ");
 exit(0);
 }
@@ -115,7 +115,7 @@ int main(int argc, char **argv){
 			{"relays?",	no_argument,0,'r'},
 			{"adc",		required_argument,0,'a'},
 			{"i2c_address",		required_argument,0,'A'},
-			{"hwid",		no_argument,0,'H'},
+			{"hwid",		no_argument,0,'V'},
 			{"getport",		no_argument,0,'g'},
 			{"getlat", no_argument,0,'G'},
 			{"setrelays",	required_argument,0,'S'},
@@ -136,7 +136,7 @@ int main(int argc, char **argv){
 			{0,		0, 			0,		0}
 		};
 		int option_index = 0;
-		int c = getopt_long(argc, argv, "s:T:a:HgGrp:o:S:c:fhx:B:XlA:p:i:m", long_options, &option_index);
+		int c = getopt_long(argc, argv, "s:T:a:VgGrp:o:S:c:fhx:B:XlA:p:i:m", long_options, &option_index);
 		unsigned int value; 
 		if (c == -1)
 		{
@@ -201,7 +201,7 @@ int main(int argc, char **argv){
 			case 'l':
 				BusScan();
 				break;						
-			case 'H':
+			case 'V':
 				
 				ReadID();
 				break;	
@@ -849,13 +849,13 @@ void ReadADC(unsigned char value)
 	ReadADC(1);
 	ReadADC(2);
 	ReadADC(3);
-	ReadADC(5);
+	ReadADC(7);
 	break;	
 	case 0:	
 	case 1:
 	case 2:
 	case 3:
-	case 5:	
+	case 7:	
 	
 	buff[0]=0x10+value;
 	data[0]=0x00;

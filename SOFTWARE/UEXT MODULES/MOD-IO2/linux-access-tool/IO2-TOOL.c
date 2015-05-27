@@ -73,7 +73,7 @@ Relay commands:\n\n\
   2 - Relay 2\n\
   3 - both\n\
  example:\n\
-  MOD-IO2 -s 1		- Turns relay 1 on\n\
+  modio2tool -s 1	- Turns relay 1 on\n\
 -S X, --setrelays	- Sets relays outputs\n\n\
 GPIO commands:\n\n\
 -g, --getport		- Reads the GPIO inputs\n\

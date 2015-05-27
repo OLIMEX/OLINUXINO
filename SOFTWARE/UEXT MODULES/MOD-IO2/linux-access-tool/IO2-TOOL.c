@@ -57,6 +57,8 @@ unsigned char hout = 1;
 void Print_Help(void){
 	
 	puts("\n\
+\n\
+MOD-IO2 tool - http://www.Olimex.com/ , ver1.0\n\n\
 Usage:	./modio2tool [--debug] [-B xx] [-A 0xXX] [-m] [commands] [argument]\n\n\
 --verbose		- Prints debug messages\n\
 --debug			- Same as above\n\n\
@@ -67,7 +69,7 @@ Usage:	./modio2tool [--debug] [-B xx] [-A 0xXX] [-m] [commands] [argument]\n\n\
 Relay commands:\n\n\
 -r, --relays?		- Reads relay states\n\
 -s X, --switchon	- Turns on relay\n\
--n X, --switchoff	- Turns off relay\n\
+-c X, --switchoff	- Turns off relay\n\
  where X is:\n\
   1 - Relay 1\n\
   2 - Relay 2\n\
@@ -83,7 +85,7 @@ GPIO commands:\n\n\
 -i X, --readpin		- Reads digital input at GPIOX\n\
 -p XY, --pin		- Sets digital output at GPIOX\n\
  X - 0-7   GPIO#\n\
- Y - 0/1 - Level\n\
+ Y - 0/1 - Level, 3 - toggle\n\
 \n\
 ADC commands:\n\n\
 -a X, --adc		- Prints ADC values in Volts\n\

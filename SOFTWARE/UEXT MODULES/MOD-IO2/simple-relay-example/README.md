@@ -18,7 +18,9 @@ In addition to the boards you also need SD card with Debian image (tested with "
 
 Input:
 
+```
 mkdir MOD-IO2
+```
 
 5. Set the created directory as current directory:
 

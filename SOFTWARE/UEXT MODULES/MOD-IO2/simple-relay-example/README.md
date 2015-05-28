@@ -18,9 +18,7 @@ In addition to the boards you also need SD card with Debian image (tested with "
 
 Input:
 
-```
 mkdir MOD-IO2
-```
 
 5. Set the created directory as current directory:
 
@@ -43,10 +41,14 @@ ifup eth0
 Input:
 
 ```
-wget <URL>
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/UEXT%20MODULES/MOD-IO2/simple-relay-example/main.cpp
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/UEXT%20MODULES/MOD-IO2/simple-relay-example/IO2.h
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/UEXT%20MODULES/MOD-IO2/simple-relay-example/IO2.cpp
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/UEXT%20MODULES/MOD-IO2/simple-relay-example/i2c.h
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/UEXT%20MODULES/MOD-IO2/simple-relay-example/i2c.cpp
 ```
 
-In order to get the URL, go to GitHUB find the directory of the project: <path>; select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the five files: i2c.cpp; i2c.h; IO2.cpp; IO2.h; main.cpp.
+In order to get the URL, go to GitHUB find the directory of the project: https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/UEXT%20MODULES/MOD-IO2/simple-relay-example ; select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the five files: i2c.cpp; i2c.h; IO2.cpp; IO2.h; main.cpp.
 
 8. Just to make sure everything is fine and all five files are downloaded check the content of the directory:
 

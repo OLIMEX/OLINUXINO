@@ -45,6 +45,10 @@ void Set_Address(unsigned char value);
 void Set_Factory(void);
 void SetPin(unsigned char value);
 void ReadPin(unsigned char value);
+void SetPWM1(unsigned char value);
+void SetPWM2(unsigned char value);
+void ClosePWM(unsigned char value);
+
 
 unsigned char i2caddr;
 unsigned char mask[9]={1,2,4,8,16,32,64,128};
@@ -90,6 +94,10 @@ GPIO commands:\n\n\
 ADC commands:\n\n\
 -a X, --adc		- Prints ADC values in Volts\n\
 \n\
+PWM's:\n\n\
+-w 0xXX, --openpwm1	- Set PWM1 value and turn it on\n\
+-W 0xXX, --openpwm2	- Set PWM2 value and turn it on\n\
+-z X,	 --closepwm	- Close PWMx\n\n\
 Others:\n\n\
 -l, --listdev		- Lists addresses of modules connected to bus\n\
 -V, --id		- Prints the hardware ID of MOD-IO2\n\
@@ -131,12 +139,15 @@ int main(int argc, char **argv){
 			{"setbusnumber",required_argument,0,'B'},
 			{"pin",required_argument,0,'p'},
 			{"readpin",required_argument,0,'i'},
+			{"openpwm1",required_argument,0,'w'},
+			{"openpwm2",required_argument,0,'W'},
+			{"closepwm",required_argument,0,'z'},
 			{"setfactory",	no_argument,0,'X'},
 			{"strip",no_argument,0,'m'},
 			{0,		0, 			0,		0}
 		};
 		int option_index = 0;
-		int c = getopt_long(argc, argv, "s:T:a:VgGrp:o:S:c:fhx:B:XlA:p:i:m", long_options, &option_index);
+		int c = getopt_long(argc, argv, "s:T:a:VgGrp:o:S:c:fhx:B:XlA:p:i:mw:W:z:", long_options, &option_index);
 		unsigned int value; 
 		if (c == -1)
 		{
@@ -226,9 +237,15 @@ int main(int argc, char **argv){
 			case 'f':
 			ReadSV();			
 				break;
-				
-			default:
-			
+			case 'w':
+			value = atoi(optarg);
+			SetPWM1(value);	
+			break;;
+			case 'W':
+			value = atoi(optarg);
+			SetPWM2(value);	
+			break;
+			default:			
 		//	Print_Help();
 				break;
 		}
@@ -239,6 +256,103 @@ int main(int argc, char **argv){
 		
 	return 0;
 }
+/* Set PWM mode on GPIO5 - PWM2 */
+void SetPWM2(unsigned char value)
+{
+	/* value:
+	 * 0 to 255
+	 */
+	int fd;
+	unsigned char buff[5];
+	buff[0]=0x52;
+	buff[1]=value;
+
+
+	/* Open I2C-BUS */	
+	I2C_Open(&fd, i2caddr);
+	
+	/* Write register */
+	if (I2C_Send(&fd, buff,2 ))
+	if (hout)
+	printf("error!\n");
+	else
+	if (hout)
+	printf("done.\n");
+
+	/* Close I2C-BUS */
+	I2C_Close(&fd);
+	
+ }
+/* Set PWM mode on GPIO6 - PWM1 */
+void SetPWM1(unsigned char value)
+{
+	/* value:
+	 * 0 to 255
+	 */
+	int fd;
+	unsigned char buff[5];
+	buff[0]=0x51;
+	buff[1]=value;
+
+
+	/* Open I2C-BUS */	
+	I2C_Open(&fd, i2caddr);
+	
+	/* Write register */
+	if (I2C_Send(&fd, buff,2 ))
+	if (hout)
+	printf("error!\n");
+	else
+	if (hout)
+	printf("done.\n");
+
+	/* Close I2C-BUS */
+	I2C_Close(&fd);
+	
+ }
+ /* Close PWM 1 or 2 */
+void ClosePWM(unsigned char value)
+{
+		/* value:
+	 * 1 or 2 - PWM1 or PWM2, 0 - both
+	 */
+	int fd;
+	unsigned char buff[5];
+	
+	switch(value){
+	 case 0:
+	  ClosePWM(1);
+	  ClosePWM(2);
+	  break;
+	 case 1:
+	  buff[1] =1;
+	  break;
+	 case 2:
+	 buff[1]=2;
+	 break;
+	 default:
+	 exit(1);
+	 break;
+ }
+	
+	buff[0]=0x50;
+	buff[1]=value;
+
+
+	/* Open I2C-BUS */	
+	I2C_Open(&fd, i2caddr);
+	
+	/* Write register */
+	if (I2C_Send(&fd, buff,2 ))
+	if (hout)
+	printf("error!\n");
+	else
+	if (hout)
+	printf("done.\n");
+
+	/* Close I2C-BUS */
+	I2C_Close(&fd);
+}	
 
 /* Use this function to find module i2c address */
 void BusScan(void)

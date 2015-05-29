@@ -62,7 +62,7 @@ void Print_Help(void){
 	
 	puts("\n\
 \n\
-MOD-IO2 tool - http://www.Olimex.com/ , ver 1.02\n\n\
+MOD-IO2 tool - http://www.Olimex.com/ , ver 1.03\n\n\
 Usage:	./modio2tool [--debug] [-B X] [-A 0xXX] [-m] [commands] [argument]\n\n\
 --verbose		- Prints debug messages\n\
 --debug			- Same as above\n\n\
@@ -82,6 +82,7 @@ Relay commands:\n\n\
   modio2tool -s 1	- Turns relay 1 on\n\
 -S X,	--setrelays	- Sets relays outputs\n\n\
 GPIO commands:\n\n\
+-o,	--setoutputs	- Set the GPIO outputs\n\
 -g,	--getport	- Reads the GPIO inputs\n\
 -G,	--getlat	- Reads the GPIO outputs\n\
 -T 0xXX, --settris	- Sets GPIO TRIS\n\
@@ -238,11 +239,11 @@ int main(int argc, char **argv){
 			ReadSV();			
 				break;
 			case 'w':
-			value = atoi(optarg);
+			value = strtol(optarg,NULL,16);
 			SetPWM1(value);	
 			break;;
 			case 'W':
-			value = atoi(optarg);
+			value = strtol(optarg,NULL,16);
 			SetPWM2(value);	
 			break;
 			default:			

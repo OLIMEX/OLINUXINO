@@ -186,7 +186,7 @@ void Sync_RTC(void){
 	rtc_tm -> tm_hour = BCDtoInt(data[2]);
 	rtc_tm -> tm_mday = BCDtoInt(data[3]);
 	rtc_tm -> tm_wday = BCDtoInt(data[4]);
-	rtc_tm -> tm_mon = BCDtoInt(data[5]);
+	rtc_tm -> tm_mon = BCDtoInt(data[5])-1; //because local time counts months 0-11 but MOD-RTC 1-12
 	rtc_tm -> tm_year = BCDtoInt(data[6]);
 	
 	const struct timeval tv = {mktime(rtc_tm), 0};

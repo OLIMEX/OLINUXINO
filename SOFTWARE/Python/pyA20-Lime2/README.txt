@@ -3,7 +3,7 @@ This is written for A20-OLinuXino-LIME2, but it can be used with other boards. I
 this we cannot guarantee proper operation of the module. Before using this
 package we recommend reading the article at olimex wiki:
 
-https://www.olimex.com/wiki/A10-OLinuXino-LIME2
+https://www.olimex.com/wiki/A20-OLinuXino-LIME2
 
 When using GPIO make sure that the desired gpio is not used by another periphery.
 

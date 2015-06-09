@@ -1,0 +1,120 @@
+Official Images from OLIMEX for A13-OLinuXino boards
+
+Note: the A13-OLinuXino card which we have on our webshop contain same image on 4GB Class10 fast micro sd-card, 
+if you want to use this image please use Class10 fast card or the performance of Linux will slow down
+The image is Debian linux with kernel 3.4.90+ . 
+Default login/password: root/olimex
+
+The file A13_debian_34_90_WIFI_RALINK_GCC_GPIO_X_I2C_100KHz_UVC_TS_FTDI_3G_video_accell_release_10.7z is an archive of
+A13_debian_34_90_WIFI_RALINK_GCC_GPIO_X_I2C_100KHz_UVC_TS_FTDI_3G_video_accell_release_10.img file. 
+So in order to write the image on SD card you have to unzip A13_debian_34_90_WIFI_RALINK_GCC_GPIO_X_I2C_100KHz_UVC_TS_FTDI_3G_video_accell_release_10.7z file:
+1.1 for Windows
+----------------
+Use 7zip and then use Win32DiskImager.exe (http://sourceforge.net/projects/win32diskimager/) for image writing
+
+1.2 for linux
+-------------
+Use p7zip package. If you have no installed 7zip then type 
+#apt-get install p7zip
+Copy A13_debian_34_90_WIFI_RALINK_GCC_GPIO_X_I2C_100KHz_UVC_TS_FTDI_3G_video_accell_release_10.7z file in your directory and unzip it with 
+#7za e A13_debian_34_90_WIFI_RALINK_GCC_GPIO_X_I2C_100KHz_UVC_TS_FTDI_3G_video_accell_release_10.7z
+The output should be a new 4GB file named A13_debian_34_90_WIFI_RALINK_GCC_GPIO_X_I2C_100KHz_UVC_TS_FTDI_3G_video_accell_release_10.img
+Put 4GB SD card in your card reader and type
+# ls /dev/sd
+Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices may be your hard disk so make sure you know which one is your sd card before you proceed as you can damage your HDD if you choose the wrong sd-device. You can do this by unplugging your sd card reader and identify which "sd" devices remove from the list.
+Once you know which device is your sdcard like sda use this text instead of the sdX name in the references below:
+#dd if=A13_debian_34_90_WIFI_RALINK_GCC_GPIO_X_I2C_100KHz_UVC_TS_FTDI_3G_video_accell_release_10.img of=/dev/sdX
+
+The main installed packages are listed below:
+
+LXDE desktop environment
+smplayer
+gcc-4.6
+dpkg
+git
+i2c-tools
+perl
+xorg
+python 2.7
+midori
+minicom
+usb-modeswitch
+sshfs
+wvdial
+
+The list of all installed packages is located in a13_34_90_installed_packages.txt file
+
+The main tested onboard hardware modules are:
+
+GPIO	-	they are located in /sys/class/gpio directory. Note that first you have to export GPIOs. For example:
+# for i in `seq 1 1 230`; do echo $i > /sys/class/gpio/export; done
+will export all available GPIOs
+# echo out > /sys/class/gpio/gpioXX_pxx/direction
+will make the port output
+# echo 1 > /sys/class/gpio/gpioXX_pXX/value
+will make the port output in logical 1
+LCD	 -	4.3''(480x272), 7''(800x480), 10''(1024x600)
+Touch_screen	-	you need calibrate LCD before using touch screen. Note that if you want to use touch screen in X environment then you have to calibrate it like olimex user, 
+not like root user because X environment is started like olimex user. For example type:
+# su olimex
+# sudo ts_calibrate 
+calibrate the touch screen and reboot the board
+ASIX8877 USB-LAN	-	https://www.olimex.com/Products/OLinuXino/A13/USB-ETHERNET-AX88772B/
+WEB camera A4TECH
+WIFI_RTL8188	-	https://www.olimex.com/Products/Modules/Ethernet/MOD-WIFI-RTL8188/
+MOD-WIFI-R5370	-	https://www.olimex.com/Products/USB-Modules/MOD-WIFI-R5370
+USB_OTG	 -	low/full/high USB host
+MOD-USB3G	-	https://www.olimex.com/Products/USB-Modules/MOD-USB3G/
+in order to test MOD-USB3G module you have to place SIM card(without pin code) in module and connect it to USB host connector 
+change settings in /etc/wvdial.conf file according to your mobile operator and type:
+# wvdial 3gconnect
+mico_SD_card	- linux starts from micro_SD card
+NAND support	-	/dev/nandX
+I2C2(100KHz)	-	/dev/i2c-2
+I2C1(100KHz)	-	/dev/i2c-1
+UART3	-	/dev/ttyS1
+SPI2	-	/dev/spidev2.0
+there is a simple test for SPI2 in /opt/spidev directory. 
+# ls /opt/spidev
+max6675/
+in folder max6675/ there is example related with MOD-TC(https://www.olimex.com/Products/Modules/Sensors/MOD-TC/open-source-hardware) - temperature sensor that you have to connect to UEXT1 connector
+# cd max6675
+# ./MAX6675
+the last command will read temperature from MOD-TC thermocouple
+BUTTONs	- we use evtest package for testing. For example:
+# evtest
+and use X number from eventX
+/dev/input/eventX:      sun4i-keyboard
+then enter X for event number and now you can press the BUTTONs and you should see the result on terminal window
+
+
+Changing A13-OLinuxino LCD and VGA resolution 
+---------------------------------------------------
+The default SD card setup is made with settings for LCD 7''(800x480). If you want to change some other LCD or VGA resolution then you have to start change_display_a13.sh script file in /root directory.
+Type:
+# ./change_display_a13.sh
+
+and choose the desired resolution of desired interface(LCD, HDMI or VGA)
+The supported resolution are:
+
+About LCD:
+1. 4.3''(480x272)
+2. 7''(800x480)
+3. 10''(1024x600)
+
+about VGA:
+1. 800x600
+2. 1024x768
+
+Changing script.bin file
+========================
+Note that you have to be very carefull with script.bin changing because the system can stop working. It is recommeded to make backup of script.bin file before change it.
+the tools for script.bin changing are located in /opt/sunxi-tools directory
+# cd /opt/sunxi-tools
+# ./chscr.sh
+this will convert script.bin file from sdcard to script.fex file and the file  will be opened using nano editor. 
+Now you can change the board modules and parameters, save the changes and exit from nano editor
+# ./wrscr.sh
+this will convert script.fex to script.bin and the script.bin file will be written to sdcard
+
+default user/password is root/olimex

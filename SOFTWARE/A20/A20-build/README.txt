@@ -135,7 +135,7 @@ download the  spi-sun7i.c file using wget command
 
 and copy it in drivers/spi directory
 
-# cp spi-sun7i.c /drivers/spi 
+# cp spi-sun7i.c drivers/spi 
 
 download the patch file SPI.patch using wget command
 
@@ -156,7 +156,7 @@ Download a20_olimex_defconfig  using wget command
 
 then copy a20_olimex_defconfig file to configs directory:
 
-# cp a20_olimex_defconfig  /arch/arm/configs/
+# cp a20_olimex_defconfig  arch/arm/configs/
 
 and make:
 

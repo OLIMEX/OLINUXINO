@@ -91,7 +91,7 @@ A20-SOM after rev.D - DDR3 memory bus speed is 480MHz(8 layer PCB)
 
 2.4 A20-OLinuXino-LIME board
 
-# make A20-OLinuXino_Lime_config ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make A20-OLinuXino-Lime_config ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
 Now type the following command for u-boot building
 

@@ -91,7 +91,7 @@ modules = [
 
 setup(
     name='pyA13',
-    version='0.2.1',
+    version='0.2.2',
     author='Stefan Mavrodiev',
     author_email='support@olimex.com',
     url='https://www.olimex.com/',

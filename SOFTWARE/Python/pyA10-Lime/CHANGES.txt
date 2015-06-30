@@ -1,9 +1,13 @@
 Changelog
 =========
-    * pyA10Lime 0.1.0 (23 JAN 2014)
-        * Initial release
+    * pyA10Lime 0.2.1 (30 JUN 2015)
+        * Fixed issue with SPI xfer function
+
     * pyA10Lime 0.2.0 (02 SEP 2014)
         * Updated to enable SPI and I2C control
         * GPIO constant in separate modules
         * Added example files
         * Added support for Python3
+
+    * pyA10Lime 0.1.0 (23 JAN 2014)
+        * Initial release

@@ -1,3 +1,0 @@
-include *.txt
-graft pyA10Lime
-graft examples

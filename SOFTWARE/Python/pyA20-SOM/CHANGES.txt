@@ -1,4 +1,7 @@
 Changelog
 =========
+    * pyA20SOM 0.2.1 (30 JUN 2015)
+        * Fixed issue with SPI xfer function
+
     * pyA20SOM 0.2.0 (03 SEP 2014)
         * Initial release

@@ -1,5 +1,9 @@
 Changelog
 =========
+    * pyA20 0.2.1 (30 JUN 2015)
+        * Fixed gpio1 connector constants
+        * Fixed issue with SPI xfer function
+
     * pyA20 0.2.0 (02 SEP 2014)
         * Updated to enable SPI and I2C control
         * GPIO constant in separate modules

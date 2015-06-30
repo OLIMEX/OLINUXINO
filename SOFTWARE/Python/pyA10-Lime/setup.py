@@ -91,7 +91,7 @@ modules = [
 
 setup(
     name='pyA10Lime',
-    version='0.2.0',
+    version='0.2.1',
     author='Stefan Mavrodiev',
     author_email='support@olimex.com',
     url='https://www.olimex.com/',

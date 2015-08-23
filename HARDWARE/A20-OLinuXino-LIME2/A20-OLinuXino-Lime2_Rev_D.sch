@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.6.0">
+<eagle version="7.2.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -35746,7 +35746,7 @@ Drill 0.60 mm</description>
 <part name="R78" library="rcl" deviceset="R-EU_" device="R0402_TI" value="10k"/>
 <part name="P+12" library="supply1" deviceset="+5V" device=""/>
 <part name="GND61" library="supply1" deviceset="GND" device="" value=""/>
-<part name="R28" library="rcl" deviceset="R-EU_" device="R0402_TI" value="NA"/>
+<part name="NAND_WP" library="rcl" deviceset="R-EU_" device="R0402_TI" value="NA"/>
 <part name="LAN" library="OLIMEX_CONNECTORS" deviceset="TM211Q01FM22_SH" device=""/>
 <part name="C214" library="rcl" deviceset="C-EU" device="C1206_5MILS_WS_ISO" value="1nF/2kV/X7R/1206"/>
 <part name="GND36" library="supply1" deviceset="GND" device="" value=""/>
@@ -37930,7 +37930,7 @@ Drill 0.60 mm</description>
 <attribute name="VALUE" x="495.046" y="145.669" size="1.778" layer="96"/>
 </instance>
 <instance part="GND61" gate="1" x="464.82" y="111.76" rot="MR0"/>
-<instance part="R28" gate="G$1" x="233.68" y="535.94" smashed="yes" rot="MR270">
+<instance part="NAND_WP" gate="G$1" x="233.68" y="535.94" smashed="yes" rot="MR270">
 <attribute name="NAME" x="232.283" y="535.813" size="1.778" layer="95" rot="MR270"/>
 <attribute name="VALUE" x="233.045" y="539.115" size="1.778" layer="96" rot="R90"/>
 </instance>
@@ -43431,7 +43431,7 @@ Drill 0.60 mm</description>
 <pinref part="R29" gate="G$1" pin="2"/>
 <pinref part="C112" gate="G$1" pin="2"/>
 <pinref part="U4" gate="G$1" pin="#WP"/>
-<pinref part="R28" gate="G$1" pin="2"/>
+<pinref part="NAND_WP" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="PB3" class="0">
@@ -45892,7 +45892,7 @@ Drill 0.60 mm</description>
 <segment>
 <wire x1="233.68" y1="541.02" x2="233.68" y2="556.26" width="0.1524" layer="91"/>
 <label x="233.426" y="543.814" size="1.778" layer="95" rot="R90"/>
-<pinref part="R28" gate="G$1" pin="1"/>
+<pinref part="NAND_WP" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="PB13" class="0">

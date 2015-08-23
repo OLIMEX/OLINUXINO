@@ -447,6 +447,14 @@
 <text x="108.712" y="65.405" size="1.016" layer="25" font="vector" ratio="20">+</text>
 <text x="106.045" y="71.755" size="1.016" layer="26" font="vector" ratio="20" rot="MR0">+</text>
 <text x="51.181" y="56.134" size="1.016" layer="25" font="vector" ratio="20">+</text>
+<wire x1="44.831" y1="80.137" x2="44.6405" y2="79.9465" width="0.127" layer="22" curve="-90"/>
+<wire x1="44.6405" y1="79.9465" x2="44.1325" y2="79.9465" width="0.127" layer="22"/>
+<wire x1="44.1325" y1="79.9465" x2="43.942" y2="80.137" width="0.127" layer="22" curve="-90"/>
+<wire x1="43.942" y1="80.137" x2="43.942" y2="81.661" width="0.127" layer="22"/>
+<wire x1="43.942" y1="81.661" x2="44.1325" y2="81.8515" width="0.127" layer="22" curve="-90"/>
+<wire x1="44.1325" y1="81.8515" x2="44.6405" y2="81.8515" width="0.127" layer="22"/>
+<wire x1="44.6405" y1="81.8515" x2="44.831" y2="81.661" width="0.127" layer="22" curve="-90"/>
+<wire x1="44.831" y1="81.661" x2="44.831" y2="80.137" width="0.127" layer="22"/>
 </plain>
 <libraries>
 <library name="OLIMEX_IC">
@@ -5698,7 +5706,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="97.663" y="93.345" size="0.8128" layer="26" font="vector" ratio="20" rot="MR0"/>
 </element>
 <element name="+5V" library="gogo" package="TESTPAD_40-ROUND" value="TESTPADTESTPAD_40-ROUND" x="43.307" y="80.772" smashed="yes" rot="MR0">
-<attribute name="NAME" x="44.577" y="81.534" size="1.016" layer="26" font="vector" ratio="20" rot="MR0"/>
+<attribute name="NAME" x="41.7195" y="79.3115" size="1.016" layer="26" font="vector" ratio="20" rot="MR90"/>
 </element>
 <element name="BAT" library="gogo" package="TESTPAD_40-ROUND" value="TESTPADTESTPAD_40-ROUND" x="102.362" y="85.471" smashed="yes" rot="MR0">
 <attribute name="NAME" x="101.6635" y="85.217" size="0.9144" layer="26" font="vector" ratio="20" rot="MR0"/>
@@ -6184,8 +6192,8 @@ design rules under a new name.</description>
 <attribute name="NAME" x="104.178" y="93.945" size="0.635" layer="26" font="vector" ratio="20" rot="MR0"/>
 <attribute name="VALUE" x="105.067" y="92.072" size="0.8128" layer="28" ratio="25" rot="MR0"/>
 </element>
-<element name="R28" library="rcl" package="R0402_TI" value="NA" x="44.3865" y="80.899" smashed="yes" rot="MR90">
-<attribute name="NAME" x="43.942" y="82.042" size="0.8128" layer="26" font="vector" ratio="20" rot="MR270"/>
+<element name="NAND_WP" library="rcl" package="R0402_TI" value="NA" x="44.3865" y="80.899" smashed="yes" rot="MR90">
+<attribute name="NAME" x="45.212" y="78.486" size="0.8128" layer="26" font="vector" ratio="20" rot="MR90"/>
 <attribute name="VALUE" x="42.9865" y="80.099" size="0.8128" layer="28" ratio="25" rot="MR90"/>
 </element>
 <element name="LAN" library="OLIMEX_CONNECTORS" package="TM211Q01FM22_SH" value="TM211Q01FM22_SH" x="108.712" y="55.372" smashed="yes" rot="R270">
@@ -15007,7 +15015,7 @@ design rules under a new name.</description>
 <contactref element="R29" pad="2"/>
 <contactref element="C112" pad="2"/>
 <contactref element="U4" pad="19"/>
-<contactref element="R28" pad="2"/>
+<contactref element="NAND_WP" pad="2"/>
 <wire x1="49.657" y1="84.582" x2="49.657" y2="85.471" width="0.508" layer="1"/>
 <wire x1="48.693" y1="83.052" x2="48.693" y2="83.745" width="0.254" layer="1"/>
 <wire x1="48.693" y1="83.745" x2="49.53" y2="84.582" width="0.254" layer="1"/>
@@ -19308,7 +19316,7 @@ design rules under a new name.</description>
 <signal name="PC16/NWP">
 <contactref element="U1" pad="M21"/>
 <contactref element="GPIO-4" pad="18"/>
-<contactref element="R28" pad="1"/>
+<contactref element="NAND_WP" pad="1"/>
 <wire x1="62.8" y1="72" x2="63.2" y2="71.6" width="0.127" layer="1"/>
 <wire x1="60.706" y1="71.374" x2="61.332" y2="72" width="0.127" layer="1"/>
 <wire x1="61.332" y1="72" x2="62.8" y2="72" width="0.127" layer="1"/>

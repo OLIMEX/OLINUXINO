@@ -2,6 +2,10 @@
 
 ## Changes
 
+### 24 AUG 2015
+
+* Now modules for USB storage are [*] instead of [M]
+
 ### 17 AUG 2015
 
 * Changed OpenWrt repository url from snapshots to Chaos Calmer 15.05-rc3

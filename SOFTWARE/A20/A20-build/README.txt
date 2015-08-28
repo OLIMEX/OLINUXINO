@@ -51,7 +51,9 @@ First let's make the directory where we would build the A20 Linux:
 Then let’s download the uboot sources from GitHub repository, note there are lot of branches but you
 have to use sunxi branch. The u-boot is tested with the following branch:
 
-# git rev-parse --verify HEAD 36080eb05e9a1e96d58e3168631d3cc9c612a0e3
+# git rev-parse --verify HEAD
+
+36080eb05e9a1e96d58e3168631d3cc9c612a0e3
 
 Download u-boot sourses:
 
@@ -117,7 +119,9 @@ You should be in the following directory:
 Kernel sources for A20 are available on GitHub. Note that the following building is made with the
 revision below: 
 
-# git rev-parse --verify HEAD e37d760b363888f3a65cd6455c99a75cac70a7b8
+# git rev-parse --verify HEAD 
+
+e37d760b363888f3a65cd6455c99a75cac70a7b8
 
 You can download the kernel sources using the following command:
 
@@ -346,7 +350,7 @@ only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qB
 
 The link to the torrent file is:
 
-https://www.olimex.com/wiki/images/2/29/Debian_FS_34_90_camera_A20-olimex.torrent
+https://www.olimex.com/wiki/images/3/39/A20-lime2_debian_3.4.90_release_2.torrent
 
 Now mount the microSD card EXT3 FS partition:
 

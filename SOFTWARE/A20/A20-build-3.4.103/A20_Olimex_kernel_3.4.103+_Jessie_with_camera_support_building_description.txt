@@ -127,7 +127,7 @@ Here you need from a20 configuration file – A20-linux-3.4.103_defconfig . The fi
 
 Download A20-linux-3.4.103_defconfig  using wget command 
 
-# wget ----------------------need link----------------------------
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/A20-linux-3.4.103_defconfig
 
 then copy A20-linux-3.4.103_defconfig file to configs directory:
 
@@ -276,24 +276,24 @@ script.bin is a file with very important configuration parameters like port GPIO
 According to the A20 board you use you have to download and write different script.bin file.
 
 7.1 for A20-OLinuXino_Lime2 board download the script.bin file using wget command
-# wget  ----------------------need link----------------------------
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/script_a20_Lime2_rel_2/script.bin
 
 7.2 for A20-SOM board download the script.bin file using wget command
-# wget  ----------------------need link----------------------------
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/script_a20-SOM_rel_3/script_a20_SOM_HDMI_720p50/script.bin
 
 7.3 for A20-OLinuXino-MICRO board download the script.bin file using wget command
-# wget  ----------------------need link----------------------------
+# wget  https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/script_a20_OLinuXino-micro_rel_10/script.bin
 
 7.4 for A20-OLinuXino-LIME board download the script.bin file using wget command
-# wget  ----------------------need link----------------------------
+# wget  https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/script_a20_lime_rel_3/script.bin
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card
 # cp script.bin /mnt/sd
 
 Download boot.scr and uEnv.txt files
 
-#wget   ----------------------need link----------------------------
-#wget   ----------------------need link----------------------------
+#wget   https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/boot.scr
+#wget   https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/uEnv.txt
 
 You have to copy in first sd card partition where script.bin file is located
 # cp boot.scr /mnt/sd
@@ -319,7 +319,7 @@ Should be in the directory below
 
 Download debian rootfs with the file name "debian_FS_34_103_Jessie_8.1_A20-olimex.tgz" , which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
 
- ----------------------need link----------------------------
+# wget https://www.olimex.com/wiki/images/c/c6/Debian_FS_34_103_Jessie_8.1_A20-olimex.torrent
 
 Now mount the microSD card EXT3 FS partition:
 

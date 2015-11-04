@@ -51,7 +51,7 @@ After the download you should have a new directory
 The image is tested with the commit from Fri Jul 24 16:55:29 2015
 You can switch to this commit with the next command
 
-git reset --hard 86719f0cd55bc13186798217b08fa6a048eda27c
+git reset --hard  e2c1c5bae619d2e87505de99f907a26237640bc9
 
 With the following commands you have to configure the uboot for the different boards, use only the make command for your board:
 
@@ -65,30 +65,62 @@ Note that there is 2 different types of A20-SOM boards.
 The main differences are in DDR3 memory bus speed. 
 A20-SOM up to rev.B  - DDR3 memory bus speed is 384MHz(6 layer PCB)
 A20-SOM after rev.D - DDR3 memory bus speed is 480MHz(8 layer PCB)
-
+  
 2.2.1 For A20-SOM up to rev.B type 
 
 # make A20-Olimex-SOM-EVB_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+or use A20-OLinuXino-Lime2_defconfig for older u-boot commit
+# make A20-OLinuXino-Lime2_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 # make ARCH=arm menuconfig
 
 from the menu select 
--> arm architecture
+ARM architecture --> 
 	-> sunxi DRAM clock speed
 and change 480 to 384
+
+select 
+[*] Enable workarounds for booting old kernels  
+
 ESC ESC
 Save and exit
 
 2.2.2 For A20-SOM after rev.D 
 
 # make A20-Olimex-SOM-EVB_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+or use A20-OLinuXino-Lime2_defconfig for older u-boot commit
+# make A20-OLinuXino-Lime2_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make ARCH=arm menuconfig
+
+from the menu select 
+ARM architecture --> 
+select 
+[*] Enable workarounds for booting old kernels  
+ESC ESC
+Save and exit
 
 2.3 A20-OLinuXino-MICRO board
 
 # make A20-OLinuXino_MICRO_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make ARCH=arm menuconfig
+
+from the menu select 
+ARM architecture --> 
+select 
+[*] Enable workarounds for booting old kernels  
+ESC ESC
+Save and exit
 
 2.4 A20-OLinuXino-LIME board
 
 # make A20-OLinuXino-Lime_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make ARCH=arm menuconfig
+
+from the menu select 
+ARM architecture --> 
+select 
+[*] Enable workarounds for booting old kernels  
+ESC ESC
+Save and exit
 
 Now type the following command for u-boot building
 
@@ -127,7 +159,7 @@ Here you need from a20 configuration file – A20-linux-3.4.103_defconfig . The fi
 
 Download A20-linux-3.4.103_defconfig  using wget command 
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103/A20-linux-3.4.103_defconfig
+# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103/A20-linux-3.4.103_defconfig
 
 then copy A20-linux-3.4.103_defconfig file to configs directory:
 

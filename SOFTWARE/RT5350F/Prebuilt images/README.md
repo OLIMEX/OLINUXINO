@@ -2,6 +2,12 @@
 
 ## Changes
 
+### 10 NOV 2015
+
+* Fixed issue with MAC address. They were hard-coded in the 
+factory partition. Now on the first boot a random one is 
+generated and stored.
+
 ### 24 AUG 2015
 
 * Now modules for USB storage are [*] instead of [M]

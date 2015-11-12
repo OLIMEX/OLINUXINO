@@ -8,6 +8,16 @@
 factory partition. Now on the first boot a random one is 
 generated and stored.
 
+The updated files are:
+- uboot+factory.bin
+- uboot+factory+openwrt.bin
+
+The difference is ONLY in the factory partition. OpenWRT remains the same.
+The MAC address was hard-coded at offset 0x40004. We set WLAN,
+MAC0 and MAC1 MAC addresses to ff:ff:ff:ff:ff. This forces the chip to
+generate random one on every boot. On the first boot this MAC is 
+stored on the filesystem.
+
 ### 24 AUG 2015
 
 * Now modules for USB storage are [*] instead of [M]

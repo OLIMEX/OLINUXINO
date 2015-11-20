@@ -1,4 +1,4 @@
-update=Tue 10 Nov 2015 02:46:51 PM EET
+update=Fri 20 Nov 2015 08:49:52 AM EET
 version=1
 last_client=kicad
 [pcbnew]
@@ -27,7 +27,7 @@ NetIExt=net
 version=1
 [eeschema]
 version=1
-LibDir=../../../../KiCAD_Components
+LibDir=../../SVN/KiCAD_Components
 [eeschema/libraries]
 LibName1=OLIMEX_Antennas
 LibName2=OLIMEX_Buttons
@@ -42,14 +42,13 @@ LibName10=OLIMEX_RCL
 LibName11=OLIMEX_Regulators
 LibName12=OLIMEX_Switches
 LibName13=OLIMEX_Transistors
-LibName14=OLIMEX_IC-exported
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
 PlotDirectoryName=
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=
+NetFmtName=Pcbnew
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=60

@@ -21,7 +21,7 @@ Short description about how to make bootable SD card with Linux file system for 
 7. Press 'p' to select the primary partition
 8. Press '1' to create partition 1 on the card
 9. Press Enter to start from first block
-10. Type '16MB' to create the 16MB partitions
+10. Type '+16M' to create the 16MB partitions
 11. Press 't' to change the newly created partition type
 12. Enter '53' for the new partition type
 13. Press 'n' to create a second partition, select 'p'(primary), then '2'(number)

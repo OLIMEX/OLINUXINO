@@ -43,59 +43,34 @@ void ReadSV(void);
 void BusScan(void);
 void Set_Address(unsigned char value);
 void Set_Factory(void);
-void UP(void);
-void Down(void);
-void SetPin(unsigned char value);
-void ReadPin(unsigned char value);
-
-unsigned char i2caddr;
-unsigned char mask[9]={1,2,4,8,16,32,64,128};
-unsigned char imask[9]={0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f};
-unsigned char hout = 1;
-
-
-
 
 void Print_Help(void){
 	
 	puts("\n\
-Usage:	./modio2tool [--debug] [parameter] [argument]\n\n\
+Usage:	./MOD-IO2 [--debug] [parameter] [argument]\n\n\
 --verbose	- Print debug messages\n\
 --debug		- Same as above\n\n\
--B X,	--setbusnumber - set /dev/i2c-X, default 2\n\
--A 0xXX, --i2c_address - set i2c address, default 0x21\n\
--x 0xXX, --setaddress - Change module i2c address to 0xXX\n\
--X,	--setfactory - Set module i2c address to default 0x21\n\n\
 Relays commands:\n\
--r, --relays?		- Read Relays states\n\
+-r, --relays?	- Read Relays states\n\
 -s X, --switchon	- Turn On Relay\n\
--c X, --switchoff	- Turn Off Relay\n\
+-n X, --switchoff - Turn Off Relay\n\
      where X is:\n\
 		1 - Relay 1\n\
 		2 - Relay 2\n\
 		3 both\n\
 	 example:\n\
 MOD-IO2 -s 1     - turns relay 1 on\n\
--S X, --setrelays - Set Relays Outputs\n\n\
+-S, --setrelays - Set Relays Outputs\n\n\
 GPIO commands:\n\
--g, --getport	- Read GPIO Inputs\n\
--G, --getlat	- Read GPIO Outputs\n\
--T 0xXX, --settris	- Set GPIO TRIS\n\
--P 0xXX, --setpullups	- Set GPIO PullUps\n\
--i X, --readpin	- Read digital input at GPIOX\n\
--p XY, --pin	- Set digital output at GPIOX\n\
-        X - 0-7   GPIO#\n\
-	Y - 0/1 - Level\n\
-\n\
--U, --up	- Switch Relay 1 on for 35s\n\
--D, --down	- Switch Relay 2 on for 35s\n\n\
+-g, --getport - Read GPIO Inputs\n\
+-t, --settris - Set GPIO TRIS\n\
+-p, --setpullups - Set GPIO PullUps\n\n\
 ADC commands:\n\
--a X, --adc	- Read ADC value in Volts\n\
+-a, --adc - Read ADC value in Volts\n\
 \n\
--H, --id	- Read Module Hardware Version ID\n\
--f, --firmware	- Read Module Firmware Version\n\
--m, --strip	- omit human messages\n\
--h, --help	- Print this help\n\n\
+-i, --id - Read Module Hardware Version ID\n\
+-?, --firmware - Read Module Firmware Version\n\
+--help		- Print this help\n\n\
 ");
 exit(0);
 }
@@ -104,42 +79,35 @@ int main(int argc, char **argv){
 	
 // Set I2C bus 	
 	DEVICE = 2; // /dev/i2c-2 Olinuxino A20 micro, change if other board or i2c port used
-	i2caddr = 0x21;
+	
 	/* Read  program options */
 	while(1){
 		static struct option long_options[]=
 		{
 			{"verbose", no_argument,	&_DEBUG,	1},
 			{"debug",	no_argument,	&_DEBUG,	1},
-				
+			
+			
 			{"relays?",	no_argument,0,'r'},
 			{"adc",		required_argument,0,'a'},
-			{"i2c_address",		required_argument,0,'A'},
-			{"hwid",		no_argument,0,'H'},
+			{"id",		no_argument,0,'i'},
 			{"getport",		no_argument,0,'g'},
 			{"getlat", no_argument,0,'G'},
 			{"setrelays",	required_argument,0,'S'},
 			{"setoutputs",	required_argument,0,'o'},
 			{"settris",	required_argument,0,'t'},
-			{"setpullups",	required_argument,0,'P'},
-			{"seton",	required_argument,0,'s'},
-			{"setoff",	required_argument,0,'c'},
+			{"setpullups",	required_argument,0,'p'},
+			{"switchon",	required_argument,0,'s'},
+			{"switchoff",	required_argument,0,'n'},
 			{"firmware",no_argument,0,'f'},
 			{"help",	no_argument,0,'h'},
-			{"listdev",	no_argument,0,'l'},
+			{"busscan",	no_argument,0,'F'},
 			{"setaddress", required_argument,0,'x'},
-			{"setbusnumber",required_argument,0,'B'},
-			{"pin",required_argument,0,'p'},
-			{"readpin",required_argument,0,'i'},
 			{"setfactory",	no_argument,0,'X'},
-			{"up",	no_argument,0,'U'},
-			{"down", no_argument,0,'D'},
-			{"strip",no_argument,0,'m'},
-			{"strip",no_argument,0,'m'},
 			{0,		0, 			0,		0}
 		};
 		int option_index = 0;
-		int c = getopt_long(argc, argv, "s:T:a:HgGrp:o:S:c:fhx:B:XlA:p:i:mUDv", long_options, &option_index);
+		int c = getopt_long(argc, argv, "s:t:a:igGrp:o:S:n:fhx:bX?", long_options, &option_index);
 		unsigned int value; 
 		if (c == -1)
 		{
@@ -148,12 +116,9 @@ int main(int argc, char **argv){
 		
 		switch(c)
 		{
-			case 'm':
-				hout = 0;
+			case 'v':
+				_DEBUG = 1;
 				break;
-			//case 'v':
-			//	_DEBUG = 1;
-			//	break;
 			case 'h':
 				Print_Help();
 				break;
@@ -165,19 +130,18 @@ int main(int argc, char **argv){
 			case 's':
 				value = atoi(optarg);
 				RelayOn(value);
-				break;		
-			case 'A':
-			i2caddr = strtol(optarg,NULL,16);
-			break;			
+				break;					
 			case 'o':
-				value = strtol(optarg,NULL,16);
+				value = atoi(optarg);
 				SetGPIO(value);
 				break;	
-			case 'c':
+			case 'n':
 				value = atoi(optarg);
 				RelayOff(value);
 				break;				
-				
+			case 'b':
+				DEVICE = atoi(optarg);
+				break;					
 			case 'a':
 				value = atoi(optarg);
 				ReadADC(value);
@@ -186,33 +150,14 @@ int main(int argc, char **argv){
 				
 				ReadGPIO();
 				break;	
-			case 'i':
-				value = atoi(optarg);
-				ReadPin(value);
-				break;					
 			case 'G':
 				
 				ReadLAT();
-				break;
-			case 'U':
-				
-				UP();
-				break;
-			case 'D':
-				
-				Down();
-				break;
-			case 'p':
-			value = strtol(optarg,NULL,16);
-			SetPin(value);
-			break;
-			case 'B':
-			DEVICE = atoi(optarg);
-			break;		
-			case 'l':
+				break;	
+			case 'F':
 				BusScan();
 				break;						
-			case 'H':
+			case 'i':
 				
 				ReadID();
 				break;	
@@ -222,24 +167,22 @@ int main(int argc, char **argv){
 			case 'r':
 				ReadRelays();
 				break;
-			case 'T':
-				value = strtol(optarg,NULL,16);
+			case 't':
+				value = atoi(optarg);
 				Set_TRIS(value);
 				break;
 			case 'x':
-				value = strtol(optarg,NULL,16);
+				value = atoi(optarg);
 				Set_Address(value);
 				break;						
-			case 'P':
-				value = strtol(optarg,NULL,16);
+			case 'p':
+				value = atoi(optarg);
 				Set_PU(value);
 				break;	
 			case 'f':
 			ReadSV();			
 				break;
-			case 'v':
-			printf("\nmodio2tool V2.0 Olimex Ltd. <c> 2016\n\n");			
-				break;		
+				
 			default:
 			
 		//	Print_Help();
@@ -280,11 +223,8 @@ for (adrs = 1; adrs < 129; adrs++)
 	
 	I2C_Read(&fd, data, 1);
 	if (data[0]==0x23)
-	{
-		if (hout)
 	printf("Found with I2c address 0x%02x \n", adrs);
-       else printf("0x%02x\n",adrs);
-   }
+
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 }
@@ -292,104 +232,6 @@ for (adrs = 1; adrs < 129; adrs++)
 } 	
 }
 
-/* Read Pin individualy */
-void ReadPin(unsigned char value){
-	int fd;
-	unsigned char buff[5];
-	unsigned char data[5];
-    
-
-	buff[0]=0x03;
-	data[0]=0x00;
-	data[1]=0;
-	
-	
-	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
-	
-	/* Write register */
-	I2C_Send(&fd, buff,1 );
-	
-	/* Read the GPIO */
-	I2C_Read(&fd, data, 1);
-	if (data[0] & mask[value]) data[1]=1;
-	if (hout)
-	printf("GPIO%d: %01x\n",value, data[1]);
- else
-	printf("%01x\n", data[1]);
-	/* Close I2C-BUS */
-	I2C_Close(&fd);
-		
-}
-
-/* Set Pin Outputs Individualy */
-void SetPin(unsigned char value){
-	int fd;
-	unsigned char buff[5];
-	unsigned char data[5];
-
-	
-	
-	/* value >> 4 = GPIOx
-	   value & 1 = L/H */
-	
-	
-	/* Read LAT first! */
-	buff[0]=0x06;
-	data[0]=0x00;
-	
-	
-	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
-	
-	/* Write register */
-	I2C_Send(&fd, buff,1 );
-	
-	/* Read the ADC */
-	
-	I2C_Read(&fd, data, 1);
-	/* Close I2C-BUS */
-	I2C_Close(&fd);
-
-    /* Set Bit
-     * 0 - set low
-     * 1 - set high
-     * 3 - toggle */ 
-     
-    switch (value & 3)
-    {
-	case 0:
-		data[0]&=imask[value>>4];
-		break;
-	case 1:
-		data[0]|=mask[value>>4];	
-		break;	
-	case 3:	
-	data[0]^=mask[value>>4];
-		break;
-	default:
-	break;
-	
-	}
-		
-	/* write it back */
-    buff[0]=0x02;
-	buff[1]=data[0];
-	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
-	
-	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-		printf("error!\n");
-	else
-	{
-	if (hout)
-	printf("done.\n");
-	}
-	/* Close I2C-BUS */
-	I2C_Close(&fd);
-	ReadLAT();
-}
 
 /* Set GPIO Outputs */
 void Set_LAT(unsigned char value){
@@ -402,15 +244,10 @@ void Set_LAT(unsigned char value){
 	
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	 if (hout)
-		printf("error!\n");
-	
-	else
-	if (hout) printf("done.\n");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
@@ -433,12 +270,10 @@ void RelayOff(unsigned char value){
 	 * /
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	if (hout)
-	printf("error!\n");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
@@ -461,77 +296,16 @@ void RelayOn(unsigned char value){
 	 * /
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	if (hout)
-	printf("error!\n");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 	
 }
-/* Send UP command */
-void UP(void){
-	int fd;
-	unsigned char buff[5];
-	
-	
-	buff[0]=0x44;
-	buff[1]=0x21;
-	
-	/* value:
-	 * should be iterpreted as binary 
-	 * b0 is relay 1
-	 * b1 is relay 2
-	 * 0 turn of relay
-	 * 1 turn on relay
-	 * /
-	
 
-	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
-	
-	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	if (hout)
-	printf("error!\n");
-
-	/* Close I2C-BUS */
-	I2C_Close(&fd);
-	
-}
-/* Send Down command */
-void Down(void){
-	int fd;
-	unsigned char buff[5];
-	
-	
-	buff[0]=0x44;
-	buff[1]=0x22;
-	
-	/* value:
-	 * should be iterpreted as binary 
-	 * b0 is relay 1
-	 * b1 is relay 2
-	 * 0 turn of relay
-	 * 1 turn on relay
-	 * /
-	
-
-	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
-	
-	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	if (hout)
-	printf("error!\n");
-
-	/* Close I2C-BUS */
-	I2C_Close(&fd);
-	
-}
 /* Set Relay states */
 void Relay(unsigned char value){
 	int fd;
@@ -551,12 +325,10 @@ void Relay(unsigned char value){
 	
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	if (hout)
-	printf("error!\n");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
@@ -578,15 +350,10 @@ void Set_Address(unsigned char value){
 	
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	if (hout)
-		printf("error!\n");
-	else
-	if (hout)
-	printf("done.\n");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
@@ -620,11 +387,8 @@ for (adrs = 0; adrs < 129; adrs++)
 	if (data[0]==0x23)
 	{
 	/* Close I2C-BUS */
-	I2C_Close(&fd);	
-	if (hout)	
-		printf("...found with i2c address 0x%02x \n", adrs);
-		else
-		printf("0x%02x\n", adrs);
+	I2C_Close(&fd);		
+		printf("Found with I2c address 0x%02x \n", adrs);
 	buff[0]=0xF0;
 	buff[1]=0x21;
 	
@@ -637,14 +401,7 @@ for (adrs = 0; adrs < 129; adrs++)
 	I2C_Open(&fd, adrs);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	{
-		if (hout)
-		printf("error!\n");
-	exit(1);
-	}
-	else
-	printf("done...");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);	
@@ -679,15 +436,10 @@ void Set_PU(unsigned char value){
 	
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-	if (hout)
-	printf("error!\n");
-	else
-	if (hout)
-	printf("done.\n");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
@@ -712,13 +464,10 @@ void SetGPIO(unsigned char value){
 	
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if (I2C_Send(&fd, buff,2 ))
-		if (hout) printf("error!\n");
-	else
-	if (hout) printf("done.\n");
+	I2C_Send(&fd, buff,2 );
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
@@ -743,13 +492,11 @@ void Set_TRIS(unsigned char value){
 	
 
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
-	if(I2C_Send(&fd, buff,2 ))
-	if (hout) printf("error!\n");
-	else
-	if (hout) printf("done.\n");
+	I2C_Send(&fd, buff,2 );
+
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 	
@@ -768,7 +515,7 @@ void ReadID(void)
 	
 	
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
 	I2C_Send(&fd, buff,1 );
@@ -776,10 +523,8 @@ void ReadID(void)
 	/* Read ID */
 	
 	I2C_Read(&fd, data, 1);
-	if (hout) 
 	printf("ID: 0x%x\n", data[0]);
-    else
-    printf("0x%x\n", data[0]);
+
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 
@@ -799,15 +544,15 @@ void ReadSV(void)
 	
 	
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
 	I2C_Send(&fd, buff,1 );
 	
-	/* Read the FV */
+	/* Read the ADC */
 	
 	I2C_Read(&fd, data, 1);
-	printf("Firmware Version: %d.%02d\n", data[0]>>4,data[0]&0x0f);
+	printf("Firmware Version: %d.0.%2d\n", data[0]>>4,data[0]&0x0f);
 
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
@@ -828,7 +573,7 @@ void ReadRelays(void)
 	
 	
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
 	I2C_Send(&fd, buff,1 );
@@ -836,10 +581,9 @@ void ReadRelays(void)
 	/* Read the ADC */
 	
 	I2C_Read(&fd, data, 1);
-	if (hout)
+	
 	printf("Relays: 0x%02x\n", data[0]);
-    else
-    printf("0x%02x\n", data[0]);
+
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 
@@ -858,7 +602,7 @@ void ReadLAT(void)
 	
 	
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
 	I2C_Send(&fd, buff,1 );
@@ -866,10 +610,9 @@ void ReadLAT(void)
 	/* Read the ADC */
 	
 	I2C_Read(&fd, data, 1);
-	if (hout)
+	
 	printf("GPIO: 0x%02x\n", data[0]);
-    else
-    printf("0x%02x\n", data[0]);
+
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 
@@ -888,18 +631,17 @@ void ReadGPIO(void)
 	
 	
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
 	I2C_Send(&fd, buff,1 );
 	
-	/* Read the GPIO */
+	/* Read the ADC */
 	
 	I2C_Read(&fd, data, 1);
-	if (hout)
+	
 	printf("GPIO: 0x%02x\n", data[0]);
-    else
-    printf("0x%02x\n", data[0]);
+
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 
@@ -934,7 +676,7 @@ void ReadADC(unsigned char value)
 	
 	
 	/* Open I2C-BUS */	
-	I2C_Open(&fd, i2caddr);
+	I2C_Open(&fd, 0x21);
 	
 	/* Write register */
 	I2C_Send(&fd, buff,1 );
@@ -944,10 +686,8 @@ void ReadADC(unsigned char value)
 	I2C_Read(&fd, data, 2);
 	/* Convert to Volts. Vref = 3.3V, ADC is 10 bits */
 	float volts = data[0] * 0.003222656 + data[1]*0.825;
-	if (hout)
 	printf("ADC%u: %1.3fV\n",value, volts);
-    else
-    printf("%1.3f\n",volts);
+
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 	break;

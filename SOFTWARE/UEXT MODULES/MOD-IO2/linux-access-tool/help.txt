@@ -1,0 +1,34 @@
+Usage:	./modio2tool [--debug] [parameter] [argument]\n\n\
+--verbose	- Print debug messages\n\
+--debug		- Same as above\n\n\
+-B X, --setbusnumber - set /dev/i2c-X, default 2\n\
+-A 0xXX, --i2c_address - set i2c address, default 0x21\n\
+-x 0xXX, --setaddress - Change module i2c address to 0xXX
+-X, --setfactory - Set module i2c address to default 0x21
+Relays commands:\n\
+-r, --relays?	- Read Relays states\n\
+-s X, --switchon	- Turn On Relay\n\
+-n X, --switchoff - Turn Off Relay\n\
+     where X is:\n\
+		1 - Relay 1\n\
+		2 - Relay 2\n\
+		3 both\n\
+	 example:\n\
+MOD-IO2 -s 1     - turns relay 1 on\n\
+-S X, --setrelays - Set Relays Outputs\n\n\
+GPIO commands:\n\
+-g, --getport - Read GPIO Inputs\n\
+-G, --getlat - Read GPIO Outputs\n\
+-T 0xXX, --settris - Set GPIO TRIS\n\
+-P 0xXX, --setpullups - Set GPIO PullUps\n\
+-i X, --readpin - Read digital input at GPIOX\n\
+-p XY, --pin - Set digital output at GPIOX\n\
+        X - 0-7   GPIO#\n\
+	Y - 0/1 - Level\n\
+
+ADC commands:\n\
+-a X, --adc - Read ADC value in Volts\n\
+\n\
+-V, --id - Read Module Hardware Version ID\n\
+-f, --firmware - Read Module Firmware Version\n\
+-h --help		- Print this help\n\n\

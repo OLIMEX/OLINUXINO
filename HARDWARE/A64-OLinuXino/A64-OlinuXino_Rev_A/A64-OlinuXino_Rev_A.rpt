@@ -1,0 +1,428 @@
+** Drc report for /home/bat_niki/Documents/Projects/A64-Olinuxino/Untitled Folder/A64-OlinuXino_Rev_A.kicad_pcb **
+** Created on 2016-01-15 08:13:18 **
+
+** Found 45 DRC errors **
+ErrType(19): Pad near pad
+    @ (4,3550 in,1,5350 in): Pad Fid1 on F.Cu, Non-copper of 
+    @ (4,4488 in,1,6102 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(19): Pad near pad
+    @ (6,4400 in,3,2650 in): Pad 1 on B.Cu, Non-copper of C126
+    @ (6,4611 in,3,2616 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4400 in,3,3350 in): Pad 2 on B.Cu, Non-copper of C171
+    @ (6,4591 in,3,3325 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4434 in,3,3010 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,4591 in,3,3325 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4434 in,3,3640 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,4591 in,3,3325 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4591 in,3,3325 in): Pad Past on F.Paste of U14
+    @ (6,4709 in,3,3010 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+ErrType(19): Pad near pad
+    @ (6,4611 in,3,2616 in): Pad Past on F.Paste of U14
+    @ (6,4709 in,3,3010 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+ErrType(19): Pad near pad
+    @ (6,4611 in,3,4034 in): Pad Past on F.Paste of U14
+    @ (6,4650 in,3,4150 in): Pad 1 on B.Cu, Non-copper of C145
+ErrType(19): Pad near pad
+    @ (6,4985 in,3,2459 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5300 in,3,2636 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4985 in,3,2734 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5300 in,3,2636 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4985 in,3,3010 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5300 in,3,2636 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4985 in,3,3640 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5300 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4985 in,3,3916 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5300 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,4985 in,3,4191 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5300 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5300 in,3,2550 in): Pad 1 on B.Cu, Non-copper of C157
+    @ (6,5300 in,3,2636 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5300 in,3,2636 in): Pad Past on F.Paste of U14
+    @ (6,5300 in,3,3325 in): Pad 69 on F.Cu, Non-copper of U14
+ErrType(19): Pad near pad
+    @ (6,5300 in,3,3325 in): Pad 69 on F.Cu, Non-copper of U14
+    @ (6,5300 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5300 in,3,4034 in): Pad Past on F.Paste of U14
+    @ (6,5300 in,3,4150 in): Pad 1 on B.Cu, Non-copper of C133
+ErrType(19): Pad near pad
+    @ (6,5615 in,3,2459 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,2616 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5615 in,3,2734 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,2616 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5615 in,3,3010 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,2616 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5615 in,3,3640 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5615 in,3,3916 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5615 in,3,4191 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5891 in,3,3010 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,2616 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5891 in,3,3640 in): Pad 69 on F.Cu, B.Cu, Internal, Non-copper of U14
+    @ (6,5989 in,3,4034 in): Pad Past on F.Paste of U14
+ErrType(19): Pad near pad
+    @ (6,5989 in,3,2616 in): Pad Past on F.Paste of U14
+    @ (6,6100 in,3,2400 in): Pad 1 on B.Cu, Non-copper of C176
+ErrType(19): Pad near pad
+    @ (6,5989 in,3,4034 in): Pad Past on F.Paste of U14
+    @ (6,6150 in,3,4000 in): Pad 2 on B.Cu, Non-copper of C128
+ErrType(19): Pad near pad
+    @ (6,6009 in,3,3325 in): Pad Past on F.Paste of U14
+    @ (6,6150 in,3,3350 in): Pad 2 on B.Cu, Non-copper of C121
+ErrType(19): Pad near pad
+    @ (7,3600 in,1,6037 in): Pad 1 on F.Cu of ANT1
+    @ (7,3620 in,1,5070 in): Pad 0 on F.Cu of ANT1
+ErrType(19): Pad near pad
+    @ (7,3620 in,1,5070 in): Pad 0 on F.Cu of ANT1
+    @ (7,4430 in,1,6037 in): Pad 2 on F.Cu of ANT1
+ErrType(4): Track near pad
+    @ (4,4350 in,3,9000 in): Track 0,0400 in, net [+5V] (2) on layer In3.Cu, length: 0,0495 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,6050 in,3,9000 in): Track 0,0400 in, net [+5V] (2) on layer In3.Cu, length: 0,1700 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,6250 in,3,8800 in): Track 0,0400 in, net [+5V] (2) on layer In3.Cu, length: 0,0283 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,9850 in,3,8800 in): Track 0,0500 in, net [+5V] (2) on layer In3.Cu, length: 0,3600 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,4000 in,3,8650 in): Track 0,0500 in, net [+5V] (2) on layer In3.Cu, length: 0,0800 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,4600 in,3,7150 in): Track 0,0200 in, net [+1V8] (15) on layer In3.Cu, length: 0,1300 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,6550 in,3,8200 in): Track 0,0200 in, net [+1V8] (15) on layer In3.Cu, length: 0,1485 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,5500 in,3,7150 in): Track 0,0200 in, net [+1V8] (15) on layer In3.Cu, length: 0,0900 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,5750 in,3,6750 in): Track 0,0200 in, net [3.0V_RTC] (62) on layer In3.Cu, length: 0,1150 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (6,8100 in,1,7250 in): Track 0,0200 in, net [1.2V_HSIC] (71) on layer In2.Cu, length: 0,2100 in
+    @ (6,7441 in,1,6102 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (6,8550 in,1,7700 in): Track 0,0200 in, net [1.2V_HSIC] (71) on layer In2.Cu, length: 0,0636 in
+    @ (6,7441 in,1,6102 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,4550 in,3,6950 in): Track 0,0050 in, net [AP-NMI#] (263) on layer In3.Cu, length: 0,1150 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,5650 in,3,6950 in): Track 0,0050 in, net [AP-NMI#] (263) on layer In3.Cu, length: 0,1100 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+ErrType(4): Track near pad
+    @ (4,6600 in,3,7900 in): Track 0,0050 in, net [AP-NMI#] (263) on layer In3.Cu, length: 0,1344 in
+    @ (4,5079 in,3,8031 in): Pad on F.Cu, B.Cu, Internal, Non-copper of MountingHole
+
+** Found 95 unconnected pads **
+ErrType(2): Unconnected pads
+    @ (4,8980 in,3,6917 in): Pad 1 on B.Cu, Non-copper of MIPI-DSI1 net +5V
+    @ (5,5489 in,3,6917 in): Pad 1 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,5489 in,3,6917 in): Pad 1 on F.Cu, Non-copper of LCD_CON1 net +5V
+    @ (6,2600 in,3,6600 in): Pad 2 on B.Cu, Non-copper of 5V_E1
+ErrType(2): Unconnected pads
+    @ (5,7500 in,3,7850 in): Pad 2 on F.Cu, B.Cu, Internal, Non-copper of UEXT1 net GND
+    @ (5,5292 in,3,6917 in): Pad 2 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (4,9173 in,3,6302 in): Pad 2 on B.Cu, Non-copper of C7 net GND
+    @ (4,9570 in,3,6917 in): Pad 4 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,2050 in,3,6300 in): Pad 2 on B.Cu, Non-copper of C14 net GND
+    @ (5,1933 in,3,6917 in): Pad 16 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (4,9570 in,3,6917 in): Pad 4 on B.Cu, Non-copper of MIPI-DSI1 net GND
+    @ (5,0555 in,3,6917 in): Pad 9 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,0555 in,3,6917 in): Pad 9 on B.Cu, Non-copper of MIPI-DSI1 net GND
+    @ (5,0752 in,3,6917 in): Pad 10 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,0752 in,3,6917 in): Pad 10 on B.Cu, Non-copper of MIPI-DSI1 net GND
+    @ (5,1355 in,3,6917 in): Pad 22 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,1736 in,3,6917 in): Pad 15 on B.Cu, Non-copper of MIPI-DSI1 net GND
+    @ (5,1552 in,3,6917 in): Pad 21 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,1933 in,3,6917 in): Pad 16 on B.Cu, Non-copper of MIPI-DSI1 net GND
+    @ (5,1736 in,3,6917 in): Pad 15 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,5292 in,3,6917 in): Pad 2 on F.Cu, Non-copper of LCD_CON1 net GND
+    @ (5,4898 in,3,6917 in): Pad 4 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,4898 in,3,6917 in): Pad 4 on F.Cu, Non-copper of LCD_CON1 net GND
+    @ (5,4701 in,3,6917 in): Pad 5 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,4701 in,3,6917 in): Pad 5 on F.Cu, Non-copper of LCD_CON1 net GND
+    @ (5,4504 in,3,6917 in): Pad 6 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,4504 in,3,6917 in): Pad 6 on F.Cu, Non-copper of LCD_CON1 net GND
+    @ (5,3126 in,3,6917 in): Pad 13 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,3126 in,3,6917 in): Pad 13 on F.Cu, Non-copper of LCD_CON1 net GND
+    @ (5,2930 in,3,6917 in): Pad 14 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (4,7250 in,3,6550 in): Pad 1.1 on B.Cu, Non-copper of RM7 net +3V3
+    @ (5,5095 in,3,6917 in): Pad 3 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (4,7500 in,1,5350 in): Pad 4 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net AP-RESET#
+    @ (5,3400 in,1,9200 in): Pad 10 on B.Cu, Non-copper of EMMC1
+ErrType(2): Unconnected pads
+    @ (4,9177 in,3,6917 in): Pad 2 on B.Cu, Non-copper of MIPI-DSI1 net /Power Supply, Extensions and MiPi-DSI/3.3V_MIPI
+    @ (6,4198 in,3,1750 in): Pad 16 on F.Cu, Non-copper of U14
+ErrType(2): Unconnected pads
+    @ (6,4500 in,1,5350 in): Pad 38 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/2.8V_AVDD-CSI
+    @ (6,4400 in,3,0600 in): Pad 2 on B.Cu, Non-copper of C164
+ErrType(2): Unconnected pads
+    @ (6,5500 in,1,5350 in): Pad 40 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net VCC-PE
+    @ (6,1700 in,2,3200 in): Pad 1 on B.Cu, Non-copper of 3.3V1/VCC-PE:2.8V
+ErrType(2): Unconnected pads
+    @ (6,3500 in,1,5350 in): Pad 36 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/1.8V_DVDD-CSI
+    @ (6,6560 in,3,1750 in): Pad 1 on F.Cu, Non-copper of U14
+ErrType(2): Unconnected pads
+    @ (5,3400 in,2,5050 in): Pad 2 on F.Cu, Non-copper of R103 net KEYADC
+    @ (4,9500 in,1,5350 in): Pad 8 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (6,5500 in,1,6350 in): Pad 39 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE17
+    @ (5,8858 in,2,5846 in): Pad W22 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9626 in,2,6102 in): Pad AB21 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PE16
+    @ (6,4500 in,1,6350 in): Pad 37 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (6,3500 in,1,6350 in): Pad 35 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE15
+    @ (6,0650 in,2,5000 in): Pad 1 on F.Cu, Non-copper of R102
+ErrType(2): Unconnected pads
+    @ (6,2500 in,1,6350 in): Pad 33 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE14
+    @ (6,0650 in,2,5350 in): Pad 1 on F.Cu, Non-copper of R101
+ErrType(2): Unconnected pads
+    @ (5,9114 in,2,5846 in): Pad Y22 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PE13
+    @ (6,1500 in,1,6350 in): Pad 31 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (6,0500 in,1,6350 in): Pad 29 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE12
+    @ (5,9626 in,2,6358 in): Pad AB20 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9500 in,1,6350 in): Pad 27 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE11
+    @ (5,8858 in,2,6102 in): Pad W21 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,8500 in,1,6350 in): Pad 25 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE10
+    @ (5,9626 in,2,5846 in): Pad AB22 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,7500 in,1,6350 in): Pad 23 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE9
+    @ (5,9114 in,2,7126 in): Pad Y17 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,6500 in,1,5350 in): Pad 22 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net PC7
+    @ (6,2498 in,2,1476 in): Pad 5 on F.Cu, Non-copper of U4
+ErrType(2): Unconnected pads
+    @ (5,9882 in,2,5846 in): Pad AC22 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PE8
+    @ (5,6500 in,1,6350 in): Pad 21 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,6870 in): Pad AA18 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PE0
+    @ (4,8500 in,1,6350 in): Pad 5 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (4,8500 in,1,5350 in): Pad 6 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net UBOOT
+    @ (5,0673 in,1,8750 in): Pad 1 on F.Cu, Non-copper of UBOOT1
+ErrType(2): Unconnected pads
+    @ (4,9500 in,1,6350 in): Pad 7 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE1
+    @ (5,9626 in,2,5591 in): Pad AB23 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,5846 in): Pad AA22 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PE2
+    @ (5,0500 in,1,6350 in): Pad 9 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (5,8602 in,2,9173 in): Pad V9 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PB0
+    @ (5,0500 in,1,5350 in): Pad 10 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,6102 in): Pad AA21 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PE3
+    @ (5,1500 in,1,6350 in): Pad 11 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (5,1500 in,1,5350 in): Pad 12 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PB1
+    @ (5,9626 in,2,9685 in): Pad AB7 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,2500 in,1,6350 in): Pad 13 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE4
+    @ (5,9370 in,2,6614 in): Pad AA19 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,2500 in,1,5350 in): Pad 14 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PB2
+    @ (5,8858 in,2,8917 in): Pad W10 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,8858 in,2,7126 in): Pad W17 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PE5
+    @ (5,3500 in,1,6350 in): Pad 15 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,9685 in): Pad AA7 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/PB3
+    @ (5,3500 in,1,5350 in): Pad 16 on F.Cu, B.Cu, Internal, Non-copper of GPIO1
+ErrType(2): Unconnected pads
+    @ (5,4500 in,1,6350 in): Pad 17 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE6
+    @ (5,8858 in,2,6358 in): Pad W20 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,4500 in,1,5350 in): Pad 18 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PB4
+    @ (5,8858 in,2,9685 in): Pad W7 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,5500 in,1,6350 in): Pad 19 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net /Power Supply, Extensions and MiPi-DSI/PE7
+    @ (5,9114 in,2,6614 in): Pad Y19 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,5500 in,1,5350 in): Pad 20 on F.Cu, B.Cu, Internal, Non-copper of GPIO1 net PC4
+    @ (6,2550 in,2,1000 in): Pad 1 on B.Cu, Non-copper of NAND_E1
+ErrType(2): Unconnected pads
+    @ (4,7300 in,3,6200 in): Pad 1 on F.Cu, Non-copper of R71 net TWI0-SDA
+    @ (5,9370 in,2,8917 in): Pad AA10 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,8858 in,2,8661 in): Pad W11 on F.Cu, Non-copper of U1 net TWI0-SCK
+    @ (4,7750 in,3,6200 in): Pad 1 on F.Cu, Non-copper of R70
+ErrType(2): Unconnected pads
+    @ (4,8205 in,3,6917 in): Pad 38 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/PH8/CTP-RST
+    @ (5,9114 in,2,8917 in): Pad Y10 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (4,8402 in,3,6917 in): Pad 37 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/PH7/CTP-INT
+    @ (5,9882 in,3,0197 in): Pad AC5 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (4,8599 in,3,6917 in): Pad 36 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GMDC/LCD-PWM
+    @ (5,9114 in,2,8150 in): Pad Y13 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (4,8796 in,3,6917 in): Pad 35 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GMDIO/LCD_PWR
+    @ (5,9882 in,2,8917 in): Pad AC10 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (4,8993 in,3,6917 in): Pad 34 on F.Cu, Non-copper of LCD_CON1 net PH11
+    @ (5,9370 in,3,0197 in): Pad AA5 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (4,9189 in,3,6917 in): Pad 33 on F.Cu, Non-copper of LCD_CON1 net PH10
+    @ (5,9114 in,2,9429 in): Pad Y8 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9626 in,2,8406 in): Pad AB12 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GTXCK/LCD_DE
+    @ (4,9386 in,3,6917 in): Pad 32 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,9626 in,2,8150 in): Pad AB13 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GTXD0/LCD_CLK
+    @ (4,9583 in,3,6917 in): Pad 31 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (4,9977 in,3,6917 in): Pad 29 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GTXCTL/LCD_HSYNC
+    @ (5,9626 in,2,8661 in): Pad AB11 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,7638 in): Pad AA15 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D7
+    @ (5,0174 in,3,6917 in): Pad 28 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,8602 in,2,6870 in): Pad V18 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D6
+    @ (5,0370 in,3,6917 in): Pad 27 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,7894 in): Pad AA14 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D5
+    @ (5,0567 in,3,6917 in): Pad 26 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,0764 in,3,6917 in): Pad 25 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D4
+    @ (5,8858 in,2,6614 in): Pad W19 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,0961 in,3,6917 in): Pad 24 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D3
+    @ (5,9370 in,2,7126 in): Pad AA17 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,6358 in): Pad AA20 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D2
+    @ (5,1158 in,3,6917 in): Pad 23 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,9882 in,2,7382 in): Pad AC16 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GRXCK/LCD_D18
+    @ (5,4307 in,3,6917 in): Pad 7 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,4111 in,3,6917 in): Pad 8 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GRXCTL/LCD_D19
+    @ (5,9626 in,2,7382 in): Pad AB16 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9626 in,2,7638 in): Pad AB15 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D20
+    @ (5,3914 in,3,6917 in): Pad 9 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,3717 in,3,6917 in): Pad 10 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GTXD3/LCD_D21
+    @ (5,9626 in,2,7894 in): Pad AB14 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,3520 in,3,6917 in): Pad 11 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GTXD2/LCD_D22
+    @ (5,9882 in,2,7894 in): Pad AC14 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,3323 in,3,6917 in): Pad 12 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GTXD1/LCD_D23
+    @ (5,9882 in,2,8150 in): Pad AC13 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,2733 in,3,6917 in): Pad 15 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D10
+    @ (5,9114 in,2,8661 in): Pad Y11 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,7382 in): Pad AA16 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/LCD_D11
+    @ (5,2536 in,3,6917 in): Pad 16 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,2339 in,3,6917 in): Pad 17 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GRXD3/LCD_D12
+    @ (5,8602 in,2,7126 in): Pad V17 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,8150 in): Pad AA13 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GRXD2/LCD_D13
+    @ (5,2142 in,3,6917 in): Pad 18 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,8858 in,2,7382 in): Pad W16 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GRXD1/LCD_D14
+    @ (5,1945 in,3,6917 in): Pad 19 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,9114 in,2,7382 in): Pad Y16 on F.Cu, Non-copper of U1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GRXD0/LCD_D15
+    @ (5,1748 in,3,6917 in): Pad 20 on F.Cu, Non-copper of LCD_CON1
+ErrType(2): Unconnected pads
+    @ (5,9370 in,2,9941 in): Pad AA6 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/MIPI-DSI-RST
+    @ (4,9374 in,3,6917 in): Pad 3 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (4,9767 in,3,6917 in): Pad 5 on B.Cu, Non-copper of MIPI-DSI1 net /Power Supply, Extensions and MiPi-DSI/MIPI-DSI-BKL
+    @ (5,8858 in,2,9429 in): Pad W8 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (4,9964 in,3,6917 in): Pad 6 on B.Cu, Non-copper of MIPI-DSI1 net /Power Supply, Extensions and MiPi-DSI/DSI-D0N
+    @ (5,8091 in,2,5591 in): Pad T23 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9114 in,2,9941 in): Pad Y6 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/MIPI-DSI-EN
+    @ (5,0161 in,3,6917 in): Pad 7 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,8091 in,2,5846 in): Pad T22 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/DSI-D0P
+    @ (5,0358 in,3,6917 in): Pad 8 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,0948 in,3,6917 in): Pad 11 on B.Cu, Non-copper of MIPI-DSI1 net /Power Supply, Extensions and MiPi-DSI/DSI-CKN
+    @ (5,7579 in,2,5591 in): Pad P23 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,7835 in,2,5846 in): Pad R22 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/DSI-D1N
+    @ (5,1145 in,3,6917 in): Pad 12 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,7323 in,2,5591 in): Pad N23 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/DSI-CKP
+    @ (5,1342 in,3,6917 in): Pad 13 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,7579 in,2,5846 in): Pad P22 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/DSI-D1P
+    @ (5,1539 in,3,6917 in): Pad 14 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,2130 in,3,6917 in): Pad 17 on B.Cu, Non-copper of MIPI-DSI1 net /Power Supply, Extensions and MiPi-DSI/DSI-D3N
+    @ (5,6811 in,2,5846 in): Pad L22 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,7323 in,2,5846 in): Pad N22 on F.Cu, Non-copper of U1 net /Power Supply, Extensions and MiPi-DSI/DSI-D2N
+    @ (5,2326 in,3,6917 in): Pad 18 on B.Cu, Non-copper of MIPI-DSI1
+ErrType(2): Unconnected pads
+    @ (5,2523 in,3,6917 in): Pad 19 on B.Cu, Non-copper of MIPI-DSI1 net /Power Supply, Extensions and MiPi-DSI/DSI-D3P
+    @ (5,6811 in,2,5591 in): Pad L23 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,2720 in,3,6917 in): Pad 20 on B.Cu, Non-copper of MIPI-DSI1 net /Power Supply, Extensions and MiPi-DSI/DSI-D2P
+    @ (5,7067 in,2,5846 in): Pad M22 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9148 in,3,6648 in): Pad 2.1 on F.Cu, Non-copper of RM14 net SPI0_MISO
+    @ (5,6555 in,2,6870 in): Pad K18 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,9345 in,3,6648 in): Pad 1.1 on F.Cu, Non-copper of RM14 net SPI0_CLK
+    @ (5,7579 in,2,6358 in): Pad P20 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,8952 in,3,7052 in): Pad 3.2 on F.Cu, Non-copper of RM14 net SPI0_MOSI
+    @ (5,8091 in,2,6102 in): Pad T21 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (5,8755 in,3,7052 in): Pad 4.2 on F.Cu, Non-copper of RM14 net SPI0_CS
+    @ (5,7579 in,2,6614 in): Pad P19 on F.Cu, Non-copper of U1
+ErrType(2): Unconnected pads
+    @ (4,9780 in,3,6917 in): Pad 30 on F.Cu, Non-copper of LCD_CON1 net /USB&HDMI,WiFi&BT,Ethernet,LCD/GCLKIN/LCD_VSYNC
+    @ (5,9882 in,2,8661 in): Pad AC11 on F.Cu, Non-copper of U1
+
+** End of Report **

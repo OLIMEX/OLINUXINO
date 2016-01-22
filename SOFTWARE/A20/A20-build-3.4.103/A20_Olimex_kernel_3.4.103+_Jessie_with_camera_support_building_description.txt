@@ -4,7 +4,7 @@ How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OL
 
 1. Setup of the toolchain
 -------------------------
-You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you don’t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
+You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you donâ€™t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
 
 $ sudo su
 
@@ -40,7 +40,7 @@ First let's make the directory where we would build the A20 Linux:
 # mkdir a20-olimex
 # cd a20-olimex
 
-Then let’s download the mainline uboot sources from GitHub repository
+Then letâ€™s download the mainline uboot sources from GitHub repository
 
 git clone git://git.denx.de/u-boot.git
 
@@ -143,11 +143,17 @@ You should be in the following directory:
 3. Building kernel sources for A20 boards
 ----------------------------------------------
 
-Kernel sources for A20 are available on GitHub. Note that the following building is made with the revision below: 
+Kernel sources for A20 are available on GitHub. Note that the following building is made with the commit ID of the sources:
+
+9a1cd034181af628d4145202289e1993c1687db6
 
 You can download the kernel sources using the following command:
 
 # git clone https://github.com/linux-sunxi/linux-sunxi
+
+You can switch to the specific commit mentioned above with the following command:
+
+git reset --hard  9a1cd034181af628d4145202289e1993c1687db6
 
 After the download go to the kernel directory:
 
@@ -155,7 +161,7 @@ After the download go to the kernel directory:
 
 3.3 configure the system 
 
-Here you need from a20 configuration file – A20-linux-3.4.103_defconfig . The file contains all kernel module settings.
+Here you need from a20 configuration file â€“ A20-linux-3.4.103_defconfig . The file contains all kernel module settings.
 
 Download A20-linux-3.4.103_defconfig  using wget command 
 
@@ -184,7 +190,7 @@ Now you can continue with kernel image compiling
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 uImage
 
-when this finish’s you will have uImage ready and the result should be:
+when this finishâ€™s you will have uImage ready and the result should be:
 
   LD      arch/arm/boot/compressed/vmlinux
   OBJCOPY arch/arm/boot/zImage

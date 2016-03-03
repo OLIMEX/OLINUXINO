@@ -2,6 +2,12 @@
 
 ## Changes
 
+### 03 MAR 2016
+
+* Added image RT5350F-OLinuXino-DIN
+* Renamed uboot+factory+openwrt.bin to FlashImage_RT5350F_OLinuXino_EVB.bin
+* Added FlashImage_RT5350F_OLinuXino_DIN.bin
+
 ### 10 NOV 2015
 
 * Fixed issue with MAC address. They were hard-coded in the 

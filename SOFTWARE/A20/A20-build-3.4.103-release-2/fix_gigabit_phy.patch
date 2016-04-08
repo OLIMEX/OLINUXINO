@@ -1,0 +1,16 @@
+diff --git a/drivers/net/phy/phy.c b/drivers/net/phy/phy.c
+index c8d08e8..3c4eafb 100644
+--- a/drivers/net/phy/phy.c
++++ b/drivers/net/phy/phy.c
+@@ -170,6 +170,11 @@ int genphy_config_aneg(struct phy_device *phydev)
+ {
+ 	int result;
+ 
++	/* If PHY id is RTL8211CL then force MASTER configuration.
++	 * No that two master PHYs cannot be connected directly! */
++	if(phydev->phy_id == 0x001cc912)
++		phy_write(phydev, MDIO_DEVAD_NONE, 0x09, 0x1B00);
++
+ 	if (AUTONEG_ENABLE != phydev->autoneg)
+ 		return genphy_setup_forced(phydev);
+ 

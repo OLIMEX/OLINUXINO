@@ -1,5 +1,9 @@
+This example works with all Allwinner boards.
 
-To compile type
+Make sure to edit i2c.c to set the proper i2c interface.
+This is done in I2C_Open(), where /dev/i2c-2 is set by default
+
+To compile install gcc and build-essentials and type
 
 # make
 

@@ -73,101 +73,82 @@ int main(int argc, char **argv)
 	else if(!strcmp(argv[1], "-an1"))
 	{
 		float vcc;
-		int i, temp = 0;
-		address = strtol(argv[2], NULL, 0);
+        int temp = 0;
+        address = strtol(argv[2], NULL, 0);
 
-		buffer[0] = 0x30;
-		I2C_Open(&file, address);
-		I2C_Send(&file, buffer, 1);
-		I2C_Read(&file, data, 2);
-		I2C_Close(&file);
-		
-		for(i = 0; i < 8; i++)
-		{
-			temp |= ((data[0] & 0x80) ? 1 : 0) << i;
-			data[0] <<= 1;
-			 
-		}
-		temp |= ((data[1] & 0x02) ? 1 : 0) << 8;
-		temp |= ((data[1] & 0x01) ? 1 : 0) << 9;
-		
-		vcc = (3.3*temp)/1023;
-		printf("AN1: %.3fV\n", vcc);		
-		
+        buffer[0] = 0x30;
+        I2C_Open(&file, address);
+        I2C_Send(&file, buffer, 1);
+        I2C_Read(&file, data, 2);
+        I2C_Close(&file);
+
+        temp = data[1];
+        temp <<= 8;
+        temp |= data[0];
+
+        vcc = (3.3*temp)/1023;
+        printf("AN2: %.3fV\n", vcc);		
+	
 	}
 	else if(!strcmp(argv[1], "-an2"))
 	{
 		float vcc;
-		int i, temp = 0;
-		address = strtol(argv[2], NULL, 0);
+        int temp = 0;
+        address = strtol(argv[2], NULL, 0);
 
-		buffer[0] = 0x31;
-		I2C_Open(&file, address);
-		I2C_Send(&file, buffer, 1);
-		I2C_Read(&file, data, 2);
-		I2C_Close(&file);
-		
-		for(i = 0; i < 8; i++)
-		{
-			temp |= ((data[0] & 0x80) ? 1 : 0) << i;
-			data[0] <<= 1;
-			 
-		}
-		temp |= ((data[1] & 0x02) ? 1 : 0) << 8;
-		temp |= ((data[1] & 0x01) ? 1 : 0) << 9;
-		
-		vcc = (3.3*temp)/1023;
-		printf("AN2: %.3fV\n", vcc);		
-		
+        buffer[0] = 0x31;
+        I2C_Open(&file, address);
+        I2C_Send(&file, buffer, 1);
+        I2C_Read(&file, data, 2);
+        I2C_Close(&file);
+
+        temp = data[1];
+        temp <<= 8;
+        temp |= data[0];
+
+        vcc = (3.3*temp)/1023;
+        printf("AN2: %.3fV\n", vcc);		
+	
 	}
 	else if(!strcmp(argv[1], "-an3"))
 	{
 		float vcc;
-		int i, temp = 0;
-		address = strtol(argv[2], NULL, 0);
+        int temp = 0;
+        address = strtol(argv[2], NULL, 0);
 
-		buffer[0] = 0x32;
-		I2C_Open(&file, address);
-		I2C_Send(&file, buffer, 1);
-		I2C_Read(&file, data, 2);
-		I2C_Close(&file);
-		
-		for(i = 0; i < 8; i++)
-		{
-			temp |= ((data[0] & 0x80) ? 1 : 0) << i;
-			data[0] <<= 1;
-			 
-		}
-		temp |= ((data[1] & 0x02) ? 1 : 0) << 8;
-		temp |= ((data[1] & 0x01) ? 1 : 0) << 9;
-		
-		vcc = (3.3*temp)/1023;
-		printf("AN3: %.3fV\n", vcc);		
-		
+        buffer[0] = 0x32;
+        I2C_Open(&file, address);
+        I2C_Send(&file, buffer, 1);
+        I2C_Read(&file, data, 2);
+        I2C_Close(&file);
+
+        temp = data[1];
+        temp <<= 8;
+        temp |= data[0];
+
+        vcc = (3.3*temp)/1023;
+        printf("AN2: %.3fV\n", vcc);		
+	
 	}
 	else if(!strcmp(argv[1], "-an4"))
 	{
 		float vcc;
-		int i, temp = 0;
-		address = strtol(argv[2], NULL, 0);
-		buffer[0] = 0x33;
-		I2C_Open(&file, address);
-		I2C_Send(&file, buffer, 1);
-		I2C_Read(&file, data, 2);
-		I2C_Close(&file);
-		
-		for(i = 0; i < 8; i++)
-		{
-			temp |= ((data[0] & 0x80) ? 1 : 0) << i;
-			data[0] <<= 1;
-			 
-		}
-		temp |= ((data[1] & 0x02) ? 1 : 0) << 8;
-		temp |= ((data[1] & 0x01) ? 1 : 0) << 9;
-		
-		vcc = (3.3*temp)/1023;
-		printf("AN4: %.3fV\n", vcc);		
-		
+        int temp = 0;
+        address = strtol(argv[2], NULL, 0);
+
+        buffer[0] = 0x33;
+        I2C_Open(&file, address);
+        I2C_Send(&file, buffer, 1);
+        I2C_Read(&file, data, 2);
+        I2C_Close(&file);
+
+        temp = data[1];
+        temp <<= 8;
+        temp |= data[0];
+
+        vcc = (3.3*temp)/1023;
+        printf("AN2: %.3fV\n", vcc);		
+	
 	}
 	else if(!strcmp(argv[1], "-address"))
 	{

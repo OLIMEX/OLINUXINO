@@ -325,7 +325,7 @@ Note that you have to write u-boot-sunxi-with-spl.bin in /dev/sdX (not sdX1 or s
 
 Type:
 
-# dd if=u-boot-sunxi/u-boot-sunxi-with-spl.bin of=/dev/sdX bs=1024 seek=8
+# dd if=u-boot/u-boot-sunxi-with-spl.bin of=/dev/sdX bs=1024 seek=8
 
 6. Write kernel uImage you build to the SD-card
 -----------------------------------------------

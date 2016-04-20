@@ -4,7 +4,7 @@ How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OL
 
 1. Setup of the toolchain
 -------------------------
-You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you don’t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
+You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you donâ€™t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
 
 $ sudo su
 
@@ -40,7 +40,7 @@ First let's make the directory where we would build the A20 Linux:
 # mkdir a20-olimex
 # cd a20-olimex
 
-Then let’s download the mainline uboot sources from GitHub repository
+Then letâ€™s download the mainline uboot sources from GitHub repository
 
 git clone git://git.denx.de/u-boot.git
 
@@ -182,7 +182,7 @@ After the download go to the kernel directory:
 
 3.3 configure the system 
 
-Here you need from a20 configuration file – A20-linux-3.4.103_defconfig . The file contains all kernel module settings.
+Here you need from a20 configuration file â€“ A20-linux-3.4.103_defconfig . The file contains all kernel module settings.
 
 Download A20-linux-3.4.103_defconfig  using wget command 
 
@@ -221,7 +221,7 @@ Now you can continue with kernel image compiling
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 uImage
 
-when this finish’s you will have uImage ready and the result should be:
+when this finishâ€™s you will have uImage ready and the result should be:
 
   LD      arch/arm/boot/compressed/vmlinux
   OBJCOPY arch/arm/boot/zImage
@@ -344,27 +344,27 @@ script.bin is a file with very important configuration parameters like port GPIO
 According to the A20 board you use you have to download and write different script.bin file.
 
 7.1.1 for A20-OLinuXino_Lime2 board with NAND support download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_Lime2_NAND_rel_2/script.bin
+# wget -O script.bin https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_Lime2_NAND_rel_2/script.bin?raw=true
 
 7.1.2 for A20-OLinuXino_Lime2 board with EMMC support download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime2_emmc/script.bin
+# wget -O script.bin https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime2_emmc/script.bin?raw=true
 
 7.2 for A20-SOM board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20-SOM_rel_3/script_a20_SOM_HDMI_720p50/script.bin
+# wget -O script.bin https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20-SOM_rel_3/script_a20_SOM_HDMI_720p50/script.bin?raw=true
 
 7.3 for A20-OLinuXino-MICRO board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_OLinuXino-micro_rel_10/script.bin
+# wget -O script.bin https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_OLinuXino-micro_rel_10/script.bin?raw=true
 
 7.4 for A20-OLinuXino-LIME board download the script.bin file using wget command
-# wget  https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime_rel_3/script.bin
+# wget -O script.bin https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime_rel_3/script.bin?raw=true
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card
 # cp script.bin /mnt/sd
 
 Download boot.scr and uEnv.txt files
 
-#wget  https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/boot.scr
-#wget  https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/uEnv.txt
+#wget -O boot.scr https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/boot.scr?raw=true
+#wget -O uEnv.txt https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/uEnv.txt?raw=true
 
 You have to copy in first sd card partition where script.bin file is located
 # cp boot.scr /mnt/sd

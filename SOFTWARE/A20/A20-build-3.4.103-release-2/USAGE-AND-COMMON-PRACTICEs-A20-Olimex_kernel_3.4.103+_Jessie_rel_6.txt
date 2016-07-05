@@ -1,26 +1,31 @@
-Advice and common practices for A20-SOM, A20-OLinuXino-MICRO, A20-OLinuXino-LIME, A20-OLinuXino-LIME2 boards
+Advice and common practices for A20-SOM, A20-OLinuXino-MICRO, A20-OLinuXino-LIME,
+A20-OLinuXino-LIME2 boards
 
 I. Card preparation
 ---
 
-There are three ways to get a working Linux card. First, you can download the official Debian image from the wiki article of the board and
-download it to a microSD card - each board has own wiki article and specific Debian image so make sure that you are getting the proper Debian
-image from the correct wiki article. Alternatively, you can purchase a card with Debian on it - again make sure that the card is suitable for
-the board that you purchased. If you have doubts drop us an e-mail or post in the forums.
+There are three ways to get a working Linux card. First, you can download the official Debian image
+from the wiki article of the board and download it to a microSD card - each board has own wiki
+article and specific Debian image so make sure that you are getting the proper Debian image from the
+correct wiki article. Alternatively, you can purchase a card with Debian on it - again make sure
+that the card is suitable for the board that you purchased. If you have doubts drop us an e-mail or
+post in the forums.
 
-The third way of getting a working microSD is to prepare the image from scratch. The step-by-step guide on how to do it can be found in the
-GitHub.
+The third way of getting a working microSD is to prepare the image from scratch. The step-by-step
+guide on how to do it can be found in the GitHub.
 
-Note: We sell microSD cards with pre-loaded official Debian that you just plug and use. These are 8GB class 10 fast cards. If you are going to
-download the image and prepare a microSD card please use at least 8GB card with similar speed card (or faster) or the performance of Linux will
-slow down. The latest official image is Debian Jessie Linux with mainline u-boot and kernel 3.4.103+.
+Note: We sell microSD cards with pre-loaded official Debian that you just plug and use. These are
+8GB class 10 fast cards. If you are going to download the image and prepare a microSD card please
+use at least 8GB card with similar speed card (or faster) or the performance of Linux will slow
+down. The latest official image is Debian Jessie Linux with mainline u-boot and kernel 3.4.103+.
 
-All images are archived. Before you can download the image to the microSD card you need to extract the archive and you need an external microSD
-card reader. To extract the file:
+All images are archived. Before you can download the image to the microSD card you need to extract
+the archive and you need an external microSD card reader. To extract the file:
 
 1. under Windows
 
-Use 7zip and then use Win32DiskImager.exe (http://sourceforge.net/projects/win32diskimager/) for image writing.
+Use 7zip and then use Win32DiskImager.exe (http://sourceforge.net/projects/win32diskimager/) for
+image writing.
 
 1.2 under Linux
 
@@ -36,52 +41,61 @@ Copy the archived image to your directory and unzip it with
 
 The output should be a new file named a20-XXX.img.
 
-Insert a suitable microSD card (at least 8GB, preferably class 10 speed) in your card reader and type
+Insert a suitable microSD card (at least 8GB, preferably class 10 speed) in your card reader and
+type
 
 #ls /dev/sd
 
-Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices may be your hard disk so make
-sure you know which one is your microSD card before you proceed as you can damage your HDD if you choose the wrong sd-device. You can determine
-which is the card by unplugging your sd card reader and identify which "sd" devices remove from the list. Once you know which device is your
-sdcard like sda use this text instead of the sdX name in the references below:
+Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of
+these devices may be your hard disk so make sure you know which one is your microSD card before you
+proceed as you can damage your HDD if you choose the wrong sd-device. You can determine which is the
+card by unplugging your sd card reader and identify which "sd" devices remove from the list. Once
+you know which device is your sdcard like sda use this text instead of the sdX name in the
+references below:
 
 #dd if=a20-XXX.img of=/dev/sdX
 
-Note that the image is 8GB and if you write it on bigger SD card it is reccomended to resize it in order to use all SD card space. From root
-directory start resize_sd.sh script with the following parameters
+Note that the image is 8GB and if you write it on bigger SD card it is reccomended to resize it in
+order to use all SD card space. From root directory start resize_sd.sh script with the following
+parameters
 
 #./resize_sd.sh /dev/mmcblk0 2
 
 II. Default user name and password
 ---
 
-Under the command line interface you are automatically logged as super user (user "root", password "olimex"). However, under the graphical
-environment you are not auto-logged as super user and you must type "sudo" before the command (in the GUI the super-user is "olimex" and the
-password is "olimex").
+Under the command line interface you are automatically logged as super user (user "root", password
+"olimex"). However, under the graphical environment you are not auto-logged as super user and you
+must type "sudo" before the command (in the GUI the super-user is "olimex" and the password is
+"olimex").
 
 The list of all installed packages is located in debian_jessie_installed_packages.txt file
 
 III. Changing A20-XXX HDMI, LCD or VGA video output resolution 
 ---
 
-The default SD card setup is made with settings for HDMI 720p/60Hz. If you want to change to some other LCD, VGA or HDMI resolution then you
-have to start change_display.sh script file in /root directory. When you are logged as super user in the board type:
+The default SD card setup is made with settings for HDMI 720p/60Hz. If you want to change to some
+other LCD, VGA or HDMI resolution then you have to start change_display.sh script file in /root
+directory. When you are logged as super user in the board type:
 
 For Debian Wheezy releases: #./change_display* (* = press 'tab')
 For Debian Jessie releases: #change_display* (* = press 'tab')
 
 and press "Enter".
 
-Note that the script should be executed as super user. Under the command line interface you are automatically logged as super user (user "root",
-password "olimex"). However, under the graphical environment you are not auto-logged as super user and you must type "sudo" before the command
-(in the GUI the super-user is "olimex" and the password is "olimex").
+Note that the script should be executed as super user. Under the command line interface you are
+automatically logged as super user (user "root", password "olimex"). However, under the graphical
+environment you are not auto-logged as super user and you must type "sudo" before the command (in
+the GUI the super-user is "olimex" and the password is "olimex").
 
-Then choose the resolution and the interface(LCD, HDMI or VGA). Note that the selection of a specific resolution is done by navigating with the
-arrow keys and pressing "space" button. Make sure the asterisk marks your selection properly. 
+Then choose the resolution and the interface(LCD, HDMI or VGA). Note that the selection of a
+specific resolution is done by navigating with the arrow keys and pressing "space" button. Make sure
+the asterisk marks your selection properly. 
 
 
-- For the 15.6 and the 15.6-FHD LCDs you can control the backlight duty percentage and DCR(Dinamic Contrast Ratio) using a soft pwm module. The
-main goal is to decrease power consumption. For example:
+- For the 15.6 and the 15.6-FHD LCDs you can control the backlight duty percentage and DCR(Dinamic
+Contrast Ratio) using a soft pwm module. The main goal is to decrease power consumption. For
+example:
 
 #echo 50 > /sys/class/softpwm/backlight/duty
 
@@ -91,8 +105,8 @@ will decrease the LCD backlight to 50%, the parameter for duty can be between 0 
 
 will decrease the LCD contrast, the parameter 10 for duty is between 0 and 100 
 
-- For the rest of the displays - 4.3", 7" and 10" LCD  you can control only backlight a hardware pwm module. The main goal is to decrease power
-consumption. For example:
+- For the rest of the displays - 4.3", 7" and 10" LCD  you can control only backlight a hardware pwm
+module. The main goal is to decrease power consumption. For example:
 
 #echo 50 > /sys/class/pwm-sunxi/pwm0/duty_percent
 
@@ -102,10 +116,11 @@ will decrease the LCD backlight to 50%, the parameter for duty_percent is betwee
 IV. Editing configurations - changing script.bin file
 ---
 
-Note that you have to be very carefull with script.bin changing because the system can stop working. It is recommeded to make backup of
-script.bin file before change it.
+Note that you have to be very carefull with script.bin changing because the system can stop working.
+It is recommeded to make backup of script.bin file before change it.
 
-If you want to convert script.bin file from sdcard to script.fex file first you have to mount the first sdcard patition:
+If you want to convert script.bin file from sdcard to script.fex file first you have to mount the
+first sdcard patition:
 
 #mount /dev/mmcblk0p1 /mnt
 
@@ -129,10 +144,11 @@ Then reboot:
 V. Hardware tested, interfaces usage and instructions
 ---
 
-Note that not all A20 boards have all the hardware described below. The main tested onboard hardware modules are:
+Note that not all A20 boards have all the hardware described below. The main tested onboard hardware
+modules are:
 
-- GPIOs - these are located in /sys/class/gpio directory. Note that first you have to export GPIOs. For example, to exporte export all available
-GPIOs:
+- GPIOs - these are located in /sys/class/gpio directory. Note that first you have to export GPIOs.
+For example, to exporte export all available GPIOs:
 
 for i in `seq 1 1 230`; do echo $i > /sys/class/gpio/export; done
 
@@ -147,53 +163,64 @@ To set a port in high level (locical 1):
 - LCD - 4.3"(480x272), 7"(800x480), 10"(1024x600), 15"(1366x768), 15"(1080x1920)
 - SATA - with power on/off control and battery support
 - HDMI - the default HDMI resolution is 720p50(720x1280 - 50 Hz)
-- Touch screens for the display - you need to calibrate the touch screen first. Use the graphical environment to do that. Launch Calibrate
-Touchscreen application from Preferences menu(press the button in down left corner). In order to save calibration data it is better to copy
-values from the window that appears after calibrations to Option "Calibration" section in /usr/share/X11/xorg.conf.d/10-evdev.conf file. It is
-something like - Option "Calibration" "3999 66 198 3938". To open the file use:
+- Touch screens for the display - you need to calibrate the touch screen first. Use the graphical
+environment to do that. Launch Calibrate Touchscreen application from Preferences menu(press the
+button in down left corner). In order to save calibration data it is better to copy values from the
+window that appears after calibrations to Option "Calibration" section in
+/usr/share/X11/xorg.conf.d/10-evdev.conf file. It is something like - Option "Calibration" "3999 66
+198 3938". To open the file use:
 
 #nano /usr/share/X11/xorg.conf.d/10-evdev.conf
 
-- ASIX8877 USB-LAN - https://www.olimex.com/Products/OLinuXino/A13/USB-ETHERNET-AX88772B/ - usually it is eth1 interface
+- ASIX8877 USB-LAN - https://www.olimex.com/Products/OLinuXino/A13/USB-ETHERNET-AX88772B/ - usually
+it is eth1 interface
 - USB WEB camera A4TECH
-- WIFI-RTL8188 - https://www.olimex.com/Products/Modules/Ethernet/MOD-WIFI-RTL8188/ - you have to set your SSID network and your password in
-/etc/network/interfaces file
-- MOD-WIFI-R5370 - https://www.olimex.com/Products/USB-Modules/MOD-WIFI-R5370 - you have to set your SSID network and your password in
-/etc/network/interfaces file
-- USB-OTG - low/full/high USB host - there is USB gadgets module enabled, you can use USB_OTG for SSH connection without need of LAN cable or
-serial cable. You can use only mini USB cable connected between your host PC and the onboard mini USB connector. For connection convenience
-there a DHCP server started only for USB0 interface. So the DHCP server should give IP address to the new USB0 interface of your host PC and you
-can make SSH connection from your PC to the default board IP address of USB0 interface - 192.168.2.1. Note that USB0 interface IP address by
-default  is 192.168.2.1 Therefore the host IP address has to be in this network - 192.168.2.xxx(except 192.168.2.1). Use login:olimex and
-password:olimex to connect with the board.
+- WIFI-RTL8188 - https://www.olimex.com/Products/Modules/Ethernet/MOD-WIFI-RTL8188/ - you have to
+set your SSID network and your password in /etc/network/interfaces file
+- MOD-WIFI-R5370 - https://www.olimex.com/Products/USB-Modules/MOD-WIFI-R5370 - you have to set your
+SSID network and your password in /etc/network/interfaces file
+- USB-OTG - low/full/high USB host - there is USB gadgets module enabled, you can use USB_OTG for
+SSH connection without need of LAN cable or serial cable. You can use only mini USB cable connected
+between your host PC and the onboard mini USB connector. For connection convenience there a DHCP
+server started only for USB0 interface. So the DHCP server should give IP address to the new USB0
+interface of your host PC and you can make SSH connection from your PC to the default board IP
+address of USB0 interface - 192.168.2.1. Note that USB0 interface IP address by default  is
+192.168.2.1 Therefore the host IP address has to be in this network - 192.168.2.xxx(except
+192.168.2.1). Use login:olimex and password:olimex to connect with the board.
 
 - USB-HOSTs - low/full/high USB hosts
-- MOD-USB3G	-	https://www.olimex.com/Products/USB-Modules/MOD-USB3G - in order to test MOD-USB3G module you have to place SIM card (without pin
-code) in the module and connect it to USB host connector, then edit the network settings in /etc/wvdial.conf file according to your mobile
-operator and type:
+- MOD-USB3G	-	https://www.olimex.com/Products/USB-Modules/MOD-USB3G - in order to test MOD-USB3G
+module you have to place SIM card (without pin code) in the module and connect it to USB host
+connector, then edit the network settings in /etc/wvdial.conf file according to your mobile operator
+and type:
 
 #wvdial 3gconnect
 
-- micoSD card interface - Linux boots from this microSD card usually; in case you boot from NAND it can be used as a storage
+- micoSD card interface - Linux boots from this microSD card usually; in case you boot from NAND it
+can be used as a storage
 - SD card interface - can be used as storage 
-- ETHERNET - 100Mb/1000Mb. By default the board IP address is 192.168.1.254. So if you want to connect with the board via the Ethernet connector
-using SSH client (for example PuTTY - http://www.chiark.greenend.org.uk/~sgtatham/putty/) then you have to use this address. You can change this
-address from /etc/network/interface file. Note that for internet connection you have to set your gateway address in /etc/network/interdaces file
-and you have to set your DNS server in /etc/resolv.conf (for example nameserver 192.168.1.1)
+- ETHERNET - 100Mb/1000Mb. By default the board IP address is 192.168.1.254. So if you want to
+connect with the board via the Ethernet connector using SSH client (for example PuTTY -
+http://www.chiark.greenend.org.uk/~sgtatham/putty/) then you have to use this address. You can
+change this address from /etc/network/interface file. Note that for internet connection you have to
+set your gateway address in /etc/network/interdaces file and you have to set your DNS server in
+/etc/resolv.conf (for example nameserver 192.168.1.1)
 
-- MICROPHONE INPUT and HEADPHONES OUTPUT - to stream the audio from the MICROPHONE jack to the HEADPHONE jack use:
+- MICROPHONE INPUT and HEADPHONES OUTPUT - to stream the audio from the MICROPHONE jack to the
+HEADPHONE jack use:
 
 #arecord -f dat -r 60000 -D plughw:0,0 | aplay
 
-- NAND support - /dev/nandX. Alternatively, ou can use boot linux only from NAND without using SD card. Use naninstall script to do this:
+- NAND support - /dev/nandX. Alternatively, ou can use boot linux only from NAND without using SD
+card. Use naninstall script to do this:
 
 #nandinstall
 
-Be patient. This operation will take around 10 minutes. If you face problems with nandinstall then visit this wiki article:
-https://www.olimex.com/wiki/How_to_install_Debian_to_NAND
+Be patient. This operation will take around 10 minutes. If you face problems with nandinstall then
+visit this wiki article: https://www.olimex.com/wiki/How_to_install_Debian_to_NAND
 
-- emmc support - /dev/mmcblk1p1 - you can copy SD card image to onboard emmc chip and then you can boot from the emmc device. Use emmc.sh script
-to do this:
+- emmc support - /dev/mmcblk1p1 - you can copy SD card image to onboard emmc chip and then you can
+boot from the emmc device. Use emmc.sh script to do this:
 
 #./emmc.sh
 
@@ -207,8 +234,9 @@ to do this:
 
 #ls /opt/spidev
 
-- MOD-TC - in folder max6675/ there is example related with MOD-TC(https://www.olimex.com/Products/Modules/Sensors/MOD-TC/open-source-hardware)
-- temperature sensor that you have to connect to UEXT1 connector:
+- MOD-TC - in folder max6675/ there is example related with
+MOD-TC(https://www.olimex.com/Products/Modules/Sensors/MOD-TC/open-source-hardware) - temperature
+sensor that you have to connect to UEXT1 connector:
 
 #cd max6675
 #./MAX6675
@@ -218,17 +246,20 @@ the last command will read temperature from MOD-TC thermocouple
 
 #evtest
 
-then enter event number for keyboard and now you can press the BUTTONs and you should see the result on terminal window.
+then enter event number for keyboard and now you can press the BUTTONs and you should see the result
+on terminal window.
 
-- on board camera support (only for A20-SOM-EVB) - you can do a simple camera test if you paste the next command:
+- on board camera support (only for A20-SOM-EVB) - you can do a simple camera test if you paste the
+next command:
 
 #mplayer -fps 60  -tv driver=v4l2:width=640:height=480:device=/dev/video0 tv:// 
 
 and see camera stream to fremebufer output you set - HDMI, VGA or LCD
 
-- USB gadgets - you can use mini USB connector to connect with the board via SSH. Note that USB0 interface IP address by default  is 192.168.2.1
-Therefore the host IP address has to be in this network - 192.168.2.xxx(except 192.168.2.1). Use login:olimex and password:olimex to connect
-with the board.
+- USB gadgets - you can use mini USB connector to connect with the board via SSH. Note that USB0
+interface IP address by default  is 192.168.2.1 Therefore the host IP address has to be in this
+network - 192.168.2.xxx(except 192.168.2.1). Use login:olimex and password:olimex to connect with
+the board.
 
 - Video playing with full hardware acceleration. Open a console window in X environment. Type:
 

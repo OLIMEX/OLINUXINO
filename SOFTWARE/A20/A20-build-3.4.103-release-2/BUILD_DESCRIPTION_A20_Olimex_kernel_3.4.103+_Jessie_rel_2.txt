@@ -1,24 +1,26 @@
+How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OLinuXino-LIME, A20-OLinuXino-LIME2 boards with sunxi kernel 3.4.103 and Linux Debian Jessie file system
 
-How to make a bootable SD card for Olimex's A20-SOM, A20-OLinuXino-MICRO, A20-OLinuXino-LIME, A20-OLinuXino-LIME2 with kernel 3.4.103 and Linux Debian Jessie file system
-===============================================================================================
+---
 
-1. Setup of the toolchain
--------------------------
-You should make sure that you have the tools needed for building the Linux Kernel. You'd have to install them if you don’t have them already installed. To install new software you should be logged to a user with super user rights on your Linux machine. Type in the terminal:
+Chapter 1. Setting up the software tools
 
-$ sudo su
+---
 
-You will be asked for your password and then your prompt will change to # which means you are now the super user, all future commands should be run in this mode.
+First, make sure that you have the software tools needed to compile the Linux Kernel. You'd have to install these if you don't have them already installed. To perform most of the operations below you should be logged as a user with super user rights on your Linux machine. Type in the terminal:
+
+# sudo su
+
+You will be prompted for your password and then your command line would start with # which means that you are now logged as the super user, all commands listed below should be executed in this mode.
 
 Next update apt-get links by typing:
 
 # apt-get update
 
-Next install the toolchain by typing the following:
+Next install the same compiler toolchain that we used here by typing the following:
 
 # apt-get install gcc-4.7-arm-linux-gnueabihf ncurses-dev uboot-mkimage build-essential git
 
-This will install: GCC compiler used to compile the kernel, the kernel config menu uboot make image which is required to allow the SD card to boot into the Linux image, Git that allows you to download from the github which holds source code for some of the system, Some other tools for building the kernel
+This will install: GCC compiler used to compile the kernel; the kernel config menu; the uboot make image that is required to allow the SD card to boot into the Linux image; GIT that allows you to download from the github which holds source code for some of the system; some other tools for building the kernel.
 
 Note that if you use debian may be you will need to add:
 
@@ -28,107 +30,118 @@ in the file below:
 
 /etc/apt/sources.list
 
-You would also need a torrent client. It is needed to be able to download the file system. Any torrent that suits your needs would do the job, as long as it can load torrent files it is fine.
+You would also need a torrent client. It is required to be able to download the file system. Any torrent client would do the job, as long as it can process .torrent files.
 
-Now you have all important tools to make your very own A20 kernel image!
+At this point you should have have all important tools to make your very own A20 kernel image!
 
-2. Building Uboot
------------------
+---
 
-First let's make the directory where we would build the A20 Linux:
+Chapter 2. Building mainline u-boot
+
+---
+
+First create the directory where we would build the Linux:
 
 # mkdir a20-olimex
 # cd a20-olimex
 
-Then let’s download the mainline uboot sources from GitHub repository
+Then download the latest mainline u-boot sources from GitHub repository:
 
-git clone git://git.denx.de/u-boot.git
+# git clone git://git.denx.de/u-boot.git
 
-After the download you should have a new directory
+After the download you should have a new directory, naviagate into it with:
 
 # cd u-boot/
 
-The image is tested with the commit from   Mon Oct 19 18:46:28 2015 -0400
+The image is tested with the commit from Mon Oct 19 18:46:28 2015 -0400
 
-You can switch to this commit with the next command
+To switch from the latest sources to the exact commit that we used execute the next command:
 
-git reset --hard  5ec0003b19cbdf06ccd6941237cbc0d1c3468e2d
+# git reset --hard  5ec0003b19cbdf06ccd6941237cbc0d1c3468e2d
 
-With the following commands you have to configure the uboot for the different boards, use only the make command for your board:
+!MAKE SURE THAT YOU HAVE REVERTED TO THE SAME COMMIT OR NOTHING BELOW WOULD WORK!
 
-
-Note that if you use the gigabit interface (It is on A20-Lime2 and A20-SOM-EVB boards) then you need to patch the uboot in order to do on board PHY chip in master mode. 
-For this purpose download fix_gigabit_phy.patch file using wget command:
+Note that if you use the Gigabit interface (if you have A20-OlinuXino-LIME2 and A20-SOM-EVB boards; if you have other boards or if you don't need Gigabit interface skip this step) then you also need to patch the u-boot in order to set on board PHY chip in master mode. For this purpose download fix_gigabit_phy.patch file using wget command:
 
 # wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/fix_gigabit_phy.patch
-and then patch the uboot
+
+and then patch the uboot sources with:
 
 # patch -p1 < fix_gigabit_phy.patch
 
-Depends on your boar type you have to do the text steps:
+If you don't apply the patch you might have severely reduced Gigabit Ethernet speed.
 
-2.1 A20-OLinuXino_Lime2 board
+---
 
-# make A20-OLinuXino-Lime2_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+There are four different configurations for u-boot which depend on the exact board that you have. Do only the point for your board:
 
-from the menu select 
-ARM architecture --> 
-	-> sunxi DRAM clock speed
-and change 480 to 384
+---
 
-select 
-[*] Enable workarounds for booting old kernels  
+2.1 A20-OLinuXino-LIME2 board
+
+# make A20-OLinuXino-LIME2_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make ARCH=arm menuconfig
+
+from the menu select ARM architecture --> sunxi DRAM clock speed and change 480 to 384
+
+then select [*] Enable workarounds for booting old kernels  
 
 ESC ESC
-Save and exit
+
+Save and Exit
+
+---
 
 2.2 A20-SOM board
 
-# make A20-Olimex-SOM-EVB_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
-or use A20-OLinuXino-Lime2_defconfig for older u-boot commit
-# make A20-OLinuXino-Lime2_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make A20-Olimex-SOM-EVB_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 # make ARCH=arm menuconfig
 
-from the menu select 
-ARM architecture --> 
-	-> sunxi DRAM clock speed
-and change 480 to 384
+// If there are problems at the step above (for example if the SOM-EVB defconfig is missing) use the LIME2 defconfig instead, type:
+// # make A20-OLinuXino-Lime2_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+// # make ARCH=arm menuconfig
 
-select 
-[*] Enable workarounds for booting old kernels  
+from the menu select ARM architecture --> sunxi DRAM clock speed and change 480 to 384
+
+also select [*] Enable workarounds for booting old kernels
 
 ESC ESC
-Save and exit
+
+Save and Exit
+
+---
 
 2.3 A20-OLinuXino-MICRO board
 
-# make A20-OLinuXino_MICRO_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make A20-OLinuXino_MICRO_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 # make ARCH=arm menuconfig
 
-from the menu select 
-ARM architecture --> 
-select 
-[*] Enable workarounds for booting old kernels  
+from the menu select ARM architecture --> select [*] Enable workarounds for booting old kernels  
+
 ESC ESC
+
 Save and exit
+
+---
 
 2.4 A20-OLinuXino-LIME board
 
-# make A20-OLinuXino-Lime_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make A20-OLinuXino-LIME_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 # make ARCH=arm menuconfig
 
-from the menu select 
-ARM architecture --> 
-select 
-[*] Enable workarounds for booting old kernels  
+from the menu select ARM architecture --> select [*] Enable workarounds for booting old kernels  
+
 ESC ESC
+
 Save and exit
 
-Now type the following command for u-boot building
+---
+
+Now type the following command to compile the u-boot:
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
-At the end of the process you can check if everything is OK by
+At the end of the process you can check if everything is OK by using:
 
 # ls u-boot.bin u-boot-sunxi-with-spl.bin spl/sunxi-spl.bin
 
@@ -142,38 +155,41 @@ You should be in the following directory:
 
 /home/user/a20-olimex#
 
-3. Building kernel sources for A20 boards
-----------------------------------------------
+---
 
-Kernel sources for A20 are available on GitHub. Note that the following building is made with the revision below: 
+Chapter 3. Building sunxi kernel from sources for A20 boards
 
-commit 9a1cd034181af628d4145202289e1993c1687db6
+---
 
-from  Sat Oct 4 07:59:35 2014 +0300
+The sunxi kernel sources for A20 are available at GitHub. Note that the our build uses this exact commit: 
 
-You can download the kernel sources using the following command:
+9a1cd034181af628d4145202289e1993c1687db6 from Sat Oct 4 07:59:35 2014 +0300
+
+You can download the latest kernel sources using the following command:
 
 # git clone https://github.com/linux-sunxi/linux-sunxi
 
-You can switch to this commit with the next command
+You can switch to this exact commit with the next command:
 
-git reset --hard  9a1cd034181af628d4145202289e1993c1687db6
+# git reset --hard 9a1cd034181af628d4145202289e1993c1687db6
 
-After the download go to the kernel directory:
+After the download navigate to the kernel directory:
 
 # cd linux-sunxi/
 
-3.3 configure the system 
+---
 
-Here you need from a20 configuration file – A20-linux-3.4.103_defconfig . The file contains all kernel module settings.
+3.3 Configuring the rest of the environment
 
-Download A20-linux-3.4.103_defconfig  using wget command 
+---
+
+You need to get the a20 configuration file – A20-linux-3.4.103_defconfig. The file contains all kernel module settings. Download A20-linux-3.4.103_defconfig using wget command 
 
 # wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/A20-linux-3.4.103_defconfig
 
 then copy A20-linux-3.4.103_defconfig file to configs directory:
 
-# cp A20-linux-3.4.103_defconfig  arch/arm/configs/
+# cp A20-linux-3.4.103_defconfig arch/arm/configs/
 
 and make:
 
@@ -183,24 +199,23 @@ The result should be:
 
 configuration written to .config
 
-If you wish to make your changes in the kernel configuration do:
+If you wish to make changes to the kernel configuration execute the following:
 
 # make ARCH=arm menuconfig
-The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi,nano.
-With this command you can add or remove different modules for the different peripherials in the kernel. 
-Be careful when you change these settings because the kernel can stop working properly.
 
-If the board there is emmc then you have to do a patch that fix the problem with HighPriorityInterrupt related with emmc support 
+The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi, nano. Using this command you can add or remove different modules for the different peripherials in the kernel. Be careful when you change these settings because the kernel can stop working properly.
+
+If your board has eMMC then you have to apply a patch that fixes the problems with HighPriorityInterrupt related with eMMC support
 
 Download the patch file a20-emmc.patch using wget command
 
 # wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/a20-emmc.patch
 
-and patch to drivers/mmc/core/mmc.c file
+and patch the drivers/mmc/core/mmc.c file
 
 # patch -p1 < a20-emmc.patch
 
-Now you can continue with kernel image compiling 
+Now you may continue with kernel image compiling 
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 uImage
 
@@ -218,7 +233,7 @@ Load Address: 40008000
 Entry Point:  40008000
   Image arch/arm/boot/uImage is ready
 
-The next step is kernel modules building:
+The next step is building the kernel modules:
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 INSTALL_MOD_PATH=out modules
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 INSTALL_MOD_PATH=out modules_install
@@ -227,25 +242,24 @@ DONE! At this point you have uboot and kernel modules.
 
 The uImage file is located in linux-sunxi/arch/arm/boot/
 
-The kernel modules are located in
-
-linux-sunxi/out/lib/modules/3.x.xx
-
+The kernel modules are located in linux-sunxi/out/lib/modules/3.x.xx,
 where 3.x.xx is kernel version. In our case the directory with modules is:
 
 linux-sunxi/out/lib/modules/3.4.103
 
+---
+
 4. Format and setup the SD-card
---------------------------------
-We suggest class 10 microSD card with memory capacity greater than 2GB. We haven't tested microSD cards bigger than 16GB.
 
-First we have to make the correct card partitions, this is done with fdisk.
+---
 
-Plug SD card into your SD card reader and enter in the terminal
+We suggest using a class 10 microSD card with memory capacity at least 8GB. We haven't tested microSD cards bigger than 16GB.
+
+First we have to make the correct card partitions using fdisk. Plug SD card into your SD card reader and enter in the terminal:
 
 # ls /dev/sd
-Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices may be your hard disk so make sure you know which one is your sd card before you proceed as you can damage your HDD if you choose the wrong sd-device. 
-You can do this by unplugging your sd card reader - pay attention which "sd" device disappears from the list.
+
+Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices may be your hard disk so make sure you know which one is your sd card before you proceed as you can damage your HDD if you choose the wrong sd-device. You can do this by unplugging your sd card reader - pay attention which "sd" device disappears from the list.
 
 Once you know which one is your microSD (as sda#) use it instead of the sdX name in the references below:
 
@@ -286,7 +300,6 @@ Disk identifier: 0x00000000
 /dev/sdg1            2048       34815       16384   83  Linux
 /dev/sdg2           34816     7774207     3869696   83  Linux
 
-
 4.5. press w
 
 write changes to sd card
@@ -299,9 +312,12 @@ The second should be normal Linux EXT3 FS:
 
 # mkfs.ext3 /dev/sdX2
 
+---
 
 5. Write the Uboot and u-boot-sunxi-with-spl.bin
--------------------------------------
+
+---
+
 You should be in /home/user/a20-olimex# directory 
 
 Note that you have to write u-boot-sunxi-with-spl.bin in /dev/sdX (not sdX1 or sdX2)
@@ -310,38 +326,53 @@ Type:
 
 # dd if=u-boot-sunxi/u-boot-sunxi-with-spl.bin of=/dev/sdX bs=1024 seek=8
 
-6. Write kernel uImage you build to the SD-card
------------------------------------------------
+---
+
+6. Write the kernel uImage to the SD-card
+
+---
+
 You should be in the directory below
 
-/home/user/a20-olimex# directory 
+/home/user/a20-olimex# directory
+
 # mkdir /mnt/sd
 # mount /dev/sdX1 /mnt/sd
-copy the Kernel uImage to root directory in partition 1
+
+copy the Kernel uImage to root directory in partition 1:
 
 # cp linux-sunxi/arch/arm/boot/uImage /mnt/sd
 
+---
+
 7. Write script.bin file
--------------------------
-script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, Video resolution etc, 
-According to the A20 board you use you have to download and write different script.bin file.
 
-7.1.1 for A20-OLinuXino_Lime2 board with NAND support download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_Lime2_NAND_rel_2/script.bin
+---
 
-7.1.2 for A20-OLinuXino_Lime2 board with EMMC support download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime2_emmc/script.bin
+script.bin is a very important file with parameters like port GPIO assignments, DDR memory parameters, video resolution etc. Depending on the A20 board that you own you have to download and write different script.bin file.
+
+7.1.1 for A20-OLinuXino-LIME2 board or A20-OLinuXino-LIME2 board with NAND download the script.bin file using wget command
+
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_Lime2_NAND_rel_2/script.bin
+
+7.1.2 for A20-OLinuXino-LIME2 board with EMMC download the script.bin file using wget command
+
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime2_emmc/script.bin
 
 7.2 for A20-SOM board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20-SOM_rel_3/script_a20_SOM_HDMI_720p50/script.bin
+
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20-SOM_rel_3/script_a20_SOM_HDMI_720p50/script.bin
 
 7.3 for A20-OLinuXino-MICRO board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_OLinuXino-micro_rel_10/script.bin
+
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_OLinuXino-micro_rel_10/script.bin
 
 7.4 for A20-OLinuXino-LIME board download the script.bin file using wget command
+
 # wget  https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime_rel_3/script.bin
 
-then copy the downloaded script.bin file to the mounted first partition of the SD card
+then copy the downloaded script.bin file to the mounted first partition of the SD card:
+
 # cp script.bin /mnt/sd
 
 Download boot.scr and uEnv.txt files
@@ -350,14 +381,19 @@ Download boot.scr and uEnv.txt files
 #wget  https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/uEnv.txt
 
 You have to copy in first sd card partition where script.bin file is located
+
 # cp boot.scr /mnt/sd
 # cp uEnv.txt.bin /mnt/sd
 # sync
 # umount /dev/sdX1
 
+----
+
 8. Debian rootfs
-----------------
-The Linux Kernel and Uboot are ready, now we have need from Linux distribution rootfs.
+
+---
+
+The Linux Kernel and Uboot are ready, now we need the Linux distribution rootfs.
 
 Basically the only difference between the different Linux distributions is the rootfs, so if you put Debian rootfs you will have Debian, if you put Ubuntu rootfs it will be Ubuntu etc.
 
@@ -371,9 +407,11 @@ Should be in the directory below
 
 # /home/user/a20-olimex
 
-Download debian rootfs with the file name "Debian_FS_34_103_Jessy_8.1_A20-olimex_rel_2" , which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
+Download debian rootfs with the file name "Debian_FS_34_103_Jessy_8.1_A20-olimex_rel_2", which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
 
 # wget https://www.olimex.com/wiki/images/a/a4/Debian_FS_34_103_Jessy_8.1_A20-olimex_rel_2.torrent
+
+Launch the torrent client and download the file.
 
 Now mount the microSD card EXT3 FS partition:
 
@@ -388,7 +426,7 @@ The correct result should be:
 bin   dev  home  lost+found  mnt  proc  run   selinux  sys  usr
 boot  etc  lib   media       opt  root  sbin  srv      tmp  var
 
-Now you have to replace the new generated kernel modules from /home/user/a20-olimex/linux-sunxi/out/lib/modules/ to the new Debian file system:
+Now you have to replace the newly generated kernel modules from /home/user/a20-olimex/linux-sunxi/out/lib/modules/ to the new Debian file system:
 
 # rm -rf /mnt/sd/lib/modules/*
 
@@ -407,8 +445,8 @@ replace /lib/firmware folder with the generated /linux-sunxi/out/firmware
 # sync
 # umount /mnt/sdX2
 
-at this point you have Debian on your SD card second partition and you have an SD card ready to boot debian on A20-SOM or A20-OLinuXino-MICRO or A20-OLinuXino-LIME or A20-OLinuXino-LIME2
+At this point you have Debian on your SD card second partition and you have an SD card ready to boot debian on A20-SOM or A20-OLinuXino-MICRO or A20-OLinuXino-LIME or A20-OLinuXino-LIME2
 
-Connect USB-SERIAL-CABLE-F to UEXT Tx, Rx and GND, or connect a HDMI screen. Put the SD-card apply power according to A20 board type.You should see Uboot and then Kernel messages on the console
+Connect USB-SERIAL-CABLE-F to UEXT Tx, Rx and GND, or connect a HDMI screen. Put the SD-card apply power according to A20 board type. You should see u-boot and then kernel messages on the console.
 
-default username/password is : root / olimex
+Under the command line interface you are automatically logged as super user (user "root", password "olimex"). However, under the graphical environment you are not auto-logged as super user and you must type "sudo" before the command (in the GUI the super-user is "olimex" and the password is "olimex").

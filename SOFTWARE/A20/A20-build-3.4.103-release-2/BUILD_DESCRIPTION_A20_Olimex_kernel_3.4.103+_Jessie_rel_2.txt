@@ -72,9 +72,7 @@ Note that if you use the Gigabit interface (if you have A20-OlinuXino-LIME2 and 
 other boards or if you don't need Gigabit interface skip this step) then you also need to patch the u-boot in order
 to set on board PHY chip in master mode. For this purpose download fix_gigabit_phy.patch file using wget command:
 
-# wget
-https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/fix_gigabit_phy.
-patch
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/fix_gigabit_phy.patch
 
 and then patch the uboot sources with:
 
@@ -199,9 +197,7 @@ After the download navigate to the kernel directory:
 You need to get the a20 configuration file – A20-linux-3.4.103_defconfig. The file contains all kernel module
 settings. Download A20-linux-3.4.103_defconfig using wget command 
 
-# wget
-https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/A20-linux-3.4.10
-3_defconfig
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/A20-linux-3.4.103_defconfig
 
 then copy A20-linux-3.4.103_defconfig file to configs directory:
 
@@ -228,8 +224,7 @@ with eMMC support
 
 Download the patch file a20-emmc.patch using wget command
 
-# wget
-https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/a20-emmc.patch
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/a20-emmc.patch
 
 and patch the drivers/mmc/core/mmc.c file
 
@@ -381,33 +376,23 @@ resolution etc. Depending on the A20 board that you own you have to download and
 7.1.1 for A20-OLinuXino-LIME2 board or A20-OLinuXino-LIME2 board with NAND download the script.bin file using wget
 command
 
-# wget
-https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_Lime2_NA
-ND_rel_2/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_Lime2_NAND_rel_2/script.bin
 
 7.1.2 for A20-OLinuXino-LIME2 board with EMMC download the script.bin file using wget command
 
-# wget
-https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime2_em
-mc/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime2_emmc/script.bin
 
 7.2 for A20-SOM board download the script.bin file using wget command
 
-# wget
-https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20-SOM_rel_
-3/script_a20_SOM_HDMI_720p50/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20-SOM_rel_3/script_a20_SOM_HDMI_720p50/script.bin
 
 7.3 for A20-OLinuXino-MICRO board download the script.bin file using wget command
 
-# wget
-https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_OLinuXin
-o-micro_rel_10/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_OLinuXino-micro_rel_10/script.bin
 
 7.4 for A20-OLinuXino-LIME board download the script.bin file using wget command
 
-# wget 
-https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime_re
-l_3/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/scripts/script_a20_lime_rel_3/script.bin
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card:
 
@@ -415,8 +400,8 @@ then copy the downloaded script.bin file to the mounted first partition of the S
 
 Download boot.scr and uEnv.txt files
 
-#wget  https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/boot.scr
-#wget  https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/A20/A20-build-3.4.103-release-2/uEnv.txt
+#wget  https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/boot.scr
+#wget  https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-2/uEnv.txt
 
 You have to copy in first sd card partition where script.bin file is located
 

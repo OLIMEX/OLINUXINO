@@ -81,8 +81,10 @@ Below there is an example of how to do some of the basic functions provided by M
 The '-y' option is added so we don't have to confirm that we want to perform this action. Otherwise we will be prompted every time.
 
 
-i2cdetect -y 2				// scanning for connected devices on I2C-2 bus
-		 0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+i2cdetect -y 2			// scanning for connected devices on I2C-2 bus
+
+
+	     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 	00:          -- -- -- -- -- -- -- -- -- -- -- -- --
 	10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 	20: -- 21 -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -93,25 +95,40 @@ i2cdetect -y 2				// scanning for connected devices on I2C-2 bus
 	70: -- -- -- -- -- -- -- --
 
 i2cset -y 2 0x21 0x20		// send command (0x20) --> read ID
-i2cget -y 2 0x21			// read result
+
+i2cget -y 2 0x21		// read result
+
 	0x23
 
 i2cset -y 2 0x21 0x40 0x03	// send command (0x40) --> relay 1 - ON; relay 2 - ON
+
 i2cset -y 2 0x21 0x40 0x02	// send command (0x40) --> relay 1 - OFF; relay 2 - ON
+
 i2cset -y 2 0x21 0x43		// send command (0x43) --> read relay status
-i2cget -y 2 0x21			// read result
-	0x02					// result depends on the state of the relays
+
+i2cget -y 2 0x21		// read result
+
+	0x02			// result depends on the state of the relays
+
 
 i2cset -y 2 0x21 0x01 0x7f	// send command (0x01) --> all GPIOs input
+
 i2cset -y 2 0x21 0x04 0x17	// send command (0x04) --> all Pull-ups enabled
 
+
 i2cset -y 2 0x21 0x03		// send command (0x03) --> read GPIOs
-i2cget -y 2 0x21			// read result
-	0x1f					// result depends on the digital value of the GPIOs
+
+i2cget -y 2 0x21		// read result
+
+	0x1f			// result depends on the digital value of the GPIOs
+
 
 i2cset -y 2 0x21 0x10		// send command (0x10) --> read analog 0 (GPIO 0)
-i2cget -y 2 0x21			// read result
-	0xbf					// result depends on the analog level of the GPIO 0
+
+i2cget -y 2 0x21		// read result
+
+	0xbf			// result depends on the analog level of the GPIO 0
+
 
 
 2016/09/02

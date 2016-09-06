@@ -76,7 +76,7 @@ so if something goes wrong it is better to use tested compiler version
 Now you have to make a patch in order to add configuration file for A33. 
 
 download the a33.patch using the next command:
-# wget https://drive.google.com/open?id=0BwplT87k9SCgNGYyN1BMYjl1LTQ
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A33/A33-build-3-4-39-1/a33.patch
 
 # patch -p1 < a33.patch
 
@@ -305,7 +305,7 @@ Should be in the directory below
 
 Download debian rootfs with the file name "a33-jessie-FS-rel1.tgz", which is available only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to the torrent file is:
 
-# wget https://drive.google.com/open?id=0BwplT87k9SCgUG0zUkxxNGYyeUk
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A33/A33-build-3-4-39-1/a33-jessie-FS-rel1.tgz.torrent
 Launch the torrent client and download the file.
 
 Now mount the microSD card EXT4 FS partition:
@@ -360,7 +360,7 @@ replace /lib/firmware folder with the generated /linux-sunxi/out/firmware
 
 script.bin is a very important file with parameters like port GPIO assignments, DDR memory parameters, video resolution etc. For A33-OLinuXino you can download it using the following command
 
-# wget https://drive.google.com/open?id=0BwplT87k9SCgNFlieTlxeUZVb3c
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A33/A33-build-3-4-39-1/script.bin
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card:
 
@@ -368,6 +368,9 @@ then copy the downloaded script.bin file to the mounted first partition of the S
 # sync
 # umount /dev/sdX1
 
+If you wish you can see the source of script.bin file from this link:
+
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A33/A33-build-3-4-39-1/script.fex
 
 At this point you have Debian on your SD card and you have an SD card ready to boot debian on A33-OLinuXino 
 

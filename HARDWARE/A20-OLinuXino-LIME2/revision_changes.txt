@@ -1,0 +1,69 @@
+LIME2_initial﻿ (internal)
+
+
+LIME2-Rev.A (internal)
+===========
+1. GPIO4 pin 12 and pin 14 swapped to PA9 and PA14, to use in GMAC interface. Previous one were GPIO02, GPIO3 from AXP209. Now AXP signals are not used.
+2. EMAC changed to GMAC
+3. Add second DDR memory chip
+4. USBDRV0 moved to PC17 (to free audio) EXT pinout changed
+5. PB9 go to GPIO3
+6. Power supply updated as in LIME REV.C
+7. Add NA resistor between PC16/NWP of processor and PIN19 #WP of NAND
+
+LIME2-Rev.B (pre-production)
+===========
+1. 32kHz crystal changed from PTH to SMD
+2. LAN part updated as per A20-SOM-EVB-Rev.C - new LAN connector package, capacitor 1n/2kV to shield, separate polygone for LAN shield
+3. GMAC PHY routing to differential 100 ohm impedance to the LAN connector
+4. Add 4 NA resistors for PIO0..PIO3, for possible use of I2C3, I2C4
+5. DDR3 package updated
+6. Add two capacitors 47uF on USB host power and one 47uF to the USB OTG
+7. R59 change from 13K to 6.8K to increase USB host current cut-off to 1A
+8. L1, L2, L3 changed from FB/600R/0805 to 0R/0805
+9. C175 changed to 6.8K/0402, R73 changed to 22uF/6.3V/0603 for soft power up. 
+   C175 changed from 100n to 22uF/6.3V/0603, R73 changed from 4.99K/1% to 6.8K/0402 
+   RC delay for HDD softstart power up
+10. R34 changed from 1K to NA
+11. R31 changed from NA to 470K
+12. C111 changed from NA to 100n
+13. VDD_RTC's label updated from 3V3/30mA to 1V3/30mA as is indeed.
+   
+LIME2-Rev.C (production)
+============================
+1. C175 change from 100n/0402 to 22uF/0603
+3. Updated package of HDMI connector
+
+LIME2-Rev.D (internal)
+===============================
+1. Add eMMC -> Optional(NAND or eMMC)
+2. C224 and C232 -> 47uF/6.3V/0805 were added in parallel to the 5V_SATA_PWR connector;
+3. Change L1, L2, L3 from FB/600R/0805 to 0R/0805.
+4. Capacitors C84, C85 changed from 100nF/0402 to 22uF/0603;
+5. New LAN routing.
+6. EMMC_RST moved from PC4/NCE0/EMMC_RST to PC16/NWP/EMMC_RST
+
+LIME2-Rev.E (internal)
+==============================
+1. PC17/USB0-DRV routing changed.
+2. U15 and U17 updated from SY8008C(AA)C to SY8009AAAC(SOT23-5).
+
+LIME2-Rev.F (internal)
+==============================
+1. PHY changed to RTL8211E-VB-CG1
+2. Rx pullups moved before the serial matrix for better routing.
+
+LIME2-eMMC-Rev.G (production)
+==============================
+1. Add four mount holes 3.3mm like on A20-olinuXino-Micro, connected to GND, odd milling shape changed to rectangular.
+2. R109 change from 47k/0402 to 470k/0402, R107 changed from 470k/0402 to capacitor 220nF/0402, because new PHY surge too much current at startup.
+
+LIME2-eMMC-Rev.H (internal)
+==============================
+1. Add C235 1uF/0603 for phy power up sequence (R107 now is NA).
+2. R108 change to NA due to Ultimaker request.
+
+LIME2-eMMC-Rev.I (internal)
+==============================
+1. LAN PHY change to KSZ9031 to allow industrial grade board production
+

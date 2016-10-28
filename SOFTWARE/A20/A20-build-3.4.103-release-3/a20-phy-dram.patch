@@ -1,0 +1,186 @@
+diff --git a/board/sunxi/gmac.c b/board/sunxi/gmac.c
+index 69eb8ff..d496041 100644
+--- a/board/sunxi/gmac.c
++++ b/board/sunxi/gmac.c
+@@ -24,8 +24,6 @@ void eth_init_board(void)
+ #ifdef CONFIG_RGMII
+ 	setbits_le32(&ccm->gmac_clk_cfg, CCM_GMAC_CTRL_TX_CLK_SRC_INT_RGMII |
+ 		CCM_GMAC_CTRL_GPIT_RGMII);
+-	setbits_le32(&ccm->gmac_clk_cfg,
+-		     CCM_GMAC_CTRL_TX_CLK_DELAY(CONFIG_GMAC_TX_DELAY));
+ #else
+ 	setbits_le32(&ccm->gmac_clk_cfg, CCM_GMAC_CTRL_TX_CLK_SRC_MII |
+ 		CCM_GMAC_CTRL_GPIT_MII);
+diff --git a/configs/A20-OLinuXino-Lime2_defconfig b/configs/A20-OLinuXino-Lime2_defconfig
+index cc5858e..d7c1e0a 100644
+--- a/configs/A20-OLinuXino-Lime2_defconfig
++++ b/configs/A20-OLinuXino-Lime2_defconfig
+@@ -1,7 +1,8 @@
+ CONFIG_ARM=y
+ CONFIG_ARCH_SUNXI=y
+ CONFIG_MACH_SUN7I=y
+-CONFIG_DRAM_CLK=480
++CONFIG_DRAM_CLK=384
++CONFIG_OLD_SUNXI_KERNEL_COMPAT=y
+ CONFIG_MMC0_CD_PIN="PH1"
+ CONFIG_USB0_VBUS_PIN="PC17"
+ CONFIG_USB0_VBUS_DET="PH5"
+diff --git a/configs/A20-OLinuXino-Lime_defconfig b/configs/A20-OLinuXino-Lime_defconfig
+index 7b0309c..2e589d9 100644
+--- a/configs/A20-OLinuXino-Lime_defconfig
++++ b/configs/A20-OLinuXino-Lime_defconfig
+@@ -1,7 +1,8 @@
+ CONFIG_ARM=y
+ CONFIG_ARCH_SUNXI=y
+ CONFIG_MACH_SUN7I=y
+-CONFIG_DRAM_CLK=480
++CONFIG_DRAM_CLK=384
++CONFIG_OLD_SUNXI_KERNEL_COMPAT=y
+ CONFIG_MMC0_CD_PIN="PH1"
+ CONFIG_DEFAULT_DEVICE_TREE="sun7i-a20-olinuxino-lime"
+ # CONFIG_SYS_MALLOC_CLEAR_ON_INIT is not set
+diff --git a/configs/A20-Olimex-SOM-EVB_defconfig b/configs/A20-Olimex-SOM-EVB_defconfig
+index 57609b3..aa78b89 100644
+--- a/configs/A20-Olimex-SOM-EVB_defconfig
++++ b/configs/A20-Olimex-SOM-EVB_defconfig
+@@ -1,7 +1,8 @@
+ CONFIG_ARM=y
+ CONFIG_ARCH_SUNXI=y
+ CONFIG_MACH_SUN7I=y
+-CONFIG_DRAM_CLK=480
++CONFIG_DRAM_CLK=384
++CONFIG_OLD_SUNXI_KERNEL_COMPAT=y
+ CONFIG_MMC0_CD_PIN="PH1"
+ CONFIG_MMC3_CD_PIN="PH0"
+ CONFIG_MMC3_PINS="PH"
+diff --git a/drivers/net/phy/micrel.c b/drivers/net/phy/micrel.c
+index 6b313a9..677d436 100644
+--- a/drivers/net/phy/micrel.c
++++ b/drivers/net/phy/micrel.c
+@@ -14,6 +14,8 @@
+ #include <fdtdec.h>
+ #include <micrel.h>
+ #include <phy.h>
++#include <asm/io.h>
++#include <asm/arch/clock.h>
+ 
+ DECLARE_GLOBAL_DATA_PTR;
+ 
+@@ -396,7 +398,7 @@ static struct phy_driver ksz9021_driver = {
+ static const struct ksz90x1_reg_field ksz9031_ctl_grp[] =
+ 	{ { "txen-skew-ps", 4, 0, 0x7 }, { "rxdv-skew-ps", 4, 4, 0x7 } };
+ static const struct ksz90x1_reg_field ksz9031_clk_grp[] =
+-	{ { "rxc-skew-ps", 5, 0, 0xf }, { "txc-skew-ps", 5, 5, 0xf } };
++	{ { "rxc-skew-ps", 5, 0, 0x7 }, { "txc-skew-ps", 5, 5, 0x17 } };
+ 
+ static int ksz9031_of_config(struct phy_device *phydev)
+ {
+@@ -469,6 +471,14 @@ static int ksz9031_phy_extwrite(struct phy_device *phydev, int addr,
+ static int ksz9031_config(struct phy_device *phydev)
+ {
+ 	int ret;
++	struct sunxi_ccm_reg *const ccm =
++		(struct sunxi_ccm_reg *)SUNXI_CCM_BASE;
++
++#ifdef CONFIG_RGMII
++		setbits_le32(&ccm->gmac_clk_cfg,
++			CCM_GMAC_CTRL_TX_CLK_DELAY(4));
++#endif
++
+ 	ret = ksz9031_of_config(phydev);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/net/phy/phy.c b/drivers/net/phy/phy.c
+index 80bdfb6..04162e7 100644
+--- a/drivers/net/phy/phy.c
++++ b/drivers/net/phy/phy.c
+@@ -8,7 +8,6 @@
+  *
+  * Based loosely off of Linux's PHY Lib
+  */
+-
+ #include <config.h>
+ #include <common.h>
+ #include <console.h>
+diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+index 7a99cb0..3627357 100644
+--- a/drivers/net/phy/realtek.c
++++ b/drivers/net/phy/realtek.c
+@@ -10,6 +10,9 @@
+ #include <config.h>
+ #include <common.h>
+ #include <phy.h>
++#include <asm/io.h>
++#include <asm/arch/clock.h>
++
+ 
+ #define PHY_AUTONEGOTIATE_TIMEOUT 5000
+ 
+@@ -51,6 +54,9 @@
+ /* RealTek RTL8211x */
+ static int rtl8211x_config(struct phy_device *phydev)
+ {
++	struct sunxi_ccm_reg *const ccm =
++		(struct sunxi_ccm_reg *)SUNXI_CCM_BASE;
++
+ 	phy_write(phydev, MDIO_DEVAD_NONE, MII_BMCR, BMCR_RESET);
+ 
+ 	/* mask interrupt at init; if the interrupt is
+@@ -58,14 +64,36 @@ static int rtl8211x_config(struct phy_device *phydev)
+ 	 */
+ 	phy_write(phydev, MDIO_DEVAD_NONE, MIIM_RTL8211x_PHY_INER,
+ 		  MIIM_RTL8211x_PHY_INTR_DIS);
+-#ifdef CONFIG_RTL8211X_PHY_FORCE_MASTER
+-	unsigned int reg = phy_read(phydev, MDIO_DEVAD_NONE, MII_CTRL1000);
+-	/* force manual master/slave configuration */
+-	reg |= MIIM_RTL8211x_CTRL1000T_MSCE;
+-	/* force master mode */
+-	reg |= MIIM_RTL8211X_CTRL1000T_MASTER;
+-	phy_write(phydev, MDIO_DEVAD_NONE, MII_CTRL1000, reg);
+-#endif
++
++	/* Check if device is RTL8211CL or RTL8211E */
++	if(phydev->drv->uid == 0x1cc912) {
++		/* On RTL8211E TX delay must be 0 and
++		 * phy must be forced to be master
++		 */
++		 setbits_le32(&ccm->gmac_clk_cfg, CCM_GMAC_CTRL_TX_CLK_DELAY(0));
++
++		 unsigned int reg = phy_read(phydev, MDIO_DEVAD_NONE, MII_CTRL1000);
++		 /* force manual master/slave configuration */
++		 reg |= MIIM_RTL8211x_CTRL1000T_MSCE;
++		 /* force master mode */
++		 reg |= MIIM_RTL8211X_CTRL1000T_MASTER;
++		 phy_write(phydev, MDIO_DEVAD_NONE, MII_CTRL1000, reg);
++
++	} else {
++		if(phydev->drv->uid == 0x1cc915) {
++		/* On RTL8211E make GMAC_TX_CLK_DELAY 2 */
++		setbits_le32(&ccm->gmac_clk_cfg, CCM_GMAC_CTRL_TX_CLK_DELAY(2));
++	}
++	#ifdef CONFIG_RTL8211X_PHY_FORCE_MASTER
++		unsigned int reg = phy_read(phydev, MDIO_DEVAD_NONE, MII_CTRL1000);
++		/* force manual master/slave configuration */
++		reg |= MIIM_RTL8211x_CTRL1000T_MSCE;
++		/* force master mode */
++		reg |= MIIM_RTL8211X_CTRL1000T_MASTER;
++		phy_write(phydev, MDIO_DEVAD_NONE, MII_CTRL1000, reg);
++	#endif
++	}
++
+ 	/* read interrupt status just to clear it */
+ 	phy_read(phydev, MDIO_DEVAD_NONE, MIIM_RTL8211x_PHY_INER);
+ 
+diff --git a/include/configs/sunxi-common.h b/include/configs/sunxi-common.h
+index 708ab17..34364fb 100644
+--- a/include/configs/sunxi-common.h
++++ b/include/configs/sunxi-common.h
+@@ -333,6 +333,8 @@ extern int soft_i2c_gpio_scl;
+ #define CONFIG_PHY_ADDR		1
+ #define CONFIG_MII			/* MII PHY management		*/
+ #define CONFIG_PHY_REALTEK
++#define CONFIG_PHY_MICREL
++#define CONFIG_PHY_MICREL_KSZ9031
+ #endif
+ 
+ #ifdef CONFIG_USB_EHCI_HCD

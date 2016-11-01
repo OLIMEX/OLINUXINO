@@ -25,6 +25,10 @@ If you want image without openwrt you can use:
 
 ## Changes
 
+### 01 NOV 2016
+
+* Added images and instructions suitable for restoring the firmware of RT5350F-OLinuXino and RT5350F-OLinuXino-EVB (mtd2 partition restore)
+
 ### 03 MAR 2016
 
 * Added image RT5350F-OLinuXino-DIN

@@ -17,41 +17,69 @@ and press enter. The boot is successfull when you get root@RT5350F-OLinuXino:/
 
 If you decide to use the WIFI server - note that it is disabled by default. You can check its current status with:
 
-```cat /etc/config/wireless```
+```shell
+cat /etc/config/wireless
+```
 
 then you can enable it with:
 
-```uci set wireless.@wifi-device[0].disabled=0; uci commit wireless; wifi```
+```shell
+uci set wireless.@wifi-device[0].disabled=0; uci commit wireless; wifi
+```
 
 ### Once you have connection to internet please do the following:
 
 2.1 Type the following commands (some of them take more time to complete, be patient)
 
-```cd /tmp```
+```shell
+cd /tmp
+```
 
-```wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin```
+```shell
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin
+```
 
-```mtd write openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin firmware```
+```shell
+mtd write openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin firmware
+```
 
-```reboot```
+```shell
+reboot
+```
 
 2.2 Type the following commands (some of them take more time to complete, be patient)
 
-```cd /tmp```
+```shell
+cd /tmp
+```
 
-```wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/rt5350f_factory.eeprom```
+```shell
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/rt5350f_factory.eeprom
+```
 
-```mtd write rt5350f_factory.eeprom factory```
+```shell
+mtd write rt5350f_factory.eeprom factory
+```
 
-```reboot```
+```shell
+reboot
+```
 
 2.3 Type the following commands (some of them take more time to complete, be patient) - note that the sysupgrade file
 below should be the latest official one released by Olimex (replace the link below with the latest file if there is newer)
 
-```cd /tmp```
+```shell
+cd /tmp
+```
 
-```wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin```
+```shell
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin
+```
 
-```mtd write openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin firmware```
+```shell
+mtd write openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin firmware
+```
 
-```reboot```
+```shell
+reboot
+```

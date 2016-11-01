@@ -27,7 +27,9 @@ then you can enable it with:
 
 2.1 Type the following commands (some of them take more time to complete, be patient)
 
-``` cd /tmp wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin ```
+``` cd /tmp ```
+
+``` wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin ```
 
 ``` mtd write openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin firmware ```
 
@@ -35,7 +37,9 @@ then you can enable it with:
 
 2.2 Type the following commands (some of them take more time to complete, be patient)
 
-```cd /tmp wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/rt5350f_factory.eeprom```
+``` cd /tmp ```
+
+``` wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/rt5350f_factory.eeprom ```
 
 ``` mtd write rt5350f_factory.eeprom factory ```
 
@@ -44,7 +48,9 @@ then you can enable it with:
 2.3 Type the following commands (some of them take more time to complete, be patient) - note that the sysupgrade file
 below should be the latest official one released by Olimex (replace the link below with the latest file if there is newer)
 
-``` cd /tmp wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin ```
+``` cd /tmp ```
+
+``` wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin ```
 
 ``` mtd write openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin firmware ```
 

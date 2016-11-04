@@ -60,30 +60,35 @@ After the download you should have a new directory, naviagate into it with:
 
 # cd u-boot/
 
-The image is tested with the commit from Mon Oct 19 18:46:28 2015 -0400
+The image is tested with the commit  Mon Sep 12 10:05:51 2016 -0400
 
 To switch from the latest sources to the exact commit that we used execute the next command:
 
-# git reset --hard  5ec0003b19cbdf06ccd6941237cbc0d1c3468e2d
+# git reset --hard  8cbb389bb3da80cbf8911f8386cbff92c6a78afe
+
+or 
+
+git checkout v2016.09 -b tmp
 
 !MAKE SURE THAT YOU HAVE REVERTED TO THE SAME COMMIT OR NOTHING BELOW WOULD WORK!
 
-Note that if you use the Gigabit interface (if you have A20-OlinuXino-LIME2 and A20-SOM-EVB boards; if you
-have other boards or if you don't need Gigabit interface skip this step) then you also need to patch the
-u-boot in order to set on board PHY chip in master mode. For this purpose download fix_gigabit_phy.patch file
-using wget command:
+For this u-boot commit you need from a patch that reduces A20 DRAM speed from 480 to 384 MHz to improve board stability and it makes support for different types of gigabit PHY chips we used. 
+For this purpose download a20-phy-dram.patch file using wget command:
 
-# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/fix_gigabit_phy.patch
+# https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-3/a20-phy-dram.patch
 
 and then patch the uboot sources with:
 
-# patch -p1 < fix_gigabit_phy.patch
+# patch -p1 < a20-phy-dram.patch
 
 If you don't apply the patch you might have severely reduced Gigabit Ethernet speed.
 
 ---
+Note that the compiler version that the u-boot is built and tested is :
+arm-linux-gnueabihf-gcc (crosstool-NG linaro-1.13.1-4.9-2014.09 - Linaro GCC 4.9-2014.09) 4.9.2 20140904 (prerelease)
 
-There are four different configurations for u-boot which depend on the exact board that you have. Do only the
+Now you have to load configuration file for your board. 
+because there are four different configurations for u-boot which depend on the exact board that you have. Do only the
 point for your board:
 
 ---
@@ -91,14 +96,11 @@ point for your board:
 2.1 A20-OLinuXino-LIME2 board
 
 # make A20-OLinuXino-Lime2_defconfig  ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
-# make ARCH=arm menuconfig
-
-from the menu select ARM architecture --> sunxi DRAM clock speed and change 480 to 384
-
-then select [*] Enable workarounds for booting old kernels  
 
 If your board has eMMC memory installed (instead of NAND memory) then you have to change the extra MMC slot
 number in the u-boot in order to be possible to boot only from eMMC
+
+# make ARCH=arm menuconfig
 
 Go to ARM architecture -> and change mmc extra slot number to 2
 
@@ -111,48 +113,32 @@ Save and Exit
 2.2 A20-SOM board
 
 # make A20-Olimex-SOM-EVB_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
-# make ARCH=arm menuconfig
 
 // If there are problems at the step above (for example if the SOM-EVB defconfig is missing) use the LIME2
 defconfig instead, type:
 // # make A20-OLinuXino-Lime2_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 // # make ARCH=arm menuconfig
 
-from the menu select ARM architecture --> sunxi DRAM clock speed and change 480 to 384
-
-also select [*] Enable workarounds for booting old kernels
-
-ESC ESC
-
-Save and Exit
 
 ---
 
 2.3 A20-OLinuXino-MICRO board
 
 # make A20-OLinuXino_MICRO_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
-# make ARCH=arm menuconfig
 
-from the menu select ARM architecture --> select [*] Enable workarounds for booting old kernels  
-
-ESC ESC
-
-Save and exit
 
 ---
 
 2.4 A20-OLinuXino-LIME board
 
 # make A20-OLinuXino-LIME_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
-# make ARCH=arm menuconfig
-
-from the menu select ARM architecture --> select [*] Enable workarounds for booting old kernels  
-
-ESC ESC
-
-Save and exit
 
 ---
+for all boards you can change many other settings using:
+
+# make ARCH=arm menuconfig
+
+but you have to be very carefullly
 
 Now type the following command to compile the u-boot:
 
@@ -230,7 +216,7 @@ related with eMMC support
 
 Download the patch file a20-emmc_2.patch using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-4/a20-emmc_2.patch
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-3/a20-emmc_2.patch
 
 and patch the drivers/mmc/core/mmc.c file
 

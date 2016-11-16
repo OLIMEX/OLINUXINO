@@ -16,7 +16,7 @@ Image that can be uploaded using the existing bootloader via serial port or TFTP
 These images can be uploaded using the bootloader via TFTP
 * __openwrt-ramips-rt305x-olinuxino-rt5350f-evb-squashfs-sysupgrade.bin__ - For RT5350F-OLinuXino-EVB
 * __openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin__ - For RT5350F-OLinuXino
-* __penwrt-ramips-rt305x-rt5350f-olinuxino-din-squashfs-sysupgrade.bin__ - For RT5350F-OLinuXino-DIN
+* __openwrt-ramips-rt305x-rt5350f-olinuxino-din-squashfs-sysupgrade.bin__ - For RT5350F-OLinuXino-DIN
 
 ### Factory image
 If you want image without openwrt you can use:

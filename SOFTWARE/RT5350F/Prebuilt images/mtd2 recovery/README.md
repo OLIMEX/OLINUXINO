@@ -1,6 +1,6 @@
 ## SETTING MTD2 PARTITION (RT5350 FIRMWARE) 
 
-### Did you manage to overwrite the MTD2 firmware partition of RT5350F-OLinuXino? Do not worry. You can resotre the default firmware settings using the instructions below:
+### Did you manage to overwrite the MTD2 firmware partition of RT5350F-OLinuXino? Do not worry. You can restore the default firmware settings using the instructions below:
 
 1.1 Make sure that your RT5350F-OLinuXino board is capable of booting successfully. Else you need to use one of the
 methods described in the wiki article to restore the board to a successfully booting state. Also notice that this fix applies for RT5350F-OLinuXino boards hardware revision C or newer.

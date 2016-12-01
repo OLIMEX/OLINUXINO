@@ -75,7 +75,7 @@ git checkout v2016.09 -b tmp
 For this u-boot commit you need from a patch that reduces A20 DRAM speed from 480 to 384 MHz to improve board stability and it makes support for different types of gigabit PHY chips we used. 
 For this purpose download a20-phy-dram.patch file using wget command:
 
-# https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-3/a20-phy-dram.patch
+# https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-4/a20-phy-dram.patch
 
 and then patch the uboot sources with:
 
@@ -186,7 +186,7 @@ After the download navigate to the kernel directory:
 
 ---
 
-You need to get the a20 configuration file – A20-linux-3.4.103_defconfig. The file contains all kernel
+You need to get the a20 configuration file â€“ A20-linux-3.4.103_defconfig. The file contains all kernel
 module settings. Download A20-linux-3.4.103_defconfig using wget command 
 
 # wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-2/A20-linux-3.4.103_defconfig
@@ -226,7 +226,7 @@ Now you may continue with kernel image compiling
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 uImage
 
-when this finish’s you will have uImage ready and the result should be:
+when this finishâ€™s you will have uImage ready and the result should be:
 
   LD      arch/arm/boot/compressed/vmlinux
   OBJCOPY arch/arm/boot/zImage

@@ -48,10 +48,14 @@ opkg update
 ```
 
 ```shell
+opkg install libustream-polarssl
+```
+
+```shell
 opkg install ca-certificates
 ```
 
-The two commands above update the SSL certifactes that allow us to reach the files below over https with wget
+The three commands above update the SSL certifactes that allow us to reach the files below over https with wget
 
 ```shell
 cd /tmp
@@ -77,6 +81,10 @@ reboot
 
 ```shell
 opkg update
+```
+
+```shell
+opkg install libustream-polarssl
 ```
 
 ```shell

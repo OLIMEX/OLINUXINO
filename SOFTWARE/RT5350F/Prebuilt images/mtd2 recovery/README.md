@@ -1,15 +1,20 @@
-## SETTING MTD2 PARTITION (RT5350 FIRMWARE) 
+## SETTING MTD2 PARTITION (RT5350 FIRMWARE)
 
-### Did you manage to overwrite the MTD2 firmware partition of RT5350F-OLinuXino? Do not worry. You can restore the default firmware settings using the instructions below:
+All firmware files mentioned below are hosted at our FTP server. This is done to avoid SSL issues. You can find
+the sources here: ftp://staging.olimex.com/RT5350/
+
+### Did you manage to overwrite the MTD2 firmware partition of RT5350F-OLinuXino? Do not worry. You can restore 
+the default firmware settings using the instructions below:
 
 1.1 Make sure that your RT5350F-OLinuXino board is capable of booting successfully. Else you need to use one of the
-methods described in the wiki article to restore the board to a successfully booting state. Also notice that this fix applies for RT5350F-OLinuXino boards hardware revision C or newer.
+methods described in the wiki article to restore the board to a successfully booting state. Also notice that this fix
+applies for RT5350F-OLinuXino boards hardware revision C or newer.
 
 1.2 Make sure that you are connected to the command line interface of the board and that that your RT5350F-OLinuXino
 board is connected to the Internet either by using an Ethernet cable or the on-board WIFI. The Internet connection is
 needed to download the three required files mentioned below with wget. If you can't access the Internet through the
 board you can also manually download and copy the file to the mentioned folders (in this case you don't need Internet
-connection through the RT5350 board)
+connection through the RT5350 board).
 
 The most reliable and easy setup: connect a serial cable for debugging at the UART0 connector; start terminal software
 at 57600 baud; connect lan cable to LAN1 connector; provide 5V at the power jack; observe boot messages in the terminal
@@ -36,7 +41,7 @@ cd /tmp
 ```
 
 ```shell
-wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin
+wget ftp://staging.olimex.com/RT5350/openwrt-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade-unlocked.bin
 ```
 
 ```shell
@@ -54,7 +59,7 @@ cd /tmp
 ```
 
 ```shell
-wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/rt5350f_factory.eeprom
+wget ftp://staging.olimex.com/RT5350/rt5350f_factory.eeprom
 ```
 
 ```shell
@@ -73,7 +78,7 @@ cd /tmp
 ```
 
 ```shell
-wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/RT5350F/Prebuilt%20images/mtd2%20recovery/openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin
+wget ftp://staging.olimex.com/RT5350/openwrt-ramips-rt305x-olinuxino-rt5350f-squashfs-sysupgrade.bin
 ```
 
 ```shell

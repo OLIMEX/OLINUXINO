@@ -399,7 +399,7 @@ Download boot.scr and uEnv.txt files
 You have to copy in first sd card partition where script.bin file is located
 
 # cp boot.scr /mnt/sd
-# cp uEnv.txt.bin /mnt/sd
+# cp uEnv.txt /mnt/sd
 # sync
 # umount /dev/sdX1
 

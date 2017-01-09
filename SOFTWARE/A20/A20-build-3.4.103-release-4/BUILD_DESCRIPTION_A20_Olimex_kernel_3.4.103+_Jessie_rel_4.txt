@@ -131,7 +131,7 @@ defconfig instead, type:
 
 2.4 A20-OLinuXino-LIME board
 
-# make A20-OLinuXino-LIME_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make A20-OLinuXino-Lime_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
 ---
 for all boards you can change many other settings using:

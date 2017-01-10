@@ -131,7 +131,7 @@ defconfig instead, type:
 
 2.4 A20-OLinuXino-LIME board
 
-# make A20-OLinuXino-LIME_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+# make A20-OLinuXino-Lime_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
 ---
 for all boards you can change many other settings using:
@@ -399,7 +399,7 @@ Download boot.scr and uEnv.txt files
 You have to copy in first sd card partition where script.bin file is located
 
 # cp boot.scr /mnt/sd
-# cp uEnv.txt.bin /mnt/sd
+# cp uEnv.txt /mnt/sd
 # sync
 # umount /dev/sdX1
 

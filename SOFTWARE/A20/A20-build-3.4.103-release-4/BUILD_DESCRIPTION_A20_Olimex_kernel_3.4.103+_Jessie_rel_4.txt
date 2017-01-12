@@ -75,7 +75,7 @@ git checkout v2016.09 -b tmp
 For this u-boot commit you need from a patch that reduces A20 DRAM speed from 480 to 384 MHz to improve board stability and it makes support for different types of gigabit PHY chips we used. 
 For this purpose download a20-phy-dram.patch file using wget command:
 
-# https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-4/a20-phy-dram.patch
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.103-release-4/a20-phy-dram.patch
 
 and then patch the uboot sources with:
 

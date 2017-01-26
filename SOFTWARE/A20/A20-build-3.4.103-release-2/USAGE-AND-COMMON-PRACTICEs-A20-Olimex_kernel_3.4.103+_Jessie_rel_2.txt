@@ -190,8 +190,16 @@ address of USB0 interface - 192.168.2.1. Note that USB0 interface IP address by 
 
 - USB-HOSTs - low/full/high USB hosts
 - MOD-USB3G	-	https://www.olimex.com/Products/USB-Modules/MOD-USB3G - in order to test MOD-USB3G
-module you have to place SIM card (without pin code) in the module and connect it to USB host
-connector, then edit the network settings in /etc/wvdial.conf file according to your mobile operator
+module you need to make sure that usb-modeswitch is installed. Issue the following commands:
+
+apt-get update
+
+apt-get install usb-modeswitch
+
+sudo reboot
+
+Then place the SIM card (without pin code) in the module and connect it to USB host connector, 
+then edit the network settings in /etc/wvdial.conf file according to your mobile operator
 and type:
 
 #wvdial 3gconnect

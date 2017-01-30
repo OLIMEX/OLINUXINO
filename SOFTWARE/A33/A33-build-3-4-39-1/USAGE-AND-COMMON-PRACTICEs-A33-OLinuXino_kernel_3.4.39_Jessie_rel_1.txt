@@ -113,17 +113,10 @@ or
 #insmod /lib/modules/3.4.39+/kernel/drivers/
 Unfortunately currently there is no other method to prepare the NAND except for programing with android image using phoenix suit first. 
 
-
-
-
-- I2C2(100KHz) - /dev/i2c-2
-- I2C1(100KHz) - /dev/i2c-1
-- UART4(only for A20-LIME and A20-LIME2) - /dev/ttyS1
-- UART6(only for A20-SOM, A20-OLinuXino-MICRO) - /dev/ttyS1
-- UART7(only for A20-SOM, A20-OLinuXino-MICRO) - /dev/ttyS2
-- SPI1((only for A20-SOM, A20-OLinuXino-MICRO)) - /dev/spidev1.0
-- SPI2 - /dev/spidev2.0 there is a simple test for SPI2 in /opt/spidev directory:
-
+- I2C1(100KHz) - /dev/i2c-0 - SCL pin - PH02; SDA pin - PH03 (pins #36 and #34 of the GPIO connector)
+- I2C2(100KHz) - /dev/i2c-1 - SCL pin - PH04; SDA pin - PH05 (pins #32 and #30 of the GPIO connector)
+- UART0 (debug) - /dev/ttyS0 - TX pin - PB00; RX pin - PB01 (at available at UART0 header)
+- UART1 - /dev/ttyS1 - TX pin - PG06; RX pin - PG07 (pins #25 and #27 of the GPIO connector)
 
 - BUTTONs - we use evtest package for testing. To start it:
 

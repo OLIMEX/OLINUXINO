@@ -1,7 +1,7 @@
 iMX233-OLinuXino Debian rootfs generation
 
 If you find this boring the good news is that we have already pre-build Debian rootfs and you can just download it from here: https://docs.google.com/open?id=0B-bAEPML8fwlOHJkX2ZNanVfR2s
-Then read how to make your boot SD-card as described here: https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/DEBIAN/README.TXT
+Then read how to make your boot SD-card as described here: https://github.com/OLIMEX/OLINUXINO/blob/master/SOFTWARE/iMX233/DEBIAN/DEBIAN-README.TXT
 
 Otherwise if you want to go through the learning path follow these instructions:
 

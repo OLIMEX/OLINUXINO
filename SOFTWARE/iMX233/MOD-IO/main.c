@@ -182,7 +182,7 @@ int main(int argc, char **argv)
 	{
 		printf("USAGE: -command [address] [data]\n");
 		printf("\n\r");
-		printf("-relay\t-Toggle ralays\n");
+		printf("-relay\t-Toggle relays\n");
 		printf("-dig\t-Get digital inputs\n");
 		printf("-an1\t-Get analog 1\n");
 		printf("-an2\t-Get analog 2\n");

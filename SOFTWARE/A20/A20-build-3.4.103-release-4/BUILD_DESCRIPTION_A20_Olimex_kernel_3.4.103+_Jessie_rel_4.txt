@@ -172,13 +172,13 @@ You can download the latest kernel sources using the following command:
 
 # git clone https://github.com/linux-sunxi/linux-sunxi
 
-You can switch to this exact commit with the next command:
-
-# git reset --hard 9a1cd034181af628d4145202289e1993c1687db6
-
 After the download navigate to the kernel directory:
 
 # cd linux-sunxi/
+
+You should switch to this exact commit with the next command:
+
+# git reset --hard 9a1cd034181af628d4145202289e1993c1687db6
 
 ---
 

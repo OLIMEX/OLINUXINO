@@ -131,15 +131,14 @@ After the download go to the kernel directory:
 
 download the  spi-sun7i.c file using wget command 
 
-# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build/spi-sun7i.c
-
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.90/spi-sun7i.c
 and copy it in drivers/spi directory
 
 # cp spi-sun7i.c drivers/spi 
 
 download the patch file SPI.patch using wget command
 
-# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build/SPI.patch
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.90/SPI.patch
 
 and apply the patch:
 
@@ -152,7 +151,7 @@ settings.
 
 Download a20_olimex_defconfig  using wget command 
 
-# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build/a20_olimex_defconfig
+# wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A20/A20-build-3.4.90/a20_olimex_defconfig
 
 then copy a20_olimex_defconfig file to configs directory:
 
@@ -307,16 +306,16 @@ parameters, video resolution etc, according to the A20 board you use you have to
 different script.bin file.
 
 7.1 for A20-OLinuXino_Lime2 board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.90/scripts_a20_Lime2_34_90_camera_rel_2/script.bin
 
 7.2 for A20-SOM board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/A20-SOM-3.4.90_camera_scripts_rel_3/script_a20_SOM_HDMI_720p50/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.90/A20-SOM-3.4.90_camera_scripts_rel_3/script_a20_SOM_HDMI_720p50/script.bin
 
 7.3 for A20-OLinuXino-MICRO board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/script_a20_OLinuXino-micro_3.4.90_camera_rel_10/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.90/script_a20_OLinuXino-micro_3.4.90_camera_rel_10/script.bin
 
 7.4 for A20-OLinuXino-LIME board download the script.bin file using wget command
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build/script_a20_lime_3.4.90_camera_rel_3/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.90/script_a20_lime_3.4.90_camera_rel_3/script.bin
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card
 # cp script.bin /mnt/sd

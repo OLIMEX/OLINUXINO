@@ -220,7 +220,7 @@ static PyObject* py_open(PyObject* self, PyObject* args, PyObject* kwargs){
     /* Set default values */
     config.mode = 0;
     config.bits_per_word = 8;
-    config.speed = 100000;
+    config.speed = 10000000;
     config.delay = 0;
 
     /* Define keywords */

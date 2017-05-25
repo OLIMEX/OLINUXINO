@@ -176,7 +176,16 @@ window that appears after calibrations to Option "Calibration" section in
 it is eth1 interface
 - USB WEB camera A4TECH
 - WIFI-RTL8188 - https://www.olimex.com/Products/Modules/Ethernet/MOD-WIFI-RTL8188/ - you have to
-set your SSID network and your password in /etc/network/interfaces file
+set your SSID network and your password in /etc/network/interfaces file; if there are problems in
+bringing the WIFI interface up; first create a file "/etc/modprobe.d/blacklist-rtlcommon.conf" 
+then access it for editing with command "nano /etc/modprobe.d/blacklist-rtlcommon.conf". Inside 
+the file insert these three lines:
+
+install rtl8192cu /bin/false
+install rtl8192c_common /bin/false
+install rtlwifi /bin/false
+
+Save and close the file (Ctrl+X; Y; Enter). Finally, reboot the board with "reboot" command.
 - MOD-WIFI-R5370 - https://www.olimex.com/Products/USB-Modules/MOD-WIFI-R5370 - you have to set your
 SSID network and your password in /etc/network/interfaces file
 - USB-OTG - low/full/high USB host - there is USB gadgets module enabled, you can use USB_OTG for

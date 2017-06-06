@@ -190,12 +190,52 @@ address of USB0 interface - 192.168.2.1. Note that USB0 interface IP address by 
 
 - USB-HOSTs - low/full/high USB hosts
 - MOD-USB3G	-	https://www.olimex.com/Products/USB-Modules/MOD-USB3G - in order to test MOD-USB3G
-module you have to place SIM card (without pin code) in the module and connect it to USB host
-connector, then edit the network settings in /etc/wvdial.conf file according to your mobile operator
+module you need to make sure that usb-modeswitch is installed. Issue the following commands:
+
+  apt-get update
+  apt-get install usb-modeswitch
+  sudo reboot
+
+Then place the SIM card (without pin code) in the module and connect it to USB host connector, 
+then edit the network settings in /etc/wvdial.conf file according to your mobile operator
 and type:
 
-#wvdial 3gconnect
+  #wvdial <name_specified_in_wvdial>
 
+A wvdial.conf that we have used successfully here (use only as reference):
+
+[Dialer VIVACOM]
+Init1 = ATZ
+Init2 = ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+Init3 = AT+CGDCONT=1,"IP","internet.vivacom.bg"
+Stupid Mode = 1
+Modem Type = Analog Modem
+ISDN = 0
+Phone = *99#
+Modem = /dev/ttyUSB0
+Username = {VIVACOM}
+Password = {VIVACOM}
+Baud = 460800
+
+Then I run:
+
+  wvdial VIVACOM &
+
+and ping with
+
+  ping google.com
+
+If you have problems try to add the modem manually with:
+
+  nano /etc/usb_modeswitch.d/05c6\:1000
+
+This opens a new file and you enter the following information inside:
+
+  TargetVendor=0x05c6
+  TargetProduct=0x6000
+  StandardEject=1
+  
+Save and close the file. Try again.
 - micoSD card interface - Linux boots from this microSD card usually; in case you boot from NAND it
 can be used as a storage
 - SD card interface - can be used as storage 

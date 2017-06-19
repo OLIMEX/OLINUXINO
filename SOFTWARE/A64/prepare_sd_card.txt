@@ -1,0 +1,123 @@
+Formatting and setting up the SD card
+==============================
+
+This document details how to create a bootable card after you have done building the image from scratch. If you are using the ready image, you shouldn't follow this guide (just write the ready-to-use official image (available as torrent) to the card with "dd" or "Win32 Disk Imager".
+
+In order to follow this guide you would need several tools. You need to use a Linux computer. This guide assumes that you use a Linux PC. You would need an SD card and an SD card writer/reader. We suggest using a class 10 microSD card with memory capacity of at least 4GB. We haven't tested microSD cards bigger than 16GB. 
+
+First we have to make the correct card partitions using fdisk. Plug the card into the SD card reader and type
+in the terminal:
+
+# ls /dev/sd
+
+Then press two times <TAB> and you will see a list of sd devices like sda sdb sdc. Note that some of these
+devices would be your hard disk so ensure that you know which one is your sd card before you proceed as you can
+damage your HDD if you choose the wrong sd-device. You can do this by unplugging your sd card reader - pay
+attention which "sd" device disappears from the list.
+
+Once you know which one is your microSD (as sda#) use it instead of the sdX name in the references below:
+
+# fdisk /dev/sdX
+
+then:
+
+p
+
+will list your partitions. If there are already partitions on your card do:
+
+press d enter 1
+
+if you have more than one partition press d to delete them all
+
+create the first partition, starting from 40960, 50MB of size:
+
+n enter p enter 1 enter 40960 enter +50M
+
+create second partition, starting from 143360
+
+n enter p enter 2 enter 143360
+
+then list the created partitions:
+
+p enter
+
+set file system type:
+
+press t, choose c type(W95 FAT32 (LBA)) for the first partition
+
+if you did everything correctly on 4GB card you should see something like:
+
+Disk /dev/sdc: 3980 MB, 3980394496 bytes
+123 heads, 62 sectors/track, 1019 cylinders, total 7774208 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdc1           40960      143359       51200    c  W95 FAT32 (LBA)
+/dev/sdc2          143360     7774207     3815424   83  Linux
+
+write changes to sd card:
+
+press w
+
+Now we have to format the file system on the card (the first partition should be vfat as this is FS which the
+Allwinner bootloader understands):
+
+# mkfs.vfat /dev/sdX1
+
+The second should be normal Linux EXT3 FS:
+
+# mkfs.ext4 /dev/sdX2
+
+copy files after compiling the image with instruction from:
+
+https://github.com/hehopmajieh/olinuxino_configs/tree/master/A64-OLinuXino
+
+==========
+
+write boot0.bin 
+# sudo dd if=a64-olinuxino/blobs/boot0.bin conv=notrunc bs=1k seek=8 of=/dev/sdX
+
+write u-boot
+# sudo dd conv=notrunc bs=1k seek=19096 if=a64-olinuxino/build/u-boot-sun50iw1p1-secure-with-teres-dtb.bin of=/dev/sdX
+
+mount first sd card partition
+# sudo mount /dev/sdX1 /mnt
+
+download first sd card partition files
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A64/a64_first_partition.tgz
+
+extract to first partition on the sd card
+# sudo tar xzvf a64_first_partition.tgz -C /mnt
+
+download device tree file a64-olinuxino.dtb 
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A64/a64-olinuxino.dtb
+
+copy the a64-olinuxino.dtb ti first sd card partition 
+# cp  a64-olinuxino.dtb /mnt/A64
+
+copy kernel image to first partition
+# cp linux-a64/arch/arm64/boot/Image /mnt/A64
+
+umount first sd card partition and mount the second
+# sudo umount /dev/sdX1 
+# sudo mount /dev/sdX2 /mnt
+
+download the Ubuntu file system or use your own
+# wget https://www.olimex.com/wiki/images/b/bf/A64-olinuxino_ubuntu_fs_rel_1.torrent
+
+extract the file system archive
+# sudo tar xzvf a64-olinuxino_ubuntu_fs_rel_1.tgz -C /mnt
+
+remove the current modules
+# sudo rm -rf /mnt/lib/modules/3.10.104
+
+copy compiled kernel modules
+# cp -rfv a64-olinuxino/linux-a64/out/lib/modules/3.10.104 /mnt/lib/modules
+# sync
+# sudo umount /dev/sdX2 
+
+login:olimex
+pass:olimex

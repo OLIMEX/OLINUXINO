@@ -1,9 +1,14 @@
 Formatting and setting up the SD card
 ==============================
 
-This document details how to create a bootable card after you have done building the image from scratch. If you are using the ready image, you shouldn't follow this guide (just write the ready-to-use official image (available as torrent) to the card with "dd" or "Win32 Disk Imager".
+This document details how to create a bootable card after you have done building the image from scratch. 
+If you are using the ready image, you shouldn't follow this guide (just write the ready-to-use official 
+image (available as torrent) to the card with "dd" or "Win32 Disk Imager".
 
-In order to follow this guide you would need several tools. You need to use a Linux computer. This guide assumes that you use a Linux PC. You would need an SD card and an SD card writer/reader. We suggest using a class 10 microSD card with memory capacity of at least 4GB. We haven't tested microSD cards bigger than 16GB. 
+In order to follow this guide you would need several tools. You need to use a Linux computer. This guide
+assumes that you use a Linux PC. You would need an SD card and an SD card writer/reader. We suggest using
+a class 10 microSD card with memory capacity of at least 4GB. We haven't tested microSD cards bigger than
+16GB. 
 
 First we have to make the correct card partitions using fdisk. Plug the card into the SD card reader and type
 in the terminal:

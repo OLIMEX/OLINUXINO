@@ -400,27 +400,27 @@ file.
 7.1.1 for A20-OLinuXino-LIME2 board or A20-OLinuXino-LIME2 board with NAND download the script.bin file using
 wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-5/script_a20_Lime2_NAND/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-7/script_a20_Lime2_NAND/script.bin
 
 7.1.2 for A20-OLinuXino-LIME2 board with EMMC download the script.bin file using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-5/script_a20_OLinuXino-micro-eMMC/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-7/script_a20_lime2_eMMC/script.bin
 
 7.2 for A20-SOM board download the script.bin file using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-5/script_a20-SOM/script_a20_SOM_HDMI_720p50/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-7/script_a20-SOM/script_a20_SOM_HDMI_720p50/script.bin
 
 7.3 for A20-OLinuXino-MICRO-4G(with NAND) board download the script.bin file using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-5/script_a20_OLinuXino-micro_NAND/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-7/script_a20_OLinuXino-micro_NAND/script.bin
 
 7.4 for A20-OLinuXino-MICRO-eMMC(with eMMC) board download the script.bin file using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-5/script_a20_OLinuXino-micro-eMMC/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-7/script_a20_OLinuXino-micro-eMMC/script.bin
 
 7.5 for A20-OLinuXino-LIME board download the script.bin file using wget command
 
-# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-5/script_a20_lime/script.bin
+# wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-build-3.4.103-release-7/script_a20_lime/script.bin
 
 then copy the downloaded script.bin file to the mounted first partition of the SD card:
 
@@ -464,7 +464,7 @@ Download debian rootfs with the file name "Debian_FS_34_103_Jessy_8.1_A20-olimex
 only as a torrent. You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc). The link to
 the torrent file is:
 
-# wget https://www.olimex.com/wiki/images/9/9a/Debian_FS_34_103_Jessy_8.1_A20-olimex_rel_3.torrent
+# wget https://www.olimex.com/wiki/images/b/b5/Debian_FS_34_103_Jessy_8.1_A20-olimex_rel_4.torrent
 
 Launch the torrent client and download the file.
 
@@ -474,7 +474,7 @@ Now mount the microSD card EXT3 FS partition:
 
 and unarchive the rootfs
 
-# tar xzvf Debian_FS_34_103_Jessy_8.1_A20-olimex_rel_3 -C /mnt/sd
+# tar xzvf Debian_FS_34_103_Jessy_8.1_A20-olimex_rel_4.tgz -C /mnt/sd
 # ls /mnt/sd
 
 The correct result should be:

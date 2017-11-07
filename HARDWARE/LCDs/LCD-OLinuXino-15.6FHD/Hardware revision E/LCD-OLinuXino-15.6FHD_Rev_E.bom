@@ -1,0 +1,30 @@
+Partlist exported from J:/SVN/OLIMEX_OTHER/LCD-Olinuxino-15.6''_FHD/Hardware/trunk/BRD/LCD-OLinuXino-15.6FHD_Rev_E.sch at 20/11/2014 15:17:05 
+
+Qty Value                                 Device                                Parts              
+1   0R(board_munted)                      R_0R0R(NA)                            R6                 
+3   1.1k/1%                               R-EU_R0603_5MIL_DWS                   R5, R11, R14       
+1   1N5822/SS34/SMA                       D-MLL-41                              D2                 
+1   2.2uH/3A/YS75/7x8                     LLQH88PN100M38                        L1                 
+1   3.3V:Open/5.0V:Close                  SJ2W5                                 3.3V/5.0V          
+4   10k                                   R-EU_R0603_5MIL_DWS                   R1, R2, R4, R13    
+2   10uF/16V                              C-EUC0805_5MIL_DWS                    C5, C6             
+2   18.2k/1%                              R-EU_R0603_5MIL_DWS                   R3, R10            
+5   22uF/6.3V                             C-EUC0603_DWS                         C1, C2, C3, C7, C8 
+2   560R                                  R-EU_R0603_5MIL_DWS                   R8, R12            
+1   BAT54C                                DIODE_AC-CA_                          D1                 
+1   BSS138                                N-MOS+DIODBSS138(SOT23-3)             FET3               
+1   DCJ-W54R-20-LF                        PWR-JAKDCJ-W                          PWR_JACK           
+1   DTC114YKA                             DIGITAL_TRANSISTORS-NPNDTC114YKA      T1                 
+1   EN:Open/CTRL:Close                    SJ2W5                                 EN/CTRL            
+3   FIDUCIAL                              FIDUCIAL                              U$1, U$2, U$3      
+1   H-WX-1x3                              JP2EHN1X3-SMD                         PWR_JACK/5V_LCD_CON
+3   IRLML6402                             P-MOS+DIODIRLML6402                   FET1, FET2, FET4   
+1   LCD15.6''(B156XW04_V5)FPV-WZA21-40-LF LCD15.6''(B156XW04_V5)FPV-WZA21-40-LF LCD                
+1   ML40-GBH-254-SMT-40                   ML40-GBH-254-SMT-40                   LCD_CON            
+1   ML40-GPH127SMT-02X20                  ML40-GPH127SMT-02X20(PA-V16X-2X20-LF) LCD_LIME2          
+1   ML40-GPH127SMT-02X20                  ML40YA-V36P-2X20-LF                   LCD_LIME           
+1   NA                                    C-EUC0603_DWS                         C4                 
+2   NA(4.7k)                              R-EU_R0603_5MIL_DWS                   R7, R9             
+1   PWR_JACK:Open/10V_DCDC:Close          SJ2W3                                 JACK/10V_DC        
+1   SY7208(SOT23-6)                       SY7208                                U1                 
+2   open                                  SJSJ_1_THE_SMALLEST                   BKL_E, LED_E       

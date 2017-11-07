@@ -1,0 +1,44 @@
+Partlist exported from J:/SVN/OLIMEX_OTHER/LCD-OLINUXINO-10''TS/Hardware/tags/LCD-OLINUXINO-10''TS_Rev_C1/BRD/LCD-OLINUXINO-10''TS_Rev_C.sch at 19/06/2017 15:25:27 
+
+Qty Value                                       Device                                Parts                                                      
+1   1.1R                                        R-EU_R0603_5MIL_DWS                   R12                                                        
+5   1.05k/1%                                    R-EU_R0603_5MIL_DWS                   R10, R11, R22, R26, R32                                    
+2   1N5819/SS14                                 SCHOTKKY7.62SS2                       D2, D5                                                     
+2   1uF/25V                                     C-EUC0805_5MIL_DWS                    C4, C5                                                     
+1   2.2k                                        R-EU_R0603_5MIL_DWS                   R8                                                         
+2   4.7k                                        R-EU_R0603_5MIL_DWS                   R13, R14                                                   
+2   4.7uH/1.15A/DCR<0.1R/CD43                   L-CD42(43)                            L1, L2                                                     
+1   5V:Close/3.3V:Open                          SJ2W6                                 3.3V/5V                                                    
+5   10k                                         R-EU_R0603_5MIL_DWS                   R7, R19, R23, R25, R30                                     
+2   10uF/16V                                    C-EUC0805_5MIL_DWS                    C6, C15                                                    
+4   20k/1%                                      R-EU_R0603_5MIL_DWS                   R1, R2, R9, R21                                            
+6   22uF/6.3V                                   C-EUC0603_DWS                         C1, C7, C8, C17, C18, C21                                  
+4   47k                                         R-EU_R0603_5MIL_DWS                   R33, R36, R37, R39                                         
+3   56.2k/1%                                    R-EU_R0603_5MIL_DWS                   R16, R17, R18                                              
+12  100nF                                       C-EUC0603_DWS                         C2, C3, C9, C10, C11, C12, C13, C14, C16, C19, C20, C22    
+1   220R                                        R-EU_R0603_5MIL_DWS                   R15                                                        
+1   562R/1%                                     R-EU_R0603_5MIL_DWS                   R29                                                        
+2   AP3031KTR-G1                                AP3031KTR-G1                          U1, U2                                                     
+1   BAT54C                                      DIODE_AC-CA_                          D1                                                         
+2   BAT54S                                      DIODE_AC-AC_                          D3, D4                                                     
+1   BZV55C5V1                                   ZDIOD-SMD                             Z1                                                         
+1   BZV55C20                                    ZDIOD-SMD                             Z2                                                         
+1   CTRL:Close/EN:Open                          SJ2W5                                 CTRL/EN                                                    
+1   DCJ-W54R-20-LF                              PWR-JAKDCJ-W                          PWR_JACK                                                   
+1   DTC114YKA                                   DIGITAL_TRANSISTORS-NPNDTC114YKA      T1                                                         
+1   F101T50+(FPV-WZA21-50-LF)+(FPA-WZB25-04-LF) LCD10"_TOUCH-F101T50                  LCD                                                        
+3   FIDUCIAL                                    FIDUCIAL                              U$1, U$2, U$3                                              
+1   FPV-WZA21-40LF                              ML40-FPV-WZA21-40-LF                  LCD_A64-OLINUXINO                                          
+1   GPH127SMT-02x20                             ML40-GPH127SMT-02X20(PA-V16X-2X20-LF) LCD_LIME2                                                  
+1   GPH127SMT-02x20                             ML40YA-V36P-2X20-LF                   LCD_LIME                                                   
+1   H-WX-1x3                                    JP2EHN1X3-SMD                         5V_JACK/5V_LCD_CON                                         
+2   IRLML6402                                   P-MOS+DIODIRLML6402                   FET1, FET2                                                 
+1   ML40-GBH-254-SMT-40                         ML40-GBH-254-SMT-40                   LCD_CON                                                    
+13  NA                                          R-EU_R0603_5MIL_DWS                   R3, R4, R5, R6, R20, R24, R27, R28, R31, R34, R35, R38, R40
+2   NA                                          SJ                                    VLED+_E, VLED-_E                                           
+2   NA(100uF/16V)                               CPOL-EUC-SMD5X11-M                    C23, C24                                                   
+1   NA(BZV55C3V0)                               ZDIOD-SMD                             Z3                                                         
+1   NA(BZV55C3V9)                               ZDIOD-SMD                             Z4                                                         
+1   NA(HN1X8)                                   CON8HN1X8                             PWR                                                        
+2   Open                                        SJ                                    L/R, U/D                                                   
+2   TESTPAD120X40                               TESTPAD120X40                         VLED+, VLED-                                               

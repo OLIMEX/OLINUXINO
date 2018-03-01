@@ -45,12 +45,17 @@ def InttoBCD(Int):
 	a = Int % 10;
 	b = Int / 10;	
 	return (b << 4) + a;
+
+def is_leap_year(year):
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
 def PrintF(string, color):	
 	try:
 		print colored(string, color)
 	except:
 		print string
 	return 
+
 def Read_RTC(option, opt, value, parser):
 	"Read the date from MOD-RTC"
 	
@@ -144,14 +149,23 @@ def Read_RTC(option, opt, value, parser):
 		mon = "Nov"
 	else:
 		mon = "Dec"	
-	
+	if is_leap_year(BCDtoInt(buf[6])+1900) == False and BCDtoInt(buf[5]) == 2 and BCDtoInt(buf[5])==29:
+        set_new_date = BCDtoInt(1)
+        mon = "Mar"
+        os.system("date -s \"%s %s %d %d:%d:%d %d\"" % (wday, mon, set_new_date,
+									BCDtoInt(buf[2]), BCDtoInt(buf[1]),
+									BCDtoInt(buf[0]), BCDtoInt(buf[6])+1900)
+        Sync_RTC(option, opt, value, '-s')
+    else:
+        set_new_date = BCDtoInt(buf[3])
+
 	
 	#printing the date	
-	print "%s %s %d %d:%d:%d %d" % (wday, mon, BCDtoInt(buf[3]),
+	print "%s %s %d %d:%d:%d %d" % (wday, mon, is_leap_year,
 									BCDtoInt(buf[2]), BCDtoInt(buf[1]),
 									BCDtoInt(buf[0]), BCDtoInt(buf[6])+1900)
 		
-	return "%s %s %d %d:%d:%d %d" % (wday, mon, BCDtoInt(buf[3]),
+	return "%s %s %d %d:%d:%d %d" % (wday, mon, is_leap_year,
 									BCDtoInt(buf[2]), BCDtoInt(buf[1]),
 									BCDtoInt(buf[0]), BCDtoInt(buf[6])+1900)
 		
@@ -222,6 +236,7 @@ def Write_RTC(option, opt, value, parser):
 		PrintF("Red", "red")
 		
 	return	
+
 def Sync_RTC(option, opt, value, parser):
 	"Sync system clock with MOD-RTC"
 	
@@ -316,11 +331,17 @@ def Sync_RTC(option, opt, value, parser):
 	else:
 		mon = "Dec"	
 	
-	
+	if is_leap_year(BCDtoInt(buf[6])+1900) == False and BCDtoInt(buf[5]) == 2 and BCDtoInt(buf[3]) == 29:
+            set_new_date = BCDtoInt(1)
+            mon = "Mar"
+    else:
+        set_new_date = BCDtoInt(buf[3])
 	#printing the date	
-	os.system("date -s \"%s %s %d %d:%d:%d %d\"" % (wday, mon, BCDtoInt(buf[3]),
+	os.system("date -s \"%s %s %d %d:%d:%d %d\"" % (wday, mon, set_new_date,
 									BCDtoInt(buf[2]), BCDtoInt(buf[1]),
 									BCDtoInt(buf[0]), BCDtoInt(buf[6])+1900))
+	if is_leap_year(BCDtoInt(buf[6])+1900) == False and BCDtoInt(buf[5]) == 2:
+            Write_RTC(option, opt, value, '-w')
 									
 									
 	return

@@ -149,10 +149,9 @@ def Read_RTC(option, opt, value, parser):
 		mon = "Nov"
 	else:
 		mon = "Dec"	
-	
-	if is_leap_year(BCDtoInt(buf[6])+1900) == False and BCDtoInt(buf[5]) == 2 and BCDtoInt(buf[5])==29:
+    if is_leap_year(BCDtoInt(buf[6])+1900) == False and BCDtoInt(buf[5]) == 2 and BCDtoInt(buf[5])==29:
         set_new_date = BCDtoInt(buf[3]) - 1
-        Sync_RTC(option, opt, value, '-w')
+        Sync_RTC(option, opt, value, '-s')
     else:
         set_new_date = BCDtoInt(buf[3])
 

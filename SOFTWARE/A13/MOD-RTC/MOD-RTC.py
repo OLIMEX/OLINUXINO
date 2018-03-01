@@ -29,10 +29,13 @@ import sys
 import os
 import datetime
 import time
+import shelve
 
 #declare global variable
 I2C_Bus = 0
 DEBUG = 0
+RTCBUG = False
+LAST_SYNC_FILE = 'last_date_sync"
 
 #function definitions
 def BCDtoInt(bcd):
@@ -45,12 +48,17 @@ def InttoBCD(Int):
 	a = Int % 10;
 	b = Int / 10;	
 	return (b << 4) + a;
+
+def is_leap_year(year):
+    return year % 4
+
 def PrintF(string, color):	
 	try:
 		print colored(string, color)
 	except:
 		print string
 	return 
+
 def Read_RTC(option, opt, value, parser):
 	"Read the date from MOD-RTC"
 	
@@ -144,14 +152,13 @@ def Read_RTC(option, opt, value, parser):
 		mon = "Nov"
 	else:
 		mon = "Dec"	
-	
-	
+
 	#printing the date	
 	print "%s %s %d %d:%d:%d %d" % (wday, mon, BCDtoInt(buf[3]),
 									BCDtoInt(buf[2]), BCDtoInt(buf[1]),
 									BCDtoInt(buf[0]), BCDtoInt(buf[6])+1900)
 		
-	return "%s %s %d %d:%d:%d %d" % (wday, mon, BCDtoInt(buf[3]),
+	return "%s %s %d %d:%d:%d %d" % (wday, mon, is_leap_year,
 									BCDtoInt(buf[2]), BCDtoInt(buf[1]),
 									BCDtoInt(buf[0]), BCDtoInt(buf[6])+1900)
 		
@@ -182,6 +189,11 @@ def Write_RTC(option, opt, value, parser):
 		print "Reading system clock...",
 	try:
 		a = time.gmtime()
+        #FIXME: Write last sync object. Using on line 334 if RTCBUG == True
+        if RTCBUG == Tree:
+            f = shelve.open(LAST_SYNC_FILE)
+            holder['last_sync_time'] = a
+            f.close()
 		if DEBUG:
 			PrintF("Done", "green")
 	except:
@@ -222,6 +234,7 @@ def Write_RTC(option, opt, value, parser):
 		PrintF("Red", "red")
 		
 	return	
+
 def Sync_RTC(option, opt, value, parser):
 	"Sync system clock with MOD-RTC"
 	
@@ -316,13 +329,32 @@ def Sync_RTC(option, opt, value, parser):
 	else:
 		mon = "Dec"	
 	
-	
+	if RTCBUG == True:
+    
+    if RTCBUG == Tree:
+        #FIXME: Check! Fix RTC bus if RTCBUG == True
+        f = shelve.open(LAST_SYNC_FILE, 'r')
+        last_sync_time = holder['last_sync_time']
+        f.close()
+        if last_sync_time.tm_year == BCDtoInt(buf[6])+1900):
+            if last_sync_time.tm_mon > 2 or last_sync_time.tm_mon < 2:
+                set_new_date = BCDtoInt(buf[3])
+            elif last_sync_time.tm_mon == 2 and buf[3] <= 28:
+                 set_new_date = BCDtoInt(buf[3])
+            elif last_sync_time.tm_mon == 2 and buf[3] > 28 and is_leap_year(BCDtoInt(buf[6])+1900) > 0:
+                set_new_date = BCDtoInt(buf[3]) - is_leap_year(BCDtoInt(buf[6])+1900)
+        elif last_sync_time.tm_year > BCDtoInt(buf[6])+1900):
+            var = 0
+            while last_sync_time.tm_year > BCDtoInt(buf[6])+1900):
+                var += last_sync_time.tm_year
+                last_sync_time.tm_year += 1
+            set_new_date = BCDtoInt(buf[3]) + var
+    else:
+        set_new_date = BCDtoInt(buf[3])
 	#printing the date	
-	os.system("date -s \"%s %s %d %d:%d:%d %d\"" % (wday, mon, BCDtoInt(buf[3]),
+	os.system("date -s \"%s %s %d %d:%d:%d %d\"" % (wday, mon, set_new_date,
 									BCDtoInt(buf[2]), BCDtoInt(buf[1]),
 									BCDtoInt(buf[0]), BCDtoInt(buf[6])+1900))
-									
-									
 	return
 
 def main():

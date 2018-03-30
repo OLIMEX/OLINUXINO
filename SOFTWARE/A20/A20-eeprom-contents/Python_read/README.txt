@@ -29,7 +29,7 @@ Board: A20-OLinuXino-LIME2-n8GB Rev.G2, Serial: 0x1494, ID: 8910
 External memory: NAND 8 GB
 RAM size = 1 GB
 MAC address: 30:1F:9A:D0:06:10
-Commercial grade
+Commercial grade (0-70) degrees Celsius
 
 Stanimir Petev, Olimex
 2018/03/30

@@ -82,6 +82,6 @@ print ("MAC address: {}{}:{}{}:{}{}:{}{}:{}{}:{}{}").format(chr(block[18]), chr(
 
 
 if (block[17] == 1):
-  print ("Industrial grade");
+  print ("Industrial grade (-45+85) degrees Celsius");
 else:
-  print ("Commercial grade");
+  print ("Commercial grade (0-70) degrees Celsius");

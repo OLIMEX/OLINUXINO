@@ -1,8 +1,8 @@
 This repository contains:
 
-Hardware design files for A13-OLinuXino and A13-OLinuXino-WIFI. PDF exports are available also.
+Original hardware design files for A13-OLinuXino and A13-OLinuXino-WIFI. These are made with Eagle 4.16r2. PDF exports are available also.
 
-Both boards use same schematics, but the A13-OLinuXino-WIFI comes with NAND memory and on-board MOD-WIFI-RTL8188ETV module.
+Both boards use same design files, but the A13-OLinuXino-WIFI comes with NAND memory and on-board MOD-WIFI-RTL8188ETV module.
 
 Notice that it is possible that simultaneously purchased A13-OLinuXino and A13-OLinuXino-WIFI to be from different revisions.
 
@@ -28,11 +28,11 @@ Major changes in revision H compared to previous revision G2:
 
 Changes in revision G2 compared to previous revision G1:
 
-- changed C144 to 100pF
+- Changed C144 to 100pF
 
 Changes in revision G1 compared to previous revision G:
 
-- added capacitor C144 1nF on DDR3-RST signal
+- Added capacitor C144 1nF on DDR3-RST signal
 
 Changes in revision F compared to previous revision E1:
 

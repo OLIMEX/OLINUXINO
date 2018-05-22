@@ -335,3 +335,49 @@ if the other is client then type:
 # cansend can0 123#1E.66.55
 
 You will receive can data from server
+
+- External interrupts (EINT)
+
+Export some GPIOs - for example number 1 to number 89 (refer to the FEX file to make sure these are free-to-use).
+
+# for i in `seq 1 1 89`; do echo $i > /sys/class/gpio/export; done
+
+That exports all the ones not already used in the FEX file.
+
+Then look for 'edge':
+
+# root@A20-OLinuXino:~# find / -name edge
+
+This returns a list:
+
+# /sys/devices/platform/gpio-sunxi/gpio/gpio58_pi10/edge 
+# /sys/devices/platform/gpio-sunxi/gpio/gpio59_pi11/edge 
+# /sys/devices/platform/gpio-sunxi/gpio/gpio60_pi14/edge 
+
+...
+
+# /sys/devices/platform/gpio-sunxi/gpio/gpio26_ph19/edge 
+# /sys/devices/platform/gpio-sunxi/gpio/gpio27_ph20/edge 
+# /sys/devices/platform/gpio-sunxi/gpio/gpio28_ph21/edge 
+
+Then raise the edge for a specific pin (replace xx_xxxx with the pin from the list of exported ones):
+
+# echo rising > /sys/class/gpio/gpioxx_xxxx/edge
+
+Looked at the new interrupt that appeared in /proc/interrupts with a 'gpio-sunxi gpiolib' tag
+
+Look in the A20 manual and get the EINT numbers and look at the Linux interrupt number.
+
+The Linux interrupt number is 160 + EINT number! For example:
+
+GPIO        EINT Linux Int
+
+gpio58_pi10  22  182
+gpio59_pi11  23  183
+gpio60_pi14  26  186
+
+.
+.
+.
+
+gpio28_ph21  21  181

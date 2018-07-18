@@ -1,4 +1,8 @@
-# OLinuXino: Single-Board Linux Computer, Copyright (C) 2012-2018, OLIMEX Ltd
+# OLinuXino: Single-Board Linux Computer
+
+![OLIMEX Company Logo](doc/images/smflogo.png "OLIMEX Company Logo")
+
+Copyright (C) 2012-2018, OLIMEX Ltd
 
 ## Overview
 

@@ -1,4 +1,4 @@
-= A13-Python module for GPIO and SPI (bitbang) access
+# A13-Python module for GPIO and SPI (bitbang) access
 
 Now you can have access to the hardware of A13-OLinuXino when you write in Python.
 GPIOs are named same way as in the schematic: PIN1 ... PIN39
@@ -13,7 +13,7 @@ Download from https://pypi.python.org/pypi/pyA13/
 
 2. Example:
 
-== GPIO
+## GPIO
 
 ```python
 #!/usr/bin/env python
@@ -47,7 +47,7 @@ Or use blinking led script
 
   sudo python blink.py
 
-== SPI
+## SPI
 
 ```python
 #import A13_SPI as SPI

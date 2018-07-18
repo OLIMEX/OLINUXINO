@@ -1,4 +1,4 @@
-= A13-OLinuXino + OpenCV Mustache Demo
+# A13-OLinuXino + OpenCV Mustache Demo
 
 1. Install OpenCV
 

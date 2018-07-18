@@ -1,4 +1,4 @@
-= A13-OLinuXino GPIO control by Scratch
+# A13-OLinuXino GPIO control by Scratch
 
 1. Install pyA13
 
@@ -21,11 +21,13 @@ Click: 'Enable remote sensor connections' (if it is not enabled).
 
 5. Open a terminal and execute the python script
 
-  python GPIO.py --host=xxx.xxx.xxx.xxx --port=xxxx --verbose
+```
+python GPIO.py --host=xxx.xxx.xxx.xxx --port=xxxx --verbose
 
 --host  -   IP if you're connecting remote computer
 --port  -   Port number
 --verbose - Print some debug information. 
+```
 
 For example:
 

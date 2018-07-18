@@ -75,7 +75,7 @@ Relay 1 should be turned ON/OFF depending on the analog input on GPIO0 (AN0).
 Relay 2 should be turned ON/OFF depending on the digital input on GPIO1.
 
 
-== Alternative approach
+## Alternative approach
 
 Alternatively if you want to send commands to MOD-IO2 manually without compiling a program, you can do this with i2c tools.
 They allow you to check the address of the module (i2cdetect), to send (i2cset) and receive (i2cget) data.

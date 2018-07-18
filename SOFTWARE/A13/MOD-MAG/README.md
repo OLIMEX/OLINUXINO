@@ -1,6 +1,6 @@
-**MOD-MAG**
+# MOD-MAG
 
-1.Description
+## Description
 
 The demo program is compiled on OLinuXino Maxi board, with the latest available version of ArchLinux v2.6.35-6.
 
@@ -11,10 +11,10 @@ On the terminal are displayed registers from ``0x00`` to ``0x08``.
 
 For more information please read MOD-MAG user manual and MAG3110FCR2 datasheet.
 
-2. Support
+## Support
 
 https://www.olimex.com/dev
 
-3. Release
+## Release
 
 4 Sept 2012

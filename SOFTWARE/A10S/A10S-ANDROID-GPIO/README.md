@@ -1,6 +1,6 @@
-= A10S GPIO under Android
+# A10S GPIO under Android
 
-== GPIO using ADB
+## GPIO using ADB
 
 1. Boot android (from nand or sdcard)
 2. Connect USB-to-Serial cable on UART1
@@ -29,7 +29,7 @@ and to turn it off:
 
   cat /sys/class/gpio_sw/PE3/data
 
-== GPIO using Android SDK
+## GPIO using Android SDK
 
 Basically, you should read and write to the filesystem.
 Ensure that your application is running as root, or nothing will happen.

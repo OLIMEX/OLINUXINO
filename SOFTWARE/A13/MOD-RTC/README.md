@@ -1,4 +1,4 @@
-= MOD-RTC.py
+# MOD-RTC.py
 
 Execute program:
 
@@ -22,7 +22,7 @@ Example:
   date
 
 
-= MOD-RTC.c
+# MOD-RTC.c
 
 Compile program:
 

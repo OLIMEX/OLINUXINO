@@ -1,4 +1,4 @@
-= A13-OLinuXino-WIFI + MOD-GPS GPS data logger with Google maps vsualization
+# A13-OLinuXino-WIFI + MOD-GPS GPS data logger with Google maps vsualization
 
 A13-OLinuXino-WIFI can connect directly to MOD-GPS via UEXT connector.
 Also, the A13-OLinuXino-WIFI has a LiPo battery connector and can charge and operate off of Lithium Polymer batteries.

@@ -5,7 +5,7 @@ Before using this package we recommend reading the article at the [Olimex wiki](
 
 When using GPIO, ensure that the desired GPIO is not used by another peripheral.
 
-= GPIO METHODS
+# GPIO METHODS
 
     init()      -   Make initialization of the module. Always must be called first.
     getcfg()    -   Read current configuration of gpio.
@@ -53,7 +53,7 @@ Generally these constants are just an offset in the memory from the base GPIO ad
 226
 ```
 
-= I2C METHODS
+# I2C METHODS
 
     init()      -   Make initialization of the module
     open()      -   Begin communication with slave device
@@ -61,7 +61,7 @@ Generally these constants are just an offset in the memory from the base GPIO ad
     write()     -   Write data to slave device
     close()     -   End communication with slave device
 
-= SPI METHODS
+# SPI METHODS
 
     open()      -   Open SPI bus with given configuration
     read()      -   Read data from slave device without write
@@ -69,9 +69,9 @@ Generally these constants are just an offset in the memory from the base GPIO ad
     xfer()      -   Do write and after that read
     close()     -   Close SPI bus
 
-= Examples
+# Examples
 
-== GPIO
+## GPIO
 
 ```python
 #!/usr/bin/env python
@@ -101,7 +101,7 @@ while True:
         gpio.output(port.PG9, 1)
 ```
 
-== I2C
+## I2C
 
 ```python
 #!/usr/bin/env python
@@ -122,7 +122,7 @@ value = i2c.read(1) #Read 1 byte with start address 0xAA
 i2c.close() #End communication with slave device
 ```
 
-== SPI
+## SPI
 
 ```python
 #!/usr/bin/env python

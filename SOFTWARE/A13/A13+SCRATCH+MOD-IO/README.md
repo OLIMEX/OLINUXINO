@@ -1,4 +1,4 @@
-= MOD-IO + OLINUXINO-A13 + SCRATCH
+# MOD-IO + OLINUXINO-A13 + SCRATCH
 
 1. Install python-smbus:
 
@@ -19,13 +19,15 @@ remote sensor connections' (if it not enabled).
 
 5. To to terminal and start the python script
 
-  python IO.py -a 0x58 -i 2 --host=xxx.xxx.xxx.xxx --port=xxxx --verbose
+```
+python IO.py -a 0x58 -i 2 --host=xxx.xxx.xxx.xxx --port=xxxx --verbose
 
 -i        - I2C bus that you're using
 -a        - Address of MOD-IO (default 0x58)
 --host    - IP if you're connecting remote computer
 --port    - Port number
 --verbose - Print some debug information. 
+```
 
 For example:
 

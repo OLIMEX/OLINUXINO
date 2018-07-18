@@ -1,4 +1,4 @@
-= iMX233-OLinuXino Software and Projects:
+# iMX233-OLinuXino Software and Projects:
 
 At the time of writing, the ArchLinux package comtains the most advanced kernel and enabled features, so this is used to build examples.
 
@@ -10,7 +10,7 @@ From September 1st all SD cards with Linux images we distribute will contain lat
 
 3. WEB-IO or controlling GPIOs, MOD-GSM, MOD-IO through web project by Dimitar Gamishev: 
 
-= Software resources for iMX233-OLinuXino
+# Software resources for iMX233-OLinuXino
 
 - [Tutorial: How to make a PLC with iMX233-OLinuXino](http://leachy.homeip.net/olinuxino/index.html)
 - [Reading board temperature - Razvan Dragomirescu](http://tech.groups.yahoo.com/group/olinuxino/message/1356)

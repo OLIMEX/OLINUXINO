@@ -1,4 +1,4 @@
-= A13-OLinuXino + OpenCV + Scratch
+# A13-OLinuXino + OpenCV + Scratch
 
 1. Install scratchpy
 

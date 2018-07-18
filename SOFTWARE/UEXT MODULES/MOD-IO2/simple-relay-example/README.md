@@ -1,6 +1,6 @@
-= Simple Linux example for MOD-IO2
+# Simple Linux example for MOD-IO2
 
-== Relay control via analog and digital input
+## Relay control via analog and digital input
 
 This is a tutorial how to build a simple project for A20-OLinuXino-Micro Rev.F with demo for MOD-IO2 Rev.B.
 

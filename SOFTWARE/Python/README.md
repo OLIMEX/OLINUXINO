@@ -1,10 +1,10 @@
-= Python packages for OLinuXino boards
+# Python packages for OLinuXino boards
 
 **Before using the packages make sure that the pins you're will be using are not already used by another peripheral!**
 
 You could use package that is not targeted from your board but this is not recommended.
 
-== Available packages
+## Available packages
 
 - [pyA10Lime](https://pypi.python.org/pypi/pyA10Lime)
 - [pyA13](https://pypi.python.org/pypi/pyA13)
@@ -15,7 +15,7 @@ You could use package that is not targeted from your board but this is not recom
 - [pyA20Lime2](https://pypi.python.org/pypi/pyA20Lime2)
 - [pyA20SOM](https://pypi.python.org/pypi/pyA20SOM)
 
-== Installing from pypi
+## Installing from pypi
 
 **You will need python-dev or python3-dev to build packages.**
 
@@ -27,7 +27,7 @@ cd <package_name>
 sudo python setup.py install
 ```
 
-== Installing from GitHub
+## Installing from git repository
 
 **You will need python-dev or python3-dev to build packages.**
 

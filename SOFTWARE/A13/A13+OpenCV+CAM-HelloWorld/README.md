@@ -1,4 +1,4 @@
-= OpenCV + Python fun with A13-OLinuXino-WIFI
+# OpenCV + Python fun with A13-OLinuXino-WIFI
 
 OpenCV is open source huge image processing library.
 It was build by thousands of contributors for many years.
@@ -20,7 +20,7 @@ The best of all is that OpenCV runs on the A13-OLinuXino-WIFI!
 Rather than using a large desktop computer for OpenCV, you can use an A13-OLinuXino.
 It consumes only 2W of energy and can be placed on your robot and powered just from LiPo 3.7V battery.
 
-== Installing OpenCV on A13-OLinuXino
+## Installing OpenCV on A13-OLinuXino
 
 1. Make sure that your image support cams:
 

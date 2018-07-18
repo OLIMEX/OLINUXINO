@@ -1,4 +1,4 @@
-= Information about the hardware schematics, design sources, and revision changes
+# Information about the hardware schematics, design sources, and revision changes
 
 PDF exports of the schematics are found in this folder.
 Design files are found in the sub-folders.
@@ -14,13 +14,13 @@ The three variants of the board so far are:
 - A64-OLinuXino-1G4GW has 1GB RAM memory, 4GB eMMC flash memory, extra WIFI/BLE module
 - A64-OLinuXino-2G16G-IND has 2GB RAM, 16GB extra flash but NO WiFi/BLE module; with components that work in the industrial -40+85C temperature range
 
-== Hardware revision changes log:
+## Hardware revision changes log:
 
-=== Hardware revision C
+### Hardware revision C
 
 - initial release
 
-=== Hardware revision D
+### Hardware revision D
 
 - Adjusted white print of label C184.
 - Added bypass R66 NA(0R) near FET2.

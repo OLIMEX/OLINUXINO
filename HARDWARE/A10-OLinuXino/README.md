@@ -1,4 +1,4 @@
-= A10-OLinuXino
+# A10-OLinuXino
 
 Revision A
 September, 2012
@@ -9,7 +9,7 @@ Issues :
 
 TODO   : 
 
-= Design specifications
+# Design specifications
 
 - A10 Cortex A8 processor running at 1Ghz
 - 1GB of DDR3 memory (organized as 4 x 256MB x8 with two 2Gbit chips)

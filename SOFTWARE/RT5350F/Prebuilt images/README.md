@@ -37,19 +37,21 @@ If you want image without openwrt you can use:
 
 ### 10 NOV 2015
 
-* Fixed issue with MAC address. They were hard-coded in the 
-factory partition. Now on the first boot a random one is 
-generated and stored.
+* Fixed issue with MAC address.
+They were hard-coded in the factory partition.
+Now on the first boot a random one is generated and stored.
 
 The updated files are:
 - uboot+factory.bin
 - uboot+factory+openwrt.bin
 
-The difference is ONLY in the factory partition. OpenWRT remains the same.
-The MAC address was hard-coded at offset 0x40004. We set WLAN,
-MAC0 and MAC1 MAC addresses to ff:ff:ff:ff:ff. This forces the chip to
-generate random one on every boot. On the first boot this MAC is 
-stored on the filesystem.
+The difference is ONLY in the factory partition.
+OpenWRT remains the same.
+The MAC address was hard-coded at offset 0x40004.
+We set WLAN,
+MAC0 and MAC1 MAC addresses to ff:ff:ff:ff:ff.
+This forces the chip to generate random one on every boot.
+On the first boot this MAC is stored on the filesystem.
 
 ### 24 AUG 2015
 
@@ -59,5 +61,5 @@ stored on the filesystem.
 
 * Changed OpenWrt repository url from snapshots to Chaos Calmer 15.05-rc3
 * Updated WiFi led polarity
-* Added separate images for OLinuXino-RT5350F and EVB. Difference is that on
-the EVB the button and the two relays are exported on boot time.
+* Added separate images for OLinuXino-RT5350F and EVB.
+The difference is that on the EVB the button and the two relays are exported on boot time.

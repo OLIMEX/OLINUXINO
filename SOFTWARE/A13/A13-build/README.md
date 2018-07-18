@@ -1,6 +1,6 @@
-= How to make a bootable SD card for A13-OLinuXino and A13-OLinuXino-WIFI with kernel 3.4.90 and Debian file system
+# How to make a bootable SD card for A13-OLinuXino and A13-OLinuXino-WIFI with kernel 3.4.90 and Debian file system
 
-== Setup of the toolchain
+## Setup of the toolchain
 
 You should make sure you have the tools for building the Linux Kernel and install them if you don't have them. To install new software you should be with super user rights on your Linux machine, so do this type in a terminal.
 
@@ -31,7 +31,7 @@ in the file below:
 
 After the installation you now have all tools to make your very own A13 kernel image!
 
-== Building Uboot
+## Building Uboot
 
 Here you have two options.
 The first is to use sunxi u-boot and the second is to use mainline u-boot. 
@@ -50,7 +50,7 @@ First let's make the directory where we will build the A13-OLinuXino linux:
 
 Follow either branch 2.1 or 2.2 depending on the memory your board has.
 
-=== Building sunxi u-boot 
+### Building sunxi u-boot 
 
 Let's download the uboot sources from the GitHub repository.
 Note there are lot of branches but you have to use sunxi branch.
@@ -89,7 +89,7 @@ You should be in the following directory:
 
 skip to point 3.
 
-=== Building mainline u-boot
+### Building mainline u-boot
 
 Then let's download the uboot sources from GitHub repository.
 Note that the u-boot for A13-OLinuXino is tested with the next branch:
@@ -115,18 +115,20 @@ you can configure some u-boot settings like DDR3 settings, clocks and other with
   make menuconfig
 
 It is recommended to choose:
- 
+
 [*]Enable workaround for booting old kernels
 
-the board has stable behaviour with
+The board has stable behaviour with
+
+```
 [408] sunxi dram clock speed 
 [204] sunxi mbus clock speed
+```
 
-but you can choose other settings depending from your application
+...but you can choose other settings depending from your application.
+Save it the settings and exit.
 
-save it the settings and exit
-
-build the u-boot
+Build u-boot:
 
   make CROSS_COMPILE=arm-linux-gnueabihf-
 
@@ -140,13 +142,13 @@ Now you have to create a new ``boot.cmd`` file with the following contents:
   load mmc 0:1 0x42000000 uImage || load mmc 0:1 0x42000000 boot/uImage
   bootm 0x42000000
 
-convert boot.cmd in boot.scr with the next command
+Convert boot.cmd in boot.scr with the next command
 
   mkimage -C none -A arm -T script -d boot.cmd boot.scr
  
 The result should be a new boot.scr file that you have to copy to the first SD card partitition(where uImage and script.bin file are located).
 
-== Building kernel sources for A13-OLinuXino
+## Building kernel sources for A13-OLinuXino
 
 Kernel sources for A13 are available on GitHub.
 Note that the following building is made with the revision below: 
@@ -228,7 +230,7 @@ in our case the directory with modules is:
 
   linux-sunxi/out/lib/modules/3.4.90+
 
-== Format and setup the SD-card
+## Format and setup the SD-card
 
 We suggest a 4GB class 10 MicroSD card, but you may use any card between 2GB and 16GB.
 
@@ -316,7 +318,7 @@ the second should be normal Linux EXT3 FS
   mkfs.ext3 /dev/sdX2
 
 
-== Write the Uboot and sunxi-spl.bin
+## Write the Uboot and sunxi-spl.bin
 
 You should be in the ``/home/user/a13-olinuxino-kernel_3.4.90#`` directory.
 Note that you have to write u-boot-sunxi-with-spl.bin in /dev/sdX (not sdX1 or sdX2).
@@ -329,18 +331,18 @@ Note that if you use mainline u-boot then you have to copy the generated boot.sc
   mount /dev/sdX1 /mnt/sd
   cp /u-boot/boot.scr /mnt/sd/
 
-== Write kernel uImage you build to the SD-card
+## Write kernel uImage you build to the SD-card
 
 You should be in the ``/home/user/a13-olinuxino-kernel_3.4.90#`` directory.
 
   mkdir /mnt/sd
-# mount /dev/sdX1 /mnt/sd
+  mount /dev/sdX1 /mnt/sd
 
 Copy the Kernel uImage to root directory in partition 1:
 
   cp linux-sunxi/arch/arm/boot/uImage /mnt/sd
 
-== Write script.bin file
+## Write script.bin file
 
 ``script.bin`` is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, Video resolution etc.
 Download the script.bin using wget command:
@@ -350,7 +352,7 @@ Download the script.bin using wget command:
   sync
   umount /dev/sdX1
 
-== Debian rootfs
+## Debian rootfs
 
 The Linux Kernel and Uboot are now ready.
 Now we require the Linux distribution rootfs.

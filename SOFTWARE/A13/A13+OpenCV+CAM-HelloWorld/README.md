@@ -24,25 +24,33 @@ It consumes only 2W of energy and can be placed on your robot and powered just f
 
 1. Make sure that your image support cams:
 
-  ls -l /dev/video*
+```bash
+ls -l /dev/video*
+```
 
 You should have video0 or video1. The demo uses video0.
 
 2. Install OpenCV
 
-  apt-get install libopencv-dev
+```bash
+apt-get install libopencv-dev
+```
 
 (If you dont want all packages, use core dist)
 
 3. Install Python
 
-  apt-get install python-dev
+```bash
+apt-get install python-dev
+```
 
 (This will install Python2.7)
 
 4. Get OpenCV support for python
 
-  apt-get install python-opencv
+```bash
+apt-get install python-opencv
+```
 
 Now you are ready to develop with OpenCV on A13-OLinuXino!
 
@@ -88,9 +96,11 @@ Now let's set up the web server so we can see the pictures with web interface:
 
 5. Get Apache (or whatever else you want)
 
-  apt-get install apache2
+```bash
+apt-get install apache2
+```
 
-the code on the web page is simple:
+The code on the web page is simple:
 
 ```html
 <!DOCTYPE html>
@@ -104,22 +114,29 @@ the code on the web page is simple:
 </html>
 ```
 
-this code is already in the tar.gz file at GitHub: ....
+This code is already in the tar.gz file at the git repository.
 
 6. Go to www-dir
 
-  cd /var/www/
-  mkdir CAM
-  cd CAM
-  tar zxf demo.tar.gz .
+```bash
+cd /var/www/
+mkdir CAM
+cd CAM
+tar zxf demo.tar.gz .
+```
 
 7. Go to images folder and start the python module
 
-  python images/cam2.py &
+```bash
+python images/cam2.py &
+```
 
 8. Open browser and enter the address where your A13 is connected:
 
-  http://192.168.0.xx/CAM/
+```
+http://192.168.0.xx/CAM/
+```
 
-9. You should see images every 5 sec. Additionally every 1 minute a image is saved on the SD-card.
+9. You should see images every 5 sec.
+Additionally every 1 minute a image is saved on the SD-card.
 

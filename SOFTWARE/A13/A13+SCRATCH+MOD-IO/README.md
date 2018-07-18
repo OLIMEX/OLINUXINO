@@ -2,13 +2,17 @@
 
 1. Install python-smbus:
 
-  apt-get install python-smbus
+```bash
+apt-get install python-smbus
+```
 
 2. Install scratchpy
 
-  git clone https://github.com/pilliq/scratchpy.git
-  cd scratchpy
-  make install
+```bash
+git clone https://github.com/pilliq/scratchpy.git
+cd scratchpy
+make install
+```
 
 3. Run SCRATCH and open MOD-IO.sb
 
@@ -31,7 +35,9 @@ python IO.py -a 0x58 -i 2 --host=xxx.xxx.xxx.xxx --port=xxxx --verbose
 
 For example:
 
-  python IO.py -a 0x58 -i 2 --verbose --host=192.168.0.100 --port=40000
+```bash
+python IO.py -a 0x58 -i 2 --verbose --host=192.168.0.100 --port=40000
+```
 
 You should see message that the program is connected.
 

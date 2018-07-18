@@ -24,23 +24,33 @@ You must see this: ``root@a10-OLinuXino:~#``
 4. Create a directory where the project files will be stored (this step is optional and it's only for better arrangement of the files in the directory tree).
 You can do this with the command:
 
-  mkdir MOD-IO2
+```bash
+mkdir MOD-IO2
+```
 
 5. Set the created directory as current directory:
 
-  cd MOD-IO2
+```bash
+cd MOD-IO2
+```
 
 6. An internet connection must be established in order to download the source and header files from the git repository:
 
-  dhclient eth0
+```bash
+dhclient eth0
+```
 
 6.1. If no DHCP server is available, you must select a specific IP address (for example 192.168.0.150)
 
-  ifconfig eth0 192.168.0.150
+```bash
+ifconfig eth0 192.168.0.150
+```
 
 7. Download the files from the git repository:
 
-  wget <URL>
+```bash
+wget <URL>
+```
 
 In order to obtain the URL, select the file to download and click on the "Raw" button.
 Copy the URL and trigger the command (wget) in the console of A10-OLinuXino-LIME.
@@ -48,28 +58,40 @@ Do this for the five files: i2c.cpp; i2c.h; IO2.cpp; IO2.h; main.cpp.
 
 8. To ensure everything is fine and all five files are downloaded check the content of the directory:
 
-  ls
+```bash
+ls
+```
 
 The respond of the host board should be:
 
-  i2c.cpp  i2c.h  IO2.cpp  IO2.h  main.cpp
+```
+i2c.cpp  i2c.h  IO2.cpp  IO2.h  main.cpp
+```
 
 9. Compile all source files:
 
-  g++ *.cpp
+```bash
+g++ *.cpp
+```
 
 A new file should appear.
 We check the content of the directory again:
 
-  ls
+```bash
+ls
+```
 
 Output:
 
-  a.out  i2c.cpp  i2c.h  IO2.cpp  IO2.h  main.cpp
+```
+a.out  i2c.cpp  i2c.h  IO2.cpp  IO2.h  main.cpp
+```
 
 10. Execute the generated file:
 
-  ./a.out
+```bash
+./a.out
+```
 
 Relay 1 should be turned ON/OFF depending on the analog input on GPIO0 (AN0).
 Relay 2 should be turned ON/OFF depending on the digital input on GPIO1.

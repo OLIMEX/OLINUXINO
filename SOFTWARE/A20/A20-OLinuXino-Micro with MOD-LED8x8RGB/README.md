@@ -15,30 +15,40 @@ By default, SPI1 is used and the chip select is PortH.0).
 
 3. Wait until the board is initialized and log in:
 
-  A20-OLinuXino login: root
-  Password: olimex
+  A20-OLinuXino login: ``root``
+  Password: ``olimex``
 
 You must see this: ``root@a20-OLinuXino:~#``
 
 4. Create a directory where the project files will be stored (this step is optional and it's only for better arrangement of the files in the directory tree):
 
-  mkdir MOD-LED8x8RGB
+```bash
+mkdir MOD-LED8x8RGB
+```
 
 5. Set the created directory as current directory:
 
-  cd MOD-LED8x8RGB
+```bash
+cd MOD-LED8x8RGB
+```
 
 6. Since we are going to download the source and header files from the git repository, an internet connection myst be established:
 
-  dhclient eth0
+```bash
+dhclient eth0
+```
 
 6.1. If no DHCP server is available, you would have to select a specific IP address (for example 192.168.0.150)
 
-  ifconfig eth0 192.168.0.150
+```bash
+ifconfig eth0 192.168.0.150
+```
 
 7. Download the files from the git repository:
 
-  wget <URL>
+```bash
+wget <URL>
+```
 
 In order to get the URL, go to the git repository and locate the directory of the project.
 Select the file you want to download and click on the "Raw" button.
@@ -47,28 +57,40 @@ Do this for the six files: font.h; gpio_lib.cpp; gpio_lib.h; LED8x8RGB.cpp; LED8
 
 8. Ensure that all six files are downloaded by checking the contents of the directory:
 
-  ls
+```bash
+ls
+```
 
 The response of the host board should be:
 
-  LED8x8RGB.cpp  LED8x8RGB.h  font.h  gpio_lib.cpp  gpio_lib.h  main.cpp
+```
+LED8x8RGB.cpp  LED8x8RGB.h  font.h  gpio_lib.cpp  gpio_lib.h  main.cpp
+```
 
 9. Compile all source files:
 
-  g++ *.cpp
+```bash
+g++ *.cpp
+```
 
 A new file should appear.
 We check the contents of the directory again:
 
-  ls
+```bash
+ls
+```
 
 Output:
 
-  LED8x8RGB.cpp  LED8x8RGB.h  a.out  font.h  gpio_lib.cpp  gpio_lib.h  main.cpp
+```
+LED8x8RGB.cpp  LED8x8RGB.h  a.out  font.h  gpio_lib.cpp  gpio_lib.h  main.cpp
+```
 
 10. Execute the generated file:
 
-  ./a.out
+```bash
+./a.out
+```
 
 The LED matrix should slide a message and after that four rectangles with different sizes and colours will be displayed.
 You can customize the demo by modifying the file LED8x8RGB.h.

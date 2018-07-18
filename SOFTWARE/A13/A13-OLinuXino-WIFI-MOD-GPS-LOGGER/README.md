@@ -8,19 +8,24 @@ This project reads GPS info and log the coordinates then create flypath with the
 
 To start server use following commands:
 
-  apt-get install update
-
-  apt-get install apache2
+```bash
+apt-get install update
+apt-get install apache2
+```
 
 (Or other server on your choice...)
 
-  apt-get install php5
+```bash
+apt-get install php5
+```
 
 Then you can configure it as you want... or not. 
 
 If you're using DHCP check the ip:
 
-  ifconfig -a
+```bash
+ifconfig -a
+```
 
 You should view the current IP address, for example 192.168.0.100.
 
@@ -28,12 +33,13 @@ Open some browser and type 192.168.0.100. The page should read "It works!".
 
 Go to /var/www/ dir and extract the project:
 
-  cd /var/www/
-  tar -zxvf /path/to/archieve/GPS.tar.gz .
-
-  cd /GPS
-  chmod 777 GPS2.py LOG
-  ls -l *
+```bash
+cd /var/www/
+tar -zxvf /path/to/archieve/GPS.tar.gz .
+cd /GPS
+chmod 777 GPS2.py LOG
+ls -l *
+```
 
 And you can see permitions.
 
@@ -52,7 +58,9 @@ A google maps should load.
 
 UART1 MUST be disabled.
 
-  vi /etc/inittab
+```bash
+vi /etc/inittab
+```
 
 Comment the line: ``T0:23:respawn:/sbin/getty -L -a root ttyS0 115200 vt102``
 Save the file and reboot.
@@ -63,12 +71,16 @@ After the reboot, login via SSH and connect A13 with MOD-GPS.
 
 To log coords type:
 
-  cd /var/www/GPS
+```bash
+cd /var/www/GPS
+```
 
 Remove demo coords:
 
-  rm LOG
-  python GPS2.py
+```bash
+rm LOG
+python GPS2.py
+```
 
 This will collect data every 1 minute.
 While this is running (or in the background) go for a walk. :)

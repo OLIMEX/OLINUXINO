@@ -29,19 +29,23 @@ The executable was not compiled by Olimex LTD.
 For information about script.bin and script.fex please refer to sunxi documentation.
 [This wiki article](http://linux-sunxi.org/Fex_Guide) might be very helpful when editing the script.fex.
 
-= Changing script.bin file without removing the microSD card
+# Changing script.bin file without removing the microSD card
 
 Note that you have to be very careful when changing the script.bin because the system can stop working.
 It is recommeded to make backup of script.bin file before changing it.
 
 The tools for script.bin changing are located in /opt/sunxi-tools directory:
 
-  cd /opt/sunxi-tools
-  ./chscr.sh
+```bash
+cd /opt/sunxi-tools
+./chscr.sh
+```
 
 This will convert script.bin file from sdcard to script.fex file and the file  will be opened using nano editor. 
 Now you can change the board modules and parameters, save the changes and exit from nano editor:
 
-  ./wrscr.sh
+```bash
+./wrscr.sh
+```
 
 This will convert script.fex to script.bin and the script.bin file will be written to the SD card.

@@ -1,21 +1,29 @@
 1. Extract the tarball into your www directory. For example:
 
-  tar -zxvf door.tar.gz /var/www/door/
+```bash
+tar -zxvf door.tar.gz /var/www/door/
+```
 
 2. Get pyA13 package:
 
-  wget --no-check-sertificate https://pypi.python.org/packages/source/p/pyA13/pyA13-0.1.12.tar.gz
-  tar -zxvf pyA13-0.1.12.tar.gz
-  cd pyA13-0.1.12
-  python setup.py install
+```bash
+wget --no-check-sertificate https://pypi.python.org/packages/source/p/pyA13/pyA13-0.1.12.tar.gz
+tar -zxvf pyA13-0.1.12.tar.gz
+cd pyA13-0.1.12
+python setup.py install
+```
 
 3. Get OpenCV
 
-  apt-get install libopencv-dev python-opencv
+```bash
+apt-get install libopencv-dev python-opencv
+```
 
 4. Install some http server (I use Apache2) and PHP5
 
-  apt-get install apache2 php5
+```bash
+apt-get install apache2 php5
+```
 
 5. Connect a camera to the A13
 
@@ -30,7 +38,9 @@ In this demo the input is active low (idle is high).
 
 8. Start python module
 
-  python cam3.py &
+```bash
+python cam3.py &
+```
 
 9. Open some browser and type you localhost address, for example ``http://192.168.0.100/cam/``.
 A picture is taken every time someone opens the door :)

@@ -7,9 +7,11 @@ GPIOs are named same way as in the schematic: PIN1 ... PIN39
 
 Download from https://pypi.python.org/pypi/pyA13/
 
-  tar -zxvf pyA13-0.1.12.tar.gz
-  cd pyA13-0.1.12.tar.gz
-  sudo python setup.py install
+```bash
+tar -zxvf pyA13-0.1.12.tar.gz
+cd pyA13-0.1.12.tar.gz
+sudo python setup.py install
+```
 
 2. Example:
 
@@ -20,44 +22,46 @@ Download from https://pypi.python.org/pypi/pyA13/
 
 import A13_GPIO as GPIO
 
-#init module
+# init module
 GPIO.init()
 
-#configure module
+# configure module
 GPIO.setcfg(GPIO.PIN#, GPIO.OUT)
 GPIO.setcfg(GPIO.PIN#, GPIO.IN)
 
-#read the current GPIO configuration
+# read the current GPIO configuration
 config = GPIO.getcfg(GPIO.PIN#)
 
-#set GPIO high
+# set GPIO high
 GPIO.output(GPIO.PIN#, GPIO.HIGH)
 
-#set GPIO low
+# set GPIO low
 GPIO.output(GPIO.PIN#, GPIO.LOW)
 
-#read input
+# read input
 state = GPIO.input(GPIO.PIN#)
 
-#cleanup
+# cleanup
 GPIO.cleanup()
 ```
 
 Or use blinking led script
 
-  sudo python blink.py
+```bash
+sudo python blink.py
+```
 
 ## SPI
 
 ```python
 #import A13_SPI as SPI
 
-#init
+# init
 SPI.init(mode)
 
-#write
+# write
 SPI.write(byte1, byte2, byte3, ....)
 
-#read
+# read
 SPI.read(address, byte1, byte2, byte3, ....)
 ```

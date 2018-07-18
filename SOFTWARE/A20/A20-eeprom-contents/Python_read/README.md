@@ -9,24 +9,34 @@ Ensure that an internet connection is successfully established (either via Ether
 Install the smbus package for Python (if it's not installed by default).
 To do so, type the command:
 
-  sudo apt-get install python-smbus
+```bash
+sudo apt-get install python-smbus
+```
 
 After it is installed, you must download the Python program in the same folder.
 You can do it with this command:
 
-  wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-eeprom-contents/Python_read/brd_info.py
+```bash
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A20/A20-eeprom-contents/Python_read/brd_info.py
+```
 
 Then execute it with:
 
-  ./brd_info.py
+```bash
+./brd_info.py
+```
 
 If the above returns an error regarding permissions, expand its permissions with:
 
-  chmod +x brd_info.py
+```bash
+chmod +x brd_info.py
+```
 
 Then again run the python program:
 
-  ./brd_info.py
+```bash
+./brd_info.py
+```
 
 You should then see the information stored in the EEPROM of your board.
 For example:

@@ -15,19 +15,27 @@ You will need:
 
 4. Create a directory where the project files will be stored (this step is optional and it's only for better arrangement of the files in the directory tree):
 
-  mkdir MOD-LCD3310
+```bash
+mkdir MOD-LCD3310
+```
 
 5. Set the created directory as current directory:
 
-  cd MOD-LCD3310
+```bash
+cd MOD-LCD3310
+```
 
 6. Since we are going to download the source and header files from GitHUB we must enable the internet connection:
 
-  ifup eth0
+```bash
+ifup eth0
+```
 
 7. Download the files from GitHUB:
 
-  wget <URL>
+```bash
+wget <URL>
+```
 
 In order to get the URL, go to the git repository and locate the [directory of the project](https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A20/A20-OLinuXino-Micro%20with%20MOD-LCD3310).
 Select the file you want to download and click on the "Raw" button.
@@ -36,37 +44,51 @@ Do this for the five files: gpio_lib.c; gpio_lib.h; LCD3310.c; LCD3310.h; main.c
 
 8. Ensure that all five files are downloaded check the content of the directory:
 
-  ls
+```bash
+ls
+```
 
 The response of the host board should be:
 
-  gpio_lib.c  gpio_lib.h  LCD3310.c  LCD3310.h  main.c
+```
+gpio_lib.c  gpio_lib.h  LCD3310.c  LCD3310.h  main.c
+```
 
 9. Compile all source files:
 
-  gcc *.c
+```bash
+gcc *.c
+```
 
 A new file should appear.
 We check the content of the directory again:
 
-  ls
+```bash
+ls
+```
 
 Output:
 
-  a.out  gpio_lib.c  gpio_lib.h  LCD3310.c  LCD3310.h  main.c
+```
+a.out  gpio_lib.c  gpio_lib.h  LCD3310.c  LCD3310.h  main.c
+```
 
 10. Execute the generated file:
 
-  ./a.out
+```bash
+./a.out
+```
 
 This message should be shown in the display:
 
-  "*** OLIMEX ***"
-  "  OLinuXINO   "
-  "  Micro and   "
-  "  MOD-LCD3310 "
-  "  using SPI   "
-  "  interface   "
+```
+"*** OLIMEX ***"
+"  OLinuXINO   "
+"  Micro and   "
+"  MOD-LCD3310 "
+"  using SPI   "
+"  interface   "
+```
 
 ...where the rows 0, 2, 4 are with black background and white symbols, and rows 1, 3, 5 are with white background and black symbols.
 

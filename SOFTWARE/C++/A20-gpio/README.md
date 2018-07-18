@@ -13,7 +13,10 @@ You can use the Makefile provided to compile the library, you can compile the tw
 you can link the static library provided (compiled on Linux a20-olimex 3.4.103+ / gcc 4.6.3).
 
 To compile the example from the [examples](examples) directory:
-`g++ ex.cpp -O2 -o ex.o -L.. -lA20-gpio`
+
+```bash
+g++ ex.cpp -O2 -o ex.o -L.. -lA20-gpio`
+```
 
 # License
 

@@ -16,24 +16,34 @@ You will need:
 
 4. Create a directory where the project files will be stored (this step is optional and it's only for better arrangement of the files in the directory tree):
 
-  mkdir MOD-RGB
+```bash
+mkdir MOD-RGB
+```
 
 5. Set the created directory as current directory:
 
-  cd MOD-RGB
+```bash
+cd MOD-RGB
+```
 
 6. An internet connection must be established to download the source and header files from the git repository:
 
-  ifup eth0
+```bash
+ifup eth0
+```
 
 6.1. Allow the https protocol.
 (This step could be skipped if https is allowed by default).
 
-  export https_proxy="192.168.0.1:80"
+```bash
+export https_proxy="192.168.0.1:80"
+```
 
 7. Download the files from the git repository:
 
-  wget <URL>
+```bash
+wget <URL>
+```
 
 In order to get the URL, go to the git repository and locate the [project directory](https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A20/A20-OLinuXino-Micro%20with%20MOD-RGB).
 Select the file you want to download and click on the "Raw" button.
@@ -42,28 +52,40 @@ Do this for the four files: makefile; i2c.c; i2c.h; RGB.c.
 
 8. Ensure that all three files are downloaded check the content of the directory:
 
-  ls
+```bash
+ls
+```
 
 The response of the host board should be:
 
-  i2c.c  i2c.h  makefile  RGB.c
+```
+i2c.c  i2c.h  makefile  RGB.c
+```
 
 9. Compile all source files:
 
-  make
+```bash
+make
+```
 
 3 new files (2 objects and 1 executable) should appear.
 We check the content of the directory again:
 
-  ls
+```bash
+ls
+```
 
 Output:
 
-  i2c.c  i2c.h  i2c.o  makefile  MOD-RGB  RGB.c  RGB.o
+```
+i2c.c  i2c.h  i2c.o  makefile  MOD-RGB  RGB.c  RGB.o
+```
 
 10. Execute the generated file:
 
-  ./MOD-RGB
+```bash
+./MOD-RGB
+```
 
 You will be prompted for the number of I2C which is about to be used. 
 

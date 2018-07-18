@@ -16,24 +16,34 @@ You will need:
 4. Make a directory where the project files will be stored (this step is optional and it's only for better arrangement of the files in the directory tree).
 You can do this with the command:
 
-  mkdir RTC
+```bash
+mkdir RTC
+```
 
 5. Set the created directory as current directory:
 
-  cd RTC
+```bash
+cd RTC
+```
 
 6. Since we are going to download the source and header files from GitHUB we must enable the internet connection:
 
-  ifup eth0
+```bash
+ifup eth0
+```
 
 6.1. Allow the https protocol.
 (This step could be skipped if https is allowed by default)
 
-  export https_proxy="192.168.0.1:80"
+```bash
+export https_proxy="192.168.0.1:80"
+```
 
 7. Download the files from the git repository:
 
-  wget <URL>
+```bash
+wget <URL>
+```
 
 In order to get the URL, go to the git repository and locate [the directory of the project](https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A20/A20-OLinuXino-Micro%20with%20MOD-RTC).
 Select the file you want to download and click on the "Raw" button.
@@ -42,38 +52,52 @@ Do this for the three files: RTC.c; i2c.c; i2c.h.
 
 8. Just to make sure everything is fine and all three files are downloaded check the content of the directory:
 
-  ls
+```bash
+ls
+```
 
 The response of the host board should be:
 
-  i2c.c  i2c.h  RTC.c
+```
+i2c.c  i2c.h  RTC.c
+```
 
 9. Compile all source files:
 
-  gcc *.c
+```bash
+gcc *.c
+```
 
 A new file should appear.
 We check the content of the directory again:
 
-  ls
+```bash
+ls
+```
 
 Output:
 
-  a.out  i2c.c  i2c.h  RTC.c
+```
+a.out  i2c.c  i2c.h  RTC.c
+```
 
 10. Execute the generated file with option to READ from I2C2
 
-  ./a.out -r 2
+```bash
+./a.out -r 2
+```
 
 Output:
 
-  Sec: 40
-  Min: 33
-  Hour: 4
-  MDays: 0
-  WDays: 5
-  Month: 0
-  Year: 20
+```
+Sec: 40
+Min: 33
+Hour: 4
+MDays: 0
+WDays: 5
+Month: 0
+Year: 20
+```
 
 ...which **IS NOT** correct data as the date and time are not set!
 
@@ -81,21 +105,27 @@ Output:
 Thus we will synchronise the time on the MOD-RTC with the one on the host board.
 Run:
 
-  ./a.out -w 2
+```bash
+./a.out -w 2
+```
 
 12. Execute for third time to read again:
 
-  ./a.out -r 2
+```bash
+./a.out -r 2
+```
 
 Output:
 
-  Sec: 53
-  Min: 24
-  Hour: 11
-  MDays: 7
-  WDays: 1
-  Month: 7
-  Year: 114
+```
+Sec: 53
+Min: 24
+Hour: 11
+MDays: 7
+WDays: 1
+Month: 7
+Year: 114
+```
 
 The function "localtime" (which the host board uses) counts the years after 1900.
 More information [here](http://linux.die.net/man/3/localtime).

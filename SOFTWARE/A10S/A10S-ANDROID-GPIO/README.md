@@ -11,23 +11,33 @@ The GPIOs name is according to the chip ports.
 For example, PE3 is LED1.
 6. To set PE3 as output:
 
-  echo 1 > /sys/class/gpio_sw/PE3/mul_sel
+```bash
+echo 1 > /sys/class/gpio_sw/PE3/mul_sel
+```
 
 or as input
 
-  echo 0 > /sys/class/gpio_sw/PE3/mul_sel
+```bash
+echo 0 > /sys/class/gpio_sw/PE3/mul_sel
+```
 
 7. To turn on an LED:
 
-  echo 1 > /sys/class/gpio_sw/PE3/data
+```bash
+echo 1 > /sys/class/gpio_sw/PE3/data
+```
 
 and to turn it off:
 
-  echo 0 > /sys/class/gpio_sw/PE3/data
+```bash
+echo 0 > /sys/class/gpio_sw/PE3/data
+```
 
 8. If GPIO is as input to read state:
 
-  cat /sys/class/gpio_sw/PE3/data
+```bash
+cat /sys/class/gpio_sw/PE3/data
+```
 
 ## GPIO using Android SDK
 

@@ -6,26 +6,27 @@ Before using this package we recommend reading the article hosted on the [Olimex
 When using GPIO, ensure that the desired GPIO is not used by another peripheral.
 
 # GPIO METHODS
-
-    init()      -   Make initialization of the module. Always must be called first.
-    getcfg()    -   Read current configuration of gpio.
-    setcfg()    -   Write configuration to gpio.
-    input()     -   Return current value of gpio.
-    output()    -   Set output value.
-    pullup()    -   Set pull-up/pull-down.
-
+```
+init()      -   Make initialization of the module. Always must be called first.
+getcfg()    -   Read current configuration of gpio.
+setcfg()    -   Write configuration to gpio.
+input()     -   Return current value of gpio.
+output()    -   Set output value.
+pullup()    -   Set pull-up/pull-down.
+```
 
 The available constants are:
 
-    NAME        -   EQUALS TO
-    ====            =========
-    HIGH        ->      1
-    LOW         ->      0
-    INPUT       ->      0
-    OUPTUT      ->      1
-    PULLUP      ->      1
-    PULLDOWN    ->      2
-
+```
+NAME        -   EQUALS TO
+====            =========
+HIGH        ->      1
+LOW         ->      0
+INPUT       ->      0
+OUPTUT      ->      1
+PULLUP      ->      1
+PULLDOWN    ->      2
+```
 
 The GPIO are named two ways:
 
@@ -55,19 +56,23 @@ Generally these constants are just an offset in the memory from the base GPIO ad
 
 # I2C METHODS
 
-    init()      -   Make initialization of the module
-    open()      -   Begin communication with slave device
-    read()      -   Read from slave device
-    write()     -   Write data to slave device
-    close()     -   End communication with slave device
+```
+init()      -   Make initialization of the module
+open()      -   Begin communication with slave device
+read()      -   Read from slave device
+write()     -   Write data to slave device
+close()     -   End communication with slave device
+```
 
 # SPI METHODS
 
-    open()      -   Open SPI bus with given configuration
-    read()      -   Read data from slave device without write
-    write()     -   Write data to slave device without read
-    xfer()      -   Do write and after that read
-    close()     -   Close SPI bus
+```
+open()      -   Open SPI bus with given configuration
+read()      -   Read data from slave device without write
+write()     -   Write data to slave device without read
+xfer()      -   Do write and after that read
+close()     -   Close SPI bus
+```
 
 # Examples
 

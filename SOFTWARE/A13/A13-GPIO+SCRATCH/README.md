@@ -2,16 +2,20 @@
 
 1. Install pyA13
 
-  wget https://pypi.python.org/packages/source/p/pyA13/pyA13-0.1.12.tar.gz
-  tar zxvf pyA13-0.1.12.tar.gz
-  cd pyA13-0.1.12
-  python setup.py install
+```bash
+wget https://pypi.python.org/packages/source/p/pyA13/pyA13-0.1.12.tar.gz
+tar zxvf pyA13-0.1.12.tar.gz
+cd pyA13-0.1.12
+python setup.py install
+```
 
 2. Install scratchpy
 
-  git clone https://github.com/pilliq/scratchpy.git
-  cd scratchpy
-  make install
+```bash
+git clone https://github.com/pilliq/scratchpy.git
+cd scratchpy
+make install
+```
 
 3. Run SCRATCH and open GPIO.sb
 
@@ -21,7 +25,7 @@ Click: 'Enable remote sensor connections' (if it is not enabled).
 
 5. Open a terminal and execute the python script
 
-```
+```bash
 python GPIO.py --host=xxx.xxx.xxx.xxx --port=xxxx --verbose
 
 --host  -   IP if you're connecting remote computer
@@ -31,13 +35,17 @@ python GPIO.py --host=xxx.xxx.xxx.xxx --port=xxxx --verbose
 
 For example:
 
-  python GPIO.py --verbose --host=192.168.0.100 --port=40000
+```bash
+python GPIO.py --verbose --host=192.168.0.100 --port=40000
+```
 
 You should see message that the program is connected.
 
 If you run SCRATCH on A13 just type in terminal:
 
+```bash
   python GPIO.py
+```
 
 6. Run the Scratch block
 

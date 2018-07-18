@@ -1,12 +1,12 @@
-Hardware changes in revision G (released)
-========
+# Hardware changes in revision G (released)
+
 1. Added C223 - 220uF/tant with NA value on SATA PWR.
 2. C216 is now 22uF/6.3V instead of 100n, so it gets charged slower.  
 3. Update of all libraries. HDMI connector is changed to new package.
 4. HDMI protection removed (caused incompatiblities with cheap HDMI monitors).
 
-Hardware changes in revision H (only prototypes; not released)
-========
+# Hardware changes in revision H (only prototypes; not released)
+
 1. Changed the LAN part of the design, added two capactiors 1nF/2kV/X7R/1206, and 1nF/2kV/X7R/1206_or_1M, 
 also the matrix is now 0402 with 49.9 ohm at 1%. 
 2. Major polygon changes.
@@ -18,8 +18,8 @@ also the matrix is now 0402 with 49.9 ohm at 1%.
 8. Power jack package updated.
 9. SATA package updated.
 
-Hardware changes in revision I (only prototypes; not released)
-========
+# Hardware changes in revision I (only prototypes; not released)
+
 1. eMMC was added.
 2. RTL8201CP(LQFP-48) Ethernet chip replaced with LAN8710AI-EZK(QFN-32). Both are MbE PHYs.
 3. All libraries were updated.
@@ -43,39 +43,35 @@ Hardware changes in revision I (only prototypes; not released)
 21. C217's value was changed from 220uF/10V/TANT to 220uF/10V/TANT_D!
 22. Added reset control for the new PHY - C63 becomes NA down from 10uF, R26 becomes NA down from 10K and R25 is now 100R up from NA.
 
-Hardware changes in revision J (released)
-========
+# Hardware changes in revision J (released)
+
 1. Rotated RM1 and RM2 at 90 degrees for better soldering.
 2. Created separate design for each of the variants of the board ( 1. commercial temeprature range and no flash memory - A20-OLinuXino-MICRO; 2. industrial temperature range and no flash memory - A20-OLinuXino-MICRO-IND; 3. commercial temperature range and flash memory - A20-OLinuXino-MICRO-EMMC; 4. industrial temperature range and flash memory - A20-OLinuXino-MICRO-EMMC-IND) - each of these boards would have own hardware revision from now on.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A10-A20-OLINUXINO-MICRO_Rev_J
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## A10-A20-OLINUXINO-MICRO
+
 1. DDR3 memory is set to commercial Micron variant - MT41K256M16HA-125:E(DDR3L-1600_11-11-11);
 2. The PHY was changed to commercial variant - LAN8710A-EZC-TR(QFN-32);
 3. Changed two resistor values: r77 from 4.99k/1% to 12.4k/1% and r78 from 3.32k/1% to 10k/1% in order to decrease commercial DDR3L power supply from 1.5V to 1.35V; The text: "When DDR3L is used, VDD&VDDQ are set to 1.35V!!!" was added in the schematic!
 4. The EMMC and all related components were changed to NA;
 5. The NAND flash and all related components were changed to NA;
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A10-A20-OLINUXINO-MICRO-IND_Rev_J
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## A10-A20-OLINUXINO-MICRO-IND
+
 1. Changed the memory to the industrial variant - MT41K256M16HA-125IT:E(DDR3L-1600_11-11-11)
 2. Changed PHY to industrial variant LAN8710AI-EZK-TR(QFN-32)
 3. Changed r77 from 4.99k/1% to 12.4k/1% and r78 from 3.32k/1% to 10k/1% in order to decrease commercial DDR3L power suplly from 1.5V to 1.35V; the text: "When DDR3L is used, VDD&VDDQ are set to 1.35V!!!" was added in the schematic!
 4. The EMMC and all corresponding components were changed to NA;
 5. The NAND Flash and all corresponding components were changed to NA;
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A20-OLINUXINO-MICRO-EMMC_Rev_J
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## A20-OLINUXINO-MICRO-EMMC
+
 1. DDR3 memory is set to commercial Micron variant(required by Ceco) - MT41K256M16HA-125:E(DDR3L-1600_11-11-11);
 2. The PHY was changed to commercial variant - LAN8710A-EZC-TR(QFN-32);
 3. Changed are r77 from 4.99k/1% to 12.4k/1% and r78 from 3.32k/1% to 10k/1% in order to decrease commercial DDR3L power suplly from 1.5V to 1.35V; The text: "When DDR3L is used, VDD&VDDQ are set to 1.35V!!!" was added in the schematic!
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-A10-A20-OLINUXINO-MICRO-EMMC-IND_Rev_J
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## A10-A20-OLINUXINO-MICRO-EMMC-IND
+
 1. Change memory to industrial variant - MT41K256M16HA-125IT:E(DDR3L-1600_11-11-11)
 2. Change PHY to industrial variant LAN8710AI-EZK-TR(QFN-32)
 3. Change r77 from 4.99k/1% to 12.4k/1% and r78 from 3.32k/1% to 10k/1% in order to decrease industrial DDR3 power suplly from 1.5V to 1.35V; The text: "When DDR3L is used, VDD&VDDQ are set to 1.35V!!!" was added in the schematic!

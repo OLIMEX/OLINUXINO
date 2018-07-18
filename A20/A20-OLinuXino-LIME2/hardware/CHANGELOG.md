@@ -1,18 +1,15 @@
-### Notable hardware revision changes A20-OLinuXino-LIME2 log:
+# Notable hardware revision changes of A20-OLinuXino-LIME2
 
-#### Hardware revision B (pre-production)
-===========
+## Hardware revision B (pre-production)
 
 Internal initial release.
 
-#### Hardware revision C (initial public release)
-============================
+## Hardware revision C (initial public release)
 
 1. C175 changed from 100n na 22uF (and changed package from 0402 to 0603)
 2. Updated white prints: Lime to Lime2; rev.B to rev.C, 2014 to 2015
 
-#### Hardware revision D (internal, not released)
-===============================
+## Hardware revision D (internal, not released)
 
 1. eMMC memory added; NAND or eMMC optional. Schematics set for NAND per default.
 2. C224 and C232 - 47uF/6.3V/0805 added in parallel to the 5V_SATA_PWR connector;
@@ -23,31 +20,26 @@ Internal initial release.
 7. Added four extra data bits to the eMMC, through a resistor matrix
 8. Changed EMMC_RST. Moved from PC4/NCE0/EMMC_RST to PC16/NWP/EMMC_RST
 
-#### Hardware revision E (internal, not released)
-==============================
+## Hardware revision E (internal, not released)
 
 1. Fixed white print of EMMC_PWR jumper (added positions).
 2. Changed the white print of board revision.
 3. U15 and U17 were changed in value from SY8008C(AA)C to SY8009AAAC(SOT23-5).
 
-#### Hardware revision F (internal, not released)
-==============================
+## Hardware revision F (internal, not released)
 
 1. Change Ethernet PHY controller to RTL8211E-VB-CG1. This required changing a lot of components and routing in the area around the controller too.
 2. Changed the placing of the pull-up rezistorite of the RX wire (before the matrix).
 
-#### Hardware revision G (public release)
-==============================
+## Hardware revision G (public release)
 
 1. Added 4 improved mounting through holes, connected to GND. Removed the old milled mounting points.
 
-#### Hardware revision G1 (public release)
-==============================
+## Hardware revision G1 (public release)
 
 1. Changed a couple of components that improves board's power up sequence due to the high initial consumption of the Ethernet controller (RTL8211E). R109 changed to 47k/0402 (down from 470k/0402) and R107 (470k/0402) replaced by a capacitor 220nF/0402.
 
-#### Hardware revision G2 (public release)
-=============================
+## Hardware revision G2 (public release)
 
 1. The buttons were moved 5 mils further to the middle of the board to futher reduce deformation during panelization.
 2. R32 and R36 were moved 40 mils further away from the Ethernet connector.
@@ -64,9 +56,9 @@ Internal initial release.
 
 There are three variants manufactured:
 
-A20-OLinuXino-Lime2-eMMC_Rev_G2: eMMC present, the NAND Flash is NA, all components in commercial temperature range
-A20-OLinuXino-Lime2-4GB_Rev_G2: NAND flash present, the eMMC is NA, all chips are in commercial temperature range
-A20-OLinuXino-Lime2_Rev_G2: Both NAND flash and eMMC are NA, all chips are in commercial temperature range
+1. A20-OLinuXino-Lime2-eMMC_Rev_G2: eMMC present, the NAND Flash is NA, all components in commercial temperature range
+2. A20-OLinuXino-Lime2-4GB_Rev_G2: NAND flash present, the eMMC is NA, all chips are in commercial temperature range
+3. A20-OLinuXino-Lime2_Rev_G2: Both NAND flash and eMMC are NA, all chips are in commercial temperature range
 
 
 

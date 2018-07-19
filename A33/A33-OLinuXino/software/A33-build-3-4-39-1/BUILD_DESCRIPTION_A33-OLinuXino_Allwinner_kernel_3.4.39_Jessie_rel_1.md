@@ -1,0 +1,493 @@
+# Create a bootable SD card A33-OLinuXino with ALLINNER kernel 3.4.39 and Linux Debian Jessie file system
+
+## Chapter 1. Setting up the software tools
+
+First, make sure that you have the software tools needed to compile the Linux Kernel.
+You'd have to install these if you don't have them already installed.
+To perform most of the operations below you should be logged as a user with super user rights on your Linux machine.
+Type in the terminal:
+
+```bash
+sudo su
+```
+
+You will be prompted for your password and then your command line would start with ``#`` which means that you are now logged as the super user, all commands listed below should be executed in this mode.
+
+Next update apt-get links by typing:
+
+```bash
+apt-get update
+```
+
+Next install the same compiler toolchain that we used here by typing the following:
+
+```bash
+apt-get install build-essential git qemu-user-static debootstrap binfmt-support gcc-5-arm-linux-gnueabihf
+```
+
+This will install:
+
+- GCC compiler
+- GIT that allows you to download from the github which holds source code for some of the system
+- some other tools for building the kernel
+
+Note that if you use debian may be you will need to add:
+
+```shell
+deb http://www.emdebian.org/debian squeeze main
+```
+
+in the file below:
+
+```shell
+/etc/apt/sources.list
+```
+
+You would also need a torrent client.
+It is required to be able to download the file system.
+Any torrent client would do the job, as long as it can process .torrent files.
+
+At this point you should have have all important tools to make your very own A33 kernel image!
+
+## Chapter 2. Building mainline u-boot
+
+First create the directory where we would build the Linux:
+
+```bash
+mkdir a33-olimex
+cd a33-olimex
+```
+
+Then download the latest mainline u-boot sources from GitHub repository:
+
+```bash
+git clone git://git.denx.de/u-boot.git
+```
+
+After the download you should have a new directory, naviagate into it with:
+
+```bash
+cd u-boot/
+```
+
+The image is tested with the commit from  Mon Jul 4 11:46:21 2016 -0400
+
+To switch from the latest sources to the exact commit that we used execute the next command:
+
+```bash
+git reset --hard  e8009beff6d5c55c1bf1ae8184791f167e6378b0
+```
+
+**MAKE SURE THAT YOU HAVE REVERTED TO THE SAME COMMIT OR NOTHING BELOW WOULD WORK!**
+
+For compiling u-boot sources we use arm-linux-gnueabihf-gcc 5.4.0-6 version 
+
+You can check this with:
+
+```bash
+arm-linux-gnueabihf-gcc --version
+```
+
+the result has to be:
+
+```bash
+arm-linux-gnueabihf-gcc (Debian 5.4.0-6) 5.4.0 20160609
+```
+
+so if something goes wrong it is better to use tested compiler version
+
+Now you have to make a patch in order to add configuration file for A33. 
+
+Download the a33.patch using the next command:
+
+```bash
+wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A33/A33-build-3-4-39-1/a33.patch
+patch -p1 < a33.patch
+```
+
+Load the a33 configuration file:
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-  A33-OLinuXino_defconfig
+```
+
+If you want to change other board settings in u-boot you can use the following command:
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+```
+
+Save and Exit.
+
+Now type the next command to compile the u-boot:
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+```
+
+At the end of the process you can check if everything is OK by using:
+
+```bash
+ls u-boot.bin u-boot-sunxi-with-spl.bin spl/sunxi-spl.bin
+```
+
+Output:
+
+```bash
+spl/sunxi-spl.bin  u-boot.bin  u-boot-sunxi-with-spl.bin
+```
+
+If you got these files everything is complete, well done so far
+
+```bash
+cd ..
+```
+
+You should be in the following directory:
+
+```bash
+/home/user/a33-olimex#
+```
+
+## Chapter 3. Building linux kernel and modules from sources for A33-OLinuXino boards
+
+The kernel sources for A33 are available at the project git repository. 
+You can download the latest kernel sources using the following command:
+
+```bash
+git clone https://github.com/hehopmajieh/a33_linux
+```
+
+Note that the our build uses this exact commit: 
+
+```shell
+ff599da01cd39f2fac67e74a2085e57afa2ee9d3  from Thu Aug 25 14:05:45 2016 +0300
+```
+
+You can switch to this exact commit with the next command:
+
+```bash
+git reset --hard ff599da01cd39f2fac67e74a2085e57afa2ee9d3
+```
+
+After the download navigate to the kernel directory:
+
+```bash
+cd  a33_linux/
+```
+
+## 3.3 Configuring the rest of the environment
+
+First you need to set the proper compiler.
+For kernel sources we use ``gcc-linaro-arm-linux-gnueabi-2012.02-20120222`` compiler 
+
+Download it:
+
+```bash
+wget https://launchpad.net/linaro-toolchain-binaries/trunk/2012.02/+download/gcc-linaro-arm-linux-gnueabi-2012.02-20120222_linux.tar.bz2
+```
+
+and untar it for example in /opt folder:
+
+```bash
+tar jxfv gcc-linaro-arm-linux-gnueabi-2012.02-20120222_linux.tar.bz2 -C /opt
+```
+
+Set PATH environment to compiler toolchain:
+
+```bash
+export PATH=$PATH:/opt/gcc-linaro-arm-linux-gnueabi-2012.02-20120222_linux/bin/
+```
+
+Load a33 configuration file:
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- a33Olinuxino_defconfig
+```
+
+The result should be:
+
+configuration written to .config
+
+If you wish to make changes to the kernel configuration execute the following:
+
+```bash
+make ARCH=arm menuconfig
+```
+
+The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi, nano.
+Using this command you can add or remove different modules for the different peripherials in the kernel.
+Be careful when you change these settings because the kernel can stop working properly.
+
+Now you may continue with kernel image compiling:
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4 uImage
+```
+
+When this completes, you will have uImage ready and the result should be:
+
+The next step is building the kernel modules:
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 INSTALL_MOD_PATH=out modules
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 INSTALL_MOD_PATH=out modules_install
+```
+
+Note that in order to use onboard NAND flash you have to compile the NAND module separately.
+For this purpose:
+
+```bash
+cd a33-linux/modules/nand
+```
+
+and make
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- LICHEE_KDIR=/home/user/a33_linux/
+```
+
+The nand.ko module should be in:
+
+```bash
+a33_linux/modules/nand/sun8iw5p1/nand.ko
+```
+
+Copy nand.ko file in out/lib/modules/3.4.39+/kernel/drivers/
+
+```bash
+cp modules/nand/sun8iw5p1/nand.ko  lib/modules/3.4.39+/kernel/drivers/
+```
+
+DONE!
+At this point you have uboot and kernel modules.
+
+The uImage file is located in a33_linux/arch/arm/boot/
+
+The kernel modules are located in linux-sunxi/out/lib/modules/3.x.xx where 3.x.xx is kernel version.
+In our case the directory with modules is:
+
+```bash
+out/lib/modules/3.4.39+/
+```
+
+## 4. Format and setup the SD-card
+
+We suggest using a class 10 microSD card with memory capacity at least 8GB.
+We haven't tested microSD cards bigger than 16GB.
+
+First we have to make the correct card partitions using fdisk.
+Plug SD card into your SD card reader and enter in the terminal:
+
+```bash
+ls /dev/sd
+```
+
+Then press <TAB> twice.
+You will see a list of your sd devices like sda, sdb, sdc, etc.
+Note that some of these devices may be your hard disk, so make sure you know which one is your sd card before you proceed!
+Otherwise, you can easily destroy data on your HDD if you choose the wrong sd-device.
+You can do this by unplugging your sd card reader and note which "sd" device disappears from the list.
+
+Once you know which one is your microSD (as sda#) use it instead of the sdX name in the references below:
+
+```bash
+fdisk /dev/sdX
+```
+
+then:
+
+```
+p
+```
+
+will list your partitions.
+If there are already partitions on your card do:
+
+```
+d
+enter
+1
+```
+
+if you have more than one partitition press ``d`` will delete them all.
+
+Create the first partition, starting from 2048:
+
+```
+n
+enter
+p
+enter
+1
+enter
+enter
+enter
+```
+
+then list the created partitions:
+
+```
+p
+enter
+```
+
+If you did everything correctly on a 2GB card, you should see something like:
+
+```
+Command (m for help): p
+Disk /dev/sdd: 1.9 GiB, 2001731584 bytes, 3909632 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x10a769e1
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdd1        2048 3909631 3907584  1.9G 83 Linux
+```
+
+Press ``w`` to write changes to the sd card.
+
+Now we have to format the file system on the card.
+For example ext4 file system.
+Execute the command mkfs.ext4 with these parameters. 
+
+```bash
+mkfs.ext4 -O ^metadata_csum,^64bit /dev/sdX1
+```
+
+## 5. Write the Uboot and u-boot-sunxi-with-spl.bin
+
+You should be in /home/user/a33-olimex# directory .
+
+Note that you have to write u-boot-sunxi-with-spl.bin in /dev/sdX (not sdX1 or sdX2)
+
+Type:
+
+```bash
+cd u-boot
+dd if=u-boot-sunxi-with-spl.bin of=/dev/sdX bs=1024 seek=8
+```
+
+The result should be something like this:
+
+```
+422+1 records in
+422+1 records out
+433112 bytes (433 kB, 423 KiB) copied, 0.0952634 s, 4.5 MB/s
+```
+
+## 6. Debian rootfs
+
+The Linux Kernel and Uboot are ready, now we need the Linux distribution rootfs.
+
+Basically, the only difference between the different Linux distributions is the rootfs.
+If you place a Debian rootfs, you will have Debian; if you place an Ubuntu rootfs it will be Ubuntu, etc.
+
+How to build one is a long topic!
+The good thing is that there are many already pre-built so we can just download one and use it ready.
+
+Now leave the kernel directory:
+
+```bash
+cd ..
+```
+
+Should be in the directory below:
+
+```bash
+/home/user/a33-olimex
+```
+
+Download debian rootfs with the file name "a33-jessie-FS-rel1.tgz", which is available only as a torrent.
+You would need a torrent client for it (Azureus, uTorrent, qBittorrent, etc).
+The link to the torrent file is:
+
+```bash
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A33/A33-build-3-4-39-1/a33-jessie-FS-rel1.tgz.torrent
+```
+
+Launch the torrent client and download the file.
+
+Now mount the microSD card EXT4 FS partition:
+
+```bash
+mkdir /mnt/sd
+mount /dev/sdX1 /mnt/sd
+```
+
+and unarchive the rootfs:
+
+```bash
+tar xzvf a33-jessie-FS-rel1.tgz -C /mnt/sd
+ls /mnt/sd
+```
+
+The correct result should be:
+
+```
+bin   dev  home  lost+found  mnt  proc  run   selinux  sys  usr
+boot  etc  lib   media       opt  root  sbin  srv      tmp  var
+```
+
+Now you have to replace the newly generated kernel and modules from /home/user/a33-olimex/a33_linux/out/lib/modules/ to the new Debian file system.
+
+## 7. Write the kernel uImage to the SD-card
+
+You should be in the directory below:
+
+/home/user/a33-olimex# directory
+
+Copy the Kernel uImage to boot directory in partition 1:
+
+```bash
+cp a33_linux/arch/arm/boot/uImage /mnt/sd/boot
+```
+
+Now you have to replace kernel modules
+
+```bash
+rm -rf /mnt/sd/lib/modules/*
+cp -rfv a33_linux/out/lib/modules/3.x.xx+/ /mnt/sd/lib/modules/
+```
+
+where x.xx is the kernel version.
+Replace /lib/firmware folder with the generated /linux-sunxi/out/firmware
+
+```bash
+cp -rfv a33_linux/out/lib/firmware/ /mnt/sd/lib/
+sync
+```
+
+## 7. Write script.bin file
+
+script.bin is a very important file with parameters like port GPIO assignments, DDR memory parameters, video resolution etc.
+For A33-OLinuXino you can download it using the following command:
+
+```bash
+wget https://github.com/OLIMEX/OLINUXINO/raw/master/SOFTWARE/A33/A33-build-3-4-39-1/script.bin
+```
+
+then copy the downloaded script.bin file to the mounted first partition of the SD card:
+
+```bash
+cp script.bin /mnt/sd/boot
+sync
+umount /dev/sdX1
+```
+
+If you wish you can see the source of script.bin file from this link:
+
+```bash
+wget https://raw.githubusercontent.com/OLIMEX/OLINUXINO/master/SOFTWARE/A33/A33-build-3-4-39-1/script.fex
+```
+
+At this point you have Debian on your SD card and you have an SD card ready to boot debian on A33-OLinuXino.
+
+Connect USB-SERIAL-CABLE-F to UEXT Tx, Rx and GND.
+Put the SD-card apply power according to A33_OLinuXino board type.
+You should see u-boot and then kernel messages on the console or LCD.
+
+Under the command line interface you are automatically logged as super user (user ``root``, password ``olimex``).
+However, under the graphical environment you are not auto-logged as super user and you must type ``sudo`` before the command (in the GUI the super-user is ``olimex`` and the password is ``olimex``).

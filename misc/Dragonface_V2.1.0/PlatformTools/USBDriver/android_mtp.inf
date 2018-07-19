@@ -1,0 +1,274 @@
+; Installation inf for devices supporting Media Transfer Protocol (MTP)
+;
+; Copyright (c) Microsoft Corporation.
+;
+
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=WPD
+ClassGUID={EEC5AD98-8080-425f-922A-DABF3DE3F69A}
+DriverVer=04/07/2011,5.2.5326.4762
+
+;CatalogFile  = sw_mtp_catalog.cat
+Provider=%Android%
+
+
+[SourceDisksNames]
+1 = %DISK_NAME%,,,\i386
+2 = %DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WUDFUpdate_01009.dll = 1
+
+[SourceDisksFiles.amd64]
+WUDFUpdate_01009.dll = 2
+
+[DestinationDirs]
+MTP.Files.Kernel = 12
+MTP.Files.XPRT_USB = 11
+MTP.Files.Core = 11
+MTP.Files.UMDFDDriver = 12,UMDF ; copy to system32\drivers\umdf
+
+[Manufacturer]
+%MfgName%=Generic,NTx86,NTamd64
+%MfgNameVendorModels%=VendorModels,NTx86,NTamd64
+
+[VendorModels.NTx86]
+; SoftWinner A10 Pad MTP
+%USB\VID_18D1&PID_0007.Device%=MTP, USB\VID_18D1&PID_0007&MI_00
+
+[VendorModels.NTamd64]
+; SoftWinner ICONIA TAB MTP
+%USB\VID_18D1&PID_0007.Device%=MTP, USB\VID_18D1&PID_0007&MI_00
+
+;
+;Device is identified by Microsoft OS descriptor
+;If your device does not support it, use specific VID & PID for identification
+;
+[Generic.NTx86]
+%GenericMTP.DeviceDesc%=MTP, USB\MS_COMP_MTP
+
+[Generic.NTamd64]
+%GenericMTP.DeviceDesc%=MTP, USB\MS_COMP_MTP
+
+
+;;******************************************************************************
+;; The following are to be used in vendor specific "Includes" and "Needs" sections.
+;; Specifically, the INF should contain:
+;;
+;; [DDInstall]
+;; Include = wpdmtp.inf
+;; Needs   = WPD.MTP
+;;
+;; [DDInstall.hw]
+;; Include = wpdmtp.inf
+;; Needs   = WPD.MTP.Registration       <- includes all default legacy API and autoplay registration for the device
+;;  - OR -
+;; Needs   = WPD.MTP.RegistrationBasic  <- only do minimum registration, no legacy API or autoplay
+;;
+;; [DDInstall.Services]
+;; Include = wpdmtp.inf
+;; Needs   = WPD.MTP.Services
+;;
+;; [DDInstall.CoInstallers]
+;; Include = wpdmtp.inf
+;; Needs = WPD.MTP.CoInstallers
+;;
+;; [DDInstall.Wdf]
+;; Include = wpdmtp.inf
+;; Needs = WPD.MTP.Wdf
+;; UmdfServiceOrder=WpdMtpDriver
+;;
+;;******************************************************************************
+
+;[WPD.MTP]
+;CopyFiles = MTP.Files.Kernel, MTP.Files.XPRT_USB, MTP.Files.Core, MTP.Files.UMDFDDriver
+;RegisterDlls = MTP.RegisterComServers
+
+;[WPD.MTP.Registration]
+; AddReg    = WDF.Registration, MTP.AutoPlayRegistration, MTP.LEGACY.Registration, MTPUSB.Transport.Registration
+; AddReg    = WDF.Registration, MTP.AutoPlayRegistration, MTPUSB.Transport.Registration
+
+;[WPD.MTP.RegistrationBasic]
+; AddReg    = WDF.Registration, MTPUSB.Transport.Registration
+
+;[WPD.MTP.Services]
+; AddService=WUDFRd, 0x000001fa, WUDFRD_ServiceInstall   ; 0x2 - assigned the name service as the PnP function driver
+; AddService=WpdUsb, 0x000001f8, MTP.WpdUsb.AddService, MTPEventlog.AddService
+; AddService=WpdUsb, 0x000001f8, MTP.WpdUsb.AddService
+
+; [WPD.MTP.CoInstallers]
+; AddReg   = WDF.CoInstaller
+
+; [WPD.MTP.Wdf]
+; UmdfService=WpdMtpDriver,WpdMtpDriver_Install
+
+
+;;******************************************************************************
+;; MTP section
+;;******************************************************************************
+
+[MTP.NT]
+CopyFiles = MTP.Files.Kernel, MTP.Files.XPRT_USB, MTP.Files.Core, MTP.Files.UMDFDDriver
+RegisterDlls = MTP.RegisterComServers
+
+[MTP.NT.hw]
+AddReg    = WDF.Registration, MTP.AutoPlayRegistration, MTP.LEGACY.Registration, MTPUSB.Transport.Registration
+; AddReg    = WDF.Registration, MTP.AutoPlayRegistration, MTPUSB.Transport.Registration
+
+[MTP.NT.Services]
+AddService=WUDFRd, 0x000001fa, WUDFRD_ServiceInstall   ; 0x2 - assigned the name service as the PnP function driver
+; AddService=WpdUsb, 0x000001f8, MTP.WpdUsb.AddService, MTPEventlog.AddService
+AddService=WpdUsb, 0x000001f8, MTP.WpdUsb.AddService
+
+[MTP.NT.CoInstallers]
+AddReg = WDF.CoInstaller
+CopyFiles	= Android.CoInstaller.CopyFiles
+
+
+[Android.CoInstaller.CopyFiles]
+WUDFUpdate_01009.dll
+
+[MTP.NT.Wdf]
+UmdfService=WpdMtpDriver,WpdMtpDriver_Install
+UmdfServiceOrder=WpdMtpDriver
+
+
+[MTPUSB.Transport.Registration]
+HKR,"WpdMtpDriver","TransportClassID",0x0,"{34C445BA-07EB-4b5d-8EE9-F66BB9DA403B}"
+
+
+;;******************************************************************************
+;; Common section
+;;   1. File copy
+;;   2. Regsvr COM servers
+;;   3. AutoPlay
+;;   4. WDF
+;;   5. Registration
+;;   6. WMDM/WIA legacy support
+;;   7. Kernel mode service (WPDUSB)
+;;   8. Eventlog service
+;;******************************************************************************
+
+
+[MTP.Files.Kernel]
+;WpdUsb.sys,,,0x0100
+
+[MTP.Files.XPRT_USB]
+;WpdMtpUS.dll,,,0x0100
+;WpdConns.dll,,,0x0100
+
+[MTP.Files.Core]
+;WpdMtp.dll,,,0x0100
+
+[MTP.Files.UMDFDDriver]
+;WpdMtpDr.dll,,,0x0100
+
+
+[MTP.RegisterComServers]
+11,,wpdconns.dll,1
+11,,wpdmtpus.dll,1
+11,,wpdmtp.dll,1
+12,UMDF,wpdmtpdr.dll,1
+
+
+; ================ AutoPlay =================
+
+[MTP.AutoPlayRegistration]
+; This lists the interfaces which WpdUsb.sys will register on device start; this list contains the legacy AutoPlay
+HKR,,"Interfaces",0x00010000,"{14480d3f-7a47-4a75-aaef-b14f56397153}"
+; This indicates the interface used by the device for it's AutoPlay configuration; this is used by the WPD Namespace device properties AutoPlay tab on XP only
+HKR,,"PortableDeviceNameSpaceAutoPlayInterface",,"{14480d3f-7a47-4a75-aaef-b14f56397153}"
+; Per interface setting enabling Autoplay
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\DeviceClasses\{14480d3f-7a47-4a75-aaef-b14f56397153}","DeviceGroup",,"PortableAudioPlayer"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\DeviceClasses\{14480d3f-7a47-4a75-aaef-b14f56397153}","Label",,%Autoplay.Label%
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\DeviceClasses\{14480d3f-7a47-4a75-aaef-b14f56397153}","DeviceHandlers",,"MTPMediaPlayerHandler"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\DeviceClasses\{14480d3f-7a47-4a75-aaef-b14f56397153}","Icons",0x00010000,"%%SystemRoot%%\system32\wpdshext.dll,-701"
+;   DeviceHandler
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\DeviceHandlers\MTPMediaPlayerHandler\EventHandlers\DeviceArrival","MTPMediaPlayerArrival",,""
+;   EventHandlers.  Creating an empty key will give "Take no action" option if no handlers are registered.
+; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\EventHandlers\MTPMediaPlayerArrival\",,0x00000012
+
+
+; ================= WDF sections ===============
+
+[WDF.CoInstaller]
+HKR,,CoInstallers32,0x00010000,"WUDFUpdate_01009.dll"
+
+
+[WDF.Registration]
+HKR,"WUDF","Exclusive",0x10001,1
+HKR,,"LowerFilters",0x00010008,"WpdUSB" ; FLG_ADDREG_TYPE_MULTI_SZ | FLG_ADDREG_APPEND
+
+[WpdMtpDriver_Install]
+UmdfLibraryVersion=1.0.0
+ServiceBinary="%12%\umdf\WpdMtpDr.dll"
+DriverCLSID="{AAAE762B-A6A2-4c45-B5D8-9A83AFB6BB70}"
+
+; =============== Legacy support ===============
+
+[MTP.LEGACY.Registration]
+; Request for auto-determination of WIA/WMDM legacy API (and autoplay) support based on device capabilities and type
+; HKR,,"EnableLegacySupport",0x10001,0xFFFFFFFF
+HKR,,"EnableLegacySupport",0x10001,3
+
+; Report EXIF format as JPEG for WIA
+HKR,,"ReportJPGFormatForEXIF",0x10001,1
+
+; =================== WUDFRd ===================
+
+[WUDFRD_ServiceInstall]
+ServiceType     = %SERVICE_KERNEL_DRIVER%
+StartType       = %SERVICE_DEMAND_START%
+ErrorControl    = %SERVICE_ERROR_NORMAL%
+ServiceBinary   = %12%\WUDFRd.sys
+
+; =================== WPDUSB ===================
+
+[MTP.WpdUsb.AddService]
+DisplayName    = %WpdUsb.SvcDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_DEMAND_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\wpdusb.sys
+LoadOrderGroup = Base
+
+;
+; ============= System Event Log ===============
+;
+
+; [MTPEventlog.AddService]
+; AddReg=MTPEventlog.Addreg
+
+; [MTPEventlog.Addreg]
+; HKLM,"SYSTEM\CurrentControlSet\Services\EventLog\System\WPDMTPDriver","CategoryCount",0x00010001,3
+; HKLM,"SYSTEM\CurrentControlSet\Services\EventLog\System\WPDMTPDriver","EventMessageFile",0x00020000,"%12%\umdf\wpdmtpdr.dll"
+; HKLM,"SYSTEM\CurrentControlSet\Services\EventLog\System\WPDMTPDriver","CategoryMessageFile",0x00020000,"%12%\umdf\wpdmtpdr.dll"
+; HKLM,"SYSTEM\CurrentControlSet\Services\EventLog\System\WPDMTPDriver","TypesSupported",0x00010001,7
+
+;
+; =================== Strings ===================
+;
+
+[Strings]
+; not localizable
+SERVICE_KERNEL_DRIVER = 0x1
+SERVICE_DEMAND_START  = 0x3
+SERVICE_ERROR_NORMAL  = 0x1
+
+;; Localizable strings
+Msft="Microsoft"
+WpdUsb.SvcDesc="WpdUsb"
+GenericMTP.DeviceDesc="MTP Device"
+MfgName="(Standard MTP-compliant devices)"
+MfgNameVendorModels="(Standard MTP-Compliant Device)"
+Autoplay.Label= "Portable Device"
+
+AndroidDisk	= "Android USB Composite Device Installation Disk"
+Android		= "Android"
+
+; A10 Pad
+USB\VID_18D1&PID_0007.Device="Android MTP"
+
+

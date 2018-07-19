@@ -1,0 +1,86 @@
+#!/bin/sh
+# $Id: ipck,v 1.3 2009/11/22 02:12:34 cwilson Exp $
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# See the COPYING file for full license information.
+SELF=$0
+FULLSELF=`realpath ${SELF}`
+DIR=`dirname $FULLSELF`
+MOD=`basename $FULLSELF | sed -e 's,^ipck,,'`
+IPCS=${DIR}/ipcs${MOD}
+IPCRM=${DIR}/ipcrm${MOD}
+
+syntaxe()
+{
+ echo ""
+ echo "IPC destruction"
+ echo "---------------"
+ echo ""
+ echo "    ipck [all | allsem | allmsg | allshm]"
+ echo ""
+}
+
+if test $# -eq 1
+then
+ case $1 in
+ all)
+ echo "kill all ipc"
+ a=`${IPCS} | grep "_sem" | awk '{print $2}'`
+ if test " $a" != " " 
+ then
+  ${IPCRM} sem $a
+ fi
+ a=`${IPCS} | grep "_shm" | awk '{print $2}'`
+ if test " $a" != " " 
+ then
+  ${IPCRM} shm $a
+ fi
+ a=`${IPCS} | grep "_msg" | awk '{print $2}'`
+ if test " $a" != " " 
+ then
+  ${IPCRM} msg $a
+ fi
+ ;;
+ allsem)
+ echo "kill all sem"
+ a=`${IPCS} | grep "_sem" | awk '{print $2}'`
+ if test " $a" != " " 
+ then
+  ${IPCRM} sem $a
+ fi
+ ;;
+ allmsg)
+ echo "kill all msg"
+ a=`${IPCS} | grep "_msg" | awk '{print $2}'`
+ if test " $a" != " " 
+ then
+  ${IPCRM} msg $a
+ fi
+ ;;
+ allshm)
+ echo "kill all shm"
+ a=`${IPCS} | grep "_shm" | awk '{print $2}'`
+ if test " $a" != " " 
+ then
+  ${IPCRM} shm $a
+ fi
+ ;;
+ *)
+ syntaxe
+ ;;
+ esac
+else
+ syntaxe
+fi

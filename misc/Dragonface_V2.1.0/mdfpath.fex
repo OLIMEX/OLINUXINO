@@ -1,0 +1,65 @@
+[platform]
+id=23
+
+;---------涉及到的分区名称
+[parts]
+cnt=4
+item0 =bootloader
+item1=system
+item2=data
+item3=udisk
+;---分区信息
+[bootloader]
+maintype=RFSFAT16
+subtype=BOOTLOADER_00000
+verfymaintype=RFSFAT16
+verfysubtype=VBOOTLOADER_0000
+local = fsop\bootfs
+type=fat
+
+[system]
+maintype=RFSFAT16
+subtype=SYSTEM_000000000
+verfymaintype=RFSFAT16
+verfysubtype=VSYSTEMFS_000000
+local = fsop\system
+type=ext
+
+[data]
+maintype=RFSFAT16
+subtype=DATA_00000000000
+verfymaintype=RFSFAT16
+verfysubtype=VDATA_0000000000
+local = data.img
+type=ign
+
+[udisk]
+maintype=RFSFAT16
+subtype=DISKFS_FEX000000
+verfymaintype=RFSFAT16
+verfysubtype=VDISKFS_FEX00000
+local = fsop\diskfs
+type=wfat
+
+[drivers]
+maintype=RFSFAT16
+subtype=DRV_MDFFS_000000
+verfymaintype=
+verfysubtype=
+local = fsop\drivers
+type=fat
+
+[MacroFould]
+fould=fsop\lhsfile\
+fould=fsop\bootfs\os_show\
+
+[MacroFile]
+file=temp\sysconfig.lhs
+file=temp\sysconfig1.lhs
+file=temp\logo.lhs
+file=temp\bootlogo.lhs
+file=fsop\system\media\boot.mp3
+file=fsop\system\media\shutdown.mp3
+file=data~er.img
+file=fsop\bootfs\linux\linux.bmp
+file=fsop\system\usr\gsensor.cfg

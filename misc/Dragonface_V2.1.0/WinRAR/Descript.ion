@@ -1,0 +1,23 @@
+Default.SFX          图形界面 RAR 自解压模块 
+descript.ion         文件描述
+File_Id.diz          简短版本描述
+License.txt          使用和发布许可
+Order.htm            注册信息
+Rar.exe              控制台 RAR
+Rar.txt              控制台 RAR 手册
+RarLng.dll           语言资源
+RarExt.dll           WinRAR 外壳扩展程序
+RarFiles.lst         固实格式存档排列顺序
+ReadMe.txt           简单的 WinRAR 概述
+TechNote.txt         RAR 压缩文件格式描述
+Uninstall.exe        卸载程序
+Uninstall.lst        卸载文件列表
+UnRAR.exe            解压 RAR 压缩文件的免费工具
+WhatsNew.txt         此版本的最新更新
+WinCon.SFX           控制台 RAR 自解压模块
+WinRAR.exe           WinRAR
+WinRAR.chm           WinRAR 帮助文件
+Zip.SFX              图形界面 ZIP 自解压模块
+UnrarSrc.txt         Unrar 源程序
+RarExt64.dll         WinRAR Windows x64 外壳扩展
+RarExtLoader.exe     在 64 和 32 位外壳扩展之间的界面

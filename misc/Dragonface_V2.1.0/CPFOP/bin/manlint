@@ -1,0 +1,225 @@
+#!/usr/bin/perl -w
+
+# manlint - report "errors" in man page(s).
+
+# USAGE:
+#  manlint [list of files to check]
+#
+# EXAMPLE:
+#  manlint /usr/man/man*/*.* | less
+
+# An error is anything not known to be a safe construct in a man page;
+# see man(7) for more information.
+# Currently it's excessively paranoid, but that's the point -- this
+# program assumes there's a problem, and if it isn't we can add that to the
+# ruleset so that what's safe is explicitly spelled out.
+# Currently this program only examines tmac.an based pages, the normal
+# kind encountered in Linux.  This is different than the BSD manddoc format,
+# which is used by a number of man pages.
+
+# (C) 1999 David A. Wheeler (dwheeler@ida.org)
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+
+require 5.002;  # Requires Perl 5.002 because functions are prototyped.
+
+# First, set up configuration.
+
+$debug = 0;
+$errs = $totalerrs = 0;
+$goodfiles = $badfiles = $skipfiles = 0;
+$filename = '';
+
+# Allow options for small or large safe set; just printing if a file fails
+# instead of detail; auto-skip BSD files.
+
+# This is a list of "safe" macros, with their value being the
+# maximum number of allowed parameters (-1 = any, 0=no parameters allowed)
+%safemacros = (
+  'TH' => 5,
+  # Font Control:
+  'B' => -1, 'BI' => -1, 'BR' => -1,
+  'I' => -1, 'IB' => -1, 'IR' => -1,
+  'RB' => -1, 'RI' => -1, 'SB' => -1, 'SM' => -1,
+  # tmac.an other macros:
+  'SH' => 1,
+  'LP' => 0, 'P' => 0,
+  'PP' => 0,
+  'RS' => 1, 'RE' => 0,
+  'HP' => 1, 'IP' => 2, 'TP' => 1,
+  'DT' => 0, 'PD' => 1, 'SS' => 1,
+  # We'll allow IX (indexing).
+  'IX' => -1,
+  # I'm adding the UR, UN, and UE macros that will permit embedded URIs.
+  'UR' => 1,
+  'UN' => 1,
+  'UE' => 0,
+  # allowed troff macros
+  '\\"' => -1,  # troff comments
+  'ps' => 1,    # Point size
+  'ft' => 1,    # Font commands (not recommended, may be ignored in some cases)
+  'hy' => 1,    # Hyphenation (probably ignored in translation)
+  'bp' => 0,    # Force page break; optional parameter forbidden.
+  'ne' => 1,    # Need lines (likely to be ignored in translation)
+  'br' => 0,
+  'nf' => 0,    # No-fill; insert breaks at end of each line.
+  'fi' => 0,
+  'ig' => 1,
+  '.'  => 0,     # standard end-of-ignore/end-of-definition.
+  'ce' => 1,     # Center next N lines
+  'ad' => 1,
+  'na' => 0,
+  # Will probably need to handle some if.
+  'if' => -1,    # LIMITED VERSION.
+  'ie' => -1,    # LIMITED VERSION.
+  'el' => -1,
+  'so' => 1,     # Handle 'so' for shared man pages
+  'sp' => 1,     # Vertical Space - only permit positive values.
+  'de'  => 1,    # Handling 'macro define' is a pain, but many pages require it.
+  'ds' => -1,    # Allow string defines.
+  'in' => 1,     # Require that every indent be paired with a negative indent.
+  'ti' => 1,     # Temporary indent may be ignored
+  'hy' => 1,     # Hypenation almost certainly ignored by anyone else.
+  'nh' => 1,     # Again, hyphenation likely ignored.
+  'tr' => 1,     # Translations limited, see below.
+);
+
+# Allowed parameters for the ft (font) troff command.
+%allowed_ft_parameter = (
+  '1' => 1,
+  '2' => 1,
+  '3' => 1,
+  '4' => 1,
+  'R' => 1,
+  'I' => 1,
+  'B' => 1,
+  'P' => 1,
+  'CW' => 1,
+  '' => 1,
+);
+
+%allowed_tr = (
+ '\\(ts"' => 1,
+ '\\(is\'' => 1,
+ '\\(if`' => 1,
+ '\\(pd"' => 1,
+ '\\(*W-|\(bv\*(Tr' => 1,
+ '\\*(Tr' => 1,
+);
+
+sub problem($) {
+ # Report a problem, if you should.
+ my $message = shift;
+ print "${ARGV}: $message\n";
+ $errs++;
+}
+
+sub clean_state {
+  %defined_macros = ();
+  $is_skipped = 0;
+}
+
+sub process_line {
+ # Process line already read in $_ (default input line).
+ my $macro;
+ my $parameters;
+ if (m/^[.']\s*([^\s]+)\s*(.*)?/) {
+   $macro=$1;
+   $parameters=$2;
+   $macro =~ s/\s//g;
+   print "Found macro: #${macro}#\n" if $debug;
+   if ($macro =~ m/Dd/) { # Is this the BSD macro set and not a tmac.an set?
+      problem("Uses BSD mandoc conventions instead of tmac.an");
+      $errs--; # Patch up error count.
+      # print "${ARGV}: Uses BSD mandoc conventions instead of tmac.an.\n";
+      close(ARGV); # Skip the rest of this file.
+      $is_skipped = 1;
+      return;
+   }
+   if ($macro =~ m/\\"/) {return;} # Skip troff comments.
+   if (exists($defined_macros{$macro})) {
+     return;  # ??? Should examine the macro parameters.
+   }
+   if (exists($safemacros{$macro}) ) {
+     # ??? Check parameter count.
+     # ??? Check that .TH is the first macro (note: bash.1, etc., break this)
+     if ( ($macro eq 'if') || ($macro eq 'ie' )) {
+       # Only permit checking 't' or 'n' for now.
+       if ($parameters =~ m/^[tn]\s/) {
+          $_ = $parameters;
+          s/^[tn]\s+//;
+          process_line();  # Re-examine line without the if statement.
+       } else {
+         problem("unsafe use of if/ie");
+       }
+       # ??? sp: only no-parameter or positive values.
+     } elsif ($macro eq 'de') {
+       $parameters =~ m/^([^\s]+)/;
+       $is_defining = $1;
+       $defined_macros{$is_defining} = 1;
+     } elsif ($macro eq 'so') {
+       $parameters =~ m/^([^\s]+)/;
+       $new_file = $1;
+       while (<$new_file>) { process_line(); }
+      } elsif (($macro eq 'ft') && (defined($parameters))
+            && (! exists($allowed_ft_parameter{$parameters}))) {
+        problem("forbidden ft parameter $parameters");
+      } elsif (($macro eq 'tr') && (defined($parameters))
+            && (! exists($allowed_tr{$parameters}))) {
+        problem("forbidden tr parameter $parameters");
+     }
+    # ??? 'in': Require that every indent be paired with a negative indent.
+    # ??? For macros with text after them, check their text's escapes.
+   } else {
+     problem("unsafe macro $macro");
+   }
+ } else {
+ # ??? Regular text; check escape clauses.
+ }
+}
+
+
+# Main loop: Process files, looking for errors.
+
+clean_state();
+
+while (<>) {
+ if ($ARGV ne $filename) {
+   print "Processing $ARGV; up to now good=$goodfiles bad=$badfiles skip=$skipfiles\n";
+   $filename=$ARGV;
+ }
+ process_line();
+} continue {
+ if (eof) {    # End of processing this file.
+  close ARGV;  # Perl magic to get line #s to be accurate.
+  $totalerrs += $errs;
+  if ($errs) { $badfiles++ } else {
+      if ($is_skipped) {$skipfiles++} else {$goodfiles++};
+  }
+  $errs = 0;
+  clean_state();
+ }
+}
+
+print "Number of good files = $goodfiles\n";
+print "Number of bad files = $badfiles\n";
+print "Number of skipped files = $skipfiles\n";
+exit $errs;
+
+# ??? Handle .so better (esp. the error messages)
+# currently error messages don't report the traceback & they should.
+
+

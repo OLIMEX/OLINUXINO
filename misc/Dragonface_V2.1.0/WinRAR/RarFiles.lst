@@ -1,0 +1,63 @@
+; 用于固实格式压缩的文件排序列表
+;
+; 在这里你可以修改文件列表来告诉 RAR 在添加文件到固实压缩文件
+; 时的排列顺序。
+;
+; 这个文件可以包含文件名,通配符和指定项目 -$default。
+; 用于处理文件在顺序列表中阐明位置的默认项目与此文件中的其他
+; 项目不匹配。以分号“;”开头的行被认为是注释而不被处理。
+;
+; 将此文件放置于 RAR.EXE 所在目录中。
+;
+; 下列提供的技巧将在操作中改进压缩率和速度：
+;
+; - 如果可能的话，包含相似信息的文件应该在压缩文件中归为一组；
+; - 频繁访问的文件应该放置在开始位置。
+;
+file_id.diz
+descript.ion
+read.*
+readme.*
+*.doc
+*.txt
+*.htm
+*.html
+*.shtml
+*.lst
+*.log
+*.ini
+*.bat
+*.cmd
+*.h
+*.hpp
+*.c
+*.cpp
+*.asm
+*.bas
+*.bak
+*.rtf
+*.hlp
+*.inf
+*.com
+*.exe
+*.dll
+*.ovr
+*.ovl
+*.obj
+*.lib
+*.sys
+*.drv
+*.bin
+*.bmp
+*.wav
+$default
+*.mp3
+*.gif
+*.png
+*.jpg
+*.7z
+*.arj
+*.ha
+*.lzh
+*.rar
+*.zip

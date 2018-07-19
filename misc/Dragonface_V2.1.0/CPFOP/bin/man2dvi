@@ -1,0 +1,36 @@
+#! /bin/sh
+#
+# Script to format manpages to dvi.
+# Copyright (c) 1997 Tobias Begalke (tb@lst.de)
+#
+# Part of release 1.6g of the man suite. 
+#
+
+groff="groff -Tdvi -mandoc"
+
+if [ ! $# = 1 ]; then
+  echo "$0: usage:"
+  echo "  $0 [topic] > topic.dvi"
+  exit 1
+fi
+
+location=`man -c -w $1`
+
+if [ "$location" = "" ]; then
+  exit 1
+fi
+
+case `file $location` in
+  *gzip* )
+    zcat $location | $groff  
+    ;;
+  
+  *bzip2* )
+    bzcat $location | $groff  
+    ;;
+
+  *troff* )
+    $groff $location
+    ;;
+esac
+	 

@@ -1,0 +1,67 @@
+OLinuXino + Festival Speech Synthesis System
+--------------------------------------------
+
+1. Instalation
+
+    *   Go to http://festvox.org/packed/festival/2.1/
+    *   Download all archieves
+    *   For this README we will use /root/festival
+    *   Move the archives to the /root/festival
+    *   Extract all archieves
+    *   After that there will be two new folders:
+        ->  speech_tools
+        ->  festival
+        
+        If you want you can move them to different location
+    *   Open this demo Makefile
+    *   Edit:
+        ->  FES_DIR =   /root/festival
+        or other location
+        
+    *   Open terminal and run:
+        # make remove
+        # make
+    
+    *   To run the program:
+        # bin/Festival
+        
+2.  Command options:
+    *   Verbose mode:   --verbose, -v
+        Print extra output information.
+        
+        Example:
+        ---------
+        # bin/Festival -v
+        
+    *   Heap size:  --heap, -h
+        Define the size of the used heap. Default value is 210000.
+         
+        Example:
+        ---------
+        # bin/Festival -v --heap 1500000
+        
+    *   Do not load init file:  --no-init-file
+        Doesn't load the default initilization file.
+          
+        Example:
+        ---------
+        # bin/Festival -v --no-init-file
+        
+    *   Read text from text file:   --file, -f
+        Open ASCII coded text file, and read it.
+        
+        Example:
+        ---------
+        # bin/Festival -v --file SomeText.txt
+        
+    *   Read text from command line:    --text, -t
+        Say text parsed from the command line.
+        
+        Example:
+        ---------
+        # bin/Festival -v --text "Say Hello World"
+
+3. Support
+    support@olimex.com
+    
+    

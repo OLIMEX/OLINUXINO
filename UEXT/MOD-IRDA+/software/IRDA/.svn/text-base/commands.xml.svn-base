@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<commands>
+    <command>
+        <id>1</id>
+        <title>Command 1</title>
+        <description>Some description</description>
+        <type>SIRC</type>
+        <address>1</address>
+        <com>2</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 2</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 3</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 4</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 5</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 6</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 7</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 8</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 9</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 10</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 11</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 12</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 13</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 14</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 15</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 16</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 17</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 18</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 19</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 20</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 21</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 22</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 23</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 24</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 25</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 26</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 27</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 28</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 29</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 30</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 31</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 32</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 33</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 34</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 35</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 36</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 37</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+    
+    <command>
+        <id>1</id>
+        <title>Command 38</title>
+        <description>Some description</description>
+        <type>RC5</type>
+        <address>2</address>
+        <com>3</com>
+    </command>
+</commands>

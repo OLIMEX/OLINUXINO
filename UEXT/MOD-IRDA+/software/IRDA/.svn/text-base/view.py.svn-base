@@ -1,0 +1,159 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+#  view.py
+#  
+#  Copyright 2014 Stefan Mavrodiev <support@olimex.com>
+#  
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#  
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+
+
+
+import curses
+import time
+import os
+import parseXML
+
+screen = curses.initscr()
+curses.noecho()
+curses.cbreak()
+curses.start_color()
+
+try:
+    curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+    screen.bkgd(' ', curses.color_pair(2))
+    screen.refresh()
+except Exception, e:
+    print str(e)
+    print "Error"
+    time.sleep(2)
+    
+
+def menu():
+    curses.init_pair(1, curses.COLOR_RED, curses.COLOR_WHITE)
+    screen.keypad(1)
+    pos = 1
+    x = None
+    h = curses.color_pair(1)
+    n = curses.A_NORMAL
+    
+    while x != ord('\n'):
+        screen.clear()
+        screen.border(0)
+        screen.addstr(2, 2, "SOME TEXT", curses.A_STANDOUT)
+        screen.addstr(4, 2, "Please select an option...", curses.A_BOLD)
+        
+        if pos == 1:
+            screen.addstr(5,4, "1 - List commands", h)
+        else:
+            screen.addstr(5,4, "1 - List commands", n)
+        if pos == 2:
+            screen.addstr(6,4, "2 - New command", h)
+        else:
+            screen.addstr(6,4, "2 - New command", n)
+        if pos == 3:
+            screen.addstr(7,4, "3 - Delete command", h)
+        else:
+            screen.addstr(7,4, "3 - Delete command", n)
+        if pos == 4:
+            screen.addstr(8,4, "4 - D", h)
+        else:
+            screen.addstr(8,4, "4 - D", n)
+        if pos == 5:
+            screen.addstr(9,4, "5 - E", h)
+        else:
+            screen.addstr(9,4, "5 - E", n)
+            
+        screen.refresh()
+        x = screen.getch()
+        
+        if x == ord('1'):
+            pos = 1
+        elif x == ord('2'):
+            pos = 2
+        elif x == ord('3'):
+            pos = 3
+        elif x == ord('4'):
+            pos = 4
+        elif x == ord('5'):
+            pos = 5
+        elif x == 258:
+            if pos < 5:
+                pos += 1
+            else:
+                pos = 1
+        elif x == 259:
+            if pos > 1:
+                pos -= 1
+            else:
+                pos = 5
+        elif x!= ord('\n'):
+            curses.flash()
+    
+    return str(pos)
+
+
+def listCommands():
+    #Parse all commands from XML
+    xy = screen.getmaxyx()
+    
+    win = curses.newwin(xy[0] - 2, xy[1]/2 - 2, 1, xy[1]/2)
+    win.border(0)
+    win.bkgd(' ', curses.color_pair(2))
+    
+    win.addstr(1, 1, "LIST OF ALL STORED COMMANDS: ", curses.A_BOLD)
+    win.addstr(2, 1, '='*(xy[1]/2 - 4))
+    win.refresh()
+    
+    
+    # Make progress window
+    width = 52
+    height = 4
+    xy2 = win.getmaxyx()
+     
+    prog = curses.newwin(height, width, (xy2[0] - height)/2, (xy2[1] - width)/2 + xy[1]/2)
+    prog.border(0)
+    prog.addstr(1, (prog.getmaxyx()[1]/2) - (len("Progress")/2), "Progress", curses.A_BOLD)
+    prog.touchwin()    
+    prog.refresh()
+    
+    # Populate list
+    parseXML.readXML()
+    for index in range(len(parseXML.commandList)):
+        if index < xy2[0] - 4:
+            win.addstr(3+index, 1, str(parseXML.commandList[index].title))
+        
+        pos = int((index/float(len(parseXML.commandList)))*50)
+        # Update progress bar
+        prog.addstr(2, 1, '='*pos)
+        prog.touchwin()
+        prog.refresh()
+        time.sleep(0.01)
+        
+        
+        
+        
+    del prog
+    win.touchwin()
+    win.refresh()
+    win.getch()
+    
+    
+def exit():
+    curses.endwin()
+    #~ os.system('clear')
+    return

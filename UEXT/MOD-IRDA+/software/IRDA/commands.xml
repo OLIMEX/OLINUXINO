@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+   <commands>
+       <command>
+           <title>ON</title>
+           <description>Turn on the TV</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>12</com>
+       </command>
+       <command>
+           <title>P1</title>
+           <description>Program 1</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>1</com>
+       </command>
+       <command>
+           <title>V+</title>
+           <description>Volume up</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>16</com>
+       </command>
+       <command>
+           <title>V-</title>
+           <description>Volume down</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>17</com>
+       </command>
+       <command>
+           <title>P+</title>
+           <description>Program up</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>32</com>
+       </command>
+       <command>
+           <title>P-</title>
+           <description>Program down</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>33</com>
+       </command>
+       <command>
+           <title>SRC</title>
+           <description>Select source</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>56</com>
+       </command>
+       <command>
+           <title>OK</title>
+           <description>OK</description>
+           <type>RC5</type>
+           <address>1</address>
+           <com>53</com>
+       </command>
+   </commands>

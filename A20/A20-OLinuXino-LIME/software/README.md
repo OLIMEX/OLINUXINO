@@ -4,16 +4,9 @@
 
 You could use package that is not targeted from your board but this is not recommended.
 
-## Available packages
+## Source
 
-- [pyA10Lime](https://pypi.python.org/pypi/pyA10Lime)
-- [pyA13](https://pypi.python.org/pypi/pyA13)
-- [pyA13SOM](https://pypi.python.org/pypi/pyA13SOM)
-- [pyA20](https://pypi.python.org/pypi/pyA20)
-- [pyA20EVB](https://pypi.python.org/pypi/pyA20EVB)
-- [pyA20Lime](https://pypi.python.org/pypi/pyA20Lime)
-- [pyA20Lime2](https://pypi.python.org/pypi/pyA20Lime2)
-- [pyA20SOM](https://pypi.python.org/pypi/pyA20SOM)
+[pyA20Lime](https://pypi.python.org/pypi/pyA20Lime)
 
 ## Installing from pypi
 
@@ -36,8 +29,8 @@ Download the folder for your board.
 **If you want to download single folder svn is needed**
 
 ```bash
-svn export https://github.com/OLIMEX/OLINUXINO/trunk/SOFTWARE/Python/
-cd pyA10Lime
+svn export https://github.com/OLIMEX/OLINUXINO/trunk/A20/A20-OLinuXino-LIME/software/
+cd pyA20Lime
 python setup.py install
 ```
 

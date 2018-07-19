@@ -1,17 +1,14 @@
-# A13 Software support
-
-[script.bin](script.bin) - Kernel parameters which are loaded at boot time
-
 # Python packages for OLinuXino boards
 
 **Before using the packages make sure that the pins you're will be using are not already used by another peripheral!**
 
 You could use package that is not targeted from your board but this is not recommended.
 
-## Source
+## Available packages
 
-- [pyA13](https://pypi.python.org/pypi/pyA13)
-- [pyA13SOM](https://pypi.python.org/pypi/pyA13SOM)
+- [pyA20](https://pypi.python.org/pypi/pyA20)
+- [pyA20EVB](https://pypi.python.org/pypi/pyA20EVB)
+- [pyA20SOM](https://pypi.python.org/pypi/pyA20SOM)
 
 ## Installing from pypi
 
@@ -34,8 +31,8 @@ Download the folder for your board.
 **If you want to download single folder svn is needed**
 
 ```bash
-svn export https://github.com/OLIMEX/OLINUXINO/trunk/A13/software/
-cd < pyA13 || pyA13-SOM >
+svn export https://github.com/OLIMEX/OLINUXINO/trunk/A20/software/
+cd < pyA20 || pyA20EVB || pyA20SOM >
 python setup.py install
 ```
 

@@ -8,32 +8,32 @@ Internal initial release.
 #### Hardware revision C (initial public release)
 ============================
 
-1. C175 changed from 100n na 22uF (and changed package from 0402 to 0603)
-2. Updated white prints: Lime to Lime2; rev.B to rev.C, 2014 to 2015
+1. C175 changed from 100n na 22uF (and changed package from 0402 to 0603);
+2. Updated white prints: Lime to Lime2; rev.B to rev.C, 2014 to 2015.
 
 #### Hardware revision D (internal, not released)
 ===============================
 
-1. eMMC memory added; NAND or eMMC optional. Schematics set for NAND per default.
+1. eMMC memory added; NAND or eMMC optional. Schematics set for NAND per default;
 2. C224 and C232 - 47uF/6.3V/0805 added in parallel to the 5V_SATA_PWR connector;
 3. Changed L1, L2, L3 from FB/600R/0805 to 0R/0805;
 4. Capacitors C84, C85 changed to 22uF/0603 down from 100nF/0402;
 5. Fixed the white name print from A20-OLinuXino-Lime(bottom) to A20-OLinuXino-Lime2 (there was no "2");
-6. Improved LAN-a routing
-7. Added four extra data bits to the eMMC, through a resistor matrix
-8. Changed EMMC_RST. Moved from PC4/NCE0/EMMC_RST to PC16/NWP/EMMC_RST
+6. Improved LAN-a routing;
+7. Added four extra data bits to the eMMC, through a resistor matrix;
+8. Changed EMMC_RST. Moved from PC4/NCE0/EMMC_RST to PC16/NWP/EMMC_RST.
 
 #### Hardware revision E (internal, not released)
 ==============================
 
-1. Fixed white print of EMMC_PWR jumper (added positions).
-2. Changed the white print of board revision.
+1. Fixed white print of EMMC_PWR jumper (added positions);
+2. Changed the white print of board revision;
 3. U15 and U17 were changed in value from SY8008C(AA)C to SY8009AAAC(SOT23-5).
 
 #### Hardware revision F (internal, not released)
 ==============================
 
-1. Change Ethernet PHY controller to RTL8211E-VB-CG1. This required changing a lot of components and routing in the area around the controller too.
+1. Changed Ethernet PHY controller to RTL8211E-VB-CG1. This required changing a lot of components and routing in the area around the controller too;
 2. Changed the placing of the pull-up rezistorite of the RX wire (before the matrix).
 
 #### Hardware revision G (public release)
@@ -49,25 +49,126 @@ Internal initial release.
 #### Hardware revision G2 (public release)
 =============================
 
-1. The buttons were moved 5 mils further to the middle of the board to futher reduce deformation during panelization.
-2. R32 and R36 were moved 40 mils further away from the Ethernet connector.
-3. C207 was moved to the top side of the board
-4. R76 was moved away from C200. Now it is placed in parallel to R83.
-5. C179 was moved a little bit away while C163 was rotated.
-8. Fixed white print, symbol and package of R107(220nF) to avoid confusion.
-9. R105 was changed to NA; instead a pull-down R107 (4.7k) was added.
-10. C150 was moved 15mils away from the Ethernet LEDs.
-11. C212 and C213 were moved 40mils away from L16.
-12. The white print year changed to 2017 and the revision print updated to G2.
-13. C201 and C211 were changed from 22pF/0603 to 27pF/0603
-14. C116 and C117 were changed from 33pF/0603 to 27pF/0603
+1. The buttons moved 5 mils further to the middle of the board to futher reduce deformation during panelization;
+2. R32 and R36 moved 40 mils further away from the Ethernet connector;
+3. C207 moved to the top side of the board;
+4. R76 moved away from C200, now it is placed in parallel to R83;
+5. C179 moved a little bit away and C163 was rotated;
+8. Fixed white print, symbol and package of R107(220nF) to avoid confusion;
+9. R105 changed to NA; instead a pull-down R107 (4.7k) added;
+10. Moved C150 15mils away from the Ethernet LEDs;
+11. C212 and C213 moved 40mils away from L16;
+12. The white print year changed to 2017 and the revision print updated to G2;
+13. C201 and C211 changed from 22pF/0603 to 27pF/0603;
+14. C116 and C117 changed from 33pF/0603 to 27pF/0603.
 
-There are three variants manufactured:
+#### Hardware revision H (internal, not released)
+=============================
 
-A20-OLinuXino-Lime2-eMMC_Rev_G2: eMMC present, the NAND Flash is NA, all components in commercial temperature range
-A20-OLinuXino-Lime2-4GB_Rev_G2: NAND flash present, the eMMC is NA, all chips are in commercial temperature range
-A20-OLinuXino-Lime2_Rev_G2: Both NAND flash and eMMC are NA, all chips are in commercial temperature range
+1. CTP jumpers made the same as in A20-SOM-EVB;
+2. Changed the PHY for the Micrel one;
+3. R49 and R50 packages now 0402;
+4. Fixed the labels of C108, C125, C159, C171, C176, C180. Now it shows capacitance and voltage range;
+5. Changed R86 from 4.99k/1% to 12.4k/1% and R90 from 3.32k/1% to 10k/1% in order to decrease industrial DDR3 power suplly from 1.5V to 1.35V;
+6. Added text: "When DDR3L is used, VDD&VDDQ are set to 1.35V!!!";
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A20-OLinuXino-Lime2_Rev_H
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. DDR3 memory = commercial temperature Micron MT41K256M16HA-125:E(DDR3L-1600_11-11-11);
+2. Ethernet PHY changed to commercial variant - KSZ9031RNXCC-TR;
+3. The EMMC and all corresponding components changed to NA (Not Assembled);
+4. The NAND flash and all corresponding components changed to NA (Not Assembled).
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A20-OLinuXino-Lime2-IND_Rev_H
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. DDR3 memory set to the industrial Micron variant - MT41K256M16HA-125IT:E(DDR3L-1600_11-11-11);
+2. Changed Ethernet PHY to industrial variant - KSZ9031RNXIC-TR;
+3. EMMC flash and all corresponding components changed to NA;
+4. NAND flash and all corresponding components set to NA;
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A20-OLinuXino-Lime2-EMMC_Rev_H
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. DDR3 memory is set to commercial Micron variant - MT41K256M16HA-125:E(DDR3L-1600_11-11-11);
+2. The PHY was changed to commercial variant - KSZ9031RNXCC-TR;
+3. NAND flash and all corresponding components set to NA;
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A20-OLinuXino-Lime2-EMMC-IND_Rev_H
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1. DDR3 memory set to industrial variant - MT41K256M16HA-125IT:E(DDR3L-1600_11-11-11);
+2. Ethernet PHY changed from KSZ9031RNXCC-TR to industrial variant KSZ9031RNXIC-TR;
+3. NAND flash and all corresponding components set to NA.
 
 
+#### Hardware revision I (internal, not released)
+=============================
 
+1. C207 moved on the top side of the board, for easier battery connector soldering;
+2. R76 moved away from C200; now placed in parallel to R83;
+3. 32768 crystal package changed with 0.1mm bigger padove and better paste;
+4. C179 moved a little bit away while C163 was rotated to avoid AXP's GND pad;
+5. All RA0805 SMT matrices RM4, RM7, RM8 changed to a package with larger external pads;
+6. C150 moved 15 mils away from the Ethernet LEDs; 
+7. C212 and C213 moved away from L16 to ease the L16 mounting/demounting;
+8. Changed LEDs package (smaller pads_;
+9. Crystals in HCX-4S package changed to HCX-4S_TEST package;
+10. Package of GPIO-1 to GPIO-4 + LCD_CON changed;
+11. C201 and C211 changed from 22pF/0603 to 27pF/0603;
+12. C116 and C117 changed from 33pF/0603 to 27pF/0603;
+13. C110 and C115 now 22pF to match the 32KHZ crystal;
+14. HDMI connector changed to new package HDMI-SWM-19_TEST;
+15. RCLAMP0524P changed package;
+16. Added SPI FLASH option;
+17. Improved the keepout of the mounting holes;
+18. Despite that tant capacitors are NA (Not Assembled) they are changed to 0805 electrolyte ones;
+19. Q4 crystal changed with smaller package (3.2x2.5);
+20. Touch screen jumpers (capacitive/resistive option) changed with matrices;
+21. PWR_JACK's package improved;
+22. SD_CARD package improved;
+23. Added pims for additional AXP209 back-up battery (PIN30 AXP);
+24. Improved ground planes and polygons;
+25. All 27pF capacitors changed to 33pF, U16 was SY7208(SOT23-6) now is MT3608(SOT23-6), R65 was 100R and now changed to 191R/1%;
+26. The labelling of all GPIO connector signals now re-done.
+
+#### Hardware revision J (internal, not released)
+=============================
+
+1. HDMI-CEC pulled to 3.3V via 27k and diode;
+2. HDMI-HPD now goes trhough 10k R31 in series; R47 changed from 47k to 20k;
+3. D3 moved to the top side (on U14's place). U14 moved to the bottom side (under PWR_JACK);
+4. Fixed D6's value 1N4007/SMA;
+5. Added jumper WE_ENABLE to the SPI flash;
+6. Added USB key 100uf capactiors;
+7. Changed SATA connector package;
+8. Added RCL filter to GTXCK;
+9. Added filtering capacitors in series to GTXD0-3 and GTXCTL;
+10. Added C82 filter to the CLK125;
+11. Improved capacitor routing around the RAM and the A20 chip;
+12. Improved MICROSD connector routing; 
+13. Added capacitor to GRXCLK;
+14. The resistors on Ethernet's TX and RX are now 33R;
+15. SY8009AAAC changed to SY8089AAAC.
+
+#### Hardware revision K (public release)
+=============================
+
+1. Added the small footprint Samsung eMMC.
+2. Renamed GMAC_PWR_E/PH7 to just PH7. The signal was needed by old Ethernet PHY, it is no longer routed to the Ethernet.
+3. Removed filtering from PHY's TX and RX - L3, L4 removed (from 2.7nH/0402 changed to NA); C81, C254 removed (changed from 24pF/0402 to NA). This improves GB speeds.
+
+
+Currently there are seven board variants available (depending on the memories installed and the operating temperature range):
+
+A20-OLinuXino-LIME2 - no eMMC flash, no NAND flash, no SPI flash, all components in commercial temperature range
+A20-OLinuXino-LIME2-e16GB - 16GB eMMC flash present, no NAND flash, no SPI flash, all components in commercial temperature range
+A20-OLinuXino-LIME2-e4GB - 4GB eMMC present, no NAND flash, no SPI flash, all components in commercial temperature range
+A20-OLinuXino-LIME2-n8GB - no eMMC flash, 8GB NAND flash, no SPI flash, all components in commercial temperature range
+A20-OLinuXino-LIME2-s16MB - no eMMC flash, no NAND flash, 16MB SPI flash, all components in commercial temperature range
+T2-OLinuXino-LIME2-IND - no eMMC flash, no NAND flash, no SPI flash, all components in industrial temperature range
+T2-OLinuXino-LIME2-s16MB-IND - no eMMC flash, no NAND flash, 16MB SPI flash, all componenets in industrial temperature range
+
+Make sure to check the web-page of A20-OLinuXino-LIME2 at www.OLIMEX.com to check if other board options are available.
 

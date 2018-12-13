@@ -9,7 +9,7 @@ Chapter 1. Setting up the software tools
 
 First, make sure that you have the software tools needed to compile the Linux Kernel. You'd have to install
 these if you don't have them already installed. To perform most of the operations below you should be logged
-as a user with super user rights on your Linux machine. Type in the terminal:
+as a user with super user rights on your Linux machine. We used  Type in the terminal:
 
 # sudo su
 
@@ -86,11 +86,13 @@ and then patch the uboot sources with:
 If you don't apply the patch you might have severely reduced Gigabit Ethernet speed.
 
 ---
-Note that the compiler version that the u-boot is built and tested is :
+
+Note that the compiler version that the u-boot is built and tested is exactly:
 arm-linux-gnueabihf-gcc (crosstool-NG linaro-1.13.1-4.9-2014.09 - Linaro GCC 4.9-2014.09) 4.9.2 20140904 (prerelease)
 
-Now you have to load configuration file for your board. 
-because there are four different configurations for u-boot which depend on the exact board that you have. 
+Now you have to load configuration file for your board, because there are different configurations for u-boot
+which depend on the exact board that you have.
+
 Do only the point for your board:
 
 ---
@@ -112,8 +114,6 @@ Save and Exit
 
 ---
 
-
-
 2.2 A20-SOM board
 
 # make A20-Olimex-SOM-EVB_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
@@ -122,7 +122,6 @@ Save and Exit
 defconfig instead, type:
 // # make A20-OLinuXino-Lime2_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 // # make ARCH=arm menuconfig
-
 
 ---
 
@@ -146,7 +145,6 @@ ESC ESC
 
 Save and Exit
 
-
 ---
 
 2.4 A20-OLinuXino-LIME board
@@ -154,13 +152,15 @@ Save and Exit
 # make A20-OLinuXino-Lime_defconfig ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
 ---
-for all boards you can change many other settings using:
+
+After the defconfig part you can manually edit a lot of settings using:
 
 # make ARCH=arm menuconfig
 
-but you have to be very carefullly
+You can use the above to load modules that you might need but ou have to be careful, 
+since certain options might break the u-boot.
 
-Now type the following command to compile the u-boot:
+When done with the menuconfig type the following command to compile the u-boot:
 
 # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
@@ -445,7 +445,7 @@ Download boot.scr and uEnv.txt files
 You have to copy in first sd card partition where script.bin file is located
 
 # cp boot.scr /mnt/sd
-# cp uEnv.txt.bin /mnt/sd
+# cp uEnv.txt /mnt/sd
 # sync
 # umount /dev/sdX1
 
@@ -510,7 +510,7 @@ replace /lib/firmware folder with the generated /linux-sunxi/out/firmware
 #cp -rfv linux-sunxi/out/lib/firmware/ /mnt/sd/lib/
 
 # sync
-# umount /mnt/sdX2
+# umount /dev/sdX2
 
 At this point you have Debian on your SD card second partition and you have an SD card ready to boot debian on
 A20-SOM or A20-OLinuXino-MICRO or A20-OLinuXino-LIME or A20-OLinuXino-LIME2

@@ -1,20 +1,22 @@
-IMPORTANT A10-OLINUXINO-LIME AND A20-OLINUXINO-LIME SHARE SAME HARDWARE LAYOUT.
+# IMPORTANT
 
-THIS IS BECAUSE THE A10 AND A20 CHIPS ARE PIN-TO-PIN COMPATIBLE (DROP-IN REPLACEABLE).
+A10-OLINUXINO-LIME AND A20-OLINUXINO-LIME SHARE SAME HARDWARE LAYOUT.
 
-ONLY THE MAIN CHIP PLACED IS DIFFERENT. 
+A10 AND A20 CHIPS ARE PIN-TO-PIN COMPATIBLE (DROP-IN REPLACEABLE).
 
-Hardware revision A, notable changes
-========
+ONLY THE MAIN CHIP IS DIFFERENT.
+
+# Hardware revision A
+
 1. Initial release
 
-Hardware revision B, notable changes
-========
+# Hardware revision B
+
 1. R12, R13(ODT, RST) resistors changed to 0R board mounted for more conistent start up.
 2. R8, R14 changed from 430R to 330R, better behavior.
 
-Hardware revision C, notable changes
-=========
+# Hardware revision C
+
 1. Corrected the label of PC3/PB1 to PC3/PB8
 2. Added R73 - 10M near the 32768 crystal
 3. Added 2 FET transistors and MCP130 for switching directly external +5V without voltage drop
@@ -26,8 +28,8 @@ Hardware revision C, notable changes
 9. Added resistor pads between PC16/NWP and pin #19 #WP of NAND memory
 10. Added R77 pull down ressitor at MCP130
 
-Hardware revision D, notable changes
-============================
+# Hardware revision D
+
 1. Added pads for 47uF and 2x22uF at both USB hosts - currently NA
 2. Added 220uF/6.3V/tant at USB OTG - currently NA
 3. Added 220uF/6.3V/tant at SATA pwr - currently NA
@@ -37,20 +39,20 @@ Hardware revision D, notable changes
 7. C148 now 22uF/6.3V - so SATA_PWR can start up better if there are capacitors, else it might restart
 8. R41 changed to 6.81k/1% (down from 13k/1%), this increases the current available at USB1 to 1A6.81k/1%
 
-Hardware revision E, notable changes
-========================
+# Hardware revision E
+
 1. C148 changed from 22uF/0402 to 22uF/0603. 
 2. Moved R58 slightly.
 
-Hardware revision F, notable changes
-========================
+# Hardware revision F
+
 1. Connect ODT1, CS1, CKE1 and ZQ1 for the 1GB DDR3 option
 2. Added R78-330R/1% for ZQ1
 3. Change DDR3 value to 1GB memory (H5TC8G63AMR-PBA) to test
 4. Change R68 value from 4.99k/1% to 4.32k/1% in order to decrease DDR3 1.5V to 1.38V  
 
-Hardware revision G, notable changes
-===========
+# Hardware revision G
+
 1. R68 was changed back from 4.32k/1% to 4.99k/1% so VDD DDR3 is set to 1.5V instead of 1.35V, because A10 doesn't support 1.35V DDR3 power supply(according to the sunxi's comparison table!).
 2. The Ethernet PHY was changed from RTL8201CP to LAN8710AI-EZK(QFN-32).
 3. eMMC option added.
@@ -73,7 +75,7 @@ Hardware revision G, notable changes
 20. Added pads for 3V back-up AXP209 battery (that can keep RTOS alive)
 21. Changed U14 from SY7208 to MT3608
 
-Hardware revision H, notable changes
-===========
+# Hardware revision H
+
 1. R19 now pull-down.
 2. GPIO4 konektora had wrong male package; now fixed.

@@ -1,7 +1,11 @@
-iMX233-OLinuXino-Mini REVISION.C	July, 2012
+iMX233-OLinuXino-Mini
 
-Status	: prototype, 4 Layers
+Revision: C
 
-Issues	: none
+Date    : July, 2012
 
-TODO	: none
+Status  : prototype, 4 Layers
+
+Issues  : none
+
+TODO    : none

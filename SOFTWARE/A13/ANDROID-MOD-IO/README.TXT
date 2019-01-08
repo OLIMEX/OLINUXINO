@@ -1,2 +1,4 @@
-This is demo code made by Dimitar Gamishev and show how to access MOD-IO and drive relays, read GPIOs, read ADCs with Android application.
-The sources of the projects are at: https://github.com/hehopmajieh/modio_android
+**Author: Dimitar Gamishev**
+
+This is demo code to show how to access MOD-IO and drive relays, read GPIOs, and read ADCs with an Android application.
+The sources of the projects are [located here](https://github.com/hehopmajieh/modio_android).

@@ -1,0 +1,174 @@
+This procedure was done on the Olinuxino Maxi.
+It was connected with a wired ethernet during the procedure.
+Once the WiFi is functional, the wired ethernet can be removed.
+The microSD card can then be moved to another Olinuxino board such as the Micro.
+
+Log into the Olinuxino board.
+
+upgrade the system:
+pacman -Syu
+
+Then install development tools
+pacman -S base-devel
+
+Delete empty directories:
+rmdir /usr/lib/modules/2.6.35-6-ARCH+/build
+rmdir /usr/lib/modules/2.6.35-6-ARCH+/source
+
+Install kernel source:
+pacman -S kernel26-headers-olinuxino
+
+
+Get the Realtek drivers from the Realtek web site:
+http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&PFid=48&Level=5&Conn=4&ProdID=277&DownTypeID=3&GetDown=false&Downloads=true
+
+I downloaded RTL8188CUS (the one showing up on lsusb)
+If you choose RTL8192CU you get the same file
+
+The file comes as a zip file:
+RTL819xCU _USB_linux_v3.4.3_4369.20120622.zip
+
+Assume you downloaded it to your workstation.
+Unzip the file.
+Inside there is a folder called driver with a file inside called:
+rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622.tar.gz
+
+Copy that file to the Olinuxino target:
+scp rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622.tar.gz root@ip_addr_of_Olinuxino:/root
+
+log into Olinuxino
+cd /root
+mkdir driver
+mv rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622.tar.gz driver
+cd driver
+tar xzf rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622.tar.gz
+cd rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622
+vi Makefile
+
+Change the line:
+CONFIG_PLATFORM_I386_PC = y
+to
+CONFIG_PLATFORM_I386_PC = n
+
+Below it add the line:
+CONFIG_PLATFORM_ARM_iMX233 = y
+
+
+find the block:
+---------------------------------------------------------
+ifeq ($(CONFIG_PLATFORM_ARM_PXA2XX), y)
+EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
+ARCH := arm
+CROSS_COMPILE := arm-none-linux-gnueabi-
+KVER  := 2.6.34.1
+KSRC ?= /usr/src/linux-2.6.34.1
+endif
+---------------------------------------------------------
+Below it add the block:
+---------------------------------------------------------
+ifeq ($(CONFIG_PLATFORM_ARM_iMX233), y)
+EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
+ARCH := arm
+CROSS_COMPILE := /usr/bin/
+KVER  := KVER  := 2.6.35-6-ARCH+
+KSRC ?= /usr/src/linux-2.6.35-6-ARCH+
+MODDESTDIR := /usr/lib/modules/2.6.35-6-ARCH+/kernel/drivers/net/wireless/rtl818x
+endif
+---------------------------------------------------------
+Save and exit:
+:wq
+
+make clean
+make
+rmmod 8192cu.ko  (not really needed)
+insmod 8192cu.ko
+make install
+
+Verify that the driver has been installed:
+
+[root@alarm wireless]# ls -l /sys/class/net
+total 0
+drwxr-xr-x 4 root root 0 Aug 14 16:55 lo
+drwxr-xr-x 4 root root 0 Aug 14 16:55 usb0
+drwxr-xr-x 5 root root 0 Aug 14 16:43 wlan0
+
+wlan0 is the new driver
+
+  reboot
+
+Make sure you can see both usb0 (ethernet) and wlan0 on all the following:
+  ifconfig
+  ls -l /sys/class/net
+  iwconfig
+
+you may need to bring the interface up manually:
+  ip link set wlan0 up
+
+scan for access points:
+  iwlist wlan0 scan   
+  cp /etc/wpa_supplicant/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf.original
+  wpa_passphrase myssid "my_secret_passkey" > /etc/wpa_supplicant/wpa_supplicant.conf
+
+Associate with access point according to the encryption type:
+Encryption                Command
+No Encryption             iwconfig wlan0 essid "linksys"
+WEP w/ Hex Key            iwconfig wlan0 essid "linksys" key "0241baf34c"
+WEP w/ ASCII passphrase   iwconfig wlan0 essid "linksys" key "s:pass1"
+WPA                       wpa_supplicant -B -Dwext -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+
+Verify association:
+iwconfig wlan0
+
+Assign IP address:
+  dhcpcd wlan0                            (dhcp)
+or                                       (static)
+  ip addr add 192.168.0.2/24 dev wlan0
+  ip route add default via 192.168.0.1
+
+
+-------------------------------------------------
+To set up automatically at boot:
+  pacman -S netcfg
+  pacman -S wpa_actiond
+  pacman -S ifplugd
+
+  cp /etc/network.d/examples/wireless-wpa /etc/network.d/my_wifi_network
+  cp /etc/network.d/examples/ethernet-dhcp /etc/network.d/my_eth_network
+
+  vi /etc/network.d/my_wifi_network
+configure all parameters
+
+  vi /etc/network.d/my_eth_network
+configure all parameters (make sure you change eth0 to usb0)
+
+You can have multiple profiles (e.g. for roaming, etc.)
+
+To manually connect a profile:
+  netcfg my_wifi_network
+To manually disconnect a profile:
+  netcfg down my_wifi_network
+
+There are 3 daemon options for configuring networks at boot time.
+  1. network -- the original setting. don't use that since we're using netcfg
+  2. net-profiles
+or
+  3. net-auto-wireless  and net-auto-wired
+This procedure is using the last option.
+
+vi /etc/rc.conf
+Look for DAEMONS=(..)
+delete network and add:
+  net-auto-wireless  and net-auto-wired
+
+vi /etc/conf.d/netcfg
+Change to: NETWORK=(@my_wifi_network @my_eth_network)
+Make sure you have the correct names for WIRED_INTERFACE and WIRELESS_INTERFACE (change eth0 to usb0)
+
+-------------------------------------------------
+Also see:
+https://wiki.archlinux.org/index.php/Beginners'_Guide#Setup_wireless_network
+https://wiki.archlinux.org/index.php/Wireless_Setup#Getting_an_IP_address
+https://wiki.archlinux.org/index.php/Netcfg
+
+Other commands:
+ip link show wlan0

@@ -1,4 +1,6 @@
-LCD-OLINUXINO-15.6 and LCD-OLINUXINO-15.6FHD started as separate designs but starting hardware revision E, both board use the design files (the design of LCD-OLINUXINO-15.6FHD).
+Hardware design changelog of LCD-OLINUXINO-15.6 
+
+Consider that LCD-OLINUXINO-15.6 and LCD-OLINUXINO-15.6FHD are completly different designs.
 
 Hardware revision D
 ========

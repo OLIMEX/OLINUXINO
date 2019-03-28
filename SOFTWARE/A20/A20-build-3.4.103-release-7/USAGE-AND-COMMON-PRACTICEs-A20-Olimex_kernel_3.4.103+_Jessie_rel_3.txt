@@ -265,8 +265,20 @@ card. Use naninstall script to do this:
 
 #nandinstall
 
-Be patient. This operation will take around 10 minutes. If you face problems with nandinstall then
-visit this wiki article: https://www.olimex.com/wiki/How_to_install_Debian_to_NAND
+Be patient. This operation will take around 10 minutes. If it fails the first time, run it again. 
+If you face problems with nandinstall then visit this wiki 
+article: https://www.olimex.com/wiki/How_to_install_Debian_to_NAND
+
+If after installation to the NAND you have problems with the Ethernet, check the value of address 
+0x01c20164 in the memory, if it is 0x0 then change the value to 0x1006. Do the following:
+
+Check the value with:
+
+devmem 0x01c20164
+
+Change the value with:
+
+devmem 0x01c20164 w 0x1006
 
 - emmc support - /dev/mmcblk1p1 - you can copy SD card image to onboard emmc chip and then you can
 boot from the emmc device. Use emmc.sh script to do this:

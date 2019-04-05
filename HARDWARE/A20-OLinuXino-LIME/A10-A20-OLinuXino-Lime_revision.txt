@@ -19,7 +19,7 @@ Hardware revision C, notable changes
 2. Added R73 - 10M near the 32768 crystal
 3. Added 2 FET transistors and MCP130 for switching directly external +5V without voltage drop
 4. USBDRV0 now goes through 3-pin SMD jumper(PB9/PH7) for compatibility reasons 
-5. GPIO3(pin9) comes from 3-pin jumper PH7/PB9 for compatibility reasons
+5. GPIO3(pin 9) comes from 3-pin jumper PH7/PB9 for compatibility reasons
 6. Shortened LDO4_2.8V wire
 7. 10k resistors changed package from 0603 to 0402
 8. Adjusted positioning of NAND-a flash pads
@@ -31,7 +31,7 @@ Hardware revision D, notable changes
 1. Added pads for 47uF and 2x22uF at both USB hosts - currently NA
 2. Added 220uF/6.3V/tant at USB OTG - currently NA
 3. Added 220uF/6.3V/tant at SATA pwr - currently NA
-4. HDMI konektora s nov korpus rev B
+4. HDMI connector new layout
 5. Changed width of power-related wores near the main chip from 5 mils to 6 mils
 6. Adjusted SATA, USB and HDMI routing
 7. C148 now 22uF/6.3V - so SATA_PWR can start up better if there are capacitors, else it might restart
@@ -58,7 +58,7 @@ Hardware revision G, notable changes
 5. The board's holes ware changed to fit case CASE_HAMMOND_1593LBK - with holes grounded and no milling!
 6. Added support for capacitve touch screen with 2 matrices. By default it is set for resistive touch panel.
 7. 33pF capacitors are now in 0402 package.
-8. 49.9R 1% resistors (r80,r81,r82,r83) are now in 0402 package.
+8. 49.9R 1% resistors (R80, R81, R82, R83) are now in 0402 package.
 9. C187, C188 and C190 were tantalum but changed to 0805 (beter performance).
 10. HDMI-CEC is now pulled up with 27K resistor and diode to 3.3V.
 11. HDMI-HPD has serial resistor(R97) = 10K. R32 changed from 13k/0603 to 20k/0402.
@@ -68,12 +68,12 @@ Hardware revision G, notable changes
 15. Capacitors near RAM memory and processor have new and improved routing.
 16. C44 moved a bit up.
 17. SY8009AAAC changed with SY8089AAAC.
-18. DDR memory changed.
-19. USB kluchovete sa s priblizitelno 100uf kondenzatori na izhoda.
+18. DDR RAM memory changed.
+19. USB switches now with 100uf capacitors.
 20. Added pads for 3V back-up AXP209 battery (that can keep RTOS alive)
 21. Changed U14 from SY7208 to MT3608
 
 Hardware revision H, notable changes
 ===========
 1. R19 now pull-down.
-2. GPIO4 konektora had wrong male package; now fixed.
+2. GPIO4 connector had wrong male package; now fixed.

@@ -1,0 +1,65 @@
+<h1>LCD-OLinuXino-15.6FHD</h1>
+
+<p>Full HD 15.6 inch display without touchscreen</p>
+
+<p><img src="doc/images/LCD-OLinuXino-15-1.jpg" alt="LCD-OLinuXino-15.6FHD Front" title="LCD-OLinuXino-15.6FHD Front View" /></p>
+
+<h1>Overview</h1>
+
+<p>A Full HD (1920x1080) display compatible with A10 and A20 boards.
+Due to its high power demand the display is provided with a separate 5V power jack.
+Note that it would not work properly with A13 or A10s boards which lack the computational power required for a smooth operation.</p>
+
+<h1>Features</h1>
+
+<ul>
+<li>LCD display 1920x1080 pixels</li>
+<li>3.5W power consumption</li>
+<li>15.6”(15.55”)</li>
+<li>HD 16:9 color TFT-LCD with LED backlight</li>
+<li>Works with the more powerful OLinuXino and SOM designs</li>
+<li>Two interface connectors: both 40 pin 0.1" pitch and 40 pin 0.05" pitch</li>
+<li><strong>Note that the cable to connect to your board and the additional power adapter are sold separately</strong></li>
+</ul>
+
+<h1>Documents</h1>
+
+<ul>
+<li><a href="doc/datasheets/OLIMEX-TFT-LCD-N156HGE-LG1-ver-1-0.pdf">Display datasheet</a></li>
+</ul>
+
+<h1>Hardware</h1>
+
+<ul>
+<li><a href=".">Source files</a></li>
+<li><a href="https://www.olimex.com/Products/OLinuXino/LCD/LCD-OLinuXino-15.6FHD/open-source-hardware">Olimex product page</a></li>
+</ul>
+
+<h1>FAQ</h1>
+
+<h3>What is the difference between LCD-OLinuXino-15.6 and LCD-OLinuXino-15.6FHD?</h3>
+
+<p>The dot pitch is different.
+The native resolution of LCD-OLinuXino-15.6 is 1366x768.
+The native resolution of LCD-OLinuXino-15.6FHD is 1920x1080.</p>
+
+<h3>Which boards can be used with LCD-OLinuXino-15.6FHD?</h3>
+
+<p>OLinuXino boards that carry the OLinuXino or SOM name and have an LCD connector would work with the LCD-OLinuXino-15.6FHD.
+Unlike the previous iteration of displays, the LCD-OLinuXino-15.6FHD has both 0.1" connector and 0.05" connector on its back.
+This allows the easy connection of boards with big LCD connector and also of boards with small LCD connector (like the LIME boards).
+You only need a single 40-40 cable with the same step on both sides to connect between the LCD and the board.
+Please note that the 15.6 inch display is not recommended for boards with Allwinner A13 or A10s since these boards migth lack the required computing power for a smooth operation (especially under Android).</p>
+
+<h3>I bought LCD-OLinuXino-15.6FHD but when I connect it to the A20-OLinuXino I receive no image on the display. What do I do wrong?</h3>
+
+<p>The default A20-OLinuXino image is set for a HDMI display and 720p resolution.
+LCD-OLinuXino-15.6FHD has a native resolution of 1920 x 1080 pixels.
+To use LCD with A20-OLinuXino you need to set proper video output settings.
+Explanation of how to do it can be found at <a href="https://www.olimex.com/wiki/A20-OLinuXino-MICRO#How_to_change_HDMI.2C_VGA_and_LCD_resolutions_in_the_official_Debian_image.3F">this wiki article of the A20 board</a>.</p>
+
+<h3>I bought LCD-OLinuXino-15.6FHD and the SD card that has Linux image written on it. However the resolution I see on my VGA/LCD is not correct. What am I missing?</h3>
+
+<p>You would need to change the video output setting using the shell script.
+Type: <code>./change_display</code> and then press <strong>Tab</strong> to auto-complete and press <strong>Enter</strong>.
+Navigate to the LCD category and select <strong>1920 x 1080 pixels</strong>.</p>

@@ -1,11 +1,12 @@
 This repository contains:
 
-Original hardware design files for A13-OLinuXino and A13-OLinuXino-WIFI. These are made with Eagle 4.16r2. PDF exports are available also.
+Original hardware design files for A13-OLinuXino and A13-OLinuXino-WIFI.
+These are made with Eagle 4.16r2.
+PDF exports are available also.
 
 Both boards use same design files, but the A13-OLinuXino-WIFI comes with NAND memory and on-board MOD-WIFI-RTL8188ETV module.
 
 Notice that it is possible that simultaneously purchased A13-OLinuXino and A13-OLinuXino-WIFI to be from different revisions.
-
 
 Latest hardware revision: revision H
 
@@ -65,4 +66,4 @@ Board features:
 - 2x UARTs;
 - SDIO2 for connecting SDcards and modules;
 - 5 system pins: +5V, +3.3V, GND, RESET, NMI
-- Dimensions: (120x120)mm ~ (4.7x4.7)''
+- Dimensions: (120x120)mm ~ (4.7"x4.7")

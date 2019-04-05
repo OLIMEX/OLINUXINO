@@ -1,7 +1,11 @@
-iMX233-OLinuXino-Micro REVISION.B	July, 2012
+iMX233-OLinuXino-Micro
 
-Status	: schematic design, 2 Layers
+Revision: B
 
-Issues	: 
+Date    : July, 2012
 
-TODO	: 
+Status  : schematic design, 2 Layers
+
+Issues  :
+
+TODO    : 

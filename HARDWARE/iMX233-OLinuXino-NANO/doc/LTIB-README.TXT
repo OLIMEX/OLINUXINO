@@ -1,0 +1,1 @@
+../../iMX233-OLinuXino-Maxi/doc/LTIB-README.TXT

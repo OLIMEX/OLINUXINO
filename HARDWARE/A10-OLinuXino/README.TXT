@@ -1,14 +1,16 @@
-A10-OLinuXino	September, 2012	REV.A
+# A10-OLinuXino
 
-Status	: design 
+Revision A
+September, 2012
 
-Issues	: 
+Status : design 
 
-TODO	: 
+Issues : 
 
+TODO   : 
 
-Features of the board specification:
-What we put on the board:
+# Design specifications
+
 - A10 Cortex A8 processor running at 1Ghz
 - 1GB of DDR3 memory (organized as 4 x 256MB x8 with two 2Gbit chips)
 - 4GB NAND Flash

@@ -1,26 +1,32 @@
-A13-OLinuXino + OpenCV Mustache Demo
-====================================
+# A13-OLinuXino + OpenCV Mustache Demo
 
 1. Install OpenCV
-#apt-get install libopencv-dev
+
+```bash
+apt-get install libopencv-dev
+```
 
 2. Install pyA13
-#wget https://pypi.python.org/packages/source/p/pyA13/pyA13-0.1.12.tar.gz
-#tar zxvf pyA13-0.1.12.tar.gz
-#cd pyA13-0.1.12/
-#python setup.py install
 
-3. Connect a button to PIN36. The demo use button with idle state logical "0".
+```bash
+wget https://pypi.python.org/packages/source/p/pyA13/pyA13-0.1.12.tar.gz
+tar zxvf pyA13-0.1.12.tar.gz
+cd pyA13-0.1.12/
+python setup.py install
+```
+
+3. Connect a button to PIN36.
+The demo use button with idle state logical "0".
 
 4. Connect a camera to one of the USB hosts
 
 5. Start the demo.
-#python MSH.py
+
+```bash
+python MSH.py
+```
 
 Press the button and see what is going to happen.
 
-
-
-===========
 16 April 2013 
 

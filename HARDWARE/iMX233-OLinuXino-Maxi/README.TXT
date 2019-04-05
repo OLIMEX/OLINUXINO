@@ -1,7 +1,7 @@
-iMX233-OLinuXino-Maxi REVISION.D	
+iMX233-OLinuXino-Maxi REVISION.D
 
-Status	: production
+Status : production
 
-Issues	: none
+Issues : none
 
-TODO	: none
+TODO   : none

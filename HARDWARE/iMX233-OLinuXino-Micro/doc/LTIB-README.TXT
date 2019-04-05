@@ -1,0 +1,1 @@
+../../iMX233-OLinuXino-NANO/doc/LTIB-README.TXT

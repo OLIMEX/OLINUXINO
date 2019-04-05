@@ -1,18 +1,15 @@
-### Notable hardware revision changes A20-OLinuXino-LIME2 log:
+# Notable hardware revision changes of A20-OLinuXino-LIME2
 
-#### Hardware revision B (pre-production)
-===========
+## Hardware revision B (pre-production)
 
 Internal initial release.
 
-#### Hardware revision C (initial public release)
-============================
+## Hardware revision C (initial public release)
 
 1. C175 changed from 100n na 22uF (and changed package from 0402 to 0603);
 2. Updated white prints: Lime to Lime2; rev.B to rev.C, 2014 to 2015.
 
-#### Hardware revision D (internal, not released)
-===============================
+## Hardware revision D (internal, not released)
 
 1. eMMC memory added; NAND or eMMC optional. Schematics set for NAND per default;
 2. C224 and C232 - 47uF/6.3V/0805 added in parallel to the 5V_SATA_PWR connector;
@@ -23,31 +20,26 @@ Internal initial release.
 7. Added four extra data bits to the eMMC, through a resistor matrix;
 8. Changed EMMC_RST. Moved from PC4/NCE0/EMMC_RST to PC16/NWP/EMMC_RST.
 
-#### Hardware revision E (internal, not released)
-==============================
+## Hardware revision E (internal, not released)
 
 1. Fixed white print of EMMC_PWR jumper (added positions);
 2. Changed the white print of board revision;
 3. U15 and U17 were changed in value from SY8008C(AA)C to SY8009AAAC(SOT23-5).
 
-#### Hardware revision F (internal, not released)
-==============================
+## Hardware revision F (internal, not released)
 
 1. Changed Ethernet PHY controller to RTL8211E-VB-CG1. This required changing a lot of components and routing in the area around the controller too;
 2. Changed the placing of the pull-up rezistorite of the RX wire (before the matrix).
 
-#### Hardware revision G (public release)
-==============================
+## Hardware revision G (public release)
 
 1. Added 4 improved mounting through holes, connected to GND. Removed the old milled mounting points.
 
-#### Hardware revision G1 (public release)
-==============================
+## Hardware revision G1 (public release)
 
 1. Changed a couple of components that improves board's power up sequence due to the high initial consumption of the Ethernet controller (RTL8211E). R109 changed to 47k/0402 (down from 470k/0402) and R107 (470k/0402) replaced by a capacitor 220nF/0402.
 
-#### Hardware revision G2 (public release)
-=============================
+## Hardware revision G2 (public release)
 
 1. The buttons moved 5 mils further to the middle of the board to futher reduce deformation during panelization;
 2. R32 and R36 moved 40 mils further away from the Ethernet connector;
@@ -62,8 +54,7 @@ Internal initial release.
 13. C201 and C211 changed from 22pF/0603 to 27pF/0603;
 14. C116 and C117 changed from 33pF/0603 to 27pF/0603.
 
-#### Hardware revision H (internal, not released)
-=============================
+## Hardware revision H (internal, not released)
 
 1. CTP jumpers made the same as in A20-SOM-EVB;
 2. Changed the PHY for the Micrel one;
@@ -72,39 +63,33 @@ Internal initial release.
 5. Changed R86 from 4.99k/1% to 12.4k/1% and R90 from 3.32k/1% to 10k/1% in order to decrease industrial DDR3 power suplly from 1.5V to 1.35V;
 6. Added text: "When DDR3L is used, VDD&VDDQ are set to 1.35V!!!";
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A20-OLinuXino-Lime2_Rev_H
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### A20-OLinuXino-Lime2_Rev_H
+
 1. DDR3 memory = commercial temperature Micron MT41K256M16HA-125:E(DDR3L-1600_11-11-11);
 2. Ethernet PHY changed to commercial variant - KSZ9031RNXCC-TR;
 3. The EMMC and all corresponding components changed to NA (Not Assembled);
 4. The NAND flash and all corresponding components changed to NA (Not Assembled).
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A20-OLinuXino-Lime2-IND_Rev_H
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### A20-OLinuXino-Lime2-IND_Rev_H
+
 1. DDR3 memory set to the industrial Micron variant - MT41K256M16HA-125IT:E(DDR3L-1600_11-11-11);
 2. Changed Ethernet PHY to industrial variant - KSZ9031RNXIC-TR;
 3. EMMC flash and all corresponding components changed to NA;
 4. NAND flash and all corresponding components set to NA;
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A20-OLinuXino-Lime2-EMMC_Rev_H
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### A20-OLinuXino-Lime2-EMMC_Rev_H
+
 1. DDR3 memory is set to commercial Micron variant - MT41K256M16HA-125:E(DDR3L-1600_11-11-11);
 2. The PHY was changed to commercial variant - KSZ9031RNXCC-TR;
 3. NAND flash and all corresponding components set to NA;
 	
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A20-OLinuXino-Lime2-EMMC-IND_Rev_H
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#### A20-OLinuXino-Lime2-EMMC-IND_Rev_H
+
 1. DDR3 memory set to industrial variant - MT41K256M16HA-125IT:E(DDR3L-1600_11-11-11);
 2. Ethernet PHY changed from KSZ9031RNXCC-TR to industrial variant KSZ9031RNXIC-TR;
 3. NAND flash and all corresponding components set to NA.
 
-
-#### Hardware revision I (internal, not released)
-=============================
+## Hardware revision I (internal, not released)
 
 1. C207 moved on the top side of the board, for easier battery connector soldering;
 2. R76 moved away from C200; now placed in parallel to R83;
@@ -133,8 +118,7 @@ A20-OLinuXino-Lime2-EMMC-IND_Rev_H
 25. All 27pF capacitors changed to 33pF, U16 was SY7208(SOT23-6) now is MT3608(SOT23-6), R65 was 100R and now changed to 191R/1%;
 26. The labelling of all GPIO connector signals now re-done.
 
-#### Hardware revision J (internal, not released)
-=============================
+## Hardware revision J (internal, not released)
 
 1. HDMI-CEC pulled to 3.3V via 27k and diode;
 2. HDMI-HPD now goes trhough 10k R31 in series; R47 changed from 47k to 20k;
@@ -152,13 +136,11 @@ A20-OLinuXino-Lime2-EMMC-IND_Rev_H
 14. The resistors on Ethernet's TX and RX are now 33R;
 15. SY8009AAAC changed to SY8089AAAC.
 
-#### Hardware revision K (public release)
-=============================
+## Hardware revision K (public release)
 
 1. Added the small footprint Samsung eMMC.
 2. Renamed GMAC_PWR_E/PH7 to just PH7. The signal was needed by old Ethernet PHY, it is no longer routed to the Ethernet.
 3. Removed filtering from PHY's TX and RX - L3, L4 removed (from 2.7nH/0402 changed to NA); C81, C254 removed (changed from 24pF/0402 to NA). This improves GB speeds.
-
 
 Currently there are seven board variants available (depending on the memories installed and the operating temperature range):
 
@@ -170,5 +152,4 @@ A20-OLinuXino-LIME2-s16MB - no eMMC flash, no NAND flash, 16MB SPI flash, all co
 T2-OLinuXino-LIME2-IND - no eMMC flash, no NAND flash, no SPI flash, all components in industrial temperature range
 T2-OLinuXino-LIME2-s16MB-IND - no eMMC flash, no NAND flash, 16MB SPI flash, all componenets in industrial temperature range
 
-Make sure to check the web-page of A20-OLinuXino-LIME2 at www.OLIMEX.com to check if other board options are available.
-
+Make sure to check the product page of A20-OLinuXino-LIME2 at [www.OLIMEX.com](www.OLIMEX.com) to check if other board options are available.

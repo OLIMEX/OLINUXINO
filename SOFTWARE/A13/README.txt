@@ -1,3 +1,3 @@
-A13 Software support
+# A13 Software support
 
-Script.bin - Kernel parameters which are loaded at boot time
+[script.bin](script.bin) - Kernel parameters which are loaded at boot time

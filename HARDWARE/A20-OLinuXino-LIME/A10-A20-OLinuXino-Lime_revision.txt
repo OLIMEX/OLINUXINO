@@ -77,3 +77,31 @@ Hardware revision H, notable changes
 ===========
 1. R19 now pull-down.
 2. GPIO4 connector had wrong male package; now fixed.
+
+Hardware revision I, notable changes
+========
+1. U21 was changed from MTFC4GACAANA-4M_IT(TBGA100) to KLMAG2GEND-B031(FBGA153).
+2. The following components were removed: RM3, RM6, RM7, and RM8.
+3. The following are now changed: R89 from NA(22R/0402) to NA(10k/0402); R90 from NA(22R/0402) to NA(10k/0402).
+4. C204(NA/0402) added.
+5. USB_OTG's package was changed to the xxx-SD version to avoid drill in pad when SDMMC is on the bottom side of the board just under the USB-OTG's connector. The value updated to USB-OTG(MSB-SW-5AB-LF).
+6. U20 changed from MCP120T475I-TT to MCP121T-475I/TT.
+7. U22's value corrected from NA(W25Q128FVSIG(EN25Q64-104HIP)) to NA(W25Q128FVSIG).
+8. Only for the eMMC variant xxxxe16Gxxx (16GB eMMC V5.0) - C204 stava ot NA na 12pF. 
+9. 2.2uH changed to 2.2uH/NR3015T2R2M/1.5A/3015.
+10. Q2 changed to smaller 1206 crystal (Q32.768kHz/12.5pF/2P/SMD1206).
+
+Hardware revision I1, notable changes
+========
+Optimized a numer of capacitors near the AXP209:
+
+1. C153 changed from 10uF/0603 to 1uF/0603.
+2. C132 changed from 10uF/0603 to 4.7uF/0603.
+3. C138 changed from 10uF/0603 to 4.7uF/0603.
+4. C145 changed from 10uF/0603 to 4.7uF/0603.
+5. C158 changed from 10uF/0603 to 4.7uF/0603.
+6. C159 changed from 10uF/0603 to 4.7uF/0603.
+7. C160 changed from 10uF/0603 to 4.7uF/0603.
+8. C163 changed from 10uF/0603 to 4.7uF/0603.
+9. C157 changed from 10uF/0603 to 220nF/0603.
+

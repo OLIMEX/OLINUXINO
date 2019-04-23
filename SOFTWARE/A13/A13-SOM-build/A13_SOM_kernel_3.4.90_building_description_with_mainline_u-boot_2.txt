@@ -50,7 +50,11 @@ after the installation you now have all tools to make your very own A13 kernel i
 You have two options for u-boot: the first is to use sunxi u-boot and the second is to use mainline u-boot. If you have stability
 problems, use mainline u-boot since it has wider support for RAM memories. Note that if you use the sunxi u-boot with some of the
 newer RAM memories that we place might face boot or stability problems, some of the memories that we place are not supported in the
-sunxi u-boot. The mainline u-boot will be suitable for HYNIX and SAMSUNG DDR3.
+sunxi u-boot. The mainline u-boot will be suitable for all DDR3 memories.
+
+If you do not wish to build u-boot you can use the pre-built files from this location and skip to chapter 5:
+
+https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A13/A13-SOM-build
 
 First create the directory where we will build the A13-OLinuXino-Micro/SOM linux:
 
@@ -319,11 +323,15 @@ Note that if you use mainline u-boot then you have to copy the generated boot.sc
 # mount /dev/sdX1 /mnt/sd
 # cp /u-boot/boot.scr /mnt/sd/ 
 
+*****
+
 6. Write kernel uImage you build to the SD-card
 
 copy the Kernel uImage to root directory in partition 1
 
 # cp linux-sunxi/arch/arm/boot/uImage /mnt/sd
+
+*****
 
 7. Write script.bin file
 
@@ -334,6 +342,8 @@ etc, download the script.bin using wget command
 # cp script.bin /mnt/sd
 # sync
 # umount /dev/sdX1
+
+*****
 
 8. Debian rootfs
 

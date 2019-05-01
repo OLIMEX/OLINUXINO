@@ -1,4 +1,4 @@
-OLinuXino - Single-Board Linux Computer, Copyright (C) 2012-2018, OLIMEX Ltd
+OLinuXino - Single-Board Linux Computer, Copyright (C) 2012-2019, OLIMEX Ltd
 
 THE PROJECT:
 
@@ -6,13 +6,13 @@ OLinuXino is an Open Source Software and Open Source Hardware project, aiming to
 Linux and Android Single Board Computers (SBC) in both commercial and industrial temperature range. Board variants with extra flash memory
 are also available.
 
-People keep comparing OOLinuXino with Raspberry Pi and BeagleBone project, so we would like to state some of the differences here:
+People keep comparing OLinuXino with Raspberry Pi and BeagleBone project, so we would like to state some of the differences here:
 
 Although the projects are similar there are different goals and implementations:
 
 OLINUXINO is completely open source - including hardware and software, this means you have access to all CAD files and sources and you
 can reuse them for your own personal or commercial project. There are NO restrictions to manufacture and sell these board for your own 
-use or resale.
+use or resale, just keep credits that your board is based on OLinuXino design and make sure to change the silkscreen to not confuse people that you are selling original OLinuXino.
 
 iMX233-OLINUXINO use widely available microcontroller iMX233 which cost USD 5.50 in 100 pcs quantity, this means that people can spin 
 off their own boards and manufacture them cheap as the processor is in TQFP easy to assembly by hobbyist package.
@@ -63,10 +63,11 @@ Step 8:
 DYI laptop TERES-I with A64 chip.
 
 Step 9:
-Expanded the A20 portfoloio with more convenient A20-SOM204 board.
+H3, A33, A64 quad core processors.
 
 Step 10:
-... we don't know yet, there are lot of candidates.
+... we don't know yet, there are lot of candidates, but we start to become a little picky. To start the development of new OSHW OLinuXino board we will look at least the SOC to have proper Linux Support as we are really overwhelmed of the tons of new SOCs released with just Android and binary blobs.
+Rockchip is doing very good job recently releasing mainline Linux support for their devices.
 
 WEB RESOURCES:
 
@@ -86,6 +87,7 @@ You may reproduce it for both your own personal use, and for commercial use.
 You will have to provide a link to the original creator of the project http://www.olimex.com on any documentation or website.
 You may also modify the files, but you must then release them as well under the same terms.
 Credit can be attributed through a link to the creator website: http://www.olimex.com
+You should alter the silkscreen to not confuse people who buy your product that they buy original OLinuXino made by Olimex.
 
 SOFTWARE
 The software is released under GPL.

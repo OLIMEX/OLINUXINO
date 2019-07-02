@@ -1,0 +1,121 @@
+EAGLE Version 4.16r2 Copyright (c) 1988-2006 CadSoft
+
+Electrical Rule Check for Y:/SVN/A10-A20-OLINUXINO-MICRO/Hardware/tags/A20-OLINUXINO-MICRO_Rev_L1/T2-OLINUXINO-MICRO_Rev_L1.sch at 30.11.2018 14:19:37 
+
+WARNING: Sheet 1/1: POWER Pin U9 IN connected to +5V
+WARNING: Sheet 1/1: POWER Pin USB_OTG VBUS connected to +5V_OTG_PWR
+WARNING: Sheet 1/1: POWER Pin U10 IN connected to +5V
+WARNING: Sheet 1/1: POWER Pin U12 VIN2 connected to IPSOUT
+WARNING: Sheet 1/1: POWER Pin U12 PGND2 connected to GND
+WARNING: Sheet 1/1: POWER Pin U12 LDO24IN connected to IPSOUT
+WARNING: Sheet 1/1: POWER Pin U12 VIN3 connected to IPSOUT
+WARNING: Sheet 1/1: POWER Pin U12 PGND3 connected to GND
+WARNING: Sheet 1/1: POWER Pin U12 APS connected to IPSOUT
+WARNING: Sheet 1/1: POWER Pin U12 AGND connected to GND
+ERROR: Sheet 1/1: unconnected INPUT Pin: U12 DC3SET
+WARNING: Sheet 1/1: POWER Pin U12 VBUS connected to +5V_OTG_PWR
+WARNING: Sheet 1/1: POWER Pin U12 ACIN connected to +15V
+WARNING: Sheet 1/1: POWER Pin U12 ACIN connected to +15V
+WARNING: Sheet 1/1: POWER Pin U12 BAT connected to +24V
+WARNING: Sheet 1/1: POWER Pin U12 BAT connected to +24V
+WARNING: Sheet 1/1: POWER Pin U12 VIN1 connected to IPSOUT
+WARNING: Sheet 1/1: POWER Pin U12 PGND1 connected to GND
+WARNING: Sheet 1/1: NC Pin U8 NC connected to VCC
+WARNING: Sheet 1/1: NC Pin U8 NC connected to GND
+WARNING: Sheet 1/1: NC Pin U8 NC connected to PC7/SDC2_CLK
+WARNING: Sheet 1/1: NC Pin U8 NC connected to PC7/SDC2_CLK
+WARNING: Sheet 1/1: NC Pin U8 NC connected to NRBO/NRB1
+WARNING: Sheet 1/1: NC Pin U8 NC connected to PC3/NCE1
+WARNING: Sheet 1/1: POWER Pin U8 VSS connected to GND
+WARNING: Sheet 1/1: NC Pin U8 NC connected to GND
+WARNING: Sheet 1/1: NC Pin U8 NC connected to VCC
+WARNING: Sheet 1/1: NC Pin U8 NC connected to GND
+WARNING: Sheet 1/1: NC Pin U8 NC connected to N$14
+WARNING: Sheet 1/1: NC Pin U8 NC connected to TSD_D3
+WARNING: Sheet 1/1: NC Pin U8 NC connected to N$20
+WARNING: Sheet 1/1: NC Pin U8 NC connected to TSD_CMD
+WARNING: Sheet 1/1: NC Pin U8 NC connected to VCC
+WARNING: Sheet 1/1: NC Pin U8 NC connected to NAND_DQS
+WARNING: Sheet 1/1: POWER Pin U8 VSS connected to GND
+WARNING: Sheet 1/1: NC Pin U8 NC connected to N$69
+WARNING: Sheet 1/1: NC Pin U8 NC connected to VCC
+WARNING: Sheet 1/1: NC Pin U8 NC connected to TSD_CLK
+WARNING: Sheet 1/1: NC Pin U8 NC connected to TSD_D2
+WARNING: Sheet 1/1: NC Pin U8 NC connected to TSD_D1
+WARNING: Sheet 1/1: NC Pin U8 NC connected to TSD_D0
+WARNING: Sheet 1/1: NC Pin U8 NC connected to GND
+WARNING: Sheet 1/1: POWER Pin U11 IN connected to +5V
+WARNING: Sheet 1/1: POWER Pin VR1 VIN connected to VCC
+WARNING: Sheet 1/1: POWER Pin VR1 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin VR1 VOUT connected to VDD
+WARNING: Sheet 1/1: NC Pin U2 NC connected to ODT1
+WARNING: Sheet 1/1: NC Pin U2 NC connected to SCKE1
+WARNING: Sheet 1/1: NC Pin U2 NC connected to SCS1
+WARNING: Sheet 1/1: NC Pin U2 NC connected to N$6
+WARNING: Sheet 1/1: NC Pin U2 NC connected to SA15
+WARNING: Sheet 1/1: NC Pin U3 NC connected to ODT1
+WARNING: Sheet 1/1: NC Pin U3 NC connected to SCKE1
+WARNING: Sheet 1/1: NC Pin U3 NC connected to SCS1
+WARNING: Sheet 1/1: NC Pin U3 NC connected to N$30
+WARNING: Sheet 1/1: NC Pin U3 NC connected to SA15
+WARNING: Sheet 1/1: POWER Pin SD/MMC2 VSS1 connected to GND
+WARNING: Sheet 1/1: POWER Pin SD/MMC2 VDD connected to SD_VCC2
+WARNING: Sheet 1/1: POWER Pin SD/MMC2 VSS2 connected to GND
+WARNING: Sheet 1/1: POWER Pin SD/MMC1 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin SD/MMC1 VDD connected to SD_VCC1
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VDDIM connected to N$29
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCC connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSS connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VCCQ connected to EMMC1_VDD
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U24 VSSQ connected to GND
+WARNING: Sheet 1/1: POWER Pin U7 VDD1A connected to ETHERNET_VDD
+WARNING: Sheet 1/1: POWER Pin U7 VDDCR connected to N$91
+WARNING: Sheet 1/1: POWER Pin U7 VDDIO connected to VCC
+WARNING: Sheet 1/1: POWER Pin U7 VDD2A connected to ETHERNET_VDD
+WARNING: Sheet 1/1: POWER Pin U14 VIN connected to N$31
+WARNING: Sheet 1/1: POWER Pin U14 SW connected to N$50
+WARNING: Sheet 1/1: POWER Pin U26 VDDF(VCC) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDD(VCCQ) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDDF(VCC) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDDF(VCC) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDDF(VCC) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDD(VCCQ) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDD(VCCQ) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDD(VCCQ) connected to EMMC2_VDD
+WARNING: Sheet 1/1: POWER Pin U26 VDD(VCCQ) connected to EMMC2_VDD
+WARNING: Only 1 Pin on net ADBG
+WARNING: Only 1 Pin on net SDBG0
+WARNING: Only 1 Pin on net SDBG1
+
+Board and schematic are consistent
+
+    1 errors
+  111 warnings

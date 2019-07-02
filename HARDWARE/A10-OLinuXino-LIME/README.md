@@ -1,4 +1,4 @@
-#Olimex A10-OLinuXino-LIME hardware sources
+## Olimex A10-OLinuXino-LIME hardware sources
 
 ## Product page: https://www.olimex.com/Products/OLinuXino/A10/A10-OLinuXino-LIME/open-source-hardware
 

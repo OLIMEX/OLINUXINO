@@ -30,3 +30,11 @@ Rev.E (internal)
 3. R9 change from NA to 4.7K
 4. Updated Flash memory and SOC packages.
 
+Rev.F (production)
+========
+
+1. LINK2 back to pull down mode. Now R9 = 4.7k and R42 = NA.
+2. Hole bear R9 pad - removed, the other hole moved further away.
+3. Changed SY8009AAAC(SOT23-5) with SY8089AAAC(SOT23-5).
+4. Improved royting of 3.3V DC(U5)
+

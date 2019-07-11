@@ -1,0 +1,82 @@
+Partlist exported from J:/SVN/ARM/FREESCALE/iMX233-OLINUXINO-MINI/Hardware/tags/iMX233-OLINUXINO-MINI_Rev_E/BRD/iMX233-OLINUXINO-MINI_Rev_E.sch at 03/01/2013 15:17:19 
+
+Qty Value                                Device                            Parts                                                                                                                        
+1                                        SJSJ_SMALLER                      5VE_E                                                                                                                        
+1   (NA)4.99k/1%                         R-EU_R0603_5MIL_DWS               R46                                                                                                                          
+1   (NA)22pF                             C-EUC0603_DWS                     C64                                                                                                                          
+1   (NA)HN1X4                            CON4HN1X4                         SJTAG                                                                                                                        
+1   (NA)SY8008C(AA)C                     SY8008                            U6                                                                                                                           
+1   0R(Board_Mounted)                    R_0R0R(NA)                        R26                                                                                                                          
+1   1-2:Closed                           SJ2W6                             W5/W3                                                                                                                        
+1   1.1k/1%                              R-EU_R0603_5MIL_DWS               R4                                                                                                                           
+1   1M                                   R-EU_R0603_5MIL_DWS               R20                                                                                                                          
+1   1N5819(SS14)                         SCHOTKKY7.62SS2                   D1                                                                                                                           
+2   1k                                   R-EU_R0603_5MIL_DWS               R23, R24                                                                                                                     
+2   1k/1%                                R-EU_R0603_5MIL_DWS               R18, R19                                                                                                                     
+4   1uF                                  C-EUC0603_DWS                     C26, C27, C28, C59                                                                                                           
+5   2.2k                                 R-EU_R0603_5MIL_DWS               R2, R11, R12, R22, R43                                                                                                       
+1   3.3nF                                C-EUC0603_DWS                     C61                                                                                                                          
+3   4.7k                                 R-EU_R0603_5MIL_DWS               R7, R8, R9                                                                                                                   
+1   4.99k/1%                             R-EU_R0603_5MIL_DWS               R3                                                                                                                           
+1   6.8k/1%                              R-EU_R0603_5MIL_DWS               R27                                                                                                                          
+7   10k                                  R-EU_R0603_5MIL_DWS               R5, R6, R16, R21, R28, R40, R47                                                                                              
+1   10k                                  R-EU_R0603_5MIL_DWS_NA            R25                                                                                                                          
+1   10nF                                 C-EUC0603_DWS                     C70                                                                                                                          
+1   10pF                                 C-EUC0603_DWS                     C75                                                                                                                          
+6   10uF/6.3V                            C-EUC0603_DWS                     C35, C37, C41, C47, C50, C58                                                                                                 
+1   10uH/2.3A/YS75/7x8                   LL7078_FROM_RCL                   L2                                                                                                                           
+2   15pF                                 C-EUC0603_DWS                     C23, C24                                                                                                                     
+24  22uF/6.3V                            C-EUC0603_DWS                     C1, C2, C3, C4, C5, C9, C10, C11, C13, C15, C16, C17, C19, C20, C21, C22, C29, C60, C62, C63, C65, C67, C71, C72             
+1   22uH/1.5A/YS75/7x8                   L-USL7078                         L1                                                                                                                           
+2   33pF                                 C-EUC0603_DWS                     C42, C43                                                                                                                     
+6   47k                                  R-EU_R0603_5MIL_DWS               R1, R10, R13, R15, R39, R42                                                                                                  
+1   47pF                                 C-EUC0603_DWS                     C66                                                                                                                          
+2   100k                                 R-EU_R0603_5MIL_DWS               R30, R48                                                                                                                     
+26  100nF                                C-EUC0603_DWS                     C6, C7, C8, C12, C14, C18, C25, C30, C31, C32, C33, C34, C36, C38, C39, C40, C44, C45, C46, C49, C51, C52, C54, C56, C57, C69
+3   100uF/16V/LOWESR/105C/6.3x11mm_RM2.5 CPOL-EUE2.5-6.3                   C48, C53, C55                                                                                                                
+3   120R                                 R-EU_R0603_5MIL_DWS               R17, R44, R45                                                                                                                
+1   470uF/25V/LOWESR/105C                CPOL-EUE5-10.5                    C68                                                                                                                          
+1   680R/1%                              R-EU_R0603_5MIL_DWS               R29                                                                                                                          
+2   BAT54S                               DIODE_AC-AC_                      D2, D4                                                                                                                       
+2   BC846B                               NPN-TRANSISTOR_SOT23              T1, T2                                                                                                                       
+1   BH10R                                ML10R                             UEXT                                                                                                                         
+1   BH40R                                ML40R                             GPIO_CON                                                                                                                     
+1   CL470nH/0805/1.76R/250mA             L-USL0805_5MIL_DWS                L6                                                                                                                           
+2   Close                                SJSJ_1_SMALLER_CLOSE              3.3VIO_E, 5V_E                                                                                                               
+2   Close                                SJSJ_SMALLER                      D00_H, D03_H                                                                                                                 
+1   DW02S                                CON2DW02S                         LIPO_BAT                                                                                                                     
+6   FB0805/600R/2A                       L-USL0805_5MIL_DWS                L3, L4, L7, L8, L9, L10                                                                                                      
+3   FIDUCIAL1X2                          FIDUCIAL1X2                       U$1, U$2, U$3                                                                                                                
+1   GL850G                               GL850G                            U4                                                                                                                           
+2   HN1X4                                CON4HN1X4                         U_DEBUG, WIFI                                                                                                                
+1   HY5DU121622D(L)T(P)-J                HY5DU121622D(L)T(P)-J             U2                                                                                                                           
+1   LED/GREEN/0603                       LED0603DWS                        LED1                                                                                                                         
+1   LED/RED/0603                         LED0603DWS                        PWR_LED                                                                                                                      
+1   MCIMX233CAG4C                        MCIMX233DAG4B_LD                  U1                                                                                                                           
+1   MICRO                                MICRO_SD/MMC                      SD                                                                                                                           
+1   MP1482DS                             MP1482                            U5                                                                                                                           
+1   NA                                   C-EUC0603_DWS                     C74                                                                                                                          
+1   NA(1.1k/1%)                          R-EU_R0603_5MIL_DWS               R41                                                                                                                          
+1   NA(2.2uH/3A/YS75/7x8)                LL7078_FROM_RCL                   L5                                                                                                                           
+1   NA(22uF/6.3V)                        C-EUC0603_DWS                     C73                                                                                                                          
+1   NA(47k)                              R-EU_R0603_5MIL_DWS               R14                                                                                                                          
+1   NA(HN1X4)                            CON4HN1X4                         PGM_FUSES                                                                                                                    
+1   NA(HN1x2)                            JP1E                              REC                                                                                                                          
+1   NA(WU08S)                            CON8WU08S                         JTAG                                                                                                                         
+3   Open                                 SJSJ_SMALLER                      3.3V_E, D01_H, D02_H                                                                                                         
+2   PJ-W47S-05D2-LF_V2                   AUDIO_JACK_5PINPJ-W47S-05D2-LF_V2 HEADPHONES, LINE_IN                                                                                                          
+1   Q12.000MHz/HC-49SM/SMD/20ppm/20pF    HC49/S1                           Q2                                                                                                                           
+1   Q24.000MHz/HC-49SM/SMD/20ppm/20pF    HC49/S1                           Q1                                                                                                                           
+1   RA1206_(4X0603)_4B8_4.7K             R_MATRIX_4                        RM3                                                                                                                          
+1   RA1206_(4X0603)_4B8_47K              R_MATRIX_4                        RM2                                                                                                                          
+1   RA1206_(4X0603)_4B8_100K             R_MATRIX_4E                       RM1                                                                                                                          
+1   SCL_SW:Open/SCL_HW:Close             SJ2W3                             SCL_SW/SCL_HW                                                                                                                
+1   SDA_SW:Open/SDA_HW:Close             SJ2W3                             SDA_SW/SDA_HW                                                                                                                
+1   SMBJ16A                              SMBJ16A                           D3                                                                                                                           
+1   SY6280                               SY6280                            U3                                                                                                                           
+1   TESTPAD40/66                         TESTPAD40/66                      GND_PIN                                                                                                                      
+1   TESTPAD50/40                         TESTPAD50/40                      T_P                                                                                                                          
+2   TV-06B                               31-XX                             PWR_BUT, RESET                                                                                                               
+3   USB_A_VERTICAL                       USB_SHIELDUSB_A_VERTICAL          USB_HOST1, USB_HOST2, USB_HOST3                                                                                              
+1   VIDEO_CON                            VIDEO_CON1                        COMPOSITE_VIDEO                                                                                                              
+1   YDJ-1136                             PWR-JAKPWR_JACK_UNI_MILLING       PWR_JACK                                                                                                                     

@@ -1,4 +1,4 @@
-Partlist exported from J:/SVN/ARM/FREESCALE/iMX233-OLINUXINO-MAXI/Hardware/trunk/BRD/iMX233-OLINUXINO-MAXI_Rev_D1.sch at 13/06/2014 13:09:59 
+Partlist exported from J:/SVN/ARM/FREESCALE/iMX233-OLINUXINO-MAXI/Hardware/trunk/BRD/iMX233-OLINUXINO-MAXI_Rev_D.sch at 26/11/2013 13:07:37 
 
 Qty Value                                Device                            Parts                                                                                                                                                       
 1   (NA)HN1X4                            CON4HN1X4                         SJTAG                                                                                                                                                       
@@ -24,7 +24,6 @@ Qty Value                                Device                            Parts
 1   12.4k/1%                             R-EU_R0603_5MIL_DWS               R28                                                                                                                                                         
 1   12k/1%                               R-EU_R0603_5MIL_DWS               R27                                                                                                                                                         
 4   15pF                                 C-EUC0603_DWS                     C62, C63, C64, C65                                                                                                                                          
-1   20pF                                 C-EUC0603_DWS                     C83                                                                                                                                                         
 1   22nF                                 C-EUC0603_DWS                     C66                                                                                                                                                         
 1   22pF                                 C-EUC0603_DWS                     C74                                                                                                                                                         
 25  22uF/6.3V                            C-EUC0805_5MIL_DWS                C1, C2, C3, C4, C5, C8, C9, C10, C11, C13, C15, C16, C17, C19, C20, C21, C29, C60, C67, C72, C73, C75, C79, C80, C81                                        
@@ -34,6 +33,7 @@ Qty Value                                Device                            Parts
 1   47pF                                 C-EUC0603_DWS                     C78                                                                                                                                                         
 4   49.9R/1%                             R-EU_R0603_5MIL_DWS               R37, R38, R39, R40                                                                                                                                          
 32  100nF                                C-EUC0603_DWS                     C6, C7, C12, C14, C18, C22, C25, C30, C31, C32, C33, C34, C36, C38, C39, C40, C41, C42, C43, C44, C45, C46, C47, C49, C53, C54, C55, C56, C57, C58, C59, C69
+1   100pF                                C-EUC0603_DWS                     C83                                                                                                                                                         
 2   100uF/16V/LOWESR/105C/6.3x11mm_RM2.5 CPOL-EUE2.5-6.3                   C76, C77                                                                                                                                                    
 3   120R                                 R-EU_R0603_5MIL_DWS               R3, R4, R17                                                                                                                                                 
 1   470uF/25V/LOWESR/105C                CPOL-EUE5-10.5                    C68                                                                                                                                                         

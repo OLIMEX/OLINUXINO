@@ -1,0 +1,1 @@
+An obsolete product that is no longer manufactured. Use LCD-OLinuXino-4.3 instead.

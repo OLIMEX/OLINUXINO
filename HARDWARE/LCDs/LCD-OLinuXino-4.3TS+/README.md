@@ -1,11 +1,12 @@
-Description of product LCD-OLinuXino-4.3+
+Description of product LCD-OLinuXino-4.3TS+
 
-LCD-OLinuXino-4.3+ is a 4.3 inch display with resolution of 480x272.
+LCD-OLinuXino-4.3TS+ is a 4.3 inch display with resolution of 480x272.
 
-LCD-OLinuXino-4.3+ has no touschreen.
-
-It has LCD-DRIVER board, instead the legacy PCB design of the original 
+It uses LCD-DRIVER board, instead the original board design of the original 
 LCD-OLinuXino-4.3 (without the plus).
+
+Unlike LCD-OLinuXino-4.3RTS, the touchscreen of LCD-OLinuXino-4.3TS+ is configured for analog
+connection. In LCD-OLinuXino-4.3RTS the touschreen uses digital interface (I2C).
 
 Refer to LCD-DRIVER's GitHub page for the hardware source files.
 

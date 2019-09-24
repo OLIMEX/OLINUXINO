@@ -1,11 +1,13 @@
-Description of product LCD-OLinuXino-7+
+Description of product LCD-OLinuXino-10TS+
 
-LCD-OLinuXino-7+ is a 7 inch display with resolution of 800x480 pixels. 
-
-LCD-OLINUXINO-7+ has no touschreen.
+LCD-OLinuXino-10TS+ is a 10 inch display with resolution of 1024x600 pixels and 
+resistive touschreen.
 
 The design uses LCD-DRIVER board, instead the legcay board design of the original 
-LCD-OLinuXino-7 (without the plus) and LCD-OLinuXino-7TS.
+LCD-OLinuXino-10 (without the plus) and LCD-OLinuXino-10TS.
+
+The difference between LCD-OLinuXino-10TS+ and LCD-OLinuXino-10RTS is that "10TS+" uses analog touch 
+interface while the "RTS" version uses digital I2C touch interface.
 
 Refer to LCD-DRIVER's GitHub page for the hardware deisng files.
 

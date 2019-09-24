@@ -1,11 +1,11 @@
-Description of product LCD-OLinuXino-7+
+Description of product LCD-OLinuXino-10+
 
-LCD-OLinuXino-7+ is a 7 inch display with resolution of 800x480 pixels. 
+LCD-OLinuXino-10+ is a 10 inch display with resolution of 1024x600 pixels. 
 
-LCD-OLINUXINO-7+ has no touschreen.
+LCD-OLINUXINO-10+ has no touschreen.
 
 The design uses LCD-DRIVER board, instead the legcay board design of the original 
-LCD-OLinuXino-7 (without the plus) and LCD-OLinuXino-7TS.
+LCD-OLinuXino-10 (without the plus) and LCD-OLinuXino-10TS.
 
 Refer to LCD-DRIVER's GitHub page for the hardware deisng files.
 

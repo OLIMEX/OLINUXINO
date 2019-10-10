@@ -5,7 +5,8 @@ LCD-OLinuXino-7+ is a 7 inch display with resolution of 800x480 pixels.
 LCD-OLINUXINO-7+ has no touschreen.
 
 The design uses LCD-DRIVER board, instead the legcay board design of the original 
-LCD-OLinuXino-7 (without the plus) and LCD-OLinuXino-7TS.
+LCD-OLinuXino-7 (without the plus) and LCD-OLinuXino-7TS. It lacks EEPROM and automatic recogntion.
+If you wish to add a touchscreen, consider that the touchscreen interface is analog.
 
 Refer to LCD-DRIVER's GitHub page for the hardware deisng files.
 

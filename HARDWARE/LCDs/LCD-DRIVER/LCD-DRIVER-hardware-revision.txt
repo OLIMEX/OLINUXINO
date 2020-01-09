@@ -1,0 +1,31 @@
+LCD-DRIVER is a common LCD driver board for several Olimex displays.
+
+Hardware revision B
+========
+Initial release
+	
+Hardware revision C
+========
+1.	Several component packages changed. Zenners BZV55CxVx/SOD80C changed to BZT52CxVx/SOD-123;
+2.	The package of R38 and R40 changed from 0402 to 0603;
+3.	Added automatic switching between external power supply and LCD connector power supply. The  
+	5V_JACK/5V_LCD1(5V_JACK:Opened/5V_LCD1:Closed) jumper was deleted. Instead added 
+	FET3(IRLML6402(SOT23-3)), R63(10k/R0402) and R64(NA(10k/R0402));
+4. LCD_LIME1 and LCD_LIME2 changed from MALE-PAV16X-2x20 to MALE-PAV16X-2x20(0.8_bud);
+5. Removed R50(220R/R0402).
+6. Deleted D5(NA(BZV55C3V6/SOD80C)). Added D5(NA(1N5819S4(SOD-123))) instead.
+7. Because U3 -> AP3036BKTR-G1(SOT23-6) could NOT provide more than 200mA current, we had 
+	problems with 10" LCDs. To combat this we did the following changes:
+	- U3 changed from AP3036BKTR-G1(SOT23-6) to AP3031KTR-G1(SOT23-6);
+	- Added D8(1N5819S4(SOD-123));
+	- D9(NA(1N5819S4(SOD-123)));  
+	- L1 was changed from 22uH/1.5A/220mR/20%/CD53(YS53-220M) to 4.7uH/1.15A/DCR<0.1R/CD43.
+	- Added R65(10k/R0402);
+	- Added R66(10k/R0402);
+	- U4 changed from NA(AP3036BKTR-G1(SOT23-6)) to NA(AP3031KTR-G1(SOT23-6));
+	- L2 changed from NA(22uH/1.5A/220mR/20%/CD53(YS53-220M)) to NA(4.7uH/1.15A/DCR<0.1R/CD43).
+	- D5(NA(1N5819S4(SOD-123))) added (same as 6).
+	
+Note: AP3036BKTR-G1(SOT23-6) and AP3031KTR-G1(SOT23-6) are not pin-to-pin compatible, could be
+made compatible if one of them is rotated 180 degrees and placed at the place of the other! 
+This was tested and confirmed working!

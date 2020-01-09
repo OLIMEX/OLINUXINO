@@ -1,0 +1,55 @@
+Partlist exported from Y:/SVN/RT5350F_OLinuXino/Hardware/trunk/BRD/RT5350F_OLinuXino_Rev_F.sch at 26.02.2018 13:05:39 
+
+Qty Value                                     Device                   Parts                                                                                               
+3   1.1k/1%                                   R-EU_R0603_5MIL_DWS      R24, R39, R40                                                                                       
+2   1.2pF                                     C-EUC0402_TI             C47, C48                                                                                            
+1   1.5pF                                     C-EUC0402_TI             C46                                                                                                 
+10  1uF                                       C-EUC0603_DWS            C12, C14, C15, C16, C17, C29, C30, C36, C38, C39                                                    
+4   2.2k                                      R-EU_R0603_5MIL_DWS      R1, R2, R3, R41                                                                                     
+1   2.2nH                                     L-USL0603_5MIL_DWS       L3                                                                                                  
+3   2.2uH/1.5A/DCR<0.1R/CD32                  L-CD32                   L1, L2, L5                                                                                          
+1   2.7nH                                     L-USL0402_TI             L4                                                                                                  
+2   2.7pF                                     C-EUC0402_TI             C44, C45                                                                                            
+1   2.74k/1%                                  R-EU_R0603_5MIL_DWS      R22                                                                                                 
+1   3.3V                                      TESTPADTESTPAD_40-ROUND  3.3V                                                                                                
+14  4.7k                                      R-EU_R0603_5MIL_DWS      R4, R5, R6, R7, R8, R9, R10, R11, R13, R14, R15, R16, R18, R30                                      
+1   4.99k/1%                                  R-EU_R0603_5MIL_DWS      R23                                                                                                 
+1   5.62k/1%                                  R-EU_R0603_5MIL_DWS      R21                                                                                                 
+1   8.2k/1%                                   R-EU_R0603_5MIL_DWS      R12                                                                                                 
+1   9.1k/1%                                   R-EU_R0603_5MIL_DWS      R29                                                                                                 
+4   10pF                                      C-EUC0402_TI             C28, C37, C41, C62                                                                                  
+1   12k/1%                                    R-EU_R0402_TI            R25                                                                                                 
+2   22R                                       R-EU_R0603_5MIL_DWS      R17, R19                                                                                            
+1   22nF                                      C-EUC0402_TI             C31                                                                                                 
+4   22pF                                      C-EUC0603_DWS            C21, C33, C50, C60                                                                                  
+10  22uF/6.3V                                 C-EUC0603_DWS            C9, C22, C23, C24, C32, C34, C35, C58, C59, C61                                                     
+8   49.9/1%                                   R-EU_R0603_5MIL_DWS      R31, R32, R33, R34, R35, R36, R37, R38                                                              
+22  100nF                                     C-EUC0402_TI             C1, C2, C3, C4, C5, C6, C7, C8, C10, C13, C18, C19, C20, C25, C26, C27, C42, C53, C54, C55, C56, C57
+2   100pF                                     C-EUC0402_TI             C40, C43                                                                                            
+1   330R                                      R-EU_R0603_5MIL_DWS      R27                                                                                                 
+1   Close                                     SJ_SMALLER               1.2VE_REG                                                                                           
+1   E4SB20.000F20E15(20MHz/9pF/10ppm/5x3.2mm) HC49/S_E4SB25.000F20E15  Q1                                                                                                  
+1   EN25Q64-104HIP                            W25Q16BVSSIG(SO-8)       U3                                                                                                  
+6   FIDUCIAL                                  FIDUCIAL                 FID1, FID2, FID3, FID4, FID5, FID6                                                                  
+1   HN1X16                                    CON16-HN1X16             EXT3                                                                                                
+1   LED/RED/0603                              LED0603DWS               PWR_LED                                                                                             
+1   LED/Yellow/0603                           LED0603DWS               WLAN_ACT                                                                                            
+1   MCP130T-300I/TT                           RESETMCP130T-300-I/TT    U6                                                                                                  
+2   ML26HN2X13                                ML26HN2X13               EXT1, EXT2                                                                                          
+2   NA                                        C-EUC0402_TI             C51, C52                                                                                            
+1   NA(1M)                                    R-EU_R0603_5MIL_DWS      R26                                                                                                 
+1   NA(4.7k)                                  R-EU_R0603_5MIL_DWS      R42                                                                                                 
+1   NA(6.8pF)                                 C-EUC0603_DWS            C49                                                                                                 
+1   NA(10k)                                   R-EU_R0603_5MIL_DWS      R28                                                                                                 
+1   NA(20MHz/5032/20ppm/3.3V)                 6NC2_CLOCK_DRIVER5032_4P CD1                                                                                                 
+1   NA(47k)                                   R-EU_R0603_5MIL_DWS      R20                                                                                                 
+1   NA(100nF)                                 C-EUC0402_TI             C11                                                                                                 
+1   NA(DDZ9678-7(SOD-123)_Farnell_PN-1858631) ZDIOD-SMD(SOD-123)       Z1                                                                                                  
+1   Open                                      SJ_SMALLER               1.2VE                                                                                               
+1   RT5350                                    RT5350                   U1                                                                                                  
+1   SMAZ5V6-TP(Farnell_PN-1924469)            ZDIOD-SMDSMAZ5V6-TP      Z2                                                                                                  
+3   SY8089AAAC(SOT23-5)                       SY8008                   U4, U5, U7                                                                                          
+1   TESTPADTESTPAD30/30                       TESTPADTESTPAD30/30      CS1                                                                                                 
+4   TESTPADTESTPAD_40-ROUND                   TESTPADTESTPAD_40-ROUND  +5V, 1.2V, 1.8V, GND                                                                                
+1   W9825G6JH-6                               K4S561632C-TC/L75        U2                                                                                                  
+1   WIFI_RF_I-PEX                             WIFI_RF_I-PEX            ANT                                                                                                 

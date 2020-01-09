@@ -1,0 +1,3 @@
+(sym_lib_table
+(lib (name LCD-OLinuXino-15.6FHD_Rev_H)(type Legacy)(uri ${KIPRJMOD}/LCD-OLinuXino-15.6FHD_Rev_H.lib)(options "")(descr ""))
+)

@@ -1,0 +1,404 @@
+A13-SOM-building-latest-Debian
+
+A13_SOM_kernel_3.4.90_building_description
+
+How to make a bootable SD card for A13-OLinuXino-MICRO, A13-SOM-256 and A13-SOM-512 with either sunxi or mainline u-boot, 3.4.x kernel,
+and Debian file system.
+
+This guide is NOT suitable for A13-OLinuXino and A13-OLinuXino-WIFI.
+
+*****
+
+1. Setup of the toolchain
+
+You should make sure that you have the software tools required for building the Linux Kernel. Please install the required tools (if you 
+don't have them already). To install new software you should be logged as super user, so the first thing to do would be to type in the 
+terminal:
+
+# sudo su
+
+you will be asked for your password and then your prompt will change to # which means you are now the super user, all future commands
+should be run in this mode.
+
+At this point update apt-get links by typing:
+
+# apt-get update
+
+Install the toolchain by typing the following:
+
+# apt-get install gcc-4.7-arm-linux-gnueabihf ncurses-dev uboot-mkimage build-essential git
+
+This will install: GCC compiler used to compile the kernel; the kernel config menu uboot creates image which is required to allow the SD
+card to boot into the linux image; Git which allows you to download from the github which holds source code for some of the system;
+additional other tools for building the kernel.
+
+Note that if the files can't be found you might need to find them from other sources. If you use Debian you might need need to add the
+following line in the sources list:
+
+deb http://www.emdebian.org/debian squeeze main
+
+in the file below:
+
+/etc/apt/sources.list
+
+after the installation you now have all tools to make your very own A13 kernel image!
+
+*****
+
+2. Building u-boot
+
+You have two options for u-boot: the first is to use sunxi u-boot and the second is to use mainline u-boot. If you have stability
+problems, use mainline u-boot since it has wider support for RAM memories. Note that if you use the sunxi u-boot with some of the
+newer RAM memories that we place might face boot or stability problems, some of the memories that we place are not supported in the
+sunxi u-boot. The mainline u-boot will be suitable for all DDR3 memories.
+
+If you do not wish to build u-boot you can use the pre-built files from this location and skip to chapter 5:
+
+https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/A13/A13-SOM-build
+
+First create the directory where we will build the A13-OLinuXino-Micro/SOM linux:
+
+# mkdir a13-micro-SOM-kernel_3.4
+# cd a13-micro-SOM-kernel_3.4
+
+After that follow either chapter 2.1 or 2.2 (2.1 is suitable for sunxi u-boot and older RAM memories; 2.2 is suitable for mainline
+u-boot and newer RAM memory)
+
+2.1. Building sunxi u-boot If we have a board with HYNIX RAM let's download the uboot sources from GitHub repository, note that
+there are lot of branches but you have to use sunxi branch. Note that the u-boot for A13-OLinuXino-MICRO and A13-SOM boards is
+tested with the next branch:
+
+# git rev-parse --verify HEAD 78592f1d95cccf329ed515a176c80be5c87827a0
+this means after you have download the sources (with git clone) you can switch to the exact commit with:
+
+# git reset --hard 78592f1d95cccf329ed515a176c80be5c87827a0
+Download u-boot sources:
+
+# git clone -b sunxi https://github.com/linux-sunxi/u-boot-sunxi.git
+After the download you should have a new directory
+
+# cd u-boot-sunxi/
+
+Note that there are 2 versions of A13-SOM boards:
+
+-A13-SOM with 256MB DDR3 memory size -A13-SOM with 512MB DDR3 memory size - need u-boot patch
+
+If you have A13-SOM board with 512MB memory size then first you have to allpy patch for changing DDR3 memory size: download
+u-boot_A13_SOM_512MB.patch using wget command
+
+# wget "https://drive.google.com/uc?export=download&id=0BwplT87k9SCgY3lIWVlLd3ZlSEk"
+and patch the file board/sunxi/dram_a13_oli_micro.c with the next command
+
+# patch -p0 < u-boot_A13_SOM_512MB.patch
+If you have A13-SOM with 256MB memory size you no need from patch. By default u-boot settings are set for 256MB memory size and you
+can start building imediately after download u-boot.
+
+You can start uboot building with the next commands:
+
+# make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- A13-OLinuXinoM_config
+# make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+
+At the end of the process you can check if everything is OK by
+
+ls u-boot.bin u-boot-sunxi-with-spl.bin spl/sunxi-spl.bin
+spl/sunxi-spl.bin u-boot.bin u-boot-sunxi-with-spl.bin
+
+If you got these files everything is complete, well done so far.
+
+# cd ..
+
+You should be in the following directory:
+
+/home/user/a13-micro-SOM-kernel_3.4#
+
+At this point skip 2.2 directly to chapter 3.
+
+2.2. Building mainline u-boot
+
+Note that if you want to use latest mainline u-boot then you have to use linaro toolchain 6.2 and above!
+
+The mainline u-boot in our image is compiled using linaro toolchain version 6.4 from this link
+https://releases.linaro.org/components/toolchain/binaries/6.4-2018.05/arm-linux-gnueabihf/gcc-linaro-6.4.1-2018.05-i686_arm-linux-gnueabihf.tar.xz
+
+After you download it, unzip it with with:
+
+# tar xJf gcc-linaro-6.4.1-2018.05-i686_arm-linux-gnueabihf.tar.xz 
+
+Download u-boot sources:
+
+# git clone git://git.denx.de/u-boot.git
+
+After the download you should have a new directory our image is tested with tag v2109.01 so if you want to use this tag type:
+
+# git checkout tags/v2019.01
+
+cd u-boot
+
+If we have a board with newer RAM let's download the u-boot sources from GitHub repository, note that the u-boot for
+A13-OLinuXino-MICRO and A13-SOM boards is tested with the exact same tag tags/v2019.01
+
+Next load the configuration file. It is the same for A13-SOM and A13-Micro board:
+
+# make CROSS_COMPILE=/path_to_file/arm-linux-gnueabihf- A13-OLinuXinoM_defconfig
+
+you can configure some u-boot settings like DDR3 settings, clocks and other with:
+
+# make menuconfig
+
+It is recommended to choose:
+
+[*]Enable workaround for booting old kernels
+
+the board has stable behaviour with [360] sunxi dram clock speed [300] sunxi mbus clock speed
+
+but you can choose other settings depending on your application
+
+save it the settings and exit
+
+Compile the u-boot
+
+# make CROSS_COMPILE=/path_to_file/arm-linux-gnueabihf-
+
+When the compilation completes, there will be u-boot-sunxi-with-spl.bin available in your u-boot tree.
+
+Now you have to create a new boot.cmd file with the following contain
+
+setenv bootm_boot_mode sec
+setenv bootargs console=ttyS0,115200 root=/dev/mmcblk0p2 rootwait panic=10
+load mmc 0:1 0x43000000 script.bin || load mmc 0:1 0x43000000 boot/script.bin
+load mmc 0:1 0x42000000 uImage || load mmc 0:1 0x42000000 boot/uImage
+bootm 0x42000000
+
+convert boot.cmd in boot.scr with the next command
+
+mkimage -C none -A arm -T script -d boot.cmd boot.scr
+
+The result should be a new boot.scr file that you have to copy to the first SD card partition (where uImage and script.bin file are
+located).
+
+*****
+
+3. Building kernel sources for A13-SOM
+
+Kernel sources for A13 are available on GitHub. Note that the following building is made with the revision below:
+
+# git rev-parse --verify HEAD e37d760b363888f3a65cd6455c99a75cac70a7b8
+
+You can download the kernel sources using the following command:
+
+# git clone https://github.com/linux-sunxi/linux-sunxi
+
+After the download go to the kernel directory
+
+# cd linux-sunxi/
+
+Note that before compiling kernel you have to do a patch kernel in order to change I2C sped from 200kHz to 100kHz (need for Olimex's
+I2C modules) and some other changes related with missing power management with AXP209 chip.
+
+Download the patch a13_micro_SOM.patch using wget command
+
+# wget "https://drive.google.com/uc?export=download&id=0BwplT87k9SCgQ0IxZjRtaHVnMzg"
+
+and apply the patch:
+
+# patch -p1 < a13_micro_SOM.patch
+
+The next step is to configure the system
+
+Here you need from a13 configuration file - a13_micro_SOM_defconfig. The file contains all kernel module settings.
+
+Download a13_micro_SOM_defconfig using wget command
+
+# wget "https://drive.google.com/uc?export=download&id=0BwplT87k9SCgWEdqRGl2amxyd2c"
+
+hen copy a13_micro_SOM_defconfig file to configs directory:
+
+# cp a13_micro_SOM_defconfig /arch/arm/configs/
+
+and make:
+
+# make ARCH=arm a13_micro_SOM_defconfig
+
+The result should be: configuration written to .config
+
+If you wish to make your changes in the kernel configuration do:
+
+# make ARCH=arm menuconfig
+
+The menuconfig changes a .config text file, which you can view/edit even with a text editor like vi,nano. With this command you can
+add or remove different modules for the different peripherals in the kernel. Be careful when use this as this may cause the kernel
+to not work properly.
+
+Now you can continue with kernel image compiling
+
+# make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 uImage
+
+when this finish you will have uImage ready and the result should be:
+
+Kernel: arch/arm/boot/Image is ready LD arch/arm/boot/compressed/vmlinux OBJCOPY arch/arm/boot/zImage Kernel: arch/arm/boot/zImage is
+ready UIMAGE arch/arm/boot/uImage Image Name: Linux-3.4.79+ Created: Mon May 12 09:22:56 2014 Image Type: ARM Linux Kernel Image
+(uncompressed) Data Size: 4612216 Bytes = 4504.12 kB = 4.40 MB Load Address: 40008000 Entry Point: 40008000 Image arch/arm/boot/uImage
+is ready
+
+Now you can build the kernel modules:
+
+# make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 INSTALL_MOD_PATH=out modules
+# make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4 INSTALL_MOD_PATH=out modules_install
+DONE! At this point you have uboot and kernel modules.
+
+The uImage file is located in linux-sunxi/arch/arm/boot/
+
+The kernel modules are located in
+
+linux-sunxi/out/lib/modules/3.x.xx where 3.x.xx is kernel version
+
+in our case the directory with modules is:
+
+linux-sunxi/out/lib/modules/3.4.90+
+
+*****
+
+4. Format and setup the SD-card
+
+We suggest 4GB class 10 micro sd-card but you can use any card between 2GB and 16GB.
+
+First we have to make the correct card partitions, this is done with fdisk.
+
+Plug SD card into your SD card reader and enter in the terminal
+
+# ls /dev/sd
+
+Then press two times <TAB> you will see a list of your sd devices like sda sdb sdc note that some of these devices may be your hard
+disk so make sure you know which one is your sd card before you proceed as you can damage your HDD if you choose the wrong sd-device.
+You can do this by unplugging your sd card reader and identify which of the ?sd? devices disappears from the list.
+
+Once you know which device is your sdcard like sda use this text instead of the sdX name in the references below:
+
+# fdisk /dev/sdX
+
+then do these steps:
+
+1. p will list your partitions
+
+if there are already partitions on your card do:
+
+2. d enter 1 if you have more than one partition press d while delete them all
+
+3. create the first partition, starting from 2048 n enter p enter 1 enter enter +16M
+
+4. create second partition n enter p enter 2 enter enter enter
+
+then list the created partitions: p enter if you did everything correctly on 4GB card you should see something like:
+
+Disk /dev/sdg: 3980 MB, 3980394496 bytes 123 heads, 62 sectors/track, 1019 cylinders, total 7774208 sectors Units = sectors of 1 * 512 =
+512 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disk identifier: 0x00000000
+
+Device Boot Start End Blocks Id System /dev/sdg1 2048 34815 16384 83 Linux /dev/sdg2 34816 7774207 3869696 83 Linux
+
+7. w
+
+write changes to sd card
+
+now we have to format the file system on the card:
+
+the first partition should be vfat as this is FS which the Allwinner bootloader understands
+
+# mkfs.vfat /dev/sdX1
+
+the second should be normal Linux EXT3 FS
+
+# mkfs.ext3 /dev/sdX2
+
+*****
+
+5. Write the Uboot and sunxi-spl.bin
+
+You should be in /home/user/a13-micro-SOM-kernel_3.4# directory Note that you have to write u-boot-sunxi-with-spl.bin in /dev/sdX (not sdX1 or sdX2)
+
+# dd if=u-boot-sunxi/u-boot-sunxi-with-spl.bin of=/dev/sdX bs=1024 seek=8
+
+Note that if you use mainline u-boot then you have to copy the generated boot.scr file in the first sdcard partition. For example:
+
+# mkdir /mnt/sd
+# mount /dev/sdX1 /mnt/sd
+# cp /u-boot/boot.scr /mnt/sd/ 
+
+*****
+
+6. Write kernel uImage you build to the SD-card
+
+copy the Kernel uImage to root directory in partition 1
+
+# cp linux-sunxi/arch/arm/boot/uImage /mnt/sd
+
+*****
+
+7. Write script.bin file
+
+script.bin is a file with very important configuration parameters like port GPIO assignments, DDR memory parameters, Video resolution
+etc, download the script.bin using wget command
+
+# wget "https://drive.google.com/uc?export=download&id=0BwplT87k9SCgYXhpQ2djd2hZRDg"
+# cp script.bin /mnt/sd
+# sync
+# umount /dev/sdX1
+
+*****
+
+8. Debian rootfs
+
+The Linux Kernel and Uboot are ready, now we have need from Linux distribution rootfs.
+
+Basically the only difference between the different Linux distributions is the rootfs, so if you put Debian rootfs you will have
+Debian, if you put Ubuntu rootfs it will be Ubuntu etc.
+
+How to build one is a long topic, the good thing is that there are many already pre-built so we can just download one and use.
+
+exit the kernel directory
+
+# cd ..
+
+You should be in the directory below
+
+/home/user/a13-micro-SOM-kernel_3.4
+
+download the torrent of the archive with debian rootfs - a13_micro_SOM_debian_FS.tgz using wget command
+
+# wget https://www.olimex.com/wiki/images/1/18/A13_micro_SOM_debian_FS.torrent
+
+Launch a torrent client and download the file.
+
+mount your sd card EXT3 FS partition:
+
+# mount /dev/sdX2 /mnt/sd
+
+and extract the archive containing rootfs:
+
+# tar xzvf a13_micro_SOM_debian_FS.tgz -C /mnt/sd
+# ls /mnt/sd
+
+the expected result should be: bin dev home lost+found mnt proc run selinux sys usr boot etc lib media opt root sbin srv tmp var
+
+Now you have to replace the new generated kernel modules from /home/user/a13-micro-SOM-kernel_3.4linux-sunxi/out/lib/modules/ to the
+new debian file system:
+
+# rm -rf /mnt/sd/lib/modules/*
+# cp -rfv linux-sunxi/out/lib/modules/3.x.xx+/ /mnt/sd/lib/modules/
+
+where x.xx is the kernel version in our case:
+
+# cp -rfv linux-sunxi/out/lib/modules/3.4.90+/ /mnt/sd/lib/modules/
+
+replace /lib/firmware folder with the generated /linux-sunxi/out/firmware
+
+# rm -rf /mnt/sd/lib/firmware/
+# cp -rfv linux-sunxi/out/lib/firmware/ /mnt/sd/lib/
+# sync
+# umount /mnt/sdX2
+
+At this point you have Debian on your SD card second partition and you have an SD card ready to boot debian on A13-OLinuXino-Micro/SOM
+
+Connect USB-SERIAL-CABLE-F to UEXT Tx,Rx, and GND, or connect a HDMI monitor. Put the SD-card in A13-OLinuXino-Micro/SOM and appl
+5V power, you should see u-boot and then kernel messages on the serial console.
+
+default username/password is : root / olimex

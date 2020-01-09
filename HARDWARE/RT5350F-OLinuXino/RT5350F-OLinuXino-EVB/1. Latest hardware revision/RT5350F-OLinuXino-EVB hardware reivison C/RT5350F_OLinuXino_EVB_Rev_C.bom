@@ -1,0 +1,59 @@
+Partlist exported from Y:/SVN/RT5350F_OLinuXino_EVB/Hardware/trunk/BRD/RT5350F_OLinuXino_EVB_Rev_C.sch at 11.05.2018 09:13:26 
+
+Qty Value                            Device                           Parts                           
+2   1.1k/1%                          R-EU_R0603_5MIL_DWS              R19, R30                        
+3   1N5819(S4SOD-123)                SCHOTKKY7.62SS-1N5819(S4SOD-123) D2, D8, D9                      
+2   1N5822/SS34/SMA                  SCHOTKKY7.62SS2                  D4, D5                          
+3   1k                               R-EU_R0603_5MIL_DWS              R13, R15, R21                   
+2   1nF/2kV/X7R/1206                 C-EUC1206_5MILS_WS_ISO           C14, C15                        
+5   2.2k                             R-EU_R0603_5MIL_DWS              R5, R6, R20, R32, R33           
+1   2k/1%                            R-EU_R0603_5MIL_DWS              R31                             
+1   4.7uH/1.15A/DCR<0.1R/CD43        L-CD42(43)                       L2                              
+1   8.25k/1%                         R-EU_R0603_5MIL_DWS              R29                             
+7   10k                              R-EU_R0603_5MIL_DWS              R3, R8, R9, R10, R14, R16, R64  
+5   22uF/6.3V                        C-EUC0603_DWS                    C4, C5, C7, C8, C10             
+1   47k                              R-EU_R0603_5MIL_DWS              R84                             
+4   47uF/6.3V/20%/X5R/C0805          C-EUC0805_5MIL_DWS               C9, C16, C17, C18               
+4   100R                             R-EU_R0603_5MIL_DWS              R11, R12, R17, R18              
+7   100nF                            C-EUC0603_DWS                    C3, C11, C12, C13, C87, C88, C89
+3   560R                             R-EU_R0603_5MIL_DWS              R1, R4, R54                     
+2   BC817-40(SMD)                    NPN-TRANSISTOR_SOT23             T1, T2                          
+1   BH10S                            ML10                             UEXT                            
+1   BH40S                            ML40                             EXT4                            
+1   BL4054B-42TPRN                   BL4054B-42TPRN                   U4                              
+2   CON3-DG306-5.0_3P(TB3-5MM)       CON3-DG306-5.0_3P(TB3-5MM)       CON1, CON2                      
+1   DTSM24R(12x12x10)                SW-TAKTSS                        BUT4                            
+1   DW02R                            CON2DW02R                        BAT                             
+1   EJTAG_TDI:closed/SPI_MISO:opened SJ2W3                            EJTAG_TDI/SPI_MISO              
+1   EJTAG_TDO:closed/SPI_MOSI:opened SJ2W3                            EJTAG_TDO/SPI_MOSI              
+1   EJTAG_TMS:closed/SPI_CS1:opened  SJ2W3                            EJTAG_TMS/SPI_CS1               
+2   FB0805/600R/2A                   L-USL0805_5MIL_DWS               L1, L9                          
+3   FIDUCIAL                         FIDUCIAL                         U1, U2, U3                      
+1   HN1X3                            CON3HN1X3                        UART0                           
+3   LED/RED/0603                     LED0603DWS                       LED1, LED2, POWER               
+1   LED/YELLOW/0603                  LED0603DWS                       CHARGE                          
+2   ML26PN2X13                       ML26PN2X13                       EXT1, EXT2                      
+1   MT3608(SOT23-6)                  SY7208                           U5                              
+2   NA                               C-EUC0402_TI                     C1, C2                          
+2   NA                               R-EU_R0603_5MIL_DWS              R2, R53                         
+1   NA(1M)                           R-EU_R0603_5MIL_DWS              R7                              
+2   NA(2.2k)                         R-EU_R0603_5MIL_DWS              R82, R83                        
+1   NA(22uF/6.3V)                    C-EUC0603_DWS                    C6                              
+1   NA(HN1x2)                        JP1E                             RST_RT                          
+1   NA(PN1X6)                        CON6PN1X6                        PROG                            
+2   NA(RA1206_(4X0603)_4B8_51R)      R_MATRIX_4E                      RM3, RM4                        
+1   NA(TB2/3.5mm)                    CON2-DG306-5.0_2P(TB2-5MM)       PWR.                            
+1   Opened                           SJ_SMALLER                       5V_E                            
+1   PN1X16                           CON16-HN1X16                     EXT3                            
+1   PWRJ-2mm(YDJ-1134)               PWR-JAKPWR_JACK_UNI_MILLING      PWR                             
+1   RA1206_(4X0603)_4B8_100K         R_MATRIX_4E                      RM1                             
+2   RAS-0515                         RELAYH200F                       REL1, REL2                      
+2   RJLBC-060TC1_GND_MILLING         RJLBC-060TC1_GND_MILLING         LAN1, LAN2                      
+1   SIDE_WTCM-TR(3X4)                SW-TAKTSIDE_WTCM-TR(3X4)         RESET                           
+1   SMBJ6.0A                         SMBJ16A                          D3                              
+1   SPI_CLK:opened/EJTAG_TCK:closed  SJ2W3                            SPI_CLK/EJTAG_TCK               
+2   TESTPAD3                         TESTPAD3                         GND_PIN, RST                    
+3   TESTPAD40/70                     TESTPAD40/70                     DCD_N, RIN, WLAN_LED            
+1   TFC-WPAPR-08                     MICRO_SD/MMC_CP_NEWTFC-WPAPR-08  SD/MMC1                         
+1   USB_A_VERTICAL                   USB_SHIELDUSB_A_VERTICAL         USB_HOST                        
+1   WPM2015-3/TR                     P-MOS+DIODIRLML6402              FET1                            

@@ -1,0 +1,23 @@
+A33-OLinuXino, hardware change log
+
+Hardware revision B1 (same PCB as revision B with changed components; released)
+=========
+The white print on boards from revision B1 stills says B.
+You can determine if a board is revision B or revision B1 only by inspecting if the changes below had taken place!
+
+1. Changed SMD crystal with PTH one and a 10M capacitor in parallel to the new crystal.
+2. Replaced D2 with 0R/1206 resistor. The diode was interfering with the communication between the A33 and the PMU (dropping the voltage to 2.5V).
+3. C121 (100pF) changed to 0R; C115(100n) now removed (has value NA) so output from 3.5mm JACK can be connected to microphone
+
+ 
+Hardware revision C (new PCB; released)
+========
+All changes from revision B1 are applied also.
+
+1. The value of the R75 resistor changed from 1M to 10M; there was an error in the value in the previous revision.
+2. The package of R75 changed from 0603 to 0402.
+3. Q2's value changed from MC-306_32.768KHZ/SMD_8038/6pF to MC-306_32.768KHZ/SMD_8038/12.5pF, the original one went out-of-stock.
+4. C68 and C69 changed from 10pF to 20pF to match the new quartz.
+5. The 32KFOUT lead to a corresponding test pad. 
+6. U7 changed from SY7208 na MT3608.
+7. Boards with NAND have new 8GB NAND placed.

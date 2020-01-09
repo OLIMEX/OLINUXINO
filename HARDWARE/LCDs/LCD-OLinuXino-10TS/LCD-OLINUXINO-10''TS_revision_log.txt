@@ -1,4 +1,9 @@
-LCD-OLINUXINO-10 and LCD-OLINUXINO-10TS use the same design files (schematic, board files)
+LCD-OLINUXINO-10 and LCD-OLINUXINO-10TS use the same hardware design files (schematic, board files).
+
+LCD-OLinuXino-10TS is a 10 inch display with resolution of 1024x600 pixels.
+
+It uses the legacy driver design (not LCD-DRIVER board).
+
 
 Hardware revision A
 ========
@@ -12,7 +17,9 @@ Hardware revision B
 
 Hardware revision C
 ========
-1. Added 8 resistor positions (pull-up/down) that can be used for binary display identification. Of these 8 positions, 4 resistors have to be populated with 51k/1% and 4 should be left unpopulated. The 10 inch LCD's ID number was set to 0x04. The list of the rest of the display IDs is:
+1. Added 8 resistor positions (pull-up/down) that can be used for binary display identification. 
+Of these 8 positions, 4 resistors have to be populated with 51k/1% and 4 should be left unpopulated. 
+The 10 inch LCD's ID number was set to 0x04. The list of the rest of the display IDs is:
 
 	0x01	-> 4.3" LCD
 	0x02	-> 5.0" LCD
@@ -20,7 +27,8 @@ Hardware revision C
 	0x04	-> 10.0" LCD
 	0x05	-> 15.4" LCD
 	
-2. Fixed wrong label about the modes in the schematic. In MODE=0, SYNK Mode - DE must be grounded. In MODE=1, DE Mode - DE must be VS and HS must be pulled high.
+2. Fixed wrong label about the modes in the schematic. In MODE=0, SYNK Mode - DE must be grounded. 
+In MODE=1, DE Mode - DE must be VS and HS must be pulled high.
 
 Hardware revision C1
 =========

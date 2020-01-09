@@ -5,6 +5,7 @@ Hardware changes in revision G (released)
 3. Update of all libraries. HDMI connector is changed to new package.
 4. HDMI protection removed (caused incompatiblities with cheap HDMI monitors).
 
+
 Hardware changes in revision H (only prototypes; not released)
 ========
 1. Changed the LAN part of the design, added two capactiors 1nF/2kV/X7R/1206, and 1nF/2kV/X7R/1206_or_1M, 
@@ -17,6 +18,7 @@ also the matrix is now 0402 with 49.9 ohm at 1%.
 7. Improved white print. Year and revision updated. Web-site address updated.
 8. Power jack package updated.
 9. SATA package updated.
+
 
 Hardware changes in revision I (only prototypes; not released)
 ========
@@ -42,6 +44,7 @@ Hardware changes in revision I (only prototypes; not released)
 20. The files were renamded from 4G to nothing, because the schematic is universal for all boms generated!
 21. C217's value was changed from 220uF/10V/TANT to 220uF/10V/TANT_D!
 22. Added reset control for the new PHY - C63 becomes NA down from 10uF, R26 becomes NA down from 10K and R25 is now 100R up from NA.
+
 
 Hardware changes in revision J (released)
 ========
@@ -79,3 +82,59 @@ A10-A20-OLINUXINO-MICRO-EMMC-IND_Rev_J
 1. Change memory to industrial variant - MT41K256M16HA-125IT:E(DDR3L-1600_11-11-11)
 2. Change PHY to industrial variant LAN8710AI-EZK-TR(QFN-32)
 3. Change r77 from 4.99k/1% to 12.4k/1% and r78 from 3.32k/1% to 10k/1% in order to decrease industrial DDR3 power suplly from 1.5V to 1.35V; The text: "When DDR3L is used, VDD&VDDQ are set to 1.35V!!!" was added in the schematic!
+
+
+Hardware changes in revision J1 (released)
+========
+
+1. C130 and C137 changed from 100nF/0603 to 22uF/6.3V/0603;
+2. L8(FB0805/600R/2A) and L10(FB0805/600R/2A) changed to 0R/0805;
+3. R48(6.81k/1%) and R55(13k/1%) changed to 3.9k/1%/0603 to increase the USB current limit to 2A;
+4. R80(11k/1%) changed to 13k/1% and R86(2k/1%) changed to 2.2k/1%. This is done in order to increase slightly the 5VEXT voltage and to compensate the voltage drop over D4 during current peaks;
+5. R32, R65, R70, R73, R75, R76, R81, R82, R83, R93, R94, R120 changed from 2.2k/0603 to 2.2k/1%/0603;
+6. R1, R2, R4, R6, R8, R37, R39, R57 changed from 2k/1%/0603 to 2.2k/1%/0603;
+7. L4 and L5 changed from CL470nH/0805/1.76R/250mA to FB0805/600R/2A;
+8. R77(12.4k/1%/0603) changed to 16.2k/1%/0603. R78(10k/1%/0603) changed to 13k/1%/0603;
+9. R25, R43, R58, R103 changed from 100R/0603 to 49.9R/1%/0603;
+10. R85, R108 changed from 100k/0603 to 100k/1%/0603;
+11. R41, R104, R150, R151 changed from 390R/0603 to 330R/1%/0603.
+
+
+Hardware changes in revision K (internal, not released)
+========
+
+1. R144 and R145 packages changed from 10k/0402 to 10k/0603;
+2. C241 moved away from the power jack. This improves the soldering of the jack.
+3. Added 5V_EXT power option on a separate pinhole near 5V_SATA_PWR connector. It allows powering the board via 5V DC source applied directly (bypassing U14 - MP1584).
+	- The 5VEXT pad changed from SMD to PTH, was renamed to 5V_EXT and position adjusted a bit;
+	- GND_EXT pad provided near 5V_EXT at 100mils distance for easier access;
+4. 27k pull-up and diode(in the FET) added to the HDMI-CEC signal;
+5. Serial resistor (47k) added to the HDMI-HPD signal to form a voltage divider 5V to 3.3V, because of the HDMI specification - HDMI-HPD signal can reach 5V level. R40 changed from 47k to 100k;
+6. C217(220uF/10V/TANT_D) changed with 4x47uF/6.3V/0805 ceramic capacitors; C145 changed from 10uF/6.3V to 47uF/6.3V;
+7. Changed the package of the SATA connector. New package has better mounting pads;
+8. Changed the packages of LCD_CON, GPIO-1, GPIO-2, GPIO-3, UEXT1 and UEXT2 connector. The new packages has increased cream layer around pads;
+9. USB_OTG package also updated - corrected cream layer and origin;
+10. All buttons packages changed - corrected pads;
+11. All small matrices packages changed - corrected pads;
+12. C233 was exchanged with 2x47uF/6.3V/0805 ceramic capacitors;
+13. U13 and U15 were changed from SY8009AAAC(SOT23-5) to SY8089AAAC(SOT23-5);
+14. U16 was changed from SY7208(SOT23-6) to MT3608(SOT23-6);
+15. Q2 was changed in package - the one with increased cream layer;
+16. Q2 was changed in value - from 32768Hz/6pF to Q32.768kHz/12.5pF/20ppm/4P/SMD8038;
+17. C97 and C98 were changed from 10pF to 22pF/50V/5%/COG/C0603;
+18. PWR_LED, CHGLED and LED1 were changed in package - smaller pads to avoid floating of the LEDs while soldering.
+19. R40, R85, R108 were changed from 100k/0603 to 100k/1%/0603;
+20. C102 was changed from 100nF/0402 to 220nF/0402. C200 was changed from 100nF/0402 to 100nF/0603;
+21. SPI Flash for enabling other booting option was added! It required several other components to be added around it too;
+22. U23, U22 and U17 - RCLAMPs were changed in package to avoid short circuits while soldering;
+23. HDMI was changed in package to the one with enlarged pads. This ease the manula soldering;
+24. It was added second eMMC in the smaller package (0.50mm pitch), because the bigger one (1.00mm pitch) is almost obsolet - can not be ordered;
+25. R93, R94 and R95 were moved 50mil away from the UEXT1 connector.
+
+
+Hardware changes in revision L (released)
+========
+
+1. R20 changed from pull-up to pull-down.
+2. Moved a couple of components to reduce possible noise; made several power wires a bit wider.
+3. C209 was moved from bottom to top for to ease the LIPO_BAT connector's soldering. D2 was moved 20mils towards the edge of the board for the same purpose.

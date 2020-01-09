@@ -28,6 +28,8 @@
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
+const char WeekDays[7][10] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
 void Print_Help(void);
 void Read_RTC(void);
 void Write_RTC(void);
@@ -110,14 +112,12 @@ exit(0);
 void Read_RTC(void){
 	
 	int fd;
+	unsigned char century = 0;
 	unsigned char buff[10];
 	unsigned char data[10];
 	
 	buff[0] = 0x02;
-	
-	
-	
-	
+		
 	/* Open I2C-BUS */	
 	I2C_Open(&fd, 0x51);
 	
@@ -129,7 +129,10 @@ void Read_RTC(void){
 	
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
-	
+
+	if(data[5] & 0x80)
+		century = 100;
+
 	data[0] &= 0x7F;
 	data[1] &= 0x7F;
 	data[2] &= 0x3F;
@@ -138,13 +141,15 @@ void Read_RTC(void){
 	data[5] &= 0x1F;
 	data[6] &= 0xFF;	
 	
-	printf("Sec: %d\n",BCDtoInt(data[0]));
-	printf("Min: %d\n",BCDtoInt(data[1]));
-	printf("Hour: %d\n",BCDtoInt(data[2]));
-	printf("MDays: %d\n",BCDtoInt(data[3]));
-	printf("WDays: %d\n",BCDtoInt(data[4]));
-	printf("Month: %d\n",BCDtoInt(data[5]));
-	printf("Year: %d\n",BCDtoInt(data[6]));
+	printf	("%4d/%2d/%2d (%9s) %2d:%2d:%2d\n",
+				BCDtoInt(data[6]) + century + 1900,
+				BCDtoInt(data[5]),
+				BCDtoInt(data[3]),
+				WeekDays[BCDtoInt(data[4])],
+				BCDtoInt(data[2]),
+				BCDtoInt(data[1]),
+				BCDtoInt(data[0])
+			);
 	
 }
 void Sync_RTC(void){
@@ -156,6 +161,7 @@ void Sync_RTC(void){
 	rtc_tm = localtime(&ltime);
 	
 	int fd;
+	unsigned char century = 0;
 	unsigned char buff[10];
 	unsigned char data[10];
 	buff[0] = 0x02;
@@ -173,6 +179,9 @@ void Sync_RTC(void){
 	/* Close I2C-BUS */
 	I2C_Close(&fd);
 	
+	if(data[5] & 0x80)
+		century = 100;
+		
 	data[0] &= 0x7F;
 	data[1] &= 0x7F;
 	data[2] &= 0x3F;
@@ -187,7 +196,7 @@ void Sync_RTC(void){
 	rtc_tm -> tm_mday = BCDtoInt(data[3]);
 	rtc_tm -> tm_wday = BCDtoInt(data[4]);
 	rtc_tm -> tm_mon = BCDtoInt(data[5])-1; //because local time counts months 0-11 but MOD-RTC 1-12
-	rtc_tm -> tm_year = BCDtoInt(data[6]);
+	rtc_tm -> tm_year = BCDtoInt(data[6]) + century;
 	
 	const struct timeval tv = {mktime(rtc_tm), 0};
     settimeofday(&tv, 0);
@@ -199,21 +208,35 @@ void Write_RTC(void){
 	/* Syncin MOD-RTC with system clock */
 	time_t ltime;
 	struct tm *rtc_tm;
+	unsigned char century = 0x00;
 	unsigned char buff[10];
 	int fd;
-	
-	
+		
 	ltime = time(NULL);
 	rtc_tm = localtime(&ltime);
 	
-	
+	/*
+	Since in 1 byte could be encoded only 2 digits of binary coded decimals (BCD) format
+	as a result years above 99 would be stored only the last 2 digits and
+	the others will be stored into a variable that remembers the number of centuries.
+	Thanks to Adamo Reggiani for reporting this problem and suggesting solution for it!
+
+	Note also that localtime function counts years after 1900,
+	so for example the year 2018 will be returned as 118.
+	*/
+
+	if(rtc_tm->tm_year > 99) {
+		rtc_tm->tm_year -= 100;
+		century = 0x80;
+	}
+
 	buff[0] = 0x02;		//Pointer to the first register
 	buff[1] = InttoBCD(rtc_tm -> tm_sec);
 	buff[2] = InttoBCD(rtc_tm -> tm_min);
 	buff[3] = InttoBCD(rtc_tm -> tm_hour);
 	buff[4] = InttoBCD(rtc_tm -> tm_mday);
 	buff[5] = InttoBCD(rtc_tm -> tm_wday);
-	buff[6] = InttoBCD(rtc_tm -> tm_mon+1); //because local time counts months 0-11 but MOD-RTC 1-12
+	buff[6] = InttoBCD((rtc_tm -> tm_mon+1)) | century; //because local time counts months 0-11 but MOD-RTC 1-12
 	buff[7] = InttoBCD(rtc_tm -> tm_year);
 
 	I2C_Open(&fd, 0x51);
@@ -233,13 +256,14 @@ unsigned char BCDtoInt(unsigned char BCD){
 	
 	return b*10 + a;
 }
+
 unsigned char InttoBCD(unsigned char Int){
 	
 	unsigned char a;
 	unsigned char b;
 	
 	a = Int % 10;
-	b = Int / 10;
+	b = (Int / 10) % 10;
 	
 	return (b << 4) + a;
 }

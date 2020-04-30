@@ -1,4 +1,16 @@
-### Notable hardware revision changes A20-OLinuXino-LIME2 log:
+### Notable hardware revision changes A20-OLinuXino-LIME2. It applies to all board revisions:
+
+Currently there are seven board variants available (depending on the memories installed and the operating temperature range):
+
+A20-OLinuXino-LIME2 - no eMMC flash, no NAND flash, no SPI flash, all components in commercial temperature range (0 to +70)C
+A20-OLinuXino-LIME2-e16Gs16M - 16GB eMMC flash present, 16MB SPI flash, all components in commercial temperature range (0 to +70)C
+A20-OLinuXino-LIME2-e4GBs16M - 4GB eMMC flash present, 16MB SPI flash, all components in commercial temperature range (0 to +70)C
+A20-OLinuXino-LIME2-n8GB - no eMMC flash, 8GB NAND flash, no SPI flash, all components in commercial temperature range (0 to +70)C
+A20-OLinuXino-LIME2-s16MB - no eMMC flash, no NAND flash, 16MB SPI flash, all components in commercial temperature range (0 to +70)C
+T2-OLinuXino-LIME2-IND - no eMMC flash, no NAND flash, no SPI flash, all components in industrial temperature range (-40 to +85)C
+T2-OLinuXino-LIME2-s16MB-IND - no eMMC flash, no NAND flash, 16MB SPI flash, all componenets in industrial temperature range (-40 to +85)C
+
+Make sure to check the web-page of A20-OLinuXino-LIME2 at www.OLIMEX.com to check if other board options are available.
 
 #### Hardware revision B (pre-production)
 ===========
@@ -159,16 +171,49 @@ A20-OLinuXino-Lime2-EMMC-IND_Rev_H
 2. Renamed GMAC_PWR_E/PH7 to just PH7. The signal was needed by old Ethernet PHY, it is no longer routed to the Ethernet.
 3. Removed filtering from PHY's TX and RX - L3, L4 removed (from 2.7nH/0402 changed to NA); C81, C254 removed (changed from 24pF/0402 to NA). This improves GB speeds.
 
+#### Hardware revision K2 (public release)
+=============================
 
-Currently there are seven board variants available (depending on the memories installed and the operating temperature range):
+Updated capacitor values around the AXP209 to be 100% compatible with the recommendation:
 
-A20-OLinuXino-LIME2 - no eMMC flash, no NAND flash, no SPI flash, all components in commercial temperature range
-A20-OLinuXino-LIME2-e16GB - 16GB eMMC flash present, no NAND flash, no SPI flash, all components in commercial temperature range
-A20-OLinuXino-LIME2-e4GB - 4GB eMMC present, no NAND flash, no SPI flash, all components in commercial temperature range
-A20-OLinuXino-LIME2-n8GB - no eMMC flash, 8GB NAND flash, no SPI flash, all components in commercial temperature range
-A20-OLinuXino-LIME2-s16MB - no eMMC flash, no NAND flash, 16MB SPI flash, all components in commercial temperature range
-T2-OLinuXino-LIME2-IND - no eMMC flash, no NAND flash, no SPI flash, all components in industrial temperature range
-T2-OLinuXino-LIME2-s16MB-IND - no eMMC flash, no NAND flash, 16MB SPI flash, all componenets in industrial temperature range
+1. C179 10uf/0603 --> 1uF/0603
+2. C183 10uF/0603 --> 4.7uF/0603
+3. C185 10uF/0603 --> 4.7uF/0603
+4. C186 10uF/0603 --> 4.7uF/0603
+5. C188 10uF/0603 --> 4.7uF/0603
+6. C158 10uF/0603 --> 4.7uF/0603
+7. C163 10uF/0603 --> 4.7uF/0603
+8. C171 1uF/0603 --> 4.7uF/0603
+9. C182 10uF/0603 --> 220nF/0603
 
-Make sure to check the web-page of A20-OLinuXino-LIME2 at www.OLIMEX.com to check if other board options are available.
+Added free SPI flash on all boards with eMMC, this required few extra components:
 
+10. U22 NA --> W25Q128FVSIG
+11. C71 NA --> 100nF
+12. R16 NA --> 10k
+13. R12 NA --> 10k
+14. R17 NA --> 10k
+
+Fixed few wrong text values in the schematic:
+
+Q2 -> Q32.768kHz/12.5pF/2P/SMD1206
+L 2.2uH/CD32 -> 2.2uH/NR3015T2R2M/1.5A/3015
+U14 -> MCP121T475I-TT
+
+#### Hardware revision K2 (public release)
+=============================
+
+Changed eMMC from KLMAG2GEND-B031(FBGA153)(16G) to KLMAG1JETD-B041(FBGA153)(16G)
+
+#### Hardware revision L (public release)
+=============================
+
+1. Changed RAM to K4B4G1646D-BYK0.
+2. RM4 package changed from 0403 to 0603.
+3. Added C90(10pF) on EMMC_CLK.
+4. Coils changed to 2.2uH/NR3015T2R2M/1.5A/3015.
+5. Changed MCP120T475I-TT with MCP121T475I-TT.
+6. C177 and C190 separated a little further from each other.
+7. Fixed eMMC label to reflect new memory.
+8. Changed capacitors of the 25Mhz crystal of the Ethernet controller. Now 15pf (down from 33pf).
+9. Updated and improved the packages of a lot of components.

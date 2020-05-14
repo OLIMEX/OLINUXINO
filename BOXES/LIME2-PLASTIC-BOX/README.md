@@ -12,3 +12,4 @@ This is Plastic box for LIME2 contributed by: Mike Bosschaert from Utrecht, Neth
 
 The files are released under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).
 
+for any questions about this plastic box use this e-mail address: design@bosschaert.org

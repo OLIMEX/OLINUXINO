@@ -131,10 +131,40 @@ Hardware changes in revision K (internal, not released)
 24. It was added second eMMC in the smaller package (0.50mm pitch), because the bigger one (1.00mm pitch) is almost obsolet - can not be ordered;
 25. R93, R94 and R95 were moved 50mil away from the UEXT1 connector.
 
-
 Hardware changes in revision L (released)
 ========
 
 1. R20 changed from pull-up to pull-down.
 2. Moved a couple of components to reduce possible noise; made several power wires a bit wider.
 3. C209 was moved from bottom to top for to ease the LIPO_BAT connector's soldering. D2 was moved 20mils towards the edge of the board for the same purpose.
+
+Hardware changes in revision L1 (released)
+=========
+
+Improved AXP capacitor values to be exactly as in the design suggestions:
+
+1. C172 10uf/0603 --> 1uF/0603
+2. C178 10uF/0603 --> 4.7uF/0603
+3. C179 10uF/0603 --> 4.7uF/0603
+4. C180 10uF/0603 --> 4.7uF/0603
+5. C187 10uF/0603 --> 4.7uF/0603
+6. C149 10uF/0603 --> 4.7uF/0603
+7. C158 10uF/0603 --> 4.7uF/0603
+8. C146 1uF/0603 --> 4.7uF/0603
+9. C177 10uF/0603 --> 220nF/0603
+
+Changed eMMC to the newest value KLMAG1JETD-B041003(153FBGA)
+
+Hardware changes in revision L2 (released)
+=========
+
+Minor changes to multiple component packages to improve machine soldering.
+ 
+Hardware changes in revision M (released)
+=========
+
+1. Changed RAM K4B4G1646D-BYK0.
+2. Changed inductance 2.2uH with 2.2uH/NR3015T2R2M/1.5A/3015 
+3. Added the option for LAN protection - ESD5302F, by default are NA. 
+4. Moved R80 further away from the edge 
+5. GBH-254-SMT-40 value changed to P-B-V-40-LF. GBH-254-SMT-10 value changed to P-B-V-10-LF.

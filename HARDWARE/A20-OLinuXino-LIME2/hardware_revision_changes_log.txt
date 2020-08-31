@@ -171,7 +171,7 @@ A20-OLinuXino-Lime2-EMMC-IND_Rev_H
 2. Renamed GMAC_PWR_E/PH7 to just PH7. The signal was needed by old Ethernet PHY, it is no longer routed to the Ethernet.
 3. Removed filtering from PHY's TX and RX - L3, L4 removed (from 2.7nH/0402 changed to NA); C81, C254 removed (changed from 24pF/0402 to NA). This improves GB speeds.
 
-#### Hardware revision K2 (public release)
+#### Hardware revision K1 (public release)
 =============================
 
 Updated capacitor values around the AXP209 to be 100% compatible with the recommendation:

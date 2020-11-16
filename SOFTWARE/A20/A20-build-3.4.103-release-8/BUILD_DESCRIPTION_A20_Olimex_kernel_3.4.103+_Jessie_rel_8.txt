@@ -246,7 +246,7 @@ If your board has eMMC then you have to apply a patches that fixes the problems 
 
 Download the patch file fix_emmc_hpi.patch using wget command
 
-# wget https://raw.githubusercontent.com/OLIMEX/build/master/patch/kernel/sun7i-default/fix_emmc_hpi.patch
+# wget https://raw.githubusercontent.com/OLIMEX/build/olimex/patch/kernel/sun7i-default/fix_emmc_hpi.patch
 
 and patch the drivers/mmc/core/mmc.c file
 
@@ -254,7 +254,7 @@ and patch the drivers/mmc/core/mmc.c file
 
 for emmc5 support 
 
-# wget https://raw.githubusercontent.com/OLIMEX/build/master/patch/kernel/sun7i-default/enable_emmc5_support.patch
+# wget https://raw.githubusercontent.com/OLIMEX/build/olimex/patch/kernel/sun7i-default/enable_emmc5_support.patch
 
 and patch the drivers/mmc/core/mmc.c file
 

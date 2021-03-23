@@ -1,0 +1,3 @@
+(sym_lib_table
+ (lib (name A64-OlinuXino_Rev_G)(type Legacy)(uri ${KIPRJMOD}/A64-OlinuXino_Rev_G.lib)(options "")(descr ""))
+)

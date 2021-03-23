@@ -2,17 +2,19 @@
 
 PDF exports of the schematics are found in this folder. Deisgn files are found in the folders, each folder features all required files for a specific hardware revision as indicated by the folder name. To access the design files you need the latest beta version of KiCAD. Using the latest stable version usually will NOT suffice.
 
-The initial release of A64-OLinuXino boards was revision C. Starting hardware revision D, each variant of A64-OLinuXino has own schematic. The three variants of the board so far are:
+The initial release of A64-OLinuXino boards was revision C. The six variants of the board so far are:
 
+* A64-OLinuXino-1G with 1GB RAM but NO flash and NO WiFi/BLE connectivity
 
+* A64-OLinuXino-1Ge16GW with 1GB RAM and 16GB extra eMMC flash and extra WiFi/BLE module
 
-* A64-OLinuXino-1G has 1GB RAM, no extras (no flash memory, no WIFI/BLE module)
+* A64-OLinuXino-1Ge16GW-EA with 1GB RAM and 16GB extra eMMC flash and extra WiFi/BLE module + external antenna
 
-* A64-OLinuXino-1G16GW 
+* A64-OLinuXino-1Ge4GW with 1GB RAM and 4GB extra eMMC flash and extra WiFi/BLE module
 
-* A64-OLinuXino-1G4GW has 1GB RAM memory, 4GB eMMC flash memory, extra WIFI/BLE module
+* A64-OLinuXino-1Gs16M with 1GB RAM, no NAND or eMMC flash, no WiFi/BLE, extra 16MB SPI flash
 
-* A64-OLinuXino-2G16G-IND has 2GB RAM, 16GB extra flash but NO WiFi/BLE module; with components that work in the industrial -40+85C temperature range
+* A64-OLinuXino-2Ge8G-IND with 2GB RAM and 8GB extra flash but NO WiFi/BLE connectivity; with components that work in the industrial -40+85C temperature range
 
 ### Hardware revision changes log:
 
@@ -53,4 +55,41 @@ The initial release of A64-OLinuXino boards was revision C. Starting hardware re
 	C107 was changed from NA to 1.5pF
 * 14. The WiFi's antenna mirrored
 
+#### Hardware revision E1
+
+* 1. eMMC KLMAG2GEND-B031(FBGA153)(16G) changed with new eMMC KLMAG1JETD-B041(FBGA153)(16G)
+
+#### Hardware revision F
+
+* 1. Added R62(10k/0402) pull-down to the eMMC's data strobe line;
+* 2. RM14, RA0805_(4X0402)_22R replaced by 4 resistors 22R/0402, i.e. R121-R124; R121 was placed away from UEXT for to make shorter eMMC's data strobe line length;
+* 3. R73[NA(22R/0402)] was added to enable SPI0 software CS option to the UEXT via PH10, when the SPI_Flash is populated. By defalut, it will reamin as it was, i.e. R124(22R/0402) populated!, while R73(NA)!;
+* 4. L9 was changed from 2.7nH/L0402 to NA(2.7nH/L0402), and C88 from 24pF to NA(24pF);
+* 5. MIPI-DSI1 changed: MIPI-DSI1 connector's pinout completely changed for Raspberry-Pi compatability; added the resistors: R125 to R132;
+* 6. In the DRC drill to drill clerance was set to 12mils and all related errors were corrected;
+* 7. UEXT1 was changed from NA(HN2x5) to HN2x5;
+* 8. All 3Ds were assigned;
+* 9. It was added C94(NA/0402) to the eMMC's clock line just in case;
+* 10. NAND and related components removed forever;
+* 11. In the schematic all "/" signs were exchanged with "\";
+* 12. Improvements around the placement of a number of resistors related to the PHY signals to reduce EMI emissions;
+* 13. Added U4 EEPROM - AT24C16C-SSHM-T(SOIC-8_150mil) and also C39, 100nF/10V/10% to the UEXT's I2C to avoid conflict with the same EEPROM on the LCD-Driver board. It is placed by default;
+* 14. R15[NA(22R/R0402)] added in serial to the eMMC's datastrobe signal to be able to disconnect when no HS400 mode or to add a serial filter to reduce EMI;
+* 15. UBOOT1, PWRON1 and RESET1 packages changed from OLIMEX_Buttons-FP:uTACTIL to OLIMEX_Buttons-FP:IT1185AU2_V2;
+* 16. U2 and U3's packages improved;
+* 17. LAN1's package improved;
+* 18. D1 moved a little bit away from the PWR-JACK's + pad;
+* 19. Q2 package changed from Q32.768kHz\12.5pF/20ppm/4P/SMD8038 to Q32.768kHz/12.5pF/2P/SMD1206;
+* 20. L7 package changed from 2.7nH\L0402 to NA(2.7nH\L0402), and C198 changed from 24pF to NA(24pF);
+* 21. R100 changed from 22R/0402 to FB1, FB0402/PZ1005U601-R45TF-1;
+* 22. R69 changed from 22R/0402 to FB2, FB0402/PZ1005U601-R45TF-1;
+* 23. The GND polygons in the top and bottom opened to allow for metal cover soldering.
+
+#### Hardware revision G
+
+1. Added antenna ANT2(NA(U.FL-R-SMT-1)), R16(0R) and R17(NA/0R);
+2. Removed FB1(FB0402/PZ1005U601-R45TF-1) and FB2(FB0402/PZ1005U601-R45TF-1) and placed R18(22R/0402) and R19(22R/0402) resistors instead. Using FB1 and FB2 was meant to improve the EMI, but it yielded to results.
+3. Adjusted the lengths of some eMMC wires.
+4. C93 changed from 24pF to 24pF\50V/5%. C88 and C198 changed from NA/24pF to NA(24pF\50V/5%);
+5. Placing 5.1 eMMC to work at 3.3V to work more reliably, PWR_PC1 has to be set to position 1-2 for 3.3V operation.
 

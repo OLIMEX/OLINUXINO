@@ -87,9 +87,9 @@ The initial release of A64-OLinuXino boards was revision C. The six variants of 
 
 #### Hardware revision G
 
-1. Added antenna ANT2(NA(U.FL-R-SMT-1)), R16(0R) and R17(NA/0R);
-2. Removed FB1(FB0402/PZ1005U601-R45TF-1) and FB2(FB0402/PZ1005U601-R45TF-1) and placed R18(22R/0402) and R19(22R/0402) resistors instead. Using FB1 and FB2 was meant to improve the EMI, but it yielded to results.
-3. Adjusted the lengths of some eMMC wires.
-4. C93 changed from 24pF to 24pF\50V/5%. C88 and C198 changed from NA/24pF to NA(24pF\50V/5%);
-5. Placing 5.1 eMMC to work at 3.3V to work more reliably, PWR_PC1 has to be set to position 1-2 for 3.3V operation.
+* 1. Added antenna ANT2(NA(U.FL-R-SMT-1)), R16(0R) and R17(NA/0R);
+* 2. Removed FB1(FB0402/PZ1005U601-R45TF-1) and FB2(FB0402/PZ1005U601-R45TF-1) and placed R18(22R/0402) and R19(22R/0402) resistors instead. Using FB1 and FB2 was meant to improve the EMI, but it yielded no results;
+* 3. Adjusted the lengths of some eMMC wires;
+* 4. C93 changed from 24pF to 24pF\50V/5%. C88 and C198 changed from NA/24pF to NA(24pF\50V/5%);
+* 5. Changing 5.1 eMMC at 3.3V (up from 1.8V operation) for better reliability, PWR_PC1 jumper has to be set to position 1-2 for 3.3V operation.
 

@@ -1,0 +1,3 @@
+(sym_lib_table
+(lib (name Lime2-SATA_RevA)(type Legacy)(uri ${KIPRJMOD}/Lime2-SATA_RevA.lib)(options "")(descr ""))
+)

@@ -24,4 +24,4 @@ Hardware revision D
 ========
 Changes in this revision should not affect the user, these are purely manufacturing optimizations!
 1. Changed LCD connector package for easier soldering;
-2. LIME and LIME2 connectors changed package with 0.9mm holes.
+2. Changed LIME and LIME2 connectors to ones with 0.9mm holes.

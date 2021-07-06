@@ -1,0 +1,30 @@
+Partlist exported from Y:/SVN/LCD-OLINUXINO-4.3TS/Hardware/trunk/BRD/LCD-OLINUXINO-4.3''TS_Rev_D.sch at 18.03.2019 09:56:56 
+
+Qty Value                         Device                           Parts             
+2   1.2k/1%                       R-EU_R0603_5MIL_DWS              R7, R11           
+1   1N5819S(SS14)                 SCHOTKKY7.62SS2                  D2                
+1   1R                            R-EU_R0805_5MIL_DWS              R8                
+1   1k                            R-EU_R0603_5MIL_DWS              R6                
+1   5.0V:Close/3.3V:Open          SJ2W5                            5.0V/3.3V         
+1   5V_JACK:Open/5V_LCD_CON:Close SJ2W3                            5V_JACK/5V_LCD_CON
+1   10k                           R-EU_R0603_5MIL_DWS              R5                
+3   22uF/6.3V                     C-EUC0603_DWS                    C1, C3, C4        
+3   27k/1%                        R-EU_R0603_5MIL_DWS              R3, R4, R10       
+1   100n                          C-EUC0603_DWS                    C2                
+1   100uF/35V/6.3x11              CPOL-EUH1M                       C5                
+1   150R                          R-EU_R0603_5MIL_DWS              R9                
+1   220uH/YS75                    L-USL7078                        L1                
+1   470pF                         C-EUC0603_DWS                    C6                
+1   BAT54C                        DIODE_AC-CA_                     D1                
+1   BT043DC+(FPV-WZA21-40-LF)     GFT043A13-LCD4.3"                LCD               
+1   CTRL:Close/EN:Open            SJ2W5                            CTRL/EN           
+1   DCJ-W54R-20-LF                PWR-JAKDCJ-W                     PWR_JACK          
+1   DTA114YKA                     DIGITAL_TRANSISTORS-PNPDTA114YKA T1                
+2   DTC114YKA                     DIGITAL_TRANSISTORS-NPNDTC114YKA T2, T3            
+3   FIDUCIAL                      FIDUCIAL                         U$1, U$2, U$3     
+2   IRLML6402                     P-MOS+DIODIRLML6402              FET1, FET2        
+1   MALE-PAV16X-2x20 (0.8 bud)    ML40PA-V16X-2X20-LF_0.90_DRILL   LCD_LIME2         
+1   MALE-PAV16X-2x20 (0.8 bud)    ML40YA-V36P-2X20-LF              LCD_LIME          
+1   MC34063AD(R2)G,(SO8)          MC34063A2                        U1                
+2   NA                            R-EU_R0603_5MIL_DWS              R1, R2            
+1   P-B-V-40-LF                   ML40-GBH-254-SMT-40              LCD_CON           

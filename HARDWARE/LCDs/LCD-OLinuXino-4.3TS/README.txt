@@ -19,3 +19,9 @@ Hardware revision B
 Hardware revision C
 ========
 1. HSYNC and VSYNC were added, because they are required for some batches of new 4.3" LCDs.
+
+Hardware revision D
+========
+Changes in this revision should not affect the user, these are purely manufacturing optimizations!
+1. Changed LCD connector package for easier soldering;
+2. LIME and LIME2 connectors changed package with 0.9mm holes.

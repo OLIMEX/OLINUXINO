@@ -63,7 +63,10 @@ Step 8:
 DYI laptop TERES-I with A64 chip.
 
 Step 9:
-H3, A33, A64 quad core processors.
+RT5350F-OLinuXino first MIPS OLinuXino with Ralink RT5350 
+S3-OLinuXino camera linux board with Allwinner S3 SOC
+STM32MP15X-OLinuXino-LIME2 - board with same layout as A20-OLinuXino-LIME2 but with STM new DUal Core Cortex-A7 processor STM32MP157
+iMX8QM-TUKHLA - OLinuXino board with most powerful NXP iMX8 processor QUAD MAX with Dual core Cortex-A72 and Quad code Cortex-A53 
 
 Step 10:
 ... we don't know yet, there are lot of candidates, but we start to become a little picky. To start the development of new OSHW OLinuXino board we will look at least the SOC to have proper Linux Support as we are really overwhelmed of the tons of new SOCs released with just Android and binary blobs.

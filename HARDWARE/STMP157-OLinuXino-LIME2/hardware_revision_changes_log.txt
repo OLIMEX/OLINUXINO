@@ -1,0 +1,3 @@
+### Notable hardware revision changes STMP157-OLinuXino-LIME2. It applies to all board variants:
+
+Initial hardware revision - B1

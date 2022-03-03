@@ -57,5 +57,7 @@ Fault: Open Circuit;
 
 To stop it press CTRL+C
 
+There are comments in the .c file, if you are wondering what is happening, please check the .c file.
+
 2022/02/24
 Stanimir Petev, Olimex

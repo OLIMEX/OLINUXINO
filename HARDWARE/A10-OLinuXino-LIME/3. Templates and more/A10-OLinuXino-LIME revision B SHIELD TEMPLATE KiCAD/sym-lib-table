@@ -1,0 +1,3 @@
+(sym_lib_table
+ (lib (name A10_OLinuXino_Lime_Rev-B_SHIELD_TEMPLATE)(type Legacy)(uri ${KIPRJMOD}/A10_OLinuXino_Lime_Rev-B_SHIELD_TEMPLATE.lib)(options "")(descr ""))
+)

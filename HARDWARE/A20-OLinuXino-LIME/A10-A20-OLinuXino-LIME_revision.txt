@@ -2,7 +2,9 @@ IMPORTANT A10-OLINUXINO-LIME AND A20-OLINUXINO-LIME SHARE SAME HARDWARE LAYOUT.
 
 THIS IS BECAUSE THE A10 AND A20 CHIPS ARE PIN-TO-PIN COMPATIBLE (DROP-IN REPLACEABLE).
 
-ONLY THE MAIN CHIP PLACED IS DIFFERENT. 
+ONLY THE MAIN CHIP PLACED IS DIFFERENT.
+
+NOTICE THAT A20-OLINUXINO-LIME2 DESIGN IS DIFFERENT COMPARED TO A10-OLINUXINO-LIME AND A20-OLINUXINO-LIME!
 
 Hardware revision A, notable changes
 ========
@@ -105,3 +107,11 @@ Optimized a numer of capacitors near the AXP209:
 8. C163 changed from 10uF/0603 to 4.7uF/0603.
 9. C157 changed from 10uF/0603 to 220nF/0603.
 
+Hardware revision I2, notable changes
+========
+1. Changed eMMC, from KLMAG2GEND-B031(FBGA153)(16G) to KLMAG1JETD-B041(FBGA153)(16G).
+
+Hardware revision I3, notable changes
+========
+1. RAM changed to K4B4G1646D-BYK0;
+2. Improving voltage divider for VCC DDR 1.35V, changes required: R68 -> 2.49k/1%/0603 , R70 -> 2k/1%/0603.

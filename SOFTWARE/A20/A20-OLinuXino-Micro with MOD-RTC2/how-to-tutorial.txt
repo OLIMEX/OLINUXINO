@@ -1,0 +1,70 @@
+This is a tutorial how to build a simple project for A20-OLinuXino-Micro Rev.F with demo for MOD-RTC2 Rev.A.
+
+In addition to the boards you also need SD card with Debian image (tested with "A20-OLinuXino-bullseye-base-20220928-143706.img"), LAN (this is optional to download to files) and USB serial cable (like USB-SERIAL-CABLE-F).
+
+1) Connect all the hardware and supply the board - USB serial cable to UART0 - TX0, RX0 and GND; and the MOD-RTC2 to UEXT1.
+
+2) Open a console terminal program (like PuTTY, HyperTerminal etc.) with baudrate 115200
+
+3) Wait until the board is initialized and login (default user/password are: root/olimex)
+
+4) Make a directory where the project files will be stored (this step is optional and it's only for better arrangement of the files in the directory tree). You can do this with the command:
+Input:
+	
+	mkdir MOD-RTC2
+	
+5) Set the created directory as current directory:
+Input:
+	
+	cd MOD-RTC2
+	
+6) Since we are going to download the source and header files from GitHUB we must enable the internet connection:
+Input:
+	
+	ifup eth0
+	
+6.1) Allow the https protocol. (This step could be skipped if https is allowed by default)
+
+Input
+
+	export https_proxy="192.168.0.1:80"
+
+7) Download the files from GitHUB:
+Input:
+
+	wget <URL>
+	
+In order to get the URL, go to GitHUB find the directory of the project: <path>; select the file you want to download and click on the "Raw" button; then copy the URL and trigger the command (wget) in the console of A20-OLinuXino-Micro. Do this for the three files: main.c; i2c.c; i2c.h.
+
+8) Just to make sure everything is fine and all three files are downloaded check the content of the directory:
+Input:
+
+	ls
+
+The respond of the host board should be:
+Output:
+
+	i2c.c  i2c.h  main.c
+
+9) Compile all source files:
+Input:
+
+	gcc *.c
+
+A new file should appear. We check the content of the directory again:
+Input:
+
+	ls
+	
+Output:
+
+	a.out  i2c.c  i2c.h  main.c
+
+
+10) Execute the generated file with option to READ from I2C2
+Input:
+
+	./a.out
+	
+On the screen will be printed time started from 31 December 1999 at 23:59:57 and coutingin every second. This time could be changed in the code.
+	1999/12/31 (Friday) 23:59:57;  Temperature = 24.25 C

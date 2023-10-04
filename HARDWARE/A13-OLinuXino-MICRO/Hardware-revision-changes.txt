@@ -1,0 +1,18 @@
+Hardware design changes of A13-OLinuXino-MICRO.
+
+- Revision C1
+-----
+
+Changing R17 from 2k/1%/0603 to 2.2k/1%/0603. This increases the voltage available on the regulator to 1.45V (up from 1.4V). This increases the reliability of first boot.
+
+- Revision C
+-----
+
+1. Changed the ferrite beads of the USB shield and SD card to FB0805/600R/2A.
+2. Changed SD card with MICRO_SD/TFC-WPAPR-08.
+3. Improved card detect. R56 changed from (na) to 10k pull down. RM12G1 now pull up.
+
+- Revision B1
+-----
+ 
+1. R56 chanaged from 10k to NA, to force always card present

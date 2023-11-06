@@ -217,3 +217,8 @@ Changed eMMC from KLMAG2GEND-B031(FBGA153)(16G) to KLMAG1JETD-B041(FBGA153)(16G)
 7. Fixed eMMC label to reflect new memory.
 8. Changed capacitors of the 25Mhz crystal of the Ethernet controller. Now 15pf (down from 33pf).
 9. Updated and improved the packages of a lot of components.
+
+#### Hardware revision L1 (public release)
+=============================
+
+1. Changed U14 from MCP121T475I-TT vs VDA4510NTA

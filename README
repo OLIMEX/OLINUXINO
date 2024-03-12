@@ -29,7 +29,7 @@ iMX233-OLINUXINO uses processor on 454Mhz and have less memory and will not allo
 To name few potential applications for OLINUXINO:
 
 - 3D rep-rap printer controller including G-code interpreter - now all 3D printers use PC/Laptop connected to Arduino stepper driver, this board will handle both without problem
-- Low cost PLC running open source PLC porgramming languages
+- Low cost PLC running open source PLC programming languages
 - Home Automation - connecting GSM module or Zigbee sensors would be easy with the existing UEXT connector
 - OLINUXINO has 100Mbit Ethernet port, but there are many low cost $10 WIFI USB modules with Linux drivers like RTL8192 which allow OLINUXINO to connect to internet wireless and to may control relays and sensors without need for LAN wiring.
 - Having small linux module with GPIOs would be handy even to embed it in other products. BeagleBone do not allow the board to be used in commercial projects, there are no restrictions with OLINUXINO
@@ -44,7 +44,7 @@ A13 is Cortex-A8 processor which can address up to 512MB RAM and run at 1GHz. Th
 A13-OLinuXino have 512MB RAM, 4 USB hosts (1 dedicated for WIFI), 1 USB-OTG, Audio out, Audio in, SD-card, VGA, buttons, 72 GPIOs, LCD connector
 
 Step 3:
-A10 is the big brother of A13 it's also Cortex-A8 running at 1Ghz (many Chinese tablet/set-top-box vendors write it's 1.2 or 1.5GHz but this is overclocking and same is possible with A13 too, but not recommended for normal operation). It can address up to 2GB of RAM, and on top of A13 have SATA, HDMI, VGA and composite video outputs) + much more GPIOs as it's in BGA442 package. While we developed A13-OLinuXino we got many requests for hackable A10 board as all current solutions are tablets or set-top-boxes which are not designed to have GPIO connectors and to allow hardware hacking
+A10 is the big brother of A13 it's also Cortex-A8 running at 1Ghz (many Chinese tablet/set-top-box vendors write it's 1.2 or 1.5GHz but this is overclocking and same is possible with A13 too, but not recommended for normal operation). It can address up to 2GB of RAM, and on top of A13 have SATA, HDMI, VGA and composite video outputs + much more GPIOs as it's in BGA442 package. While we developed A13-OLinuXino we got many requests for hackable A10 board as all current solutions are tablets or set-top-boxes which are not designed to have GPIO connectors and to allow hardware hacking
 A10-OLinuXino will have same as A13 but including more GPIOs, 1GB RAM, HDMI, SATA and 100MBit Ethernet
 
 Step 4:
@@ -54,13 +54,13 @@ Step 5:
 A20 is Dual Core Cortex-A7 processor which is almost pin to pin compatible, so A10 board can work with A20 processors too. We have low cost A20 board prototypes working and A20-SOM work in progress.
 
 Step 6:
-Texas Instruments Sitara AM3352 processor is necessary for Industrial customers who want longivity supply program, TI as Freescale guarantee that when start producing processor continue the production at least 5-10 years, this way customers are not forced to change their designs every year. So we work on AM3352 module with: AM3352 720Mhz, Cortex-A8 processor, 512MB DDR3 RAM (optional we will make 1GB RAM version also), power supply 6-16VDC, x4 USB 2.0 hosts, 100Mbit Ethernet, SD-card, VGA, CAN, GPIO connector, LCD connector with touchscreen to work with A13-LCD7TS and A13-43TS LCDs, UEXT connector, JTAG.
+Texas Instruments Sitara AM3352 processor is necessary for Industrial customers who want a longevity supply program, TI as Freescale guarantee that when start producing processor continue the production at least 5-10 years, this way customers are not forced to change their designs every year. So we work on AM3352 module with: AM3352 720Mhz, Cortex-A8 processor, 512MB DDR3 RAM (optional we will make 1GB RAM version also), power supply 6-16VDC, x4 USB 2.0 hosts, 100Mbit Ethernet, SD-card, VGA, CAN, GPIO connector, LCD connector with touchscreen to work with A13-LCD7TS and A13-43TS LCDs, UEXT connector, JTAG.
 
 Step 7:
 Allwinner A64 chip into A64-OLinuXino development board.
 
 Step 8:
-DYI laptop TERES-I with A64 chip.
+DIY laptop TERES-I with A64 chip.
 
 Step 9:
 RT5350F-OLinuXino first MIPS OLinuXino with Ralink RT5350 
@@ -70,7 +70,7 @@ iMX8QM-TUKHLA - OLinuXino board with most powerful NXP iMX8 processor QUAD MAX w
 
 Step 10:
 ... we don't know yet, there are lot of candidates, but we start to become a little picky. To start the development of new OSHW OLinuXino board we will look at least the SOC to have proper Linux Support as we are really overwhelmed of the tons of new SOCs released with just Android and binary blobs.
-Rockchip is doing very good job recently releasing mainline Linux support for their devices.
+Rockchip is doing a very good job recently releasing mainline Linux support for their devices.
 
 WEB RESOURCES:
 
@@ -90,7 +90,7 @@ You may reproduce it for both your own personal use, and for commercial use.
 You will have to provide a link to the original creator of the project http://www.olimex.com on any documentation or website.
 You may also modify the files, but you must then release them as well under the same terms.
 Credit can be attributed through a link to the creator website: http://www.olimex.com
-You should alter the silkscreen to not confuse people who buy your product that they buy original OLinuXino made by Olimex.
+You should alter the silkscreen to not confuse people who buy your product that they buy the original OLinuXino made by Olimex.
 
 SOFTWARE
 The software is released under GPL3.

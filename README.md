@@ -10,9 +10,11 @@ Pronounced 'Oh-LIH-nuh-zeeno' The name OLinuXino refers to a series of Single Bo
 
 The OLinuXino boards are designed to be flexible and versatile platforms for a wide range of applications. They are compatible with various operating systems, but one popular choice is the Linux operating system. Linux is an open-source, community-driven operating system that is well-suited for use on embedded devices like SBCs.
 
-Armbian is a custom-built Debian image designed specifically for Arm-based SBCs like the OLinuXino boards. It is a lightweight and optimized operating system that takes full advantage of the OLinuXino's hardware components. This includes the processor, memory, storage, and other peripherals like GPIOs and I2C buses.
+Olimex provide mainline images called Olimage designed specifically for Arm-based SBCs like the OLinuXino boards. It is a lightweight and optimized operating system that takes full advantage of the OLinuXino's hardware components. This includes the processor, memory, storage, and other peripherals like GPIOs and I2C buses. Olimage is regularly updated to ensure a stable and secure operating environment for OLinuXino users. You can find more about Olimage in this document here:
 
-Armbian provides users with a streamlined and easy-to-use interface for managing their OLinuXino boards. It also comes with a variety of pre-installed software packages that can be used for different applications, such as web servers, media centers, and more. Additionally, Armbian is regularly updated with security patches and bug fixes to ensure a stable and secure operating environment for OLinuXino users.
+https://github.com/OLIMEX/OLINUXINO/blob/master/DOCUMENTS/OLIMAGE/Olimage-guide.pdf
+
+We've provided Armbian and linux sunxi images in the past, these are no longer actively support but still available for download. 
 
 Overall, the combination of the OLinuXino boards and the Armbian operating system provides a powerful and customizable platform for a variety of applications. 
 

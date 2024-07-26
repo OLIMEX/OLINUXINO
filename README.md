@@ -14,7 +14,7 @@ Olimex provide mainline images called Olimage designed specifically for Arm-base
 
 https://github.com/OLIMEX/OLINUXINO/blob/master/DOCUMENTS/OLIMAGE/Olimage-guide.pdf
 
-We've provided Armbian and linux sunxi images in the past, these are no longer actively support but still available for download. 
+We've provided Armbian and sunxi images in the past, and while these are no longer actively supported, they are still available for download. 
 
 Overall, the combination of the OLinuXino boards and the Armbian operating system provides a powerful and customizable platform for a variety of applications. 
 

@@ -922,12 +922,15 @@ void ReadADC(unsigned char value)
 	ReadADC(2);
 	ReadADC(3);
 	ReadADC(5);
+	ReadADC(6);
+	//notice that MOD-IO2 revision A and B have AN0, AN1, AN2, AN3, AN5 while hardware revision C has AN0, AN5, AN6
 	break;	
-	case 0:	
-	case 1:
+	case 0: 
+	case 1:	
 	case 2:
 	case 3:
 	case 5:	
+	case 6: 
 	
 	buff[0]=0x10+value;
 	data[0]=0x00;

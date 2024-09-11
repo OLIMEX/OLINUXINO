@@ -168,3 +168,22 @@ Hardware changes in revision M (released)
 3. Added the option for LAN protection - ESD5302F, by default are NA. 
 4. Moved R80 further away from the edge 
 5. GBH-254-SMT-40 value changed to P-B-V-40-LF. GBH-254-SMT-10 value changed to P-B-V-10-LF.
+
+Hardware changes in revision M1 (released)
+=========
+
+1. Changed value for the ESD protection of LAN, ESD1 and ESD2, from NA to ESD5302F-3/TR (ESD protection now populated)!
+
+Hardware changes in revision M2 (released)
+=========
+
+1. Changed R114(at EMMC_CLK(PC7)) from 22R to 47R. Improves booting rate from the eMMC.
+
+Hardware changes in revision N (released)
+=========
+
+1. Added CE logo.
+2. Moved couple of components and wires to be further from the board's edge.
+3. Changed the ESD protection to the new ESDS314DBVR.
+4. Connectted WP of spi flash with PG6 trough NA.
+5. FLASH_CONNECTOR won't be placed by default.

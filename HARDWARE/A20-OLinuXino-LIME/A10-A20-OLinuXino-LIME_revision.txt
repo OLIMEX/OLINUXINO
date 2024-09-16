@@ -115,3 +115,16 @@ Hardware revision I3, notable changes
 ========
 1. RAM changed to K4B4G1646D-BYK0;
 2. Improving voltage divider for VCC DDR 1.35V, changes required: R68 -> 2.49k/1%/0603 , R70 -> 2k/1%/0603.
+
+Hardware revision J, notable changes
+========
+1. Updated component packages of AXP, DDR, A20, USB, SD, LED, SATA, EEPROM.
+2. D4 moved to bottom.
+3. C157 size changed from 0603 to 0402.
+4. Moved few components towards middle of the PCB (so that they are at least 40mils from the edge).
+5. Added VDA4710NTA (instead of MCP121 which is now NA).
+6. EFUSE_VDDQ(T9) now connected to GND via R99 and 2.5V trough R100.
+7. Added CE sign.
+8. SPI WP connected to PG9 trough R17(NA).
+9. Changed EMMC, NAND, SPI FLASH with FLASH_CONNECTOR. SPI flash left on board as NA trough NA resistors.
+10. Added ESD protection ESDS314DBVR to the Ethernet chip.

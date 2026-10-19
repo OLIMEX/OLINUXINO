@@ -1,0 +1,442 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=0.78in,headheight=15pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=olimexblue,urlcolor=olimexblue,citecolor=olimexblue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\definecolor{olimexblue}{HTML}{1769AA}
+\definecolor{olimexdark}{HTML}{263746}
+\definecolor{lightblue}{HTML}{EAF3F9}
+\definecolor{lightgray}{HTML}{F3F5F6}
+\definecolor{warnbg}{HTML}{FFF4D6}
+\definecolor{warnline}{HTML}{D49400}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.25em}
+\renewcommand{\arraystretch}{1.18}
+\sloppy
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+\setlength\LTleft{0pt}
+\setlength\LTright{\fill}
+
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \cfoot{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\newcommand{\hexbyte}[1]{\texttt{0x#1}}
+\newcommand{\field}[1]{\texttt{#1}}
+\newcommand{\notice}[1]{%
+  \begin{center}
+  \fcolorbox{warnline}{warnbg}{\parbox{0.92\linewidth}{#1}}
+  \end{center}
+}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{lightgray},
+  frame=single,
+  rulecolor=\color{lightgray},
+  columns=fullflexible,
+  breaklines=true,
+  showstringspaces=false,
+  xleftmargin=0.4em,
+  xrightmargin=0.4em
+}
+
+\hypersetup{
+  pdftitle={OLinuXino EEPROM content - October 2026},
+  pdfauthor={Olimex Ltd.},
+  pdfsubject={Binary format for the OLinuXino A20 board identification EEPROM},
+  pdfkeywords={OLinuXino, A20, EEPROM, board ID, CRC32}
+}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{1.0in}
+  {\Huge\bfseries\textcolor{olimexdark}{OLinuXino EEPROM content}\par}
+  \vspace{0.24in}
+  {\Large\textcolor{olimexblue}{A20 and T2 board-information data format}\par}
+  \vspace{0.55in}
+  {\Large Olimex Ltd.\par}
+  \vspace{0.18in}
+  {\large October 19, 2026\par}
+
+  \vfill
+
+  \begin{minipage}{0.84\textwidth}
+  \centering
+  \textbf{Status: Maintained replacement specification}\\[0.6em]
+  This document corrects and supersedes the July 2018 and October 2019
+  A20 EEPROM documents. It describes the 256-byte board-information record
+  used by Olimex A20 and T2 OLinuXino products with a compatible EEPROM.
+  \end{minipage}
+
+  \vfill
+
+  {\small
+  Implementation baseline: Olimex U-Boot branch \field{release-20250305}\\
+  The U-Boot source remains authoritative for the current board-ID registry.
+  }
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Scope}
+
+This specification defines the first 256 bytes of the board-information EEPROM
+used by supported Olimex boards based on the Allwinner A20 or T2 processor. It
+covers the A20-OLinuXino-LIME, LIME2, MICRO, A20-SOM, A20-SOM204 and their T2
+industrial variants when the hardware contains a compatible EEPROM.
+
+The board module owns the identification record. A carrier or evaluation board
+does not create a second board identity. For example, an A20-SOM204 mounted on
+an evaluation board is identified by the EEPROM on the SOM204.
+
+\notice{\textbf{Compatibility note.} Older hardware may have no EEPROM or may
+contain erased or invalid data. Software must validate both the magic value and
+CRC before using any field. A board name must be resolved from the current
+U-Boot board-ID registry, not guessed from configuration bytes alone.}
+
+\subsection{Physical EEPROM addressing}
+
+The commonly used AT24C16-compatible EEPROM occupies I2C addresses
+\hexbyte{50} through \hexbyte{57}. The data structure in this document occupies
+the first 256-byte page, beginning at address \hexbyte{50}. Designers must
+consider all eight addresses when adding devices to the same I2C/TWI bus.
+
+\subsection{Normative implementation references}
+
+The implementation corresponding to this revision is found in the Olimex
+U-Boot repository:
+
+\begin{itemize}
+  \item \field{include/olimex/sys\_eeprom.h} - packed 256-byte structure.
+  \item \field{board/olimex/common/sys\_eeprom.c} - EEPROM I/O and CRC validation.
+  \item \field{include/olimex/boards.h} - storage, grade and capacity encodings.
+  \item \field{board/olimex/common/boards.c} - current board-ID registry.
+\end{itemize}
+
+Repository: \url{https://github.com/OLIMEX/u-boot-olinuxino}
+
+\section{General encoding rules}
+
+\begin{itemize}
+  \item The record length is exactly 256 bytes.
+  \item All multi-byte integers are unsigned and stored little-endian.
+  \item Text fields contain ASCII bytes and are not NUL-terminated unless
+        explicitly stated.
+  \item Capacity fields contain a base-2 exponent. A value $n$ represents
+        $2^n$ bytes.
+  \item Erased EEPROM bytes normally read as \hexbyte{FF}.
+  \item Readers must reject a record with an invalid magic value or CRC.
+\end{itemize}
+
+\section{Memory layout}
+
+\rowcolors{2}{lightblue}{white}
+\begin{longtable}{L{0.85in} L{0.78in} L{1.45in} L{3.15in}}
+\toprule
+\textbf{Offsets} & \textbf{Length} & \textbf{Field} & \textbf{Encoding} \\
+\midrule
+\endhead
+\hexbyte{00}-\hexbyte{03} & 4 & Header & Magic bytes
+\field{55 AA 4C 4F} \\
+\hexbyte{04}-\hexbyte{07} & 4 & Board ID & Unsigned 32-bit little-endian integer \\
+\hexbyte{08}-\hexbyte{09} & 2 & Revision & Major and minor ASCII bytes \\
+\hexbyte{0A}-\hexbyte{0D} & 4 & Serial number & Unsigned 32-bit little-endian integer \\
+\hexbyte{0E}-\hexbyte{11} & 4 & Configuration & Storage, size, RAM and grade bytes \\
+\hexbyte{12}-\hexbyte{1D} & 12 & Ethernet MAC & Twelve ASCII hexadecimal characters \\
+\hexbyte{1E}-\hexbyte{FB} & 222 & Reserved & Reserved for future use \\
+\hexbyte{FC}-\hexbyte{FF} & 4 & CRC-32 & Unsigned 32-bit little-endian CRC \\
+\bottomrule
+\end{longtable}
+\rowcolors{2}{}{}
+
+The MAC field ends at \hexbyte{1D}. Offset \hexbyte{1E} is the first reserved
+byte.
+
+\section{Field definitions}
+
+\subsection{Header}
+
+The first four bytes are fixed:
+
+\noindent
+\begin{tabular}{cccc}
+\toprule
+Offset & \hexbyte{00} & \hexbyte{01} & \hexbyte{02} \quad \hexbyte{03} \\
+\midrule
+Value & \hexbyte{55} & \hexbyte{AA} & \hexbyte{4C} \quad \hexbyte{4F} \\
+\bottomrule
+\end{tabular}
+
+Interpreted as a little-endian 32-bit integer, these bytes equal
+\hexbyte{4F4CAA55}. A different value means the record is invalid.
+
+\subsection{Board ID}
+
+The board ID at offsets \hexbyte{04}-\hexbyte{07} is a unique unsigned 32-bit
+identifier stored little-endian. It selects the product name, expected storage,
+RAM, grade and device-tree configuration.
+
+Board IDs are maintained in \field{board/olimex/common/boards.c}. Applications
+should update their lookup table from that source. Unknown IDs must be reported
+as unknown while the remaining structurally valid fields may still be shown.
+
+\clearpage
+\subsection{Revision}
+
+\noindent
+\rowcolors{2}{lightblue}{white}
+\begin{tabular}{lll}
+\toprule
+Offset & Meaning & Valid value \\
+\midrule
+\hexbyte{08} & Major revision & ASCII \field{A} through \field{Z} \\
+\hexbyte{09} & Minor revision & ASCII \field{1} through \field{9}, or unused \\
+\bottomrule
+\end{tabular}
+\rowcolors{2}{}{}
+
+U-Boot writes \hexbyte{00} when the minor revision is unused. Some production
+or erased records contain \hexbyte{FF}. Readers should display no minor
+revision for any byte outside ASCII \field{1} through \field{9}.
+
+Examples are \field{C}, \field{G2} and \field{J1}.
+
+\subsection{Serial number}
+
+Offsets \hexbyte{0A}-\hexbyte{0D} contain a sequential unsigned 32-bit serial
+number in little-endian order. U-Boot commonly displays it as eight hexadecimal
+digits.
+
+\subsection{Configuration}
+
+The configuration occupies four independent bytes:
+
+\noindent
+\rowcolors{2}{lightblue}{white}
+\begin{tabular}{lll}
+\toprule
+Offset & Field & Meaning \\
+\midrule
+\hexbyte{0E} & Storage & Primary onboard nonvolatile storage type \\
+\hexbyte{0F} & Storage size & Capacity exponent, valid when storage is not \hexbyte{00} \\
+\hexbyte{10} & RAM size & Capacity exponent \\
+\hexbyte{11} & Grade & Temperature-grade classification \\
+\bottomrule
+\end{tabular}
+\rowcolors{2}{}{}
+
+\subsubsection{Storage type}
+
+\noindent
+\rowcolors{2}{lightblue}{white}
+\begin{tabular}{lll}
+\toprule
+Value & ASCII & Meaning \\
+\midrule
+\hexbyte{00} & - & No onboard storage represented by this field \\
+\hexbyte{65} & \field{e} & eMMC \\
+\hexbyte{6E} & \field{n} & NAND flash \\
+\hexbyte{73} & \field{s} & SPI flash \\
+\bottomrule
+\end{tabular}
+\rowcolors{2}{}{}
+
+The letters are lowercase. Uppercase \field{E}, \field{N} and \field{S} are
+not the encoding used by current Olimex U-Boot.
+
+Some product names describe more than one fitted storage device, for example
+\field{e16Gs16M}. The configuration byte records the primary storage type;
+U-Boot identifies additional SPI flash from the board ID.
+
+\clearpage
+\subsubsection{Capacity encoding}
+
+For both storage size and RAM size:
+
+\[
+  \text{capacity in bytes} = 2^{\text{field value}}
+\]
+
+\noindent
+\rowcolors{2}{lightblue}{white}
+\begin{tabular}{llll}
+\toprule
+Value & Capacity & Value & Capacity \\
+\midrule
+0 & 1 B & 10 & 1 KiB \\
+20 & 1 MiB & 24 & 16 MiB \\
+29 & 512 MiB & 30 & 1 GiB \\
+32 & 4 GiB & 33 & 8 GiB \\
+34 & 16 GiB & & \\
+\bottomrule
+\end{tabular}
+\rowcolors{2}{}{}
+
+Product names traditionally use MB and GB even though the encoding is based on
+powers of two.
+
+\subsubsection{Grade}
+
+\noindent
+\rowcolors{2}{lightblue}{white}
+\begin{tabular}{ll}
+\toprule
+Value & Meaning \\
+\midrule
+\hexbyte{00} & Commercial grade \\
+\hexbyte{01} & Industrial grade \\
+\bottomrule
+\end{tabular}
+\rowcolors{2}{}{}
+
+\subsection{Ethernet MAC address}
+
+Offsets \hexbyte{12}-\hexbyte{1D} contain exactly twelve uppercase ASCII
+hexadecimal characters, without separators. For example:
+
+\noindent
+\field{301F9AD0ACB6} represents \field{30:1F:9A:D0:AC:B6}.
+
+If a valid MAC address was not programmed, the field can contain twelve
+\field{F} characters or erased \hexbyte{FF} bytes. Readers should display
+\field{FF:FF:FF:FF:FF:FF} and must not install it as an Ethernet address.
+
+Original A20-SOM products do not contain an onboard Ethernet PHY and normally
+do not carry a usable Ethernet MAC. A20-SOM204 behavior is variant-dependent.
+In the current U-Boot registry, IDs 8958, 10257 and 10234 are classified as
+having EMAC. Software should use the current board-ID registry rather than
+assuming that every SOM204 variant has or lacks Ethernet.
+
+\subsection{Reserved area}
+
+Offsets \hexbyte{1E}-\hexbyte{FB} are reserved. Current U-Boot initializes this
+area to \hexbyte{FF}. Readers must ignore it. Writers should initialize it to
+\hexbyte{FF} for a new record and should not assign private meanings that could
+conflict with future revisions.
+
+\subsection{CRC-32}
+
+Offsets \hexbyte{FC}-\hexbyte{FF} contain the CRC-32 of bytes
+\hexbyte{00}-\hexbyte{FB}, stored as a little-endian unsigned 32-bit value.
+
+The algorithm is the U-Boot \field{crc32()} implementation invoked as:
+
+\begin{lstlisting}[language=C]
+crc = crc32(0L, record, 252);
+\end{lstlisting}
+
+The CRC field itself is excluded from the calculation. A record is valid only
+when the stored value equals the calculated value.
+
+\section{Validation procedure}
+
+A reader should perform these steps in order:
+
+\begin{enumerate}[leftmargin=1.6em]
+  \item Read the full 256-byte page beginning at I2C address \hexbyte{50}.
+  \item Confirm bytes 0-3 are \field{55 AA 4C 4F}.
+  \item Calculate CRC-32 over bytes 0-251 with initial value zero.
+  \item Decode the stored CRC from bytes 252-255 as little-endian.
+  \item Reject the record if the CRC values differ.
+  \item Decode the remaining fields.
+  \item Resolve the board ID using the current board registry.
+\end{enumerate}
+
+A diagnostic tool may offer an explicit option to decode a record with a bad or
+unavailable CRC, but it must clearly mark the result as unverified.
+
+\section{Worked configuration examples}
+
+\noindent
+\rowcolors{2}{lightblue}{white}
+\begin{tabularx}{\textwidth}{L{1.55in} L{0.9in} L{0.9in} L{0.9in} Y}
+\toprule
+Product configuration & Storage byte & Size byte & RAM byte & Grade byte \\
+\midrule
+No storage, 1 GiB RAM, commercial &
+\hexbyte{00} & Not applicable & 30 (\hexbyte{1E}) & \hexbyte{00} \\
+4 GiB eMMC, 1 GiB RAM, commercial &
+\hexbyte{65} & 32 (\hexbyte{20}) & 30 (\hexbyte{1E}) & \hexbyte{00} \\
+16 GiB eMMC, 1 GiB RAM, commercial &
+\hexbyte{65} & 34 (\hexbyte{22}) & 30 (\hexbyte{1E}) & \hexbyte{00} \\
+16 MiB SPI, 512 MiB RAM, industrial &
+\hexbyte{73} & 24 (\hexbyte{18}) & 29 (\hexbyte{1D}) & \hexbyte{01} \\
+\bottomrule
+\end{tabularx}
+\rowcolors{2}{}{}
+
+\clearpage
+\section{A20-SOM and A20-SOM204 board IDs}
+
+This table is an informative snapshot from Olimex U-Boot
+\field{release-20250305}. The source registry is authoritative.
+
+\small
+\rowcolors{2}{lightblue}{white}
+\begin{longtable}{@{}L{0.65in}@{\hspace{0.16in}}L{3.40in}@{\hspace{0.16in}}L{1.20in}@{\hspace{0.16in}}L{1.19in}@{}}
+\toprule
+\textbf{ID} & \textbf{Board name} & \textbf{Storage} & \textbf{Grade} \\
+\midrule
+\endhead
+4673 & A20-SOM-n4GB & NAND 4 GiB & Commercial \\
+7664 & A20-SOM & None & Commercial \\
+8849 & A20-SOM-IND & None & Industrial \\
+8922 & A20-SOM-n8GB & NAND 8 GiB & Commercial \\
+9155 & A20-SOM-e16GB & eMMC 16 GiB & Commercial \\
+9148 & A20-SOM-e16GB-IND & eMMC 16 GiB & Industrial \\
+9047 & A20-SOM-e16Gs16M & eMMC 16 GiB & Commercial \\
+9259 & T2-SOM-IND & None & Industrial \\
+9827 & T2-SOM-e8Gs16M-IND & eMMC 8 GiB & Industrial \\
+11454 & T2-SOM-e16Gs16M-IND & eMMC 16 GiB & Industrial \\
+\midrule
+8991 & A20-SOM204-1G & None & Commercial \\
+8958 & A20-SOM204-1Gs16Me16G-MC & eMMC 16 GiB & Commercial \\
+10257 & A20-SOM204-1G-M & None & Commercial \\
+10157 & T2-SOM204-1Gs16Me4G-C-I & eMMC 4 GiB & Industrial \\
+10234 & T2-SOM204-1Gs16Me8G-MC-I & eMMC 8 GiB & Industrial \\
+11458 & T2-SOM204-1Gs16Me16G-M-I & eMMC 16 GiB & Industrial \\
+11462 & T2-SOM204-1Gs16Me16G-MC-I & eMMC 16 GiB & Industrial \\
+10238 & T2-SOM204-1G-I & None & Industrial \\
+\bottomrule
+\end{longtable}
+\rowcolors{2}{}{}
+\normalsize
+
+\section{Change-control guidance}
+
+Future changes should commit both this LaTeX source and its generated PDF.
+Changes to the binary layout require a corresponding implementation change and
+a new document release date. Updates to product IDs normally belong only in
+\field{boards.c}; this document should include a dated snapshot only when it is
+useful for users.
+
+\end{document}
